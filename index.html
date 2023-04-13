@@ -1,0 +1,1041 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://lmodel.github.io/ucs-containers/">
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>ucs-containers</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.975780f9.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ucs-containers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="ucs-containers" class="md-header__button md-logo" aria-label="ucs-containers" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ucs-containers
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Index
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lmodel/ucs-containers" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="ucs-containers" class="md-nav__button md-logo" aria-label="ucs-containers" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ucs-containers
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lmodel/ucs-containers" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Index
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Index
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    Slots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumerations" class="md-nav__link">
+    Enumerations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subsets" class="md-nav__link">
+    Subsets
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="about/" class="md-nav__link">
+        About
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    Slots
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumerations" class="md-nav__link">
+    Enumerations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subsets" class="md-nav__link">
+    Subsets
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/lmodel/ucs-containers/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="ucs-containers">UCS Containers</h1>
+<p>Classes and Properties representing Containers in UseCaseS Framework</p>
+<p>URI: https://w3id.org/lmodel/ucs-containers
+Name: ucs-containers</p>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Container/">Container</a></td>
+<td>Software that emulates a whole computer by means of an isolated user-space en...</td>
+</tr>
+<tr>
+<td><a href="Containerd/">Containerd</a></td>
+<td>Container runtime</td>
+</tr>
+<tr>
+<td><a href="Docker/">Docker</a></td>
+<td>open-source software for deploying containerized applications</td>
+</tr>
+<tr>
+<td><a href="Kubernetes/">Kubernetes</a></td>
+<td>software to manage containers on a server-cluster</td>
+</tr>
+<tr>
+<td><a href="LinuxContainersProject/">LinuxContainersProject</a></td>
+<td>Linux Containers is umbrella project for LXD, LXC, LXCFS and distrobuilder</td>
+</tr>
+<tr>
+<td><a href="Lxc/">Lxc</a></td>
+<td>Operating system-level virtualization for Linux</td>
+</tr>
+<tr>
+<td><a href="LxcFs/">LxcFs</a></td>
+<td>LXCFS is a simple userspace filesystem designed to work around some current l...</td>
+</tr>
+<tr>
+<td><a href="Lxd/">Lxd</a></td>
+<td>Lxd is a system container and virtual machine manager for Linux OS</td>
+</tr>
+<tr>
+<td><a href="OciContainer/">OciContainer</a></td>
+<td>Open Container Initiative (OCI) compliant containers</td>
+</tr>
+<tr>
+<td><a href="OpenContainerInitiative/">OpenContainerInitiative</a></td>
+<td>An open governance structure for express purpose of creating open industry st...</td>
+</tr>
+<tr>
+<td><a href="Podman/">Podman</a></td>
+<td>daemonless OCI-compliant container runtime</td>
+</tr>
+<tr>
+<td><a href="PodmanContainer/">PodmanContainer</a></td>
+<td>Podman container</td>
+</tr>
+<tr>
+<td><a href="PodmanContainers/">PodmanContainers</a></td>
+<td>Podman containers</td>
+</tr>
+<tr>
+<td><a href="PodmanExport/">PodmanExport</a></td>
+<td>Export a Podman container</td>
+</tr>
+<tr>
+<td><a href="PodmanGenerateSystemd/">PodmanGenerateSystemd</a></td>
+<td>Generate systemd unit from a pod or a container</td>
+</tr>
+<tr>
+<td><a href="PodmanImage/">PodmanImage</a></td>
+<td>Podman container image</td>
+</tr>
+<tr>
+<td><a href="PodmanImport/">PodmanImport</a></td>
+<td>Import Podman container from file</td>
+</tr>
+<tr>
+<td><a href="PodmanLoad/">PodmanLoad</a></td>
+<td>Load container into container storage</td>
+</tr>
+<tr>
+<td><a href="PodmanLogin/">PodmanLogin</a></td>
+<td>Login to a Container registry using Podman</td>
+</tr>
+<tr>
+<td><a href="PodmanLogout/">PodmanLogout</a></td>
+<td>Logout of a Container registry using Podman</td>
+</tr>
+<tr>
+<td><a href="PodmanNetwork/">PodmanNetwork</a></td>
+<td>Manage podman networks</td>
+</tr>
+<tr>
+<td><a href="PodmanPlay/">PodmanPlay</a></td>
+<td>Play kubernetes YAML file using podman</td>
+</tr>
+<tr>
+<td><a href="PodmanPod/">PodmanPod</a></td>
+<td>Manage Podman pods</td>
+</tr>
+<tr>
+<td><a href="PodmanSave/">PodmanSave</a></td>
+<td>Saves podman image to tar file</td>
+</tr>
+<tr>
+<td><a href="PodmanSecret/">PodmanSecret</a></td>
+<td>Manage Podman secrets</td>
+</tr>
+<tr>
+<td><a href="PodmanTag/">PodmanTag</a></td>
+<td>Add an additional name to a local image</td>
+</tr>
+<tr>
+<td><a href="PodmanVolume/">PodmanVolume</a></td>
+<td>Manage Podman Volumes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="add_host/">add_host</a></td>
+<td>Add host to system</td>
+</tr>
+<tr>
+<td><a href="all/">all</a></td>
+<td>The whole quantity or extent of a particular group or thing</td>
+</tr>
+<tr>
+<td><a href="blkio_weight/">blkio_weight</a></td>
+<td>Specifies per cgroup weight</td>
+</tr>
+<tr>
+<td><a href="blkio_weight_device/">blkio_weight_device</a></td>
+<td>Per cgroup per device rules using this interface</td>
+</tr>
+<tr>
+<td><a href="ca_cert_dir/">ca_cert_dir</a></td>
+<td>Path to directory containing TLS certificates and keys</td>
+</tr>
+<tr>
+<td><a href="cap_add/">cap_add</a></td>
+<td>List of capabilities to add to OCI container</td>
+</tr>
+<tr>
+<td><a href="cap_drop/">cap_drop</a></td>
+<td>List of capabilities to drop from OCI container</td>
+</tr>
+<tr>
+<td><a href="cgroup_parent/">cgroup_parent</a></td>
+<td>On creation, all processes are put in the cgroup that the parent process belo...</td>
+</tr>
+<tr>
+<td><a href="cgroupns/">cgroupns</a></td>
+<td>cgroup namespace provides a mechanism to virtualize the view of the "/proc/$P...</td>
+</tr>
+<tr>
+<td><a href="cidfile/">cidfile</a></td>
+<td>Write the container ID to the file</td>
+</tr>
+<tr>
+<td><a href="configmap/">configmap</a></td>
+<td>A ConfigMap is an API object that lets you store configuration for other obje...</td>
+</tr>
+<tr>
+<td><a href="conmon_pidfile/">conmon_pidfile</a></td>
+<td>File to which the conman daemon's PID is written</td>
+</tr>
+<tr>
+<td><a href="container_prefix/">container_prefix</a></td>
+<td>Prefix for a Container</td>
+</tr>
+<tr>
+<td><a href="containers/">containers</a></td>
+<td>Bunch of containers</td>
+</tr>
+<tr>
+<td><a href="cpu_period/">cpu_period</a></td>
+<td>Configure CPU allocation parameters using platform realtime scheduler</td>
+</tr>
+<tr>
+<td><a href="cpu_rt_period/">cpu_rt_period</a></td>
+<td>Configure CPU allocation parameters using platform realtime scheduler</td>
+</tr>
+<tr>
+<td><a href="cpu_rt_runtime/">cpu_rt_runtime</a></td>
+<td>A global limit on how much time platform realtime scheduling may use</td>
+</tr>
+<tr>
+<td><a href="cpu_shares/">cpu_shares</a></td>
+<td>Control how much CPU time a process in a hierarchy can use</td>
+</tr>
+<tr>
+<td><a href="cpuset_cpus/">cpuset_cpus</a></td>
+<td>CPUs in which to allow execution (0-3, 0,1)</td>
+</tr>
+<tr>
+<td><a href="cpuset_mems/">cpuset_mems</a></td>
+<td>Memory nodes (MEMs) in which to allow execution (0-3, 0,1) on NUMA systems</td>
+</tr>
+<tr>
+<td><a href="detach/">detach</a></td>
+<td>Separate one entity to form another entity</td>
+</tr>
+<tr>
+<td><a href="detach_keys/">detach_keys</a></td>
+<td>Override the key sequence for detaching a container</td>
+</tr>
+<tr>
+<td><a href="device_read_bps/">device_read_bps</a></td>
+<td>Limit read rate (bytes per second) from a device</td>
+</tr>
+<tr>
+<td><a href="device_read_iops/">device_read_iops</a></td>
+<td>Limit read rate (IO per second) from a device</td>
+</tr>
+<tr>
+<td><a href="device_write_bps/">device_write_bps</a></td>
+<td>Limit write rate (bytes per second) to a device</td>
+</tr>
+<tr>
+<td><a href="device_write_iops/">device_write_iops</a></td>
+<td>Limit write rate (IO per second) to a device</td>
+</tr>
+<tr>
+<td><a href="disable_dns/">disable_dns</a></td>
+<td>Disable dns</td>
+</tr>
+<tr>
+<td><a href="entrypoint/">entrypoint</a></td>
+<td>Point in a computer program where instruction-execution begins</td>
+</tr>
+<tr>
+<td><a href="env_host/">env_host</a></td>
+<td>Environment variables for a host</td>
+</tr>
+<tr>
+<td><a href="expose/">expose</a></td>
+<td>To present to view; exhibit; display</td>
+</tr>
+<tr>
+<td><a href="extra_args/">extra_args</a></td>
+<td>Extra arguments passed</td>
+</tr>
+<tr>
+<td><a href="force_restart/">force_restart</a></td>
+<td>Force restart of entity</td>
+</tr>
+<tr>
+<td><a href="force_rm/">force_rm</a></td>
+<td>Force removal</td>
+</tr>
+<tr>
+<td><a href="generate_systemd/">generate_systemd</a></td>
+<td>Generate systemd unit file for a service</td>
+</tr>
+<tr>
+<td><a href="gidmap/">gidmap</a></td>
+<td>Group id mapping</td>
+</tr>
+<tr>
+<td><a href="group_add/">group_add</a></td>
+<td>Add additional groups</td>
+</tr>
+<tr>
+<td><a href="healthcheck_start_period/">healthcheck_start_period</a></td>
+<td>The initialization time needed for a container to bootstrap</td>
+</tr>
+<tr>
+<td><a href="hooks_dir/">hooks_dir</a></td>
+<td>Directory containing hooks, a technique to alter the behavior of a software b...</td>
+</tr>
+<tr>
+<td><a href="ignore_docker_credentials/">ignore_docker_credentials</a></td>
+<td>Credentials created using other tools such as <code>docker login</code> are not removed ...</td>
+</tr>
+<tr>
+<td><a href="image_strict/">image_strict</a></td>
+<td>Whether to compare images in idempotency by taking into account a full name w...</td>
+</tr>
+<tr>
+<td><a href="image_volume/">image_volume</a></td>
+<td>Volume created from an Image</td>
+</tr>
+<tr>
+<td><a href="infra_command/">infra_command</a></td>
+<td>Infrastructure command</td>
+</tr>
+<tr>
+<td><a href="infra_conmon_pidfile/">infra_conmon_pidfile</a></td>
+<td>Write the pid of the infra container’s conmon process to a file</td>
+</tr>
+<tr>
+<td><a href="infra_image/">infra_image</a></td>
+<td>The image that will be created for the infra container</td>
+</tr>
+<tr>
+<td><a href="init_path/">init_path</a></td>
+<td>Path to the init binary</td>
+</tr>
+<tr>
+<td><a href="ipc/">ipc</a></td>
+<td>Mechanisms an operating system provides allowing processes to manage shared d...</td>
+</tr>
+<tr>
+<td><a href="kernel_memory/">kernel_memory</a></td>
+<td>The kernel has full access to the system's memory and allows processes to saf...</td>
+</tr>
+<tr>
+<td><a href="kube_file/">kube_file</a></td>
+<td>Path to file with YAML configuration for a Pod</td>
+</tr>
+<tr>
+<td><a href="label_file/">label_file</a></td>
+<td>Line delimited file of labels</td>
+</tr>
+<tr>
+<td><a href="log_opt/">log_opt</a></td>
+<td>Logging driver specific options</td>
+</tr>
+<tr>
+<td><a href="macvlan/">macvlan</a></td>
+<td>Macvlan is a virtual LAN that you can use if you want to assign several IP ad...</td>
+</tr>
+<tr>
+<td><a href="memory_reservation/">memory_reservation</a></td>
+<td>A memory reservation ensures that even as other virtual devices on the same h...</td>
+</tr>
+<tr>
+<td><a href="memory_swap/">memory_swap</a></td>
+<td>Memory management scheme by which a computer stores and retrieves data from s...</td>
+</tr>
+<tr>
+<td><a href="memory_swappiness/">memory_swappiness</a></td>
+<td>Swappiness is a Linux kernel parameter that controls the relative weight give...</td>
+</tr>
+<tr>
+<td><a href="multi_image_archive/">multi_image_archive</a></td>
+<td>Allow for creating archives with more than one image</td>
+</tr>
+<tr>
+<td><a href="network_alias/">network_alias</a></td>
+<td>Add network-scoped alias</td>
+</tr>
+<tr>
+<td><a href="network_aliases/">network_aliases</a></td>
+<td>Add network-scoped alias</td>
+</tr>
+<tr>
+<td><a href="no_header/">no_header</a></td>
+<td>Do not generate the header including meta data</td>
+</tr>
+<tr>
+<td><a href="no_hosts/">no_hosts</a></td>
+<td>Do not create /etc/hosts</td>
+</tr>
+<tr>
+<td><a href="oom_kill_disable/">oom_kill_disable</a></td>
+<td>Whether to disable OOM Killer for the entity or not</td>
+</tr>
+<tr>
+<td><a href="oom_score_adj/">oom_score_adj</a></td>
+<td>Tune the host's OOM preferences for entity (accepts -1000 to 1000)</td>
+</tr>
+<tr>
+<td><a href="pids_limit/">pids_limit</a></td>
+<td>Tune the entity's PIDs limit</td>
+</tr>
+<tr>
+<td><a href="pod/">pod</a></td>
+<td>Vessel that contains seeds for an entity</td>
+</tr>
+<tr>
+<td><a href="pod_id_file/">pod_id_file</a></td>
+<td>Write the pod ID to the file</td>
+</tr>
+<tr>
+<td><a href="pod_prefix/">pod_prefix</a></td>
+<td>Prefix for a Pod</td>
+</tr>
+<tr>
+<td><a href="publish_all/">publish_all</a></td>
+<td>Publish all exposed ports to random ports on the host interfaces</td>
+</tr>
+<tr>
+<td><a href="pull/">pull</a></td>
+<td>Exert force on entity so as to cause movement towards oneself</td>
+</tr>
+<tr>
+<td><a href="push/">push</a></td>
+<td>Exert force on entity so as to cause movement away from oneself</td>
+</tr>
+<tr>
+<td><a href="push_args/">push_args</a></td>
+<td>Arguments that control push action</td>
+</tr>
+<tr>
+<td><a href="read_only_tmpfs/">read_only_tmpfs</a></td>
+<td>If container is running in --read-only mode, then mount a read-write tmpfs on...</td>
+</tr>
+<tr>
+<td><a href="registry/">registry</a></td>
+<td>Set of records with a single structure arranged according to a criterion, pro...</td>
+</tr>
+<tr>
+<td><a href="remove_signatures/">remove_signatures</a></td>
+<td>Discard any pre-existing signatures</td>
+</tr>
+<tr>
+<td><a href="requires/">requires</a></td>
+<td>Specify one or more requirements</td>
+</tr>
+<tr>
+<td><a href="restart_policy/">restart_policy</a></td>
+<td>Restart policy to follow when entity exits</td>
+</tr>
+<tr>
+<td><a href="restart_sec/">restart_sec</a></td>
+<td>Time to sleep before restart</td>
+</tr>
+<tr>
+<td><a href="sdnotify/">sdnotify</a></td>
+<td>Notify service manager about start-up completion and other service status cha...</td>
+</tr>
+<tr>
+<td><a href="seccomp_profile_root/">seccomp_profile_root</a></td>
+<td>Directory path for seccomp profiles</td>
+</tr>
+<tr>
+<td><a href="security_opt/">security_opt</a></td>
+<td>Security Options</td>
+</tr>
+<tr>
+<td><a href="shm_size/">shm_size</a></td>
+<td>Size of /dev/shm</td>
+</tr>
+<tr>
+<td><a href="sig_proxy/">sig_proxy</a></td>
+<td>Proxy signals</td>
+</tr>
+<tr>
+<td><a href="sign_by/">sign_by</a></td>
+<td>Path to a key file to use to sign the package</td>
+</tr>
+<tr>
+<td><a href="skip_existing/">skip_existing</a></td>
+<td>Skip existing entity</td>
+</tr>
+<tr>
+<td><a href="start_timeout/">start_timeout</a></td>
+<td>Timeout (in seconds) to start a process</td>
+</tr>
+<tr>
+<td><a href="stop_signal/">stop_signal</a></td>
+<td>Signal to stop a process</td>
+</tr>
+<tr>
+<td><a href="stop_timeout/">stop_timeout</a></td>
+<td>Timeout (in seconds) to stop a process</td>
+</tr>
+<tr>
+<td><a href="subgidname/">subgidname</a></td>
+<td>Name from /etc/subgid</td>
+</tr>
+<tr>
+<td><a href="subuidname/">subuidname</a></td>
+<td>Name from /etc/subuid</td>
+</tr>
+<tr>
+<td><a href="target_names/">target_names</a></td>
+<td>Target names</td>
+</tr>
+<tr>
+<td><a href="uidmap/">uidmap</a></td>
+<td>Run the container in a new user namespace using the supplied mapping</td>
+</tr>
+<tr>
+<td><a href="use_names/">use_names</a></td>
+<td>Use names</td>
+</tr>
+<tr>
+<td><a href="userns/">userns</a></td>
+<td>User namespaces are an isolation feature allowing processes to run with diffe...</td>
+</tr>
+<tr>
+<td><a href="volumes_from/">volumes_from</a></td>
+<td>Mount volumes from the specified source</td>
+</tr>
+<tr>
+<td><a href="wants/">wants</a></td>
+<td>Wanted things</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enumerations">Enumerations</h2>
+<table>
+<thead>
+<tr>
+<th>Enumeration</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="CgroupsEnum/">CgroupsEnum</a></td>
+<td>Use cgroups or not</td>
+</tr>
+<tr>
+<td><a href="ContainerImageFormatEnum/">ContainerImageFormatEnum</a></td>
+<td>Container format</td>
+</tr>
+<tr>
+<td><a href="ContainerImagePushTransportEnum/">ContainerImagePushTransportEnum</a></td>
+<td>Transport to use when pushing in image</td>
+</tr>
+<tr>
+<td><a href="ContainerImageStateEnum/">ContainerImageStateEnum</a></td>
+<td>Valid values for Container Image state</td>
+</tr>
+<tr>
+<td><a href="ContainerImageVolumeEnum/">ContainerImageVolumeEnum</a></td>
+<td>Builtin image volume handling</td>
+</tr>
+<tr>
+<td><a href="ContainerLogDriverEnum/">ContainerLogDriverEnum</a></td>
+<td>Logging driver</td>
+</tr>
+<tr>
+<td><a href="ContainerLogLevelEnum/">ContainerLogLevelEnum</a></td>
+<td>Logging level</td>
+</tr>
+<tr>
+<td><a href="ContainerNetworkStateEnum/">ContainerNetworkStateEnum</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ContainerRestartPolicyEnum/">ContainerRestartPolicyEnum</a></td>
+<td>Restart policy after exit</td>
+</tr>
+<tr>
+<td><a href="ContainerSaveFormatEnum/">ContainerSaveFormatEnum</a></td>
+<td>Image save format</td>
+</tr>
+<tr>
+<td><a href="ContainerStateEnum/">ContainerStateEnum</a></td>
+<td>Valid values for Container state</td>
+</tr>
+</tbody>
+</table>
+<h2 id="types">Types</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="subsets">Subsets</h2>
+<table>
+<thead>
+<tr>
+<th>Subset</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+      
+        
+        <a href="about/" class="md-footer__link md-footer__link--next" aria-label="Next: About" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              About
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["content.tabs.link"], "search": "assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      
+    
+    
+  </body>
+</html>

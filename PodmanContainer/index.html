@@ -1,0 +1,5402 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://lmodel.github.io/ucs-containers/PodmanContainer/" rel="canonical"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<title>Class: PodmanContainer - ucs-containers</title>
+<link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="None" data-md-color-primary="None" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#class-podmancontainer">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="ucs-containers" class="md-header__button md-logo" data-md-component="logo" href=".." title="ucs-containers">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            ucs-containers
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Class: PodmanContainer
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/lmodel/ucs-containers" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="ucs-containers" class="md-nav__button md-logo" data-md-component="logo" href=".." title="ucs-containers">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    ucs-containers
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/lmodel/ucs-containers" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+        Index
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../about/">
+        About
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+    Inheritance
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slots">
+    Slots
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identifier-and-mapping-information">
+    Identifier and Mapping Information
+  </a>
+<nav aria-label="Identifier and Mapping Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-source">
+    Schema Source
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mappings">
+    Mappings
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linkml-source">
+    LinkML Source
+  </a>
+<nav aria-label="LinkML Source" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct">
+    Direct
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#induced">
+    Induced
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/lmodel/ucs-containers/edit/master/docs/PodmanContainer.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="class-podmancontainer">Class: PodmanContainer</h1>
+<p><em>Podman container</em></p>
+<p>URI: <a href="https://w3id.org/lmodel/ucs-containers/PodmanContainer">containers:PodmanContainer</a></p>
+<div class="mermaid"> classDiagram
+    class PodmanContainer
+      OciContainer &lt;|-- PodmanContainer
+      Podman &lt;|-- PodmanContainer
+      OciContainer &lt;|-- PodmanContainer
+
+      PodmanContainer : address
+
+          PodmanContainer ..&gt; string : address
+
+      PodmanContainer : affiliation
+
+          PodmanContainer ..&gt; uriorcurie : affiliation
+
+      PodmanContainer : annotation
+
+          PodmanContainer ..&gt; MetaObject : annotation
+
+      PodmanContainer : authfile
+
+          PodmanContainer ..&gt; string : authfile
+
+      PodmanContainer : blkio_weight
+
+          PodmanContainer ..&gt; integer : blkio_weight
+
+      PodmanContainer : blkio_weight_device
+
+          PodmanContainer ..&gt; MetaObject : blkio_weight_device
+
+      PodmanContainer : cap_add
+
+          PodmanContainer ..&gt; string : cap_add
+
+      PodmanContainer : cap_drop
+
+          PodmanContainer ..&gt; string : cap_drop
+
+      PodmanContainer : category
+
+          PodmanContainer ..&gt; category type : category
+
+      PodmanContainer : cgroup_parent
+
+          PodmanContainer ..&gt; string : cgroup_parent
+
+      PodmanContainer : cgroupns
+
+          PodmanContainer ..&gt; string : cgroupns
+
+      PodmanContainer : cgroups
+
+          PodmanContainer ..&gt; string : cgroups
+
+      PodmanContainer : cidfile
+
+          PodmanContainer ..&gt; string : cidfile
+
+      PodmanContainer : cmd_args
+
+          PodmanContainer ..&gt; string : cmd_args
+
+      PodmanContainer : command
+
+          PodmanContainer ..&gt; string : command
+
+      PodmanContainer : conmon_pidfile
+
+          PodmanContainer ..&gt; string : conmon_pidfile
+
+      PodmanContainer : cpu_period
+
+          PodmanContainer ..&gt; integer : cpu_period
+
+      PodmanContainer : cpu_rt_period
+
+          PodmanContainer ..&gt; integer : cpu_rt_period
+
+      PodmanContainer : cpu_rt_runtime
+
+          PodmanContainer ..&gt; integer : cpu_rt_runtime
+
+      PodmanContainer : cpu_shares
+
+          PodmanContainer ..&gt; integer : cpu_shares
+
+      PodmanContainer : cpus
+
+          PodmanContainer ..&gt; string : cpus
+
+      PodmanContainer : cpuset_cpus
+
+          PodmanContainer ..&gt; string : cpuset_cpus
+
+      PodmanContainer : cpuset_mems
+
+          PodmanContainer ..&gt; string : cpuset_mems
+
+      PodmanContainer : creationDate
+
+          PodmanContainer ..&gt; date : creationDate
+
+      PodmanContainer : debug
+
+          PodmanContainer ..&gt; boolean : debug
+
+      PodmanContainer : description
+
+          PodmanContainer ..&gt; narrative text : description
+
+      PodmanContainer : detach
+
+          PodmanContainer ..&gt; boolean : detach
+
+      PodmanContainer : detach_keys
+
+          PodmanContainer ..&gt; string : detach_keys
+
+      PodmanContainer : device
+
+          PodmanContainer ..&gt; string : device
+
+      PodmanContainer : device_read_bps
+
+          PodmanContainer ..&gt; string : device_read_bps
+
+      PodmanContainer : device_read_iops
+
+          PodmanContainer ..&gt; string : device_read_iops
+
+      PodmanContainer : device_write_bps
+
+          PodmanContainer ..&gt; string : device_write_bps
+
+      PodmanContainer : device_write_iops
+
+          PodmanContainer ..&gt; string : device_write_iops
+
+      PodmanContainer : dns
+
+          PodmanContainer ..&gt; string : dns
+
+      PodmanContainer : dns_option
+
+          PodmanContainer ..&gt; string : dns_option
+
+      PodmanContainer : dns_search
+
+          PodmanContainer ..&gt; string : dns_search
+
+      PodmanContainer : entrypoint
+
+          PodmanContainer ..&gt; string : entrypoint
+
+      PodmanContainer : env
+
+          PodmanContainer ..&gt; MetaObject : env
+
+      PodmanContainer : env_file
+
+          PodmanContainer ..&gt; string : env_file
+
+      PodmanContainer : env_host
+
+          PodmanContainer ..&gt; boolean : env_host
+
+      PodmanContainer : etc_hosts
+
+          PodmanContainer ..&gt; MetaObject : etc_hosts
+
+      PodmanContainer : executable
+
+          PodmanContainer ..&gt; string : executable
+
+      PodmanContainer : expose
+
+          PodmanContainer ..&gt; string : expose
+
+      PodmanContainer : force_restart
+
+          PodmanContainer ..&gt; boolean : force_restart
+
+      PodmanContainer : generate_systemd
+
+          PodmanContainer ..&gt; MetaObject : generate_systemd
+
+      PodmanContainer : gidmap
+
+          PodmanContainer ..&gt; string : gidmap
+
+      PodmanContainer : group_add
+
+          PodmanContainer ..&gt; string : group_add
+
+      PodmanContainer : hasAttribute
+
+          PodmanContainer ..&gt; Attribute : hasAttribute
+
+      PodmanContainer : healthcheck
+
+          PodmanContainer ..&gt; string : healthcheck
+
+      PodmanContainer : healthcheck_interval
+
+          PodmanContainer ..&gt; string : healthcheck_interval
+
+      PodmanContainer : healthcheck_retries
+
+          PodmanContainer ..&gt; integer : healthcheck_retries
+
+      PodmanContainer : healthcheck_start_period
+
+          PodmanContainer ..&gt; string : healthcheck_start_period
+
+      PodmanContainer : healthcheck_timeout
+
+          PodmanContainer ..&gt; string : healthcheck_timeout
+
+      PodmanContainer : hostname
+
+          PodmanContainer ..&gt; string : hostname
+
+      PodmanContainer : http_proxy
+
+          PodmanContainer ..&gt; boolean : http_proxy
+
+      PodmanContainer : id
+
+          PodmanContainer ..&gt; string : id
+
+      PodmanContainer : image
+
+          PodmanContainer ..&gt; string : image
+
+      PodmanContainer : image_strict
+
+          PodmanContainer ..&gt; boolean : image_strict
+
+      PodmanContainer : image_volume
+
+          PodmanContainer ..&gt; ContainerImageVolumeEnum : image_volume
+
+      PodmanContainer : init
+
+          PodmanContainer ..&gt; boolean : init
+
+      PodmanContainer : init_path
+
+          PodmanContainer ..&gt; string : init_path
+
+      PodmanContainer : inTaxon
+
+          PodmanContainer ..&gt; NamedThing : inTaxon
+
+      PodmanContainer : interactive
+
+          PodmanContainer ..&gt; boolean : interactive
+
+      PodmanContainer : ip
+
+          PodmanContainer ..&gt; string : ip
+
+      PodmanContainer : ipc
+
+          PodmanContainer ..&gt; string : ipc
+
+      PodmanContainer : iri
+
+          PodmanContainer ..&gt; iri type : iri
+
+      PodmanContainer : kernel_memory
+
+          PodmanContainer ..&gt; string : kernel_memory
+
+      PodmanContainer : label
+
+          PodmanContainer ..&gt; MetaObject : label
+
+      PodmanContainer : label_file
+
+          PodmanContainer ..&gt; string : label_file
+
+      PodmanContainer : log_driver
+
+          PodmanContainer ..&gt; ContainerLogDriverEnum : log_driver
+
+      PodmanContainer : log_level
+
+          PodmanContainer ..&gt; ContainerLogLevelEnum : log_level
+
+      PodmanContainer : log_opt
+
+          PodmanContainer ..&gt; MetaObject : log_opt
+
+      PodmanContainer : mac_address
+
+          PodmanContainer ..&gt; string : mac_address
+
+      PodmanContainer : memory
+
+          PodmanContainer ..&gt; string : memory
+
+      PodmanContainer : memory_reservation
+
+          PodmanContainer ..&gt; string : memory_reservation
+
+      PodmanContainer : memory_swap
+
+          PodmanContainer ..&gt; string : memory_swap
+
+      PodmanContainer : memory_swappiness
+
+          PodmanContainer ..&gt; integer : memory_swappiness
+
+      PodmanContainer : mount
+
+          PodmanContainer ..&gt; string : mount
+
+      PodmanContainer : name
+
+          PodmanContainer ..&gt; label type : name
+
+      PodmanContainer : network
+
+          PodmanContainer ..&gt; string : network
+
+      PodmanContainer : network_aliases
+
+          PodmanContainer ..&gt; string : network_aliases
+
+      PodmanContainer : no_hosts
+
+          PodmanContainer ..&gt; boolean : no_hosts
+
+      PodmanContainer : oom_kill_disable
+
+          PodmanContainer ..&gt; boolean : oom_kill_disable
+
+      PodmanContainer : oom_score_adj
+
+          PodmanContainer ..&gt; integer : oom_score_adj
+
+      PodmanContainer : pid
+
+          PodmanContainer ..&gt; string : pid
+
+      PodmanContainer : pids_limit
+
+          PodmanContainer ..&gt; integer : pids_limit
+
+      PodmanContainer : pod
+
+          PodmanContainer ..&gt; string : pod
+
+      PodmanContainer : privileged
+
+          PodmanContainer ..&gt; boolean : privileged
+
+      PodmanContainer : providedBy
+
+          PodmanContainer ..&gt; string : providedBy
+
+      PodmanContainer : publish
+
+          PodmanContainer ..&gt; string : publish
+
+      PodmanContainer : publish_all
+
+          PodmanContainer ..&gt; boolean : publish_all
+
+      PodmanContainer : read_only
+
+          PodmanContainer ..&gt; boolean : read_only
+
+      PodmanContainer : read_only_tmpfs
+
+          PodmanContainer ..&gt; boolean : read_only_tmpfs
+
+      PodmanContainer : recreate
+
+          PodmanContainer ..&gt; boolean : recreate
+
+      PodmanContainer : requires
+
+          PodmanContainer ..&gt; string : requires
+
+      PodmanContainer : restart_policy
+
+          PodmanContainer ..&gt; string : restart_policy
+
+      PodmanContainer : rm
+
+          PodmanContainer ..&gt; boolean : rm
+
+      PodmanContainer : rootfs
+
+          PodmanContainer ..&gt; boolean : rootfs
+
+      PodmanContainer : sdnotify
+
+          PodmanContainer ..&gt; string : sdnotify
+
+      PodmanContainer : secrets
+
+          PodmanContainer ..&gt; string : secrets
+
+      PodmanContainer : security_opt
+
+          PodmanContainer ..&gt; string : security_opt
+
+      PodmanContainer : shm_size
+
+          PodmanContainer ..&gt; string : shm_size
+
+      PodmanContainer : sig_proxy
+
+          PodmanContainer ..&gt; boolean : sig_proxy
+
+      PodmanContainer : state
+
+          PodmanContainer ..&gt; ContainerStateEnum : state
+
+      PodmanContainer : stop_signal
+
+          PodmanContainer ..&gt; integer : stop_signal
+
+      PodmanContainer : stop_timeout
+
+          PodmanContainer ..&gt; integer : stop_timeout
+
+      PodmanContainer : subgidname
+
+          PodmanContainer ..&gt; string : subgidname
+
+      PodmanContainer : subuidname
+
+          PodmanContainer ..&gt; string : subuidname
+
+      PodmanContainer : sysctl
+
+          PodmanContainer ..&gt; MetaObject : sysctl
+
+      PodmanContainer : systemd
+
+          PodmanContainer ..&gt; string : systemd
+
+      PodmanContainer : timezone
+
+          PodmanContainer ..&gt; string : timezone
+
+      PodmanContainer : tmpfs
+
+          PodmanContainer ..&gt; MetaObject : tmpfs
+
+      PodmanContainer : tty
+
+          PodmanContainer ..&gt; boolean : tty
+
+      PodmanContainer : type
+
+          PodmanContainer ..&gt; string : type
+
+      PodmanContainer : uidmap
+
+          PodmanContainer ..&gt; string : uidmap
+
+      PodmanContainer : ulimit
+
+          PodmanContainer ..&gt; string : ulimit
+
+      PodmanContainer : user
+
+          PodmanContainer ..&gt; string : user
+
+      PodmanContainer : userns
+
+          PodmanContainer ..&gt; string : userns
+
+      PodmanContainer : uts
+
+          PodmanContainer ..&gt; string : uts
+
+      PodmanContainer : volume
+
+          PodmanContainer ..&gt; string : volume
+
+      PodmanContainer : volumes_from
+
+          PodmanContainer ..&gt; string : volumes_from
+
+      PodmanContainer : workdir
+
+          PodmanContainer ..&gt; string : workdir
+
+      PodmanContainer : xref
+
+          PodmanContainer ..&gt; uriorcurie : xref
+
+
+</div>
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../Entity/">Entity</a><ul>
+<li><a href="../NamedThing/">NamedThing</a><ul>
+<li><a href="../System/">System</a> [ <a href="../ThingWithTaxon/">ThingWithTaxon</a>]<ul>
+<li><a href="../SoftwareOrDevice/">SoftwareOrDevice</a><ul>
+<li><a href="../Software/">Software</a><ul>
+<li><a href="../Container/">Container</a> [ <a href="../Virtualization/">Virtualization</a>]<ul>
+<li><a href="../OciContainer/">OciContainer</a> [ <a href="../OpenContainerInitiative/">OpenContainerInitiative</a> <a href="../Virtualization/">Virtualization</a>]<ul>
+<li><strong>PodmanContainer</strong> [ <a href="../OciContainer/">OciContainer</a> <a href="../Podman/">Podman</a>]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+<th>Inheritance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../executable/">executable</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>file that can be directly run by a computer</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../state/">state</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The way something is with respect to its main attributes</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../annotation/">annotation</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>piece of metadata attached to a document or other entity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../authfile/">authfile</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>A file used for authentication</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../blkio_weight/">blkio_weight</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>Specifies per cgroup weight</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../blkio_weight_device/">blkio_weight_device</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Per cgroup per device rules using this interface</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cap_add/">cap_add</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>List of capabilities to add to OCI container</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cap_drop/">cap_drop</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>List of capabilities to drop from OCI container</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cgroup_parent/">cgroup_parent</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>On creation, all processes are put in the cgroup that the parent process belo...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cgroupns/">cgroupns</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>cgroup namespace provides a mechanism to virtualize the view of the "/proc/$P...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cgroups/">cgroups</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Resource limit method in Linux</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cidfile/">cidfile</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Write the container ID to the file</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cmd_args/">cmd_args</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Additional data that was passed as an argument to a subroutine</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../conmon_pidfile/">conmon_pidfile</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>File to which the conman daemon's PID is written</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../command/">command</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Directive to a computer program</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cpu_period/">cpu_period</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>Configure CPU allocation parameters using platform realtime scheduler</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cpu_rt_period/">cpu_rt_period</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>Configure CPU allocation parameters using platform realtime scheduler</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cpu_rt_runtime/">cpu_rt_runtime</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>A global limit on how much time platform realtime scheduling may use</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cpu_shares/">cpu_shares</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>Control how much CPU time a process in a hierarchy can use</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cpus/">cpus</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Number of CPUs</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cpuset_cpus/">cpuset_cpus</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>CPUs in which to allow execution (0-3, 0,1)</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../cpuset_mems/">cpuset_mems</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Memory nodes (MEMs) in which to allow execution (0-3, 0,1) on NUMA systems</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../detach/">detach</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Separate one entity to form another entity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../debug/">debug</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Return additional information which can be helpful for investigations</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../detach_keys/">detach_keys</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Override the key sequence for detaching a container</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../device/">device</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>System device</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../device_read_bps/">device_read_bps</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Limit read rate (bytes per second) from a device</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../device_read_iops/">device_read_iops</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Limit read rate (IO per second) from a device</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../device_write_bps/">device_write_bps</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Limit write rate (bytes per second) to a device</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../device_write_iops/">device_write_iops</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Limit write rate (IO per second) to a device</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../dns/">dns</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Domain name service servers</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../dns_option/">dns_option</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>DNS options</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../dns_search/">dns_search</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>DNS search domains</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../entrypoint/">entrypoint</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Point in a computer program where instruction-execution begins</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../env/">env</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Set environment variables</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../env_file/">env_file</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Line delimited file of environment variables</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../env_host/">env_host</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Environment variables for a host</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../etc_hosts/">etc_hosts</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Computer configuration file to map hostnames to IP addresses</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../expose/">expose</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>To present to view; exhibit; display</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../force_restart/">force_restart</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Force restart of entity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../generate_systemd/">generate_systemd</a></td>
+<td>0..1 <br/> <a href="../MetaObject/">MetaObject</a></td>
+<td>Generate systemd unit file for a service</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../gidmap/">gidmap</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Group id mapping</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../group_add/">group_add</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Add additional groups</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../healthcheck/">healthcheck</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Set or alter a healthcheck command</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../healthcheck_interval/">healthcheck_interval</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Set an interval for the healthchecks</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../healthcheck_retries/">healthcheck_retries</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>The number of retries allowed before a healthcheck is considered unhealthy</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../healthcheck_start_period/">healthcheck_start_period</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The initialization time needed for a container to bootstrap</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../healthcheck_timeout/">healthcheck_timeout</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The maximum time allowed to complete the healthcheck before an interval is co...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../hostname/">hostname</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>label assigned to a device connected to a computer network</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../http_proxy/">http_proxy</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The https_proxy environment variable holds the hostname or IP address of your...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../image_volume/">image_volume</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Volume created from an Image</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../image_strict/">image_strict</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Whether to compare images in idempotency by taking into account a full name w...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../init/">init</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>UNIX system component; 1st process started during booting of the computer sys...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../init_path/">init_path</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Path to the init binary</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../interactive/">interactive</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Allow flow of information between a computer and a computer-user; responding ...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../ip/">ip</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Principal communications protocol used for relaying datagrams (also known as ...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../ipc/">ipc</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Mechanisms an operating system provides allowing processes to manage shared d...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../kernel_memory/">kernel_memory</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The kernel has full access to the system's memory and allows processes to saf...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../label/">label</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Word or phrase used for identification</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../label_file/">label_file</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Line delimited file of labels</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../log_driver/">log_driver</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Driver used for logging</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../log_level/">log_level</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Message logging level</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../log_opt/">log_opt</a></td>
+<td>0..1 <br/> <a href="../MetaObject/">MetaObject</a></td>
+<td>Logging driver specific options</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../mac_address/">mac_address</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Unique identifier assigned to network interfaces for communications on the ph...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../memory/">memory</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Storage of digital data readable by computers</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../memory_reservation/">memory_reservation</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>A memory reservation ensures that even as other virtual devices on the same h...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../memory_swap/">memory_swap</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Memory management scheme by which a computer stores and retrieves data from s...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../memory_swappiness/">memory_swappiness</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>Swappiness is a Linux kernel parameter that controls the relative weight give...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../mount/">mount</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Directory over which a filesystem is mounted</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>0..1 <br/> <a href="../LabelType/">LabelType</a></td>
+<td>A human-readable name for an attribute or entity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../network/">network</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Network that allows computers to share resources and communicate with each ot...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../network_aliases/">network_aliases</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Add network-scoped alias</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../no_hosts/">no_hosts</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Do not create /etc/hosts</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../oom_kill_disable/">oom_kill_disable</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Whether to disable OOM Killer for the entity or not</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../oom_score_adj/">oom_score_adj</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>Tune the host's OOM preferences for entity (accepts -1000 to 1000)</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../pid/">pid</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>number to identify each process running on a computer</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../pids_limit/">pids_limit</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>Tune the entity's PIDs limit</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../pod/">pod</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Vessel that contains seeds for an entity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../privileged/">privileged</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Delegated authority to perform security-relevant functions on a system</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../publish/">publish</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Publish things to make something externally available</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../publish_all/">publish_all</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Publish all exposed ports to random ports on the host interfaces</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../read_only/">read_only</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Can be accessed but not modified</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../read_only_tmpfs/">read_only_tmpfs</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>If container is running in --read-only mode, then mount a read-write tmpfs on...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../recreate/">recreate</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Create again</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../requires/">requires</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Specify one or more requirements</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../restart_policy/">restart_policy</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Restart policy to follow when entity exits</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../rm/">rm</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Automatically remove the entity when it exits</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../rootfs/">rootfs</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Root filesystem at the top of the hierarchical file tree (also known as ‘/’)</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../sdnotify/">sdnotify</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Notify service manager about start-up completion and other service status cha...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../secrets/">secrets</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>information that is hidden from someone</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../security_opt/">security_opt</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Security Options</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../shm_size/">shm_size</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Size of /dev/shm</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../sig_proxy/">sig_proxy</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Proxy signals</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../stop_signal/">stop_signal</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>Signal to stop a process</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../stop_timeout/">stop_timeout</a></td>
+<td>0..1 <br/> <a href="xsd:integer">xsd:integer</a></td>
+<td>Timeout (in seconds) to stop a process</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../state/">state</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The way something is with respect to its main attributes</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../subgidname/">subgidname</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Name from /etc/subgid</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../subuidname/">subuidname</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Name from /etc/subuid</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../sysctl/">sysctl</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Unix-like software that manages kernel attributes</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../systemd/">systemd</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Init system and system/service manager for Linux systems</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../timezone/">timezone</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Region on Earth that has a uniform standard time for legal, commercial, and s...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../tmpfs/">tmpfs</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Tmpfs (short for Temporary File System) is a temporary file storage paradigm ...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../tty/">tty</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Device for transmitting messages in written form by electrical signals</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../uidmap/">uidmap</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Run the container in a new user namespace using the supplied mapping</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../ulimit/">ulimit</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>User limits - limit the use of system-wide resources</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../user/">user</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Person who interacts with a system, typically through an interface, to extrac...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../userns/">userns</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>User namespaces are an isolation feature allowing processes to run with diffe...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../uts/">uts</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>UTS (UNIX Time-Sharing) namespaces allow a single system to appear to have di...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../volume/">volume</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>volume of a book or music release in a collection/series or a published colle...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../volumes_from/">volumes_from</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Mount volumes from the specified source</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../workdir/">workdir</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The currently used hierarchical file system directory associated with a runni...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../image/">image</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Repository path (or image name) and tag used to create the container</td>
+<td><a href="../OciContainer/">OciContainer</a></td>
+</tr>
+<tr>
+<td><a href="../inTaxon/">inTaxon</a></td>
+<td>0..* <br/> <a href="../NamedThing/">NamedThing</a></td>
+<td>connects an entity to its taxonomic classification</td>
+<td><a href="../ThingWithTaxon/">ThingWithTaxon</a></td>
+</tr>
+<tr>
+<td><a href="../providedBy/">providedBy</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The value in this nodeProperty represents the knowledge provider that created...</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../xref/">xref</a></td>
+<td>0..* <br/> <a href="xsd:anyURI">xsd:anyURI</a></td>
+<td>Alternate CURIEs for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>A unique identifier for an entity</td>
+<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+</tr>
+<tr>
+<td><a href="../iri/">iri</a></td>
+<td>0..1 <br/> <a href="../IriType/">IriType</a></td>
+<td>An IRI for an entity</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../category/">category</a></td>
+<td>1..* <br/> <a href="../CategoryType/">CategoryType</a></td>
+<td>Name of the high level OntologyClass in which this entity is categorized</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../type/">type</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Anchoring point (of a name) in taxonomy</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../NarrativeText/">NarrativeText</a></td>
+<td>a human-readable description of an entity</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../hasAttribute/">hasAttribute</a></td>
+<td>0..* <br/> <a href="../Attribute/">Attribute</a></td>
+<td>connects any entity to an attribute</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../creationDate/">creationDate</a></td>
+<td>0..1 <br/> <a href="xsd:date">xsd:date</a></td>
+<td>date on which an entity was created</td>
+<td><a href="../OpenSource/">OpenSource</a></td>
+</tr>
+<tr>
+<td><a href="../affiliation/">affiliation</a></td>
+<td>0..* <br/> <a href="xsd:anyURI">xsd:anyURI</a></td>
+<td>a professional relationship between one provider (x) within another provider ...</td>
+<td><a href="../Agent/">Agent</a></td>
+</tr>
+<tr>
+<td><a href="../address/">address</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Collection of information that describes the location of a building, apartmen...</td>
+<td><a href="../Agent/">Agent</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/ucs-containers</li>
+</ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>containers:PodmanContainer</td>
+</tr>
+<tr>
+<td>native</td>
+<td>containers:PodmanContainer</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linkml-source">LinkML Source</h2>
+<!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
+<h3 id="direct">Direct</h3>
+<details>
+<pre><code class="language-yaml">name: PodmanContainer
+description: Podman container
+from_schema: https://w3id.org/lmodel/ucs-containers
+rank: 1000
+is_a: OciContainer
+mixins:
+- OciContainer
+- Podman
+slots:
+- executable
+- state
+- annotation
+- authfile
+- blkio_weight
+- blkio_weight_device
+- cap_add
+- cap_drop
+- cgroup_parent
+- cgroupns
+- cgroups
+- cidfile
+- cmd_args
+- conmon_pidfile
+- command
+- cpu_period
+- cpu_rt_period
+- cpu_rt_runtime
+- cpu_shares
+- cpus
+- cpuset_cpus
+- cpuset_mems
+- detach
+- debug
+- detach_keys
+- device
+- device_read_bps
+- device_read_iops
+- device_write_bps
+- device_write_iops
+- dns
+- dns_option
+- dns_search
+- entrypoint
+- env
+- env_file
+- env_host
+- etc_hosts
+- expose
+- force_restart
+- generate_systemd
+- gidmap
+- group_add
+- healthcheck
+- healthcheck_interval
+- healthcheck_retries
+- healthcheck_start_period
+- healthcheck_timeout
+- hostname
+- http_proxy
+- image_volume
+- image_strict
+- init
+- init_path
+- interactive
+- ip
+- ipc
+- kernel_memory
+- label
+- label_file
+- log_driver
+- log_level
+- log_opt
+- mac_address
+- memory
+- memory_reservation
+- memory_swap
+- memory_swappiness
+- mount
+- name
+- network
+- network_aliases
+- no_hosts
+- oom_kill_disable
+- oom_score_adj
+- pid
+- pids_limit
+- pod
+- privileged
+- publish
+- publish_all
+- read_only
+- read_only_tmpfs
+- recreate
+- requires
+- restart_policy
+- rm
+- rootfs
+- sdnotify
+- secrets
+- security_opt
+- shm_size
+- sig_proxy
+- stop_signal
+- stop_timeout
+- state
+- subgidname
+- subuidname
+- sysctl
+- systemd
+- timezone
+- tmpfs
+- tty
+- uidmap
+- ulimit
+- user
+- userns
+- uts
+- volume
+- volumes_from
+- workdir
+slot_usage:
+  annotation:
+    name: annotation
+    description: Add an annotation to the container. The format is key value, multiple
+      times.
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  authfile:
+    name: authfile
+    description: Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json``
+      (Not available for remote commands) You can also override the default path of
+      the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable.
+      ``export REGISTRY_AUTH_FILE=path``
+    domain_of:
+    - PodmanContainer
+    - PodmanLogin
+    - PodmanLogout
+    - PodmanPlay
+  blkio_weight:
+    name: blkio_weight
+    description: 'Block IO weight (relative weight) accepts a weight value between
+      10 and 1000        minimum_value: 10'
+    domain_of:
+    - PodmanContainer
+    range: integer
+    maximum_value: 1000
+  blkio_weight_device:
+    name: blkio_weight_device
+    description: Block IO weight (relative device weight, format DEVICE_NAME[:]WEIGHT).
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  cap_add:
+    name: cap_add
+    description: List of capabilities to add to the container.
+    aliases:
+    - capabilities
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  cap_drop:
+    name: cap_drop
+    description: List of capabilities to drop from the container.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  cgroup_parent:
+    name: cgroup_parent
+    description: Path to cgroups under which the cgroup for the container will be
+      created. If the path is not absolute, the path is considered to be relative
+      to the cgroups path of the init process. Cgroups will be created if they do
+      not already exist.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  cgroupns:
+    name: cgroupns
+    description: Path to cgroups under which the cgroup for the container will be
+      created.
+    domain_of:
+    - PodmanContainer
+  cgroups:
+    name: cgroups
+    description: Determines whether the container will create CGroups. Valid values
+      are enabled and disabled, which the default being enabled. The disabled option
+      will force the container to not create CGroups, and thus conflicts with CGroup
+      options cgroupns and cgroup-parent.
+    domain_of:
+    - PodmanContainer
+  cidfile:
+    name: cidfile
+    description: Write the container ID to the file
+    domain_of:
+    - PodmanContainer
+  cmd_args:
+    name: cmd_args
+    description: Any additional command options you want to pass to podman command,
+      cmd_args - [’–other-param’, ‘value’] Be aware module doesn’t support idempotency
+      if this is set.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  command:
+    name: command
+    description: Override command of container. Can be a string or a list.
+    multivalued: true
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+  conmon_pidfile:
+    name: conmon_pidfile
+    description: Write the pid of the conmon process to a file. conmon runs in a separate
+      process than Podman, so this is necessary when using systemd to restart Podman
+      containers.
+    domain_of:
+    - PodmanContainer
+  cpu_period:
+    name: cpu_period
+    description: Limit the CPU real-time period in microseconds
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpu_rt_period:
+    name: cpu_rt_period
+    description: Limit the CPU real-time period in microseconds. Limit the container’s
+      Real Time CPU usage. This flag tell the kernel to restrict the container’s Real
+      Time CPU usage to the period you specify.
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpu_rt_runtime:
+    name: cpu_rt_runtime
+    description: Limit the CPU real-time runtime in microseconds. This flag tells
+      the kernel to limit the amount of time in a given CPU period Real Time tasks
+      may consume.
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpu_shares:
+    name: cpu_shares
+    description: CPU shares (relative weight)
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpus:
+    name: cpus
+    description: Number of CPUs. The default is 0.0 which means no limit.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  cpuset_cpus:
+    name: cpuset_cpus
+    description: CPUs in which to allow execution (0-3, 0,1)
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  cpuset_mems:
+    name: cpuset_mems
+    description: Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only
+      effective on NUMA systems.
+    domain_of:
+    - PodmanContainer
+  debug:
+    name: debug
+    description: Return additional information which can be helpful for investigations.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    - PodmanContainers
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanVolume
+    range: boolean
+  detach:
+    name: detach
+    description: Run container in detach mode
+    ifabsent: 'True'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  detach_keys:
+    name: detach_keys
+    description: Override the key sequence for detaching a container. Format is a
+      single character or ctrl-value
+    domain_of:
+    - PodmanContainer
+  device:
+    name: device
+    description: Add a host device to the container. The format is &lt;device-on-host&gt;[:&lt;device-on-container&gt;][:&lt;permissions&gt;]
+      (e.g. device /dev/sdc:/dev/xvdc:rwm)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  device_read_bps:
+    name: device_read_bps
+    description: Limit read rate (bytes per second) from a device (e.g. device-read-bps
+      /dev/sda:1mb)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  device_read_iops:
+    name: device_read_iops
+    description: Limit read rate (IO per second) from a device (e.g. device-read-iops
+      /dev/sda:1000)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  device_write_bps:
+    name: device_write_bps
+    description: Limit write rate (bytes per second) to a device (e.g. device-write-bps
+      /dev/sda:1mb)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  device_write_iops:
+    name: device_write_iops
+    description: Limit write rate (IO per second) to a device (e.g. device-write-iops
+      /dev/sda:1000)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  dns:
+    name: dns
+    description: Set custom DNS servers
+    aliases:
+    - dns_servers
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  dns_option:
+    name: dns_option
+    description: Set custom DNS options
+    aliases:
+    - dns_opts
+    domain_of:
+    - PodmanContainer
+  dns_search:
+    name: dns_search
+    description: Set custom DNS search domains (Use dns_search with ‘’ if you don’t
+      wish to set the search domain)
+    aliases:
+    - dns_search_domains
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  entrypoint:
+    name: entrypoint
+    description: Overwrite the default ENTRYPOINT of the image
+    domain_of:
+    - PodmanContainer
+  env:
+    name: env
+    description: Set environment variables. This option allows you to specify arbitrary
+      environment variables that are available for the process that will be launched
+      inside of the container.
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    range: MetaObject
+  env_file:
+    name: env_file
+    description: Read in a line delimited file of environment variables. Doesn’t support
+      idempotency. If users changes the file with environment variables it’s on them
+      to recreate the container.
+    domain_of:
+    - PodmanContainer
+  env_host:
+    name: env_host
+    description: Use all current host environment variables in container. Defaults
+      to false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  etc_hosts:
+    name: etc_hosts
+    description: Dict of host-to-IP mappings, where each host name is a key in the
+      dictionary. Each host name will be added to the container’s ``/etc/hosts`` file.
+    aliases:
+    - add_hosts
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  executable:
+    name: executable
+    description: Path to podman executable if it is not in the $PATH on the machine
+      running podman
+    ifabsent: string(podman)
+    domain_of:
+    - PodmanContainer
+    - PodmanExport
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanImport
+    - PodmanLoad
+    - PodmanLogin
+    - PodmanLogout
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSave
+    - PodmanSecret
+    - PodmanTag
+    - PodmanVolume
+  expose:
+    name: expose
+    description: Expose a port, or a range of ports (e.g. expose “3300-3310”) to set
+      up port redirection on the host system.
+    aliases:
+    - exposed
+    - exposed_ports
+    multivalued: true
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+  force_restart:
+    name: force_restart
+    description: Force restart of container.
+    aliases:
+    - restart
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  generate_systemd:
+    name: generate_systemd
+    description: Generate systemd unit file for container.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: MetaObject
+  gidmap:
+    name: gidmap
+    description: Run the container in a new user namespace using the supplied mapping.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  group_add:
+    name: group_add
+    description: Add additional groups to run as
+    aliases:
+    - groups
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  healthcheck:
+    name: healthcheck
+    description: Set or alter a healthcheck command for a container.
+    domain_of:
+    - PodmanContainer
+  healthcheck_interval:
+    name: healthcheck_interval
+    description: Set an interval for the healthchecks (a value of disable results
+      in no automatic timer setup) (default “30s”)
+    domain_of:
+    - PodmanContainer
+  healthcheck_retries:
+    name: healthcheck_retries
+    description: The number of retries allowed before a healthcheck is considered
+      to be unhealthy. The default value is 3.
+    ifabsent: int(3)
+    domain_of:
+    - PodmanContainer
+    range: integer
+  healthcheck_start_period:
+    name: healthcheck_start_period
+    description: The initialization time needed for a container to bootstrap. The
+      value can be expressed in time format like 2m3s. The default value is 0s
+    domain_of:
+    - PodmanContainer
+  healthcheck_timeout:
+    name: healthcheck_timeout
+    description: The maximum time allowed to complete the healthcheck before an interval
+      is considered failed. Like start-period, the value can be expressed in a time
+      format such as 1m22s. The default value is 30s
+    domain_of:
+    - PodmanContainer
+  hostname:
+    name: hostname
+    description: Container host name. Sets the container host name that is available
+      inside the container.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  http_proxy:
+    name: http_proxy
+    description: By default proxy environment variables are passed into the container
+      if set for the podman process. This can be disabled by setting the http_proxy
+      option to false. The environment variables passed in include http_proxy, https_proxy,
+      ftp_proxy, no_proxy, and also the upper case versions of those. Defaults to
+      true
+    ifabsent: 'True'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  image:
+    name: image
+    description: Repository path (or image name) and tag used to create the container.
+      If an image is not found, the image will be pulled from the registry. If no
+      tag is included, latest will be used. Can also be an image ID. If this is the
+      case, the image is assumed to be available locally.
+    domain_of:
+    - OciContainer
+    - PodmanSave
+    - PodmanTag
+  image_strict:
+    name: image_strict
+    description: Whether to compare images in idempotency by taking into account a
+      full name with registry and namespaces.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  image_volume:
+    name: image_volume
+    description: Tells podman how to handle the builtin image volumes. The options
+      are bind, tmpfs, or ignore (default bind)
+    domain_of:
+    - PodmanContainer
+    range: ContainerImageVolumeEnum
+  init:
+    name: init
+    description: Run an init inside the container that forwards signals and reaps
+      processes. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  init_path:
+    name: init_path
+    description: Path to the container-init binary.
+    domain_of:
+    - PodmanContainer
+  interactive:
+    name: interactive
+    description: Keep STDIN open even if not attached. The default is false. When
+      set to true, keep stdin open even if not attached. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  ip:
+    name: ip
+    description: Specify a static IP address for the container, for example ‘10.88.64.128’.
+      Can only be used if no additional CNI networks to join were specified via ‘network:’,
+      and if the container is not joining another container’s network namespace via
+      ‘network container:&lt;name|id&gt;’. The address must be within the default CNI network’s
+      pool (default 10.88.0.0/16).
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  ipc:
+    name: ipc
+    description: Default is to create a private IPC namespace (POSIX SysV IPC) for
+      the container
+    aliases:
+    - ipc_mode
+    domain_of:
+    - PodmanContainer
+  kernel_memory:
+    name: kernel_memory
+    description: Kernel memory limit (format &lt;number&gt;[&lt;unit&gt;], where unit = b, k,
+      m or g) Note - idempotency is supported for integers only.
+    domain_of:
+    - PodmanContainer
+  label:
+    name: label
+    description: Add metadata to a container, pass dictionary of label names and values
+    aliases:
+    - labels
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    - PodmanVolume
+    range: MetaObject
+  label_file:
+    name: label_file
+    description: Read in a line delimited file of labels
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  log_driver:
+    name: log_driver
+    description: Logging driver. Used to set the log driver for the container. For
+      example log_driver “k8s-file”.
+    domain_of:
+    - PodmanContainer
+    - PodmanPlay
+    range: ContainerLogDriverEnum
+  log_level:
+    name: log_level
+    description: Logging level for Podman. Log messages above specified level (“debug”|”info”|”warn”|”error”|”fatal”|”panic”)
+      (default “error”)
+    domain_of:
+    - PodmanContainer
+    - PodmanPlay
+    range: ContainerLogLevelEnum
+  log_opt:
+    name: log_opt
+    description: Logging driver specific options. Used to set the path to the container
+      log file.
+    aliases:
+    - log_options
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  mac_address:
+    name: mac_address
+    description: Specify a MAC address for the container, for example ‘92:d0:c6:0a:29:33’.
+      Don’t forget that it must be unique within one Ethernet network.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  memory:
+    name: memory
+    description: Memory limit (format 10k, where unit = b, k, m or g) Note - idempotency
+      is supported for integers only.
+    domain_of:
+    - PodmanContainer
+  memory_reservation:
+    name: memory_reservation
+    description: Memory soft limit (format 100m, where unit = b, k, m or g) Note -
+      idempotency is supported for integers only.
+    domain_of:
+    - PodmanContainer
+  memory_swap:
+    name: memory_swap
+    description: A limit value equal to memory plus swap. Must be used with the -m
+      (–memory) flag. The swap LIMIT should always be larger than -m (–memory) value.
+      By default, the swap LIMIT will be set to double the value of –memory Note -
+      idempotency is supported for integers only.
+    domain_of:
+    - PodmanContainer
+  memory_swappiness:
+    name: memory_swappiness
+    description: Tune a container’s memory swappiness behavior. Accepts an integer
+      between 0 and 100.
+    domain_of:
+    - PodmanContainer
+    range: integer
+    minimum_value: 0
+    maximum_value: 100
+  mount:
+    name: mount
+    description: Attach a filesystem mount to the container. bind or tmpfs For example
+      mount “type=bind,source=/path/on/host,destination=/path/in/container”
+    aliases:
+    - mounts
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  name:
+    name: name
+    description: Name of the container
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    - Attribute
+    - Entity
+    - Agent
+    required: true
+  network:
+    name: network
+    description: Set the Network mode for the container * bridge create a network
+      stack on the default bridge * none no networking * container:&lt;name|id&gt; reuse
+      another container’s network stack * host use the podman host network stack.
+      * &lt;network-name&gt;|&lt;network-id&gt; connect to a user-defined network * ns:&lt;path&gt;
+      path to a network namespace to join * slirp4netns use slirp4netns to create
+      a user network stack. This is the default for rootless containers
+    aliases:
+    - net
+    - network_mode
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPlay
+    - PodmanPod
+  network_aliases:
+    name: network_aliases
+    description: Add network-scoped alias for the container. A container will only
+      have access to aliases on the first network that it joins. This is a limitation
+      that will be removed in a later release.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  no_hosts:
+    name: no_hosts
+    description: Do not create /etc/hosts for the container Default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: boolean
+  oom_kill_disable:
+    name: oom_kill_disable
+    description: Whether to disable OOM Killer for the container or not. Default is
+      false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  oom_score_adj:
+    name: oom_score_adj
+    description: Tune the host’s OOM preferences for containers (accepts -1000 to
+      1000)
+    domain_of:
+    - PodmanContainer
+    range: integer
+    minimum_value: -1000
+    maximum_value: 1000
+  pid:
+    name: pid
+    description: Set the PID mode for the container
+    aliases:
+    - pid_mode
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  pids_limit:
+    name: pids_limit
+    description: Tune the container’s PIDs limit. Set -1 to have unlimited PIDs for
+      the container.
+    domain_of:
+    - PodmanContainer
+  pod:
+    name: pod
+    description: Run container in an existing pod. If you want podman to make the
+      pod for you, prefix the pod name with “new:”
+    domain_of:
+    - PodmanContainer
+  privileged:
+    name: privileged
+    description: Give extended privileges to this container. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  publish:
+    name: publish
+    description: Publish a container’s port, or range of ports, to the host. Format
+      - ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort | containerPort
+      In case of only containerPort is set, the hostPort will chosen randomly by Podman.
+    aliases:
+    - ports
+    - published
+    - published_ports
+    multivalued: true
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanPod
+  publish_all:
+    name: publish_all
+    description: Publish all exposed ports to random ports on the host interfaces.
+      The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  read_only:
+    name: read_only
+    description: Mount the container’s root filesystem as read only. Default is false
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  read_only_tmpfs:
+    name: read_only_tmpfs
+    description: If container is running in –read-only mode, then mount a read-write
+      tmpfs on /run, /tmp, and /var/tmp. The default is true
+    ifabsent: 'True'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  recreate:
+    name: recreate
+    description: Use with present and started states to force the re-creation of an
+      existing container.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanVolume
+    range: boolean
+  requires:
+    name: requires
+    description: Specify one or more requirements. A requirement is a dependency container
+      that will be started before this container. Containers can be specified by name
+      or ID.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+  restart_policy:
+    name: restart_policy
+    description: Restart policy to follow when containers exit. Restart policy will
+      not take effect if a container is stopped via the podman kill or podman stop
+      commands. Valid values are * no - Do not restart containers on exit * on-failure[:max_retries]
+      - Restart containers when they exit with a non-0 exit code, retrying indefinitely
+      or until the optional max_retries count is hit * always - Restart containers
+      when they exit, regardless of status, retrying indefinitely
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+  rm:
+    name: rm
+    description: Automatically remove the container when it exits. The default is
+      false.
+    aliases:
+    - remove
+    - auto_remove
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  rootfs:
+    name: rootfs
+    description: If true, the first argument refers to an exploded container on the
+      file system. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  sdnotify:
+    name: sdnotify
+    description: Determines how to use the NOTIFY_SOCKET, as passed with systemd and
+      Type=notify. Can be container, conmon, ignore.
+    domain_of:
+    - PodmanContainer
+  secrets:
+    name: secrets
+    description: Add the named secrets into the container. The format is secret[,opt=opt...],
+      see documentation for more details.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  security_opt:
+    name: security_opt
+    description: Security Options. For example security_opt “seccomp=unconfined”
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  shm_size:
+    name: shm_size
+    description: Size of /dev/shm. The format is &lt;number&gt;&lt;unit&gt;. number must be greater
+      than 0. Unit is optional and can be b (bytes), k (kilobytes), m(megabytes),
+      or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the
+      size entirely, the system uses 64m
+    domain_of:
+    - PodmanContainer
+  sig_proxy:
+    name: sig_proxy
+    description: Proxy signals sent to the podman run command to the container process.
+      SIGCHLD, SIGSTOP, and SIGKILL are not proxied. The default is true.
+    ifabsent: 'True'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  state:
+    name: state
+    description: 'absent - A container matching the specified name will be stopped
+      and removed.
+
+      present - Asserts the existence of a container matching the name and any provided
+      configuration parameters. If no container matches the name, a container will
+      be created. If a container matches the name but the provided configuration does
+      not match, the container will be updated, if it can be. If it cannot be updated,
+      it will be removed and re-created with the requested config. Image version will
+      be taken into account when comparing configuration. Use the recreate option
+      to force the re-creation of the matching container.
+
+      started - Asserts there is a running container matching the name and any provided
+      configuration. If no container matches the name, a container will be created
+      and started. Use recreate to always re-create a matching container, even if
+      it is running. Use force_restart to force a matching container to be stopped
+      and restarted.
+
+      stopped - Asserts that the container is first present, and then if the container
+      is running moves it to a stopped state.
+
+      created - Asserts that the container exists with given configuration. If container
+      doesn’t exist, the module creates it and leaves it in ‘created’ state. If configuration
+      doesn’t match or ‘recreate’ option is set, the container will be recreated'
+    ifabsent: string(started)
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    range: ContainerStateEnum
+  stop_signal:
+    name: stop_signal
+    description: Signal to stop a container. Default is SIGTERM.
+    domain_of:
+    - PodmanContainer
+    range: integer
+  stop_timeout:
+    name: stop_timeout
+    description: Timeout (in seconds) to stop a container. Default is 10.
+    ifabsent: int(10)
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    range: integer
+  subgidname:
+    name: subgidname
+    description: Run the container in a new user namespace using the map with ‘name’
+      in the /etc/subgid file.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  subuidname:
+    name: subuidname
+    description: Run the container in a new user namespace using the map with ‘name’
+      in the /etc/subuid file.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  sysctl:
+    name: sysctl
+    description: Configure namespaced kernel parameters at runtime
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  systemd:
+    name: systemd
+    description: Run container in systemd mode. The default is true.
+    ifabsent: string(true)
+    domain_of:
+    - PodmanContainer
+  timezone:
+    name: timezone
+    description: Set timezone in container. This flag takes area-based timezones,
+      GMT time, as well as local, which sets the timezone in the container to match
+      the host machine. See /usr/share/zoneinfo/ for valid timezones. Remote connections
+      use local containers.conf for defaults.
+    domain_of:
+    - PodmanContainer
+  tmpfs:
+    name: tmpfs
+    description: Create a tmpfs mount. For example tmpfs “/tmp” “rw,size=787448k,mode=1777”
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  tty:
+    name: tty
+    description: Allocate a pseudo-TTY. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  uidmap:
+    name: uidmap
+    description: Run the container in a new user namespace using the supplied mapping.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  ulimit:
+    name: ulimit
+    description: Ulimit options
+    aliases:
+    - ulimits
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  user:
+    name: user
+    description: Sets the username or UID used and optionally the groupname or GID
+      for the specified command.
+    domain_of:
+    - PodmanContainer
+  userns:
+    name: userns
+    description: Set the user namespace mode for the container. It defaults to the
+      PODMAN_USERNS environment variable. An empty value means user namespaces are
+      disabled.
+    aliases:
+    - userns_mode
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  uts:
+    name: uts
+    description: Set the UTS mode for the container
+    domain_of:
+    - PodmanContainer
+  volume:
+    name: volume
+    description: Create a bind mount. If you specify, volume /HOST-DIR:/CONTAINER-DIR,
+      podman bind mounts /HOST-DIR in the host to /CONTAINER-DIR in the podman container.
+    aliases:
+    - volumes
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  volumes_from:
+    name: volumes_from
+    description: Mount volumes from the specified container(s).
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  workdir:
+    name: workdir
+    description: Working directory inside the container. The default working directory
+      for running binaries within a container is the root directory (/).
+    aliases:
+    - working_dir
+    domain_of:
+    - PodmanContainer
+
+</code></pre>
+</details>
+<h3 id="induced">Induced</h3>
+<details>
+<pre><code class="language-yaml">name: PodmanContainer
+description: Podman container
+from_schema: https://w3id.org/lmodel/ucs-containers
+rank: 1000
+is_a: OciContainer
+mixins:
+- OciContainer
+- Podman
+slot_usage:
+  annotation:
+    name: annotation
+    description: Add an annotation to the container. The format is key value, multiple
+      times.
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  authfile:
+    name: authfile
+    description: Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json``
+      (Not available for remote commands) You can also override the default path of
+      the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable.
+      ``export REGISTRY_AUTH_FILE=path``
+    domain_of:
+    - PodmanContainer
+    - PodmanLogin
+    - PodmanLogout
+    - PodmanPlay
+  blkio_weight:
+    name: blkio_weight
+    description: 'Block IO weight (relative weight) accepts a weight value between
+      10 and 1000        minimum_value: 10'
+    domain_of:
+    - PodmanContainer
+    range: integer
+    maximum_value: 1000
+  blkio_weight_device:
+    name: blkio_weight_device
+    description: Block IO weight (relative device weight, format DEVICE_NAME[:]WEIGHT).
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  cap_add:
+    name: cap_add
+    description: List of capabilities to add to the container.
+    aliases:
+    - capabilities
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  cap_drop:
+    name: cap_drop
+    description: List of capabilities to drop from the container.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  cgroup_parent:
+    name: cgroup_parent
+    description: Path to cgroups under which the cgroup for the container will be
+      created. If the path is not absolute, the path is considered to be relative
+      to the cgroups path of the init process. Cgroups will be created if they do
+      not already exist.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  cgroupns:
+    name: cgroupns
+    description: Path to cgroups under which the cgroup for the container will be
+      created.
+    domain_of:
+    - PodmanContainer
+  cgroups:
+    name: cgroups
+    description: Determines whether the container will create CGroups. Valid values
+      are enabled and disabled, which the default being enabled. The disabled option
+      will force the container to not create CGroups, and thus conflicts with CGroup
+      options cgroupns and cgroup-parent.
+    domain_of:
+    - PodmanContainer
+  cidfile:
+    name: cidfile
+    description: Write the container ID to the file
+    domain_of:
+    - PodmanContainer
+  cmd_args:
+    name: cmd_args
+    description: Any additional command options you want to pass to podman command,
+      cmd_args - [’–other-param’, ‘value’] Be aware module doesn’t support idempotency
+      if this is set.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  command:
+    name: command
+    description: Override command of container. Can be a string or a list.
+    multivalued: true
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+  conmon_pidfile:
+    name: conmon_pidfile
+    description: Write the pid of the conmon process to a file. conmon runs in a separate
+      process than Podman, so this is necessary when using systemd to restart Podman
+      containers.
+    domain_of:
+    - PodmanContainer
+  cpu_period:
+    name: cpu_period
+    description: Limit the CPU real-time period in microseconds
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpu_rt_period:
+    name: cpu_rt_period
+    description: Limit the CPU real-time period in microseconds. Limit the container’s
+      Real Time CPU usage. This flag tell the kernel to restrict the container’s Real
+      Time CPU usage to the period you specify.
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpu_rt_runtime:
+    name: cpu_rt_runtime
+    description: Limit the CPU real-time runtime in microseconds. This flag tells
+      the kernel to limit the amount of time in a given CPU period Real Time tasks
+      may consume.
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpu_shares:
+    name: cpu_shares
+    description: CPU shares (relative weight)
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpus:
+    name: cpus
+    description: Number of CPUs. The default is 0.0 which means no limit.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  cpuset_cpus:
+    name: cpuset_cpus
+    description: CPUs in which to allow execution (0-3, 0,1)
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  cpuset_mems:
+    name: cpuset_mems
+    description: Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only
+      effective on NUMA systems.
+    domain_of:
+    - PodmanContainer
+  debug:
+    name: debug
+    description: Return additional information which can be helpful for investigations.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    - PodmanContainers
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanVolume
+    range: boolean
+  detach:
+    name: detach
+    description: Run container in detach mode
+    ifabsent: 'True'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  detach_keys:
+    name: detach_keys
+    description: Override the key sequence for detaching a container. Format is a
+      single character or ctrl-value
+    domain_of:
+    - PodmanContainer
+  device:
+    name: device
+    description: Add a host device to the container. The format is &lt;device-on-host&gt;[:&lt;device-on-container&gt;][:&lt;permissions&gt;]
+      (e.g. device /dev/sdc:/dev/xvdc:rwm)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  device_read_bps:
+    name: device_read_bps
+    description: Limit read rate (bytes per second) from a device (e.g. device-read-bps
+      /dev/sda:1mb)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  device_read_iops:
+    name: device_read_iops
+    description: Limit read rate (IO per second) from a device (e.g. device-read-iops
+      /dev/sda:1000)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  device_write_bps:
+    name: device_write_bps
+    description: Limit write rate (bytes per second) to a device (e.g. device-write-bps
+      /dev/sda:1mb)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  device_write_iops:
+    name: device_write_iops
+    description: Limit write rate (IO per second) to a device (e.g. device-write-iops
+      /dev/sda:1000)
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  dns:
+    name: dns
+    description: Set custom DNS servers
+    aliases:
+    - dns_servers
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  dns_option:
+    name: dns_option
+    description: Set custom DNS options
+    aliases:
+    - dns_opts
+    domain_of:
+    - PodmanContainer
+  dns_search:
+    name: dns_search
+    description: Set custom DNS search domains (Use dns_search with ‘’ if you don’t
+      wish to set the search domain)
+    aliases:
+    - dns_search_domains
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  entrypoint:
+    name: entrypoint
+    description: Overwrite the default ENTRYPOINT of the image
+    domain_of:
+    - PodmanContainer
+  env:
+    name: env
+    description: Set environment variables. This option allows you to specify arbitrary
+      environment variables that are available for the process that will be launched
+      inside of the container.
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    range: MetaObject
+  env_file:
+    name: env_file
+    description: Read in a line delimited file of environment variables. Doesn’t support
+      idempotency. If users changes the file with environment variables it’s on them
+      to recreate the container.
+    domain_of:
+    - PodmanContainer
+  env_host:
+    name: env_host
+    description: Use all current host environment variables in container. Defaults
+      to false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  etc_hosts:
+    name: etc_hosts
+    description: Dict of host-to-IP mappings, where each host name is a key in the
+      dictionary. Each host name will be added to the container’s ``/etc/hosts`` file.
+    aliases:
+    - add_hosts
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  executable:
+    name: executable
+    description: Path to podman executable if it is not in the $PATH on the machine
+      running podman
+    ifabsent: string(podman)
+    domain_of:
+    - PodmanContainer
+    - PodmanExport
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanImport
+    - PodmanLoad
+    - PodmanLogin
+    - PodmanLogout
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSave
+    - PodmanSecret
+    - PodmanTag
+    - PodmanVolume
+  expose:
+    name: expose
+    description: Expose a port, or a range of ports (e.g. expose “3300-3310”) to set
+      up port redirection on the host system.
+    aliases:
+    - exposed
+    - exposed_ports
+    multivalued: true
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+  force_restart:
+    name: force_restart
+    description: Force restart of container.
+    aliases:
+    - restart
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  generate_systemd:
+    name: generate_systemd
+    description: Generate systemd unit file for container.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: MetaObject
+  gidmap:
+    name: gidmap
+    description: Run the container in a new user namespace using the supplied mapping.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  group_add:
+    name: group_add
+    description: Add additional groups to run as
+    aliases:
+    - groups
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  healthcheck:
+    name: healthcheck
+    description: Set or alter a healthcheck command for a container.
+    domain_of:
+    - PodmanContainer
+  healthcheck_interval:
+    name: healthcheck_interval
+    description: Set an interval for the healthchecks (a value of disable results
+      in no automatic timer setup) (default “30s”)
+    domain_of:
+    - PodmanContainer
+  healthcheck_retries:
+    name: healthcheck_retries
+    description: The number of retries allowed before a healthcheck is considered
+      to be unhealthy. The default value is 3.
+    ifabsent: int(3)
+    domain_of:
+    - PodmanContainer
+    range: integer
+  healthcheck_start_period:
+    name: healthcheck_start_period
+    description: The initialization time needed for a container to bootstrap. The
+      value can be expressed in time format like 2m3s. The default value is 0s
+    domain_of:
+    - PodmanContainer
+  healthcheck_timeout:
+    name: healthcheck_timeout
+    description: The maximum time allowed to complete the healthcheck before an interval
+      is considered failed. Like start-period, the value can be expressed in a time
+      format such as 1m22s. The default value is 30s
+    domain_of:
+    - PodmanContainer
+  hostname:
+    name: hostname
+    description: Container host name. Sets the container host name that is available
+      inside the container.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  http_proxy:
+    name: http_proxy
+    description: By default proxy environment variables are passed into the container
+      if set for the podman process. This can be disabled by setting the http_proxy
+      option to false. The environment variables passed in include http_proxy, https_proxy,
+      ftp_proxy, no_proxy, and also the upper case versions of those. Defaults to
+      true
+    ifabsent: 'True'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  image:
+    name: image
+    description: Repository path (or image name) and tag used to create the container.
+      If an image is not found, the image will be pulled from the registry. If no
+      tag is included, latest will be used. Can also be an image ID. If this is the
+      case, the image is assumed to be available locally.
+    domain_of:
+    - OciContainer
+    - PodmanSave
+    - PodmanTag
+  image_strict:
+    name: image_strict
+    description: Whether to compare images in idempotency by taking into account a
+      full name with registry and namespaces.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  image_volume:
+    name: image_volume
+    description: Tells podman how to handle the builtin image volumes. The options
+      are bind, tmpfs, or ignore (default bind)
+    domain_of:
+    - PodmanContainer
+    range: ContainerImageVolumeEnum
+  init:
+    name: init
+    description: Run an init inside the container that forwards signals and reaps
+      processes. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  init_path:
+    name: init_path
+    description: Path to the container-init binary.
+    domain_of:
+    - PodmanContainer
+  interactive:
+    name: interactive
+    description: Keep STDIN open even if not attached. The default is false. When
+      set to true, keep stdin open even if not attached. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  ip:
+    name: ip
+    description: Specify a static IP address for the container, for example ‘10.88.64.128’.
+      Can only be used if no additional CNI networks to join were specified via ‘network:’,
+      and if the container is not joining another container’s network namespace via
+      ‘network container:&lt;name|id&gt;’. The address must be within the default CNI network’s
+      pool (default 10.88.0.0/16).
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  ipc:
+    name: ipc
+    description: Default is to create a private IPC namespace (POSIX SysV IPC) for
+      the container
+    aliases:
+    - ipc_mode
+    domain_of:
+    - PodmanContainer
+  kernel_memory:
+    name: kernel_memory
+    description: Kernel memory limit (format &lt;number&gt;[&lt;unit&gt;], where unit = b, k,
+      m or g) Note - idempotency is supported for integers only.
+    domain_of:
+    - PodmanContainer
+  label:
+    name: label
+    description: Add metadata to a container, pass dictionary of label names and values
+    aliases:
+    - labels
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    - PodmanVolume
+    range: MetaObject
+  label_file:
+    name: label_file
+    description: Read in a line delimited file of labels
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  log_driver:
+    name: log_driver
+    description: Logging driver. Used to set the log driver for the container. For
+      example log_driver “k8s-file”.
+    domain_of:
+    - PodmanContainer
+    - PodmanPlay
+    range: ContainerLogDriverEnum
+  log_level:
+    name: log_level
+    description: Logging level for Podman. Log messages above specified level (“debug”|”info”|”warn”|”error”|”fatal”|”panic”)
+      (default “error”)
+    domain_of:
+    - PodmanContainer
+    - PodmanPlay
+    range: ContainerLogLevelEnum
+  log_opt:
+    name: log_opt
+    description: Logging driver specific options. Used to set the path to the container
+      log file.
+    aliases:
+    - log_options
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  mac_address:
+    name: mac_address
+    description: Specify a MAC address for the container, for example ‘92:d0:c6:0a:29:33’.
+      Don’t forget that it must be unique within one Ethernet network.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  memory:
+    name: memory
+    description: Memory limit (format 10k, where unit = b, k, m or g) Note - idempotency
+      is supported for integers only.
+    domain_of:
+    - PodmanContainer
+  memory_reservation:
+    name: memory_reservation
+    description: Memory soft limit (format 100m, where unit = b, k, m or g) Note -
+      idempotency is supported for integers only.
+    domain_of:
+    - PodmanContainer
+  memory_swap:
+    name: memory_swap
+    description: A limit value equal to memory plus swap. Must be used with the -m
+      (–memory) flag. The swap LIMIT should always be larger than -m (–memory) value.
+      By default, the swap LIMIT will be set to double the value of –memory Note -
+      idempotency is supported for integers only.
+    domain_of:
+    - PodmanContainer
+  memory_swappiness:
+    name: memory_swappiness
+    description: Tune a container’s memory swappiness behavior. Accepts an integer
+      between 0 and 100.
+    domain_of:
+    - PodmanContainer
+    range: integer
+    minimum_value: 0
+    maximum_value: 100
+  mount:
+    name: mount
+    description: Attach a filesystem mount to the container. bind or tmpfs For example
+      mount “type=bind,source=/path/on/host,destination=/path/in/container”
+    aliases:
+    - mounts
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  name:
+    name: name
+    description: Name of the container
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    - Attribute
+    - Entity
+    - Agent
+    required: true
+  network:
+    name: network
+    description: Set the Network mode for the container * bridge create a network
+      stack on the default bridge * none no networking * container:&lt;name|id&gt; reuse
+      another container’s network stack * host use the podman host network stack.
+      * &lt;network-name&gt;|&lt;network-id&gt; connect to a user-defined network * ns:&lt;path&gt;
+      path to a network namespace to join * slirp4netns use slirp4netns to create
+      a user network stack. This is the default for rootless containers
+    aliases:
+    - net
+    - network_mode
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPlay
+    - PodmanPod
+  network_aliases:
+    name: network_aliases
+    description: Add network-scoped alias for the container. A container will only
+      have access to aliases on the first network that it joins. This is a limitation
+      that will be removed in a later release.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  no_hosts:
+    name: no_hosts
+    description: Do not create /etc/hosts for the container Default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: boolean
+  oom_kill_disable:
+    name: oom_kill_disable
+    description: Whether to disable OOM Killer for the container or not. Default is
+      false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  oom_score_adj:
+    name: oom_score_adj
+    description: Tune the host’s OOM preferences for containers (accepts -1000 to
+      1000)
+    domain_of:
+    - PodmanContainer
+    range: integer
+    minimum_value: -1000
+    maximum_value: 1000
+  pid:
+    name: pid
+    description: Set the PID mode for the container
+    aliases:
+    - pid_mode
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  pids_limit:
+    name: pids_limit
+    description: Tune the container’s PIDs limit. Set -1 to have unlimited PIDs for
+      the container.
+    domain_of:
+    - PodmanContainer
+  pod:
+    name: pod
+    description: Run container in an existing pod. If you want podman to make the
+      pod for you, prefix the pod name with “new:”
+    domain_of:
+    - PodmanContainer
+  privileged:
+    name: privileged
+    description: Give extended privileges to this container. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  publish:
+    name: publish
+    description: Publish a container’s port, or range of ports, to the host. Format
+      - ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort | containerPort
+      In case of only containerPort is set, the hostPort will chosen randomly by Podman.
+    aliases:
+    - ports
+    - published
+    - published_ports
+    multivalued: true
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanPod
+  publish_all:
+    name: publish_all
+    description: Publish all exposed ports to random ports on the host interfaces.
+      The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  read_only:
+    name: read_only
+    description: Mount the container’s root filesystem as read only. Default is false
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  read_only_tmpfs:
+    name: read_only_tmpfs
+    description: If container is running in –read-only mode, then mount a read-write
+      tmpfs on /run, /tmp, and /var/tmp. The default is true
+    ifabsent: 'True'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  recreate:
+    name: recreate
+    description: Use with present and started states to force the re-creation of an
+      existing container.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanVolume
+    range: boolean
+  requires:
+    name: requires
+    description: Specify one or more requirements. A requirement is a dependency container
+      that will be started before this container. Containers can be specified by name
+      or ID.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+  restart_policy:
+    name: restart_policy
+    description: Restart policy to follow when containers exit. Restart policy will
+      not take effect if a container is stopped via the podman kill or podman stop
+      commands. Valid values are * no - Do not restart containers on exit * on-failure[:max_retries]
+      - Restart containers when they exit with a non-0 exit code, retrying indefinitely
+      or until the optional max_retries count is hit * always - Restart containers
+      when they exit, regardless of status, retrying indefinitely
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+  rm:
+    name: rm
+    description: Automatically remove the container when it exits. The default is
+      false.
+    aliases:
+    - remove
+    - auto_remove
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  rootfs:
+    name: rootfs
+    description: If true, the first argument refers to an exploded container on the
+      file system. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  sdnotify:
+    name: sdnotify
+    description: Determines how to use the NOTIFY_SOCKET, as passed with systemd and
+      Type=notify. Can be container, conmon, ignore.
+    domain_of:
+    - PodmanContainer
+  secrets:
+    name: secrets
+    description: Add the named secrets into the container. The format is secret[,opt=opt...],
+      see documentation for more details.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  security_opt:
+    name: security_opt
+    description: Security Options. For example security_opt “seccomp=unconfined”
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  shm_size:
+    name: shm_size
+    description: Size of /dev/shm. The format is &lt;number&gt;&lt;unit&gt;. number must be greater
+      than 0. Unit is optional and can be b (bytes), k (kilobytes), m(megabytes),
+      or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the
+      size entirely, the system uses 64m
+    domain_of:
+    - PodmanContainer
+  sig_proxy:
+    name: sig_proxy
+    description: Proxy signals sent to the podman run command to the container process.
+      SIGCHLD, SIGSTOP, and SIGKILL are not proxied. The default is true.
+    ifabsent: 'True'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  state:
+    name: state
+    description: 'absent - A container matching the specified name will be stopped
+      and removed.
+
+      present - Asserts the existence of a container matching the name and any provided
+      configuration parameters. If no container matches the name, a container will
+      be created. If a container matches the name but the provided configuration does
+      not match, the container will be updated, if it can be. If it cannot be updated,
+      it will be removed and re-created with the requested config. Image version will
+      be taken into account when comparing configuration. Use the recreate option
+      to force the re-creation of the matching container.
+
+      started - Asserts there is a running container matching the name and any provided
+      configuration. If no container matches the name, a container will be created
+      and started. Use recreate to always re-create a matching container, even if
+      it is running. Use force_restart to force a matching container to be stopped
+      and restarted.
+
+      stopped - Asserts that the container is first present, and then if the container
+      is running moves it to a stopped state.
+
+      created - Asserts that the container exists with given configuration. If container
+      doesn’t exist, the module creates it and leaves it in ‘created’ state. If configuration
+      doesn’t match or ‘recreate’ option is set, the container will be recreated'
+    ifabsent: string(started)
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    range: ContainerStateEnum
+  stop_signal:
+    name: stop_signal
+    description: Signal to stop a container. Default is SIGTERM.
+    domain_of:
+    - PodmanContainer
+    range: integer
+  stop_timeout:
+    name: stop_timeout
+    description: Timeout (in seconds) to stop a container. Default is 10.
+    ifabsent: int(10)
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    range: integer
+  subgidname:
+    name: subgidname
+    description: Run the container in a new user namespace using the map with ‘name’
+      in the /etc/subgid file.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  subuidname:
+    name: subuidname
+    description: Run the container in a new user namespace using the map with ‘name’
+      in the /etc/subuid file.
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  sysctl:
+    name: sysctl
+    description: Configure namespaced kernel parameters at runtime
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  systemd:
+    name: systemd
+    description: Run container in systemd mode. The default is true.
+    ifabsent: string(true)
+    domain_of:
+    - PodmanContainer
+  timezone:
+    name: timezone
+    description: Set timezone in container. This flag takes area-based timezones,
+      GMT time, as well as local, which sets the timezone in the container to match
+      the host machine. See /usr/share/zoneinfo/ for valid timezones. Remote connections
+      use local containers.conf for defaults.
+    domain_of:
+    - PodmanContainer
+  tmpfs:
+    name: tmpfs
+    description: Create a tmpfs mount. For example tmpfs “/tmp” “rw,size=787448k,mode=1777”
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  tty:
+    name: tty
+    description: Allocate a pseudo-TTY. The default is false.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  uidmap:
+    name: uidmap
+    description: Run the container in a new user namespace using the supplied mapping.
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  ulimit:
+    name: ulimit
+    description: Ulimit options
+    aliases:
+    - ulimits
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  user:
+    name: user
+    description: Sets the username or UID used and optionally the groupname or GID
+      for the specified command.
+    domain_of:
+    - PodmanContainer
+  userns:
+    name: userns
+    description: Set the user namespace mode for the container. It defaults to the
+      PODMAN_USERNS environment variable. An empty value means user namespaces are
+      disabled.
+    aliases:
+    - userns_mode
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  uts:
+    name: uts
+    description: Set the UTS mode for the container
+    domain_of:
+    - PodmanContainer
+  volume:
+    name: volume
+    description: Create a bind mount. If you specify, volume /HOST-DIR:/CONTAINER-DIR,
+      podman bind mounts /HOST-DIR in the host to /CONTAINER-DIR in the podman container.
+    aliases:
+    - volumes
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+  volumes_from:
+    name: volumes_from
+    description: Mount volumes from the specified container(s).
+    multivalued: true
+    domain_of:
+    - PodmanContainer
+  workdir:
+    name: workdir
+    description: Working directory inside the container. The default working directory
+      for running binaries within a container is the root directory (/).
+    aliases:
+    - working_dir
+    domain_of:
+    - PodmanContainer
+attributes:
+  executable:
+    name: executable
+    description: Path to podman executable if it is not in the $PATH on the machine
+      running podman
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: string(podman)
+    alias: executable
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanExport
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanImport
+    - PodmanLoad
+    - PodmanLogin
+    - PodmanLogout
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSave
+    - PodmanSecret
+    - PodmanTag
+    - PodmanVolume
+    range: string
+  state:
+    name: state
+    description: 'absent - A container matching the specified name will be stopped
+      and removed.
+
+      present - Asserts the existence of a container matching the name and any provided
+      configuration parameters. If no container matches the name, a container will
+      be created. If a container matches the name but the provided configuration does
+      not match, the container will be updated, if it can be. If it cannot be updated,
+      it will be removed and re-created with the requested config. Image version will
+      be taken into account when comparing configuration. Use the recreate option
+      to force the re-creation of the matching container.
+
+      started - Asserts there is a running container matching the name and any provided
+      configuration. If no container matches the name, a container will be created
+      and started. Use recreate to always re-create a matching container, even if
+      it is running. Use force_restart to force a matching container to be stopped
+      and restarted.
+
+      stopped - Asserts that the container is first present, and then if the container
+      is running moves it to a stopped state.
+
+      created - Asserts that the container exists with given configuration. If container
+      doesn’t exist, the module creates it and leaves it in ‘created’ state. If configuration
+      doesn’t match or ‘recreate’ option is set, the container will be recreated'
+    from_schema: https://w3id.org/lmodel/ucs-core
+    is_a: associationSlot
+    domain: Association
+    slot_uri: uco-observable:state
+    ifabsent: string(started)
+    alias: state
+    owner: PodmanContainer
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    range: ContainerStateEnum
+  annotation:
+    name: annotation
+    description: Add an annotation to the container. The format is key value, multiple
+      times.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: annotation
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  authfile:
+    name: authfile
+    description: Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json``
+      (Not available for remote commands) You can also override the default path of
+      the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable.
+      ``export REGISTRY_AUTH_FILE=path``
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: authfile
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanLogin
+    - PodmanLogout
+    - PodmanPlay
+    range: string
+  blkio_weight:
+    name: blkio_weight
+    description: 'Block IO weight (relative weight) accepts a weight value between
+      10 and 1000        minimum_value: 10'
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: blkio_weight
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+    minimum_value: 10
+    maximum_value: 1000
+  blkio_weight_device:
+    name: blkio_weight_device
+    description: Block IO weight (relative device weight, format DEVICE_NAME[:]WEIGHT).
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: blkio_weight_device
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  cap_add:
+    name: cap_add
+    description: List of capabilities to add to the container.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    aliases:
+    - capabilities
+    rank: 1000
+    multivalued: true
+    alias: cap_add
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  cap_drop:
+    name: cap_drop
+    description: List of capabilities to drop from the container.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: cap_drop
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  cgroup_parent:
+    name: cgroup_parent
+    description: Path to cgroups under which the cgroup for the container will be
+      created. If the path is not absolute, the path is considered to be relative
+      to the cgroups path of the init process. Cgroups will be created if they do
+      not already exist.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: cgroup_parent
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  cgroupns:
+    name: cgroupns
+    description: Path to cgroups under which the cgroup for the container will be
+      created.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: cgroupns
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  cgroups:
+    name: cgroups
+    description: Determines whether the container will create CGroups. Valid values
+      are enabled and disabled, which the default being enabled. The disabled option
+      will force the container to not create CGroups, and thus conflicts with CGroup
+      options cgroupns and cgroup-parent.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: cgroups
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  cidfile:
+    name: cidfile
+    description: Write the container ID to the file
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: cidfile
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  cmd_args:
+    name: cmd_args
+    description: Any additional command options you want to pass to podman command,
+      cmd_args - [’–other-param’, ‘value’] Be aware module doesn’t support idempotency
+      if this is set.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    multivalued: true
+    alias: cmd_args
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  conmon_pidfile:
+    name: conmon_pidfile
+    description: Write the pid of the conmon process to a file. conmon runs in a separate
+      process than Podman, so this is necessary when using systemd to restart Podman
+      containers.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: conmon_pidfile
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  command:
+    name: command
+    description: Override command of container. Can be a string or a list.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    multivalued: true
+    alias: command
+    owner: PodmanContainer
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    range: string
+  cpu_period:
+    name: cpu_period
+    description: Limit the CPU real-time period in microseconds
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: cpu_period
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpu_rt_period:
+    name: cpu_rt_period
+    description: Limit the CPU real-time period in microseconds. Limit the container’s
+      Real Time CPU usage. This flag tell the kernel to restrict the container’s Real
+      Time CPU usage to the period you specify.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: cpu_rt_period
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpu_rt_runtime:
+    name: cpu_rt_runtime
+    description: Limit the CPU real-time runtime in microseconds. This flag tells
+      the kernel to limit the amount of time in a given CPU period Real Time tasks
+      may consume.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: cpu_rt_runtime
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpu_shares:
+    name: cpu_shares
+    description: CPU shares (relative weight)
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: cpu_shares
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+  cpus:
+    name: cpus
+    description: Number of CPUs. The default is 0.0 which means no limit.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: cpus
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  cpuset_cpus:
+    name: cpuset_cpus
+    description: CPUs in which to allow execution (0-3, 0,1)
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: cpuset_cpus
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  cpuset_mems:
+    name: cpuset_mems
+    description: Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only
+      effective on NUMA systems.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: cpuset_mems
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  detach:
+    name: detach
+    description: Run container in detach mode
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: 'True'
+    alias: detach
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  debug:
+    name: debug
+    description: Return additional information which can be helpful for investigations.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'False'
+    alias: debug
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanContainers
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanVolume
+    range: boolean
+  detach_keys:
+    name: detach_keys
+    description: Override the key sequence for detaching a container. Format is a
+      single character or ctrl-value
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: detach_keys
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  device:
+    name: device
+    description: Add a host device to the container. The format is &lt;device-on-host&gt;[:&lt;device-on-container&gt;][:&lt;permissions&gt;]
+      (e.g. device /dev/sdc:/dev/xvdc:rwm)
+    from_schema: https://w3id.org/lmodel/ucs-core
+    multivalued: true
+    alias: device
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  device_read_bps:
+    name: device_read_bps
+    description: Limit read rate (bytes per second) from a device (e.g. device-read-bps
+      /dev/sda:1mb)
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: device_read_bps
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  device_read_iops:
+    name: device_read_iops
+    description: Limit read rate (IO per second) from a device (e.g. device-read-iops
+      /dev/sda:1000)
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: device_read_iops
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  device_write_bps:
+    name: device_write_bps
+    description: Limit write rate (bytes per second) to a device (e.g. device-write-bps
+      /dev/sda:1mb)
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: device_write_bps
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  device_write_iops:
+    name: device_write_iops
+    description: Limit write rate (IO per second) to a device (e.g. device-write-iops
+      /dev/sda:1000)
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: device_write_iops
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  dns:
+    name: dns
+    description: Set custom DNS servers
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - dns_servers
+    multivalued: true
+    alias: dns
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  dns_option:
+    name: dns_option
+    description: Set custom DNS options
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - dns_opts
+    alias: dns_option
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  dns_search:
+    name: dns_search
+    description: Set custom DNS search domains (Use dns_search with ‘’ if you don’t
+      wish to set the search domain)
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - dns_search_domains
+    alias: dns_search
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  entrypoint:
+    name: entrypoint
+    description: Overwrite the default ENTRYPOINT of the image
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: entrypoint
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  env:
+    name: env
+    description: Set environment variables. This option allows you to specify arbitrary
+      environment variables that are available for the process that will be launched
+      inside of the container.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: env
+    owner: PodmanContainer
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    range: MetaObject
+  env_file:
+    name: env_file
+    description: Read in a line delimited file of environment variables. Doesn’t support
+      idempotency. If users changes the file with environment variables it’s on them
+      to recreate the container.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: env_file
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  env_host:
+    name: env_host
+    description: Use all current host environment variables in container. Defaults
+      to false.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: 'False'
+    alias: env_host
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  etc_hosts:
+    name: etc_hosts
+    description: Dict of host-to-IP mappings, where each host name is a key in the
+      dictionary. Each host name will be added to the container’s ``/etc/hosts`` file.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - add_hosts
+    alias: etc_hosts
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  expose:
+    name: expose
+    description: Expose a port, or a range of ports (e.g. expose “3300-3310”) to set
+      up port redirection on the host system.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    aliases:
+    - exposed
+    - exposed_ports
+    rank: 1000
+    multivalued: true
+    alias: expose
+    owner: PodmanContainer
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    range: string
+  force_restart:
+    name: force_restart
+    description: Force restart of container.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    aliases:
+    - restart
+    rank: 1000
+    ifabsent: 'False'
+    alias: force_restart
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  generate_systemd:
+    name: generate_systemd
+    description: Generate systemd unit file for container.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: generate_systemd
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: MetaObject
+  gidmap:
+    name: gidmap
+    description: Run the container in a new user namespace using the supplied mapping.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: gidmap
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  group_add:
+    name: group_add
+    description: Add additional groups to run as
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    aliases:
+    - groups
+    rank: 1000
+    multivalued: true
+    alias: group_add
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  healthcheck:
+    name: healthcheck
+    description: Set or alter a healthcheck command for a container.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: healthcheck
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  healthcheck_interval:
+    name: healthcheck_interval
+    description: Set an interval for the healthchecks (a value of disable results
+      in no automatic timer setup) (default “30s”)
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: healthcheck_interval
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  healthcheck_retries:
+    name: healthcheck_retries
+    description: The number of retries allowed before a healthcheck is considered
+      to be unhealthy. The default value is 3.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: int(3)
+    alias: healthcheck_retries
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+  healthcheck_start_period:
+    name: healthcheck_start_period
+    description: The initialization time needed for a container to bootstrap. The
+      value can be expressed in time format like 2m3s. The default value is 0s
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: string(0s)
+    alias: healthcheck_start_period
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  healthcheck_timeout:
+    name: healthcheck_timeout
+    description: The maximum time allowed to complete the healthcheck before an interval
+      is considered failed. Like start-period, the value can be expressed in a time
+      format such as 1m22s. The default value is 30s
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: string(30s)
+    alias: healthcheck_timeout
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  hostname:
+    name: hostname
+    description: Container host name. Sets the container host name that is available
+      inside the container.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    slot_uri: uco-observable:hostname
+    alias: hostname
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  http_proxy:
+    name: http_proxy
+    description: By default proxy environment variables are passed into the container
+      if set for the podman process. This can be disabled by setting the http_proxy
+      option to false. The environment variables passed in include http_proxy, https_proxy,
+      ftp_proxy, no_proxy, and also the upper case versions of those. Defaults to
+      true
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'True'
+    alias: http_proxy
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  image_volume:
+    name: image_volume
+    description: Tells podman how to handle the builtin image volumes. The options
+      are bind, tmpfs, or ignore (default bind)
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: image_volume
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: ContainerImageVolumeEnum
+  image_strict:
+    name: image_strict
+    description: Whether to compare images in idempotency by taking into account a
+      full name with registry and namespaces.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: 'False'
+    alias: image_strict
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  init:
+    name: init
+    description: Run an init inside the container that forwards signals and reaps
+      processes. The default is false.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'False'
+    alias: init
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  init_path:
+    name: init_path
+    description: Path to the container-init binary.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: init_path
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  interactive:
+    name: interactive
+    description: Keep STDIN open even if not attached. The default is false. When
+      set to true, keep stdin open even if not attached. The default is false.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'False'
+    alias: interactive
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  ip:
+    name: ip
+    description: Specify a static IP address for the container, for example ‘10.88.64.128’.
+      Can only be used if no additional CNI networks to join were specified via ‘network:’,
+      and if the container is not joining another container’s network namespace via
+      ‘network container:&lt;name|id&gt;’. The address must be within the default CNI network’s
+      pool (default 10.88.0.0/16).
+    from_schema: https://w3id.org/lmodel/ucs-core
+    slot_uri: uco-observable:ip
+    alias: ip
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  ipc:
+    name: ipc
+    description: Default is to create a private IPC namespace (POSIX SysV IPC) for
+      the container
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    aliases:
+    - ipc_mode
+    rank: 1000
+    alias: ipc
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  kernel_memory:
+    name: kernel_memory
+    description: Kernel memory limit (format &lt;number&gt;[&lt;unit&gt;], where unit = b, k,
+      m or g) Note - idempotency is supported for integers only.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: kernel_memory
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  label:
+    name: label
+    description: Add metadata to a container, pass dictionary of label names and values
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - labels
+    alias: label
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    - PodmanVolume
+    range: MetaObject
+  label_file:
+    name: label_file
+    description: Read in a line delimited file of labels
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: label_file
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  log_driver:
+    name: log_driver
+    description: Logging driver. Used to set the log driver for the container. For
+      example log_driver “k8s-file”.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: log_driver
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPlay
+    range: ContainerLogDriverEnum
+  log_level:
+    name: log_level
+    description: Logging level for Podman. Log messages above specified level (“debug”|”info”|”warn”|”error”|”fatal”|”panic”)
+      (default “error”)
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: log_level
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPlay
+    range: ContainerLogLevelEnum
+  log_opt:
+    name: log_opt
+    description: Logging driver specific options. Used to set the path to the container
+      log file.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    aliases:
+    - log_options
+    rank: 1000
+    alias: log_opt
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  mac_address:
+    name: mac_address
+    description: Specify a MAC address for the container, for example ‘92:d0:c6:0a:29:33’.
+      Don’t forget that it must be unique within one Ethernet network.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: mac_address
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  memory:
+    name: memory
+    description: Memory limit (format 10k, where unit = b, k, m or g) Note - idempotency
+      is supported for integers only.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: memory
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  memory_reservation:
+    name: memory_reservation
+    description: Memory soft limit (format 100m, where unit = b, k, m or g) Note -
+      idempotency is supported for integers only.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: memory_reservation
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  memory_swap:
+    name: memory_swap
+    description: A limit value equal to memory plus swap. Must be used with the -m
+      (–memory) flag. The swap LIMIT should always be larger than -m (–memory) value.
+      By default, the swap LIMIT will be set to double the value of –memory Note -
+      idempotency is supported for integers only.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: memory_swap
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  memory_swappiness:
+    name: memory_swappiness
+    description: Tune a container’s memory swappiness behavior. Accepts an integer
+      between 0 and 100.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: memory_swappiness
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+    minimum_value: 0
+    maximum_value: 100
+  mount:
+    name: mount
+    description: Attach a filesystem mount to the container. bind or tmpfs For example
+      mount “type=bind,source=/path/on/host,destination=/path/in/container”
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - mounts
+    multivalued: true
+    alias: mount
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  name:
+    name: name
+    description: Name of the container
+    from_schema: https://w3id.org/lmodel/ucs-core
+    slot_uri: rdfs:label
+    alias: name
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    - Attribute
+    - Entity
+    - Agent
+    range: label type
+    required: true
+  network:
+    name: network
+    description: Set the Network mode for the container * bridge create a network
+      stack on the default bridge * none no networking * container:&lt;name|id&gt; reuse
+      another container’s network stack * host use the podman host network stack.
+      * &lt;network-name&gt;|&lt;network-id&gt; connect to a user-defined network * ns:&lt;path&gt;
+      path to a network namespace to join * slirp4netns use slirp4netns to create
+      a user network stack. This is the default for rootless containers
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - net
+    - network_mode
+    slot_uri: uco-observable:network
+    multivalued: true
+    alias: network
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPlay
+    - PodmanPod
+    range: string
+  network_aliases:
+    name: network_aliases
+    description: Add network-scoped alias for the container. A container will only
+      have access to aliases on the first network that it joins. This is a limitation
+      that will be removed in a later release.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: network_aliases
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  no_hosts:
+    name: no_hosts
+    description: Do not create /etc/hosts for the container Default is false.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: 'False'
+    alias: no_hosts
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: boolean
+  oom_kill_disable:
+    name: oom_kill_disable
+    description: Whether to disable OOM Killer for the container or not. Default is
+      false.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: 'False'
+    alias: oom_kill_disable
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  oom_score_adj:
+    name: oom_score_adj
+    description: Tune the host’s OOM preferences for containers (accepts -1000 to
+      1000)
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: oom_score_adj
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+    minimum_value: -1000
+    maximum_value: 1000
+  pid:
+    name: pid
+    description: Set the PID mode for the container
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - pid_mode
+    slot_uri: uco-observable:pid
+    alias: pid
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  pids_limit:
+    name: pids_limit
+    description: Tune the container’s PIDs limit. Set -1 to have unlimited PIDs for
+      the container.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: pids_limit
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+    minimum_value: -1
+  pod:
+    name: pod
+    description: Run container in an existing pod. If you want podman to make the
+      pod for you, prefix the pod name with “new:”
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: pod
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  privileged:
+    name: privileged
+    description: Give extended privileges to this container. The default is false.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'False'
+    alias: privileged
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  publish:
+    name: publish
+    description: Publish a container’s port, or range of ports, to the host. Format
+      - ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort | containerPort
+      In case of only containerPort is set, the hostPort will chosen randomly by Podman.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - ports
+    - published
+    - published_ports
+    multivalued: true
+    alias: publish
+    owner: PodmanContainer
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  publish_all:
+    name: publish_all
+    description: Publish all exposed ports to random ports on the host interfaces.
+      The default is false.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: 'False'
+    alias: publish_all
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  read_only:
+    name: read_only
+    description: Mount the container’s root filesystem as read only. Default is false
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'False'
+    alias: read_only
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  read_only_tmpfs:
+    name: read_only_tmpfs
+    description: If container is running in –read-only mode, then mount a read-write
+      tmpfs on /run, /tmp, and /var/tmp. The default is true
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: 'True'
+    alias: read_only_tmpfs
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  recreate:
+    name: recreate
+    description: Use with present and started states to force the re-creation of an
+      existing container.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'False'
+    alias: recreate
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanVolume
+    range: boolean
+  requires:
+    name: requires
+    description: Specify one or more requirements. A requirement is a dependency container
+      that will be started before this container. Containers can be specified by name
+      or ID.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: requires
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    range: string
+  restart_policy:
+    name: restart_policy
+    description: Restart policy to follow when containers exit. Restart policy will
+      not take effect if a container is stopped via the podman kill or podman stop
+      commands. Valid values are * no - Do not restart containers on exit * on-failure[:max_retries]
+      - Restart containers when they exit with a non-0 exit code, retrying indefinitely
+      or until the optional max_retries count is hit * always - Restart containers
+      when they exit, regardless of status, retrying indefinitely
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: restart_policy
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    range: string
+  rm:
+    name: rm
+    description: Automatically remove the container when it exits. The default is
+      false.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - remove
+    - auto_remove
+    ifabsent: 'False'
+    alias: rm
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  rootfs:
+    name: rootfs
+    description: If true, the first argument refers to an exploded container on the
+      file system. The default is false.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'False'
+    alias: rootfs
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  sdnotify:
+    name: sdnotify
+    description: Determines how to use the NOTIFY_SOCKET, as passed with systemd and
+      Type=notify. Can be container, conmon, ignore.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: sdnotify
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  secrets:
+    name: secrets
+    description: Add the named secrets into the container. The format is secret[,opt=opt...],
+      see documentation for more details.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    multivalued: true
+    alias: secrets
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  security_opt:
+    name: security_opt
+    description: Security Options. For example security_opt “seccomp=unconfined”
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: security_opt
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  shm_size:
+    name: shm_size
+    description: Size of /dev/shm. The format is &lt;number&gt;&lt;unit&gt;. number must be greater
+      than 0. Unit is optional and can be b (bytes), k (kilobytes), m(megabytes),
+      or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the
+      size entirely, the system uses 64m
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: shm_size
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  sig_proxy:
+    name: sig_proxy
+    description: Proxy signals sent to the podman run command to the container process.
+      SIGCHLD, SIGSTOP, and SIGKILL are not proxied. The default is true.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: 'True'
+    alias: sig_proxy
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  stop_signal:
+    name: stop_signal
+    description: Signal to stop a container. Default is SIGTERM.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: stop_signal
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: integer
+  stop_timeout:
+    name: stop_timeout
+    description: Timeout (in seconds) to stop a container. Default is 10.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: int(10)
+    alias: stop_timeout
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    range: integer
+  subgidname:
+    name: subgidname
+    description: Run the container in a new user namespace using the map with ‘name’
+      in the /etc/subgid file.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: subgidname
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  subuidname:
+    name: subuidname
+    description: Run the container in a new user namespace using the map with ‘name’
+      in the /etc/subuid file.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: subuidname
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  sysctl:
+    name: sysctl
+    description: Configure namespaced kernel parameters at runtime
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: sysctl
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  systemd:
+    name: systemd
+    description: Run container in systemd mode. The default is true.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: string(true)
+    alias: systemd
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  timezone:
+    name: timezone
+    description: Set timezone in container. This flag takes area-based timezones,
+      GMT time, as well as local, which sets the timezone in the container to match
+      the host machine. See /usr/share/zoneinfo/ for valid timezones. Remote connections
+      use local containers.conf for defaults.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: timezone
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  tmpfs:
+    name: tmpfs
+    description: Create a tmpfs mount. For example tmpfs “/tmp” “rw,size=787448k,mode=1777”
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: tmpfs
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: MetaObject
+  tty:
+    name: tty
+    description: Allocate a pseudo-TTY. The default is false.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'False'
+    alias: tty
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: boolean
+  uidmap:
+    name: uidmap
+    description: Run the container in a new user namespace using the supplied mapping.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: uidmap
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  ulimit:
+    name: ulimit
+    description: Ulimit options
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - ulimits
+    multivalued: true
+    alias: ulimit
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  user:
+    name: user
+    description: Sets the username or UID used and optionally the groupname or GID
+      for the specified command.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: user
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  userns:
+    name: userns
+    description: Set the user namespace mode for the container. It defaults to the
+      PODMAN_USERNS environment variable. An empty value means user namespaces are
+      disabled.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    aliases:
+    - userns_mode
+    rank: 1000
+    alias: userns
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  uts:
+    name: uts
+    description: Set the UTS mode for the container
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: uts
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  volume:
+    name: volume
+    description: Create a bind mount. If you specify, volume /HOST-DIR:/CONTAINER-DIR,
+      podman bind mounts /HOST-DIR in the host to /CONTAINER-DIR in the podman container.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - volumes
+    is_a: nodeProperty
+    domain: Publication
+    slot_uri: uco-observable:volume
+    multivalued: true
+    alias: volume
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    - PodmanPod
+    range: string
+  volumes_from:
+    name: volumes_from
+    description: Mount volumes from the specified container(s).
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    multivalued: true
+    alias: volumes_from
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  workdir:
+    name: workdir
+    description: Working directory inside the container. The default working directory
+      for running binaries within a container is the root directory (/).
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - working_dir
+    alias: workdir
+    owner: PodmanContainer
+    domain_of:
+    - PodmanContainer
+    range: string
+  image:
+    name: image
+    description: Repository path (or image name) and tag used to create the container.
+      If an image is not found, the image will be pulled from the registry. If no
+      tag is included, latest will be used. Can also be an image ID. If this is the
+      case, the image is assumed to be available locally.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: image
+    owner: PodmanContainer
+    domain_of:
+    - OciContainer
+    - PodmanSave
+    - PodmanTag
+    range: string
+  inTaxon:
+    name: inTaxon
+    annotations:
+      canonical_predicate:
+        tag: canonical_predicate
+        value: 'True'
+    description: connects an entity to its taxonomic classification. Only certain
+      kinds of entities can be taxonomically classified; see 'ThingWithTaxon'
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - RO:0002162
+    - wikidata.property:P703
+    narrow_mappings:
+    - RO:0002160
+    is_a: relatedToAtInstanceLevel
+    domain: ThingWithTaxon
+    multivalued: true
+    inherited: true
+    alias: inTaxon
+    owner: PodmanContainer
+    domain_of:
+    - ThingWithTaxon
+    range: NamedThing
+  providedBy:
+    name: providedBy
+    description: The value in this nodeProperty represents the knowledge provider
+      that created or assembled the node and all of its attributes.  Used internally
+      to represent how a particular node made its way into a knowledge provider or
+      graph.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - pav:providedBy
+    - wikidata:Q68974939
+    is_a: nodeProperty
+    domain: NamedThing
+    multivalued: true
+    alias: providedBy
+    owner: PodmanContainer
+    domain_of:
+    - NamedThing
+    range: string
+  xref:
+    name: xref
+    description: Alternate CURIEs for a thing
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - dbxref
+    - Dbxref
+    - DbXref
+    exact_mappings:
+    - wikidata:Q1302249
+    narrow_mappings:
+    - dcterms:identificationReferences
+    - gr:relatedWebService
+    - NCIT:hasDbXref
+    broad_mappings:
+    - uco-core:ExternalReference
+    is_a: nodeProperty
+    domain: NamedThing
+    multivalued: true
+    alias: xref
+    owner: PodmanContainer
+    domain_of:
+    - NamedThing
+    - Publication
+    range: uriorcurie
+  id:
+    name: id
+    description: A unique identifier for an entity. Must be either a CURIE shorthand
+      for a URI or a complete URI
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - dcterms:identifier
+    - edam.data:0842
+    - EFO:id
+    - REPR:id
+    - schema:identifier
+    - SIO:000115
+    - sumo:Identifier
+    - uco-types:identifier
+    narrow_mappings:
+    - dcterms:eventID
+    - dcterms:parentEventID
+    - dcterms:identificationID
+    - dcterms:systemID
+    - CSO:bicm-id
+    - SIO:000672
+    - SIO:000674
+    - NCIT:C94069
+    - REPR:doi
+    - SIO:000328
+    - SIO:000729
+    - schema:productID
+    - schema:taxID
+    - sumo:AccountID
+    - sumo:AlphaIDString
+    - sumo:AlphaNumericIDString
+    - sumo:AgentID
+    - sumo:CountryID
+    - sumo:CustomerID
+    - sumo:currencyCode
+    - sumo:DistrictID
+    - sumo:EmployeeID
+    - sumo:IsoCode
+    - sumo:LocalizablePlaceID
+    - sumo:userIDString
+    - sumo:urlString
+    - sumo:UniformResourceLocator
+    - wikidata.property:P3743
+    broad_mappings:
+    - CSO:catalogue_identifiers
+    - IAO:0000603
+    - IAO:0000119
+    - sumo:identityElement
+    domain: Entity
+    identifier: true
+    alias: id
+    owner: PodmanContainer
+    domain_of:
+    - Entity
+    - Agent
+    range: string
+    required: true
+  iri:
+    name: iri
+    description: An IRI for an entity. This is determined by the id using expansion
+      rules.
+    comments:
+    - see also https://url.spec.whatwg.org/#goals
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - rr:IRI
+    - wikidata.property:P854
+    - wikidata:Q424583
+    - XAPI:IRI
+    close_mappings:
+    - NCIT:C165071
+    - sumo:UniformResourceLocator
+    - uco-observable:url
+    related_mappings:
+    - dcterms:usewithiri
+    narrow_mappings:
+    - RO:0002617
+    alias: iri
+    owner: PodmanContainer
+    domain_of:
+    - Attribute
+    - Entity
+    range: iri type
+  category:
+    name: category
+    description: "Name of the high level OntologyClass in which this entity is categorized.\
+      \ Corresponds to the label for the base entity type class.\n * In a neo4j database\
+      \ this MAY correspond to the neo4j label tag.\n * In an RDF database it should\
+      \ be a universal model class URI.\nThis field is multi-valued. It should include\
+      \ values for ancestors of the universal class.\nIn an RDF database, nodes will\
+      \ typically have an rdf:type triples. This can be to the most specific base\
+      \ class, or potentially to a class more specific than something in base."
+    from_schema: https://w3id.org/lmodel/ucs-core
+    is_a: type
+    domain: Entity
+    multivalued: true
+    designates_type: true
+    alias: category
+    owner: PodmanContainer
+    domain_of:
+    - Entity
+    is_class_field: true
+    range: category type
+    required: true
+    pattern: ^ucs-core:[A-Z][A-Za-z]+$
+  type:
+    name: type
+    description: Anchoring point (of a name) in taxonomy
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - dcterms:type
+    - IAO:0000219
+    - NCIT:C25284
+    - schema:type
+    - SWO:type
+    - sumo:Class
+    - wikidata:Q21146257
+    - wikidata.property:P427
+    narrow_mappings:
+    - ctrl:DataType
+    - ctrl:SemanticType
+    - dcterms:measurementType
+    - GR:typeOfGood
+    - IAO:0000411
+    - sumo:hardwareType
+    - wikidata:Q190087
+    broad_mappings:
+    - SIO:000011
+    - RO:0002473
+    - IAO:0006011
+    slot_uri: rdf:type
+    alias: type
+    owner: PodmanContainer
+    domain_of:
+    - Entity
+    range: string
+  description:
+    name: description
+    description: a human-readable description of an entity
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - definition
+    exact_mappings:
+    - dcterms:description
+    - IAO:0000115
+    - schema:description
+    - skos:definitions
+    - sumo:NarrativeText
+    - wikidata:Q1200750
+    close_mappings:
+    - sumo:Descriptor
+    narrow_mappings:
+    - csrc:architecture_description
+    - CSO:architecture_description
+    - CSO:concept_description
+    - CSO:shape_description
+    - OM:longcomment
+    slot_uri: dcterms:description
+    alias: description
+    owner: PodmanContainer
+    domain_of:
+    - Entity
+    range: narrative text
+  hasAttribute:
+    name: hasAttribute
+    description: connects any entity to an attribute
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - aml:hasAttribute
+    - ctrl:hasParameter
+    - ssn:hasProperty
+    - SIO:000008
+    close_mappings:
+    - sumo:hasVariable
+    - sumo:property
+    narrow_mappings:
+    - aml:hasAttributeName
+    - aml:hasDescription
+    - aml:hasICID
+    - aml:hasName
+    - aml:hasProject
+    - aml:hasUnit
+    - aml:hasSchemaVersion
+    - aml:hasVersionSUC
+    - aml:hasWriterVersion
+    - schema:hasPart
+    - CDAO:has_Character
+    - CDAO:has_Root
+    - CDAO:has_First_Coordinate_Item
+    - CDAO:has_Coordinate
+    - CDAO:has_Change_Component
+    - CDAO:has_Datum
+    - CDAO:has_Node
+    - CDAO:has_Annotation
+    - CDAO:has_Remaining_Coordinate_List
+    - CDAO:has_State
+    - CDAO:has_Element
+    - ctrl:hasApplicationLogic
+    - ctrl:hasInput
+    - ctrl:hasMedium
+    - ctrl:hasOutput
+    - ctrl:isConnectedTo
+    - ctrl:isSupervisedBy
+    - dcterms:hasPart
+    - dcterms:hasFormat
+    - dcterms:hasVersion
+    - EFO:is_executed_in
+    - EFO:0006351
+    - geolink:hasAuthoritativeDigitalRepository
+    - geolink:hasRelatedSample
+    - geolink:hasAffiliation
+    - geolink:hasAuthor
+    - geolink:hasCollector
+    - geolink:hasContact
+    - geolink:hasContributor
+    - geolink:hasCollectionEndDate
+    - geolink:hasCollectionStartDate
+    - geolink:hasCreator
+    - geolink:hasDataset
+    - geolink:hasEditor
+    - geolink:hasEducator
+    - geolink:hasFirstAppearance
+    - geolink:hasIdentifierScheme
+    - geolink:hasObserver
+    - geolink:hasObservationArea
+    - geolink:hasOwner
+    - geolink:hasParticipant
+    - geolink:hasParticipationEndTime
+    - geolink:hasParticipationStartTime
+    - geolink:hasPart
+    - geolink:hasPublicationDate
+    - geolink:hasRegistrationDate
+    - geolink:hasStartDate
+    - geolink:hasRepository
+    - geolink:hasRightsHolder
+    - geolink:hasScheduler
+    - geolink:hasTimeStamp
+    - geolink:hasVendor
+    - gr:hasBusinessFunction
+    - gr:hasBrand
+    - gr:hasCurrency
+    - gr:hasEligibleQuantity
+    - gr:hasGlobalLocationNumber
+    - gr:hasInventoryLevel
+    - gr:hasManufacturer
+    - gr:hasMakeAndModel
+    - gr:hasNext
+    - gr:hasPrevious
+    - gr:hasUnitOfMeasurement
+    - gr:hasValue
+    - IAO:0000039
+    - IAO:0000407
+    - LOINC:has_action_guidance
+    - LOINC:has_adjustment
+    - LOINC:has_aggregation_view
+    - LOINC:has_approach_guidance
+    - LOINC:has_divisor
+    - LOINC:has_exam
+    - LOINC:has_method
+    - LOINC:has_modality_subtype
+    - LOINC:has_object_guidance
+    - LOINC:has_scale
+    - LOINC:has_suffix
+    - LOINC:has_time_aspect
+    - LOINC:has_time_modifier
+    - LOINC:has_timing_of
+    - NCIT:is_qualified_by
+    - NCIT:qualifier_applies_to
+    - NCIT:has_data_element
+    - NCIT:role_has_domain
+    - NCIT:role_has_range
+    - NCIT:C62618
+    - om:hasPhenomenon
+    - RO:0002002
+    - RO:0000053
+    - RO:0000086
+    - RO:0000087
+    - RO:0002520
+    - RO:0002018
+    - RO:0002017
+    - RO:0002013
+    - RO:0002016
+    - RO:0002025
+    - RO:0002521
+    - RO:0002348
+    - RO:0002566
+    - RO:0002002
+    - RO:0002338
+    - RO:0002339
+    - RO:0002573
+    - RO:0009004
+    - SAN:hasActuatingCapability
+    - SAN:hasActuatingProperty
+    - SAN:hasDateTime
+    - SAN:hasEffect
+    - SAN:hasWriter
+    - SIO:000011
+    - SIO:000586
+    - SIO:001277
+    - SIO:000671
+    - SIO:000312
+    - SIO:000552
+    - SIO:000420
+    - SIO:000253
+    - SIO:000132
+    - SIO:000255
+    - SIO:000008
+    - SIO:000364
+    - SIO:000230
+    - SIO:000235
+    - SIO:000234
+    - SIO:000228
+    - SIO:000229
+    - SIO:000900
+    - SIO:000905
+    - SIO:000221
+    - SIO:000225
+    - SIO:000223
+    - SIO:000217
+    - SIO:000291
+    - SIO:000054
+    - SIO:000059
+    - SIO:000028
+    - SIO:000139
+    - SIO:000772
+    - SIO:000641
+    - SIO:000635
+    - SIO:000066
+    - SIO:001279
+    - SIO:000300
+    - SIO:001278
+    - SIO:000680
+    - SIO:000681
+    - SIO:000679
+    - SIO:000673
+    - SIO:000369
+    - SIO:000053
+    - SIO:000972
+    - SIO:000971
+    - SIO:000273
+    - SIO:000644
+    - SIO:000974
+    - SIO:000553
+    - SIO:000145
+    - SWO:0004000
+    - sosa:hasFeatureOfInterest
+    - sosa:hasSample
+    - ssn:hasSubSystem
+    - ssn:isProxyFor
+    - ssn-system:hasSystemCapability
+    - ssn-system:hasSystemProperty
+    - ssn-system:hasOperatingRange
+    - ssn-system:hasOperatingProperty
+    - ssn-system:hasSurvivalRange
+    - ssn-system:hasSurvivalProperty
+    - ssn-system:inCondition
+    - sumo:hasAcrossVariable
+    - sumo:hasAccount
+    - sumo:hasAward
+    - sumo:hasDependency
+    - sumo:hasDimension
+    - sumo:hasExpertise
+    - sumo:hasGUEState
+    - sumo:hasOccupation
+    - sumo:hasPurpose
+    - sumo:hasPurposeForAgent
+    - sumo:hasSkill
+    - sumo:hasThroughVariable
+    - sumo:hasUniform
+    - sumo:hasVariable
+    - sumo:holdsRight
+    - SWO:9001002
+    - SWO:0004001
+    - SWO:9000067
+    - SWO:0004002
+    - SWO:0000087
+    - SWO:0000086
+    - SWO:0004004
+    - SWO:0000741
+    - SWO:0004002
+    - SWO:3000054
+    - SWO:0004000
+    domain: Entity
+    multivalued: true
+    alias: hasAttribute
+    owner: PodmanContainer
+    domain_of:
+    - Entity
+    range: Attribute
+  creationDate:
+    name: creationDate
+    description: date on which an entity was created. This can be applied to nodes
+      or edges
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - publicationDate
+    exact_mappings:
+    - dcterms:createdOn
+    - schema:dateCreated
+    - dwc:dateIdentified
+    - schema:datePublished
+    - sumo:dateEstablished
+    - wikidata.property:P577
+    narrow_mappings:
+    - dwc:eventDate
+    - dwc:verbatimEventDate
+    - dwc:relationshipEstablishedDate
+    broad_mappings:
+    - sumo:date
+    is_a: nodeProperty
+    domain: NamedThing
+    slot_uri: uco-observable:creationDate
+    alias: creationDate
+    owner: PodmanContainer
+    domain_of:
+    - InformationContentEntity
+    - OpenSource
+    range: date
+  affiliation:
+    name: affiliation
+    description: a professional relationship between one provider (x) within another
+      provider (often an organization). Target provider identity should be specified
+      by a CURIE. Providers may have multiple affiliations.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - NCIT:C25412
+    - schema:affiliation
+    - SIO:000173
+    - wikidata.property:P1268
+    related_mappings:
+    - uco-identity:AffiliationFacet
+    is_a: nodeProperty
+    domain: Agent
+    multivalued: true
+    alias: affiliation
+    owner: PodmanContainer
+    domain_of:
+    - Agent
+    range: uriorcurie
+  address:
+    name: address
+    description: Collection of information that describes the location of a building,
+      apartment, or other structure
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - wikidata:Q64826646
+    narrow_mappings:
+    - NCIT:C25407
+    - sumo:AddressFn
+    slot_uri: uco-identity:address
+    alias: address
+    owner: PodmanContainer
+    domain_of:
+    - Agent
+    range: string
+
+</code></pre>
+</details>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+<script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script><script>mermaid.initialize({});</script></body>
+</html>

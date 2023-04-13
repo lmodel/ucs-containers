@@ -1,0 +1,1346 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://lmodel.github.io/ucs-containers/PodmanSecret/" rel="canonical"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<title>Class: PodmanSecret - ucs-containers</title>
+<link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="None" data-md-color-primary="None" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#class-podmansecret">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="ucs-containers" class="md-header__button md-logo" data-md-component="logo" href=".." title="ucs-containers">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            ucs-containers
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Class: PodmanSecret
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/lmodel/ucs-containers" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="ucs-containers" class="md-nav__button md-logo" data-md-component="logo" href=".." title="ucs-containers">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    ucs-containers
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/lmodel/ucs-containers" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+        Index
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../about/">
+        About
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+    Inheritance
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#slots">
+    Slots
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#identifier-and-mapping-information">
+    Identifier and Mapping Information
+  </a>
+<nav aria-label="Identifier and Mapping Information" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#schema-source">
+    Schema Source
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mappings">
+    Mappings
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#linkml-source">
+    LinkML Source
+  </a>
+<nav aria-label="LinkML Source" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct">
+    Direct
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#induced">
+    Induced
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/lmodel/ucs-containers/edit/master/docs/PodmanSecret.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="class-podmansecret">Class: PodmanSecret</h1>
+<p><em>Manage Podman secrets</em></p>
+<p>URI: <a href="https://w3id.org/lmodel/ucs-containers/PodmanSecret">containers:PodmanSecret</a></p>
+<div class="mermaid"> classDiagram
+    class PodmanSecret
+      Podman &lt;|-- PodmanSecret
+      Software &lt;|-- PodmanSecret
+
+      PodmanSecret : address
+
+          PodmanSecret ..&gt; string : address
+
+      PodmanSecret : affiliation
+
+          PodmanSecret ..&gt; uriorcurie : affiliation
+
+      PodmanSecret : category
+
+          PodmanSecret ..&gt; category type : category
+
+      PodmanSecret : creationDate
+
+          PodmanSecret ..&gt; date : creationDate
+
+      PodmanSecret : data
+
+          PodmanSecret ..&gt; string : data
+
+      PodmanSecret : description
+
+          PodmanSecret ..&gt; narrative text : description
+
+      PodmanSecret : driver
+
+          PodmanSecret ..&gt; string : driver
+
+      PodmanSecret : driver_opts
+
+          PodmanSecret ..&gt; MetaObject : driver_opts
+
+      PodmanSecret : executable
+
+          PodmanSecret ..&gt; string : executable
+
+      PodmanSecret : force
+
+          PodmanSecret ..&gt; boolean : force
+
+      PodmanSecret : hasAttribute
+
+          PodmanSecret ..&gt; Attribute : hasAttribute
+
+      PodmanSecret : id
+
+          PodmanSecret ..&gt; string : id
+
+      PodmanSecret : inTaxon
+
+          PodmanSecret ..&gt; NamedThing : inTaxon
+
+      PodmanSecret : iri
+
+          PodmanSecret ..&gt; iri type : iri
+
+      PodmanSecret : name
+
+          PodmanSecret ..&gt; label type : name
+
+      PodmanSecret : providedBy
+
+          PodmanSecret ..&gt; string : providedBy
+
+      PodmanSecret : skip_existing
+
+          PodmanSecret ..&gt; boolean : skip_existing
+
+      PodmanSecret : state
+
+          PodmanSecret ..&gt; string : state
+
+      PodmanSecret : type
+
+          PodmanSecret ..&gt; string : type
+
+      PodmanSecret : xref
+
+          PodmanSecret ..&gt; uriorcurie : xref
+
+
+</div>
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../Entity/">Entity</a><ul>
+<li><a href="../NamedThing/">NamedThing</a><ul>
+<li><a href="../System/">System</a> [ <a href="../ThingWithTaxon/">ThingWithTaxon</a>]<ul>
+<li><a href="../SoftwareOrDevice/">SoftwareOrDevice</a><ul>
+<li><a href="../Software/">Software</a><ul>
+<li><strong>PodmanSecret</strong> [ <a href="../Podman/">Podman</a>]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+<th>Inheritance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../data/">data</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Information arranged for automatic processing</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../driver/">driver</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Computer program that operates or controls a particular type of device</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../driver_opts/">driver_opts</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Driver-specific options</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../executable/">executable</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>file that can be directly run by a computer</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../force/">force</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>coercion or compulsion</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>0..1 <br/> <a href="../LabelType/">LabelType</a></td>
+<td>A human-readable name for an attribute or entity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../skip_existing/">skip_existing</a></td>
+<td>0..1 <br/> <a href="xsd:boolean">xsd:boolean</a></td>
+<td>Skip existing entity</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../state/">state</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The way something is with respect to its main attributes</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../inTaxon/">inTaxon</a></td>
+<td>0..* <br/> <a href="../NamedThing/">NamedThing</a></td>
+<td>connects an entity to its taxonomic classification</td>
+<td><a href="../ThingWithTaxon/">ThingWithTaxon</a></td>
+</tr>
+<tr>
+<td><a href="../providedBy/">providedBy</a></td>
+<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The value in this nodeProperty represents the knowledge provider that created...</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../xref/">xref</a></td>
+<td>0..* <br/> <a href="xsd:anyURI">xsd:anyURI</a></td>
+<td>Alternate CURIEs for a thing</td>
+<td><a href="../NamedThing/">NamedThing</a></td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>A unique identifier for an entity</td>
+<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+</tr>
+<tr>
+<td><a href="../iri/">iri</a></td>
+<td>0..1 <br/> <a href="../IriType/">IriType</a></td>
+<td>An IRI for an entity</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../category/">category</a></td>
+<td>1..* <br/> <a href="../CategoryType/">CategoryType</a></td>
+<td>Name of the high level OntologyClass in which this entity is categorized</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../type/">type</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Anchoring point (of a name) in taxonomy</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../NarrativeText/">NarrativeText</a></td>
+<td>a human-readable description of an entity</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../hasAttribute/">hasAttribute</a></td>
+<td>0..* <br/> <a href="../Attribute/">Attribute</a></td>
+<td>connects any entity to an attribute</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
+<tr>
+<td><a href="../creationDate/">creationDate</a></td>
+<td>0..1 <br/> <a href="xsd:date">xsd:date</a></td>
+<td>date on which an entity was created</td>
+<td><a href="../OpenSource/">OpenSource</a></td>
+</tr>
+<tr>
+<td><a href="../affiliation/">affiliation</a></td>
+<td>0..* <br/> <a href="xsd:anyURI">xsd:anyURI</a></td>
+<td>a professional relationship between one provider (x) within another provider ...</td>
+<td><a href="../Agent/">Agent</a></td>
+</tr>
+<tr>
+<td><a href="../address/">address</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>Collection of information that describes the location of a building, apartmen...</td>
+<td><a href="../Agent/">Agent</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://w3id.org/lmodel/ucs-containers</li>
+</ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>containers:PodmanSecret</td>
+</tr>
+<tr>
+<td>native</td>
+<td>containers:PodmanSecret</td>
+</tr>
+</tbody>
+</table>
+<h2 id="linkml-source">LinkML Source</h2>
+<!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
+<h3 id="direct">Direct</h3>
+<details>
+<pre><code class="language-yaml">name: PodmanSecret
+description: Manage Podman secrets
+from_schema: https://w3id.org/lmodel/ucs-containers
+rank: 1000
+is_a: Software
+mixins:
+- Podman
+slots:
+- data
+- driver
+- driver_opts
+- executable
+- force
+- name
+- skip_existing
+- state
+slot_usage:
+  data:
+    name: data
+    description: The value of the secret. Required when state is present.
+    domain_of:
+    - PodmanSecret
+  driver:
+    name: driver
+    description: Override default secrets driver, currently podman uses file which
+      is unencrypted.
+    domain_of:
+    - PodmanNetwork
+    - PodmanSecret
+    - PodmanVolume
+  driver_opts:
+    name: driver_opts
+    description: Driver-specific key-value options.
+    domain_of:
+    - PodmanSecret
+    range: MetaObject
+  executable:
+    name: executable
+    description: Path to podman executable if it is not in the $PATH on the machine
+      running podman
+    ifabsent: string(podman)
+    domain_of:
+    - PodmanContainer
+    - PodmanExport
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanImport
+    - PodmanLoad
+    - PodmanLogin
+    - PodmanLogout
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSave
+    - PodmanSecret
+    - PodmanTag
+    - PodmanVolume
+  force:
+    name: force
+    description: Use it when state is present to remove and recreate an existing secret.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanExport
+    - PodmanImage
+    - PodmanSave
+    - PodmanSecret
+    range: boolean
+  name:
+    name: name
+    description: The name of the secret.
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    - Attribute
+    - Entity
+    - Agent
+    required: true
+  skip_existing:
+    name: skip_existing
+    description: Use it when state is present and secret with the same name already
+      exists. If set to true, the secret will NOT be recreated and remains as is.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanSecret
+    range: boolean
+  state:
+    name: state
+    description: Whether to create or remove the named secret.
+    ifabsent: string(present)
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+
+</code></pre>
+</details>
+<h3 id="induced">Induced</h3>
+<details>
+<pre><code class="language-yaml">name: PodmanSecret
+description: Manage Podman secrets
+from_schema: https://w3id.org/lmodel/ucs-containers
+rank: 1000
+is_a: Software
+mixins:
+- Podman
+slot_usage:
+  data:
+    name: data
+    description: The value of the secret. Required when state is present.
+    domain_of:
+    - PodmanSecret
+  driver:
+    name: driver
+    description: Override default secrets driver, currently podman uses file which
+      is unencrypted.
+    domain_of:
+    - PodmanNetwork
+    - PodmanSecret
+    - PodmanVolume
+  driver_opts:
+    name: driver_opts
+    description: Driver-specific key-value options.
+    domain_of:
+    - PodmanSecret
+    range: MetaObject
+  executable:
+    name: executable
+    description: Path to podman executable if it is not in the $PATH on the machine
+      running podman
+    ifabsent: string(podman)
+    domain_of:
+    - PodmanContainer
+    - PodmanExport
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanImport
+    - PodmanLoad
+    - PodmanLogin
+    - PodmanLogout
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSave
+    - PodmanSecret
+    - PodmanTag
+    - PodmanVolume
+  force:
+    name: force
+    description: Use it when state is present to remove and recreate an existing secret.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanExport
+    - PodmanImage
+    - PodmanSave
+    - PodmanSecret
+    range: boolean
+  name:
+    name: name
+    description: The name of the secret.
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    - Attribute
+    - Entity
+    - Agent
+    required: true
+  skip_existing:
+    name: skip_existing
+    description: Use it when state is present and secret with the same name already
+      exists. If set to true, the secret will NOT be recreated and remains as is.
+    ifabsent: 'False'
+    domain_of:
+    - PodmanSecret
+    range: boolean
+  state:
+    name: state
+    description: Whether to create or remove the named secret.
+    ifabsent: string(present)
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+attributes:
+  data:
+    name: data
+    description: The value of the secret. Required when state is present.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    slot_uri: uco-observable:data
+    alias: data
+    owner: PodmanSecret
+    domain_of:
+    - PodmanSecret
+    range: string
+  driver:
+    name: driver
+    description: Override default secrets driver, currently podman uses file which
+      is unencrypted.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: driver
+    owner: PodmanSecret
+    domain_of:
+    - PodmanNetwork
+    - PodmanSecret
+    - PodmanVolume
+    range: string
+  driver_opts:
+    name: driver_opts
+    description: Driver-specific key-value options.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    alias: driver_opts
+    owner: PodmanSecret
+    domain_of:
+    - PodmanSecret
+    range: MetaObject
+  executable:
+    name: executable
+    description: Path to podman executable if it is not in the $PATH on the machine
+      running podman
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: string(podman)
+    alias: executable
+    owner: PodmanSecret
+    domain_of:
+    - PodmanContainer
+    - PodmanExport
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanImport
+    - PodmanLoad
+    - PodmanLogin
+    - PodmanLogout
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSave
+    - PodmanSecret
+    - PodmanTag
+    - PodmanVolume
+    range: string
+  force:
+    name: force
+    description: Use it when state is present to remove and recreate an existing secret.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    ifabsent: 'False'
+    alias: force
+    owner: PodmanSecret
+    domain_of:
+    - PodmanExport
+    - PodmanImage
+    - PodmanSave
+    - PodmanSecret
+    range: boolean
+  name:
+    name: name
+    description: The name of the secret.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    slot_uri: rdfs:label
+    alias: name
+    owner: PodmanSecret
+    domain_of:
+    - PodmanContainer
+    - PodmanGenerateSystemd
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    - Attribute
+    - Entity
+    - Agent
+    range: label type
+    required: true
+  skip_existing:
+    name: skip_existing
+    description: Use it when state is present and secret with the same name already
+      exists. If set to true, the secret will NOT be recreated and remains as is.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    ifabsent: 'False'
+    alias: skip_existing
+    owner: PodmanSecret
+    domain_of:
+    - PodmanSecret
+    range: boolean
+  state:
+    name: state
+    description: Whether to create or remove the named secret.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    is_a: associationSlot
+    domain: Association
+    slot_uri: uco-observable:state
+    ifabsent: string(present)
+    alias: state
+    owner: PodmanSecret
+    domain_of:
+    - OciContainer
+    - PodmanContainer
+    - PodmanImage
+    - PodmanNetwork
+    - PodmanPlay
+    - PodmanPod
+    - PodmanSecret
+    - PodmanVolume
+    range: string
+  inTaxon:
+    name: inTaxon
+    annotations:
+      canonical_predicate:
+        tag: canonical_predicate
+        value: 'True'
+    description: connects an entity to its taxonomic classification. Only certain
+      kinds of entities can be taxonomically classified; see 'ThingWithTaxon'
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - RO:0002162
+    - wikidata.property:P703
+    narrow_mappings:
+    - RO:0002160
+    is_a: relatedToAtInstanceLevel
+    domain: ThingWithTaxon
+    multivalued: true
+    inherited: true
+    alias: inTaxon
+    owner: PodmanSecret
+    domain_of:
+    - ThingWithTaxon
+    range: NamedThing
+  providedBy:
+    name: providedBy
+    description: The value in this nodeProperty represents the knowledge provider
+      that created or assembled the node and all of its attributes.  Used internally
+      to represent how a particular node made its way into a knowledge provider or
+      graph.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - pav:providedBy
+    - wikidata:Q68974939
+    is_a: nodeProperty
+    domain: NamedThing
+    multivalued: true
+    alias: providedBy
+    owner: PodmanSecret
+    domain_of:
+    - NamedThing
+    range: string
+  xref:
+    name: xref
+    description: Alternate CURIEs for a thing
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - dbxref
+    - Dbxref
+    - DbXref
+    exact_mappings:
+    - wikidata:Q1302249
+    narrow_mappings:
+    - dcterms:identificationReferences
+    - gr:relatedWebService
+    - NCIT:hasDbXref
+    broad_mappings:
+    - uco-core:ExternalReference
+    is_a: nodeProperty
+    domain: NamedThing
+    multivalued: true
+    alias: xref
+    owner: PodmanSecret
+    domain_of:
+    - NamedThing
+    - Publication
+    range: uriorcurie
+  id:
+    name: id
+    description: A unique identifier for an entity. Must be either a CURIE shorthand
+      for a URI or a complete URI
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - dcterms:identifier
+    - edam.data:0842
+    - EFO:id
+    - REPR:id
+    - schema:identifier
+    - SIO:000115
+    - sumo:Identifier
+    - uco-types:identifier
+    narrow_mappings:
+    - dcterms:eventID
+    - dcterms:parentEventID
+    - dcterms:identificationID
+    - dcterms:systemID
+    - CSO:bicm-id
+    - SIO:000672
+    - SIO:000674
+    - NCIT:C94069
+    - REPR:doi
+    - SIO:000328
+    - SIO:000729
+    - schema:productID
+    - schema:taxID
+    - sumo:AccountID
+    - sumo:AlphaIDString
+    - sumo:AlphaNumericIDString
+    - sumo:AgentID
+    - sumo:CountryID
+    - sumo:CustomerID
+    - sumo:currencyCode
+    - sumo:DistrictID
+    - sumo:EmployeeID
+    - sumo:IsoCode
+    - sumo:LocalizablePlaceID
+    - sumo:userIDString
+    - sumo:urlString
+    - sumo:UniformResourceLocator
+    - wikidata.property:P3743
+    broad_mappings:
+    - CSO:catalogue_identifiers
+    - IAO:0000603
+    - IAO:0000119
+    - sumo:identityElement
+    domain: Entity
+    identifier: true
+    alias: id
+    owner: PodmanSecret
+    domain_of:
+    - Entity
+    - Agent
+    range: string
+    required: true
+  iri:
+    name: iri
+    description: An IRI for an entity. This is determined by the id using expansion
+      rules.
+    comments:
+    - see also https://url.spec.whatwg.org/#goals
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - rr:IRI
+    - wikidata.property:P854
+    - wikidata:Q424583
+    - XAPI:IRI
+    close_mappings:
+    - NCIT:C165071
+    - sumo:UniformResourceLocator
+    - uco-observable:url
+    related_mappings:
+    - dcterms:usewithiri
+    narrow_mappings:
+    - RO:0002617
+    alias: iri
+    owner: PodmanSecret
+    domain_of:
+    - Attribute
+    - Entity
+    range: iri type
+  category:
+    name: category
+    description: "Name of the high level OntologyClass in which this entity is categorized.\
+      \ Corresponds to the label for the base entity type class.\n * In a neo4j database\
+      \ this MAY correspond to the neo4j label tag.\n * In an RDF database it should\
+      \ be a universal model class URI.\nThis field is multi-valued. It should include\
+      \ values for ancestors of the universal class.\nIn an RDF database, nodes will\
+      \ typically have an rdf:type triples. This can be to the most specific base\
+      \ class, or potentially to a class more specific than something in base."
+    from_schema: https://w3id.org/lmodel/ucs-core
+    is_a: type
+    domain: Entity
+    multivalued: true
+    designates_type: true
+    alias: category
+    owner: PodmanSecret
+    domain_of:
+    - Entity
+    is_class_field: true
+    range: category type
+    required: true
+    pattern: ^ucs-core:[A-Z][A-Za-z]+$
+  type:
+    name: type
+    description: Anchoring point (of a name) in taxonomy
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - dcterms:type
+    - IAO:0000219
+    - NCIT:C25284
+    - schema:type
+    - SWO:type
+    - sumo:Class
+    - wikidata:Q21146257
+    - wikidata.property:P427
+    narrow_mappings:
+    - ctrl:DataType
+    - ctrl:SemanticType
+    - dcterms:measurementType
+    - GR:typeOfGood
+    - IAO:0000411
+    - sumo:hardwareType
+    - wikidata:Q190087
+    broad_mappings:
+    - SIO:000011
+    - RO:0002473
+    - IAO:0006011
+    slot_uri: rdf:type
+    alias: type
+    owner: PodmanSecret
+    domain_of:
+    - Entity
+    range: string
+  description:
+    name: description
+    description: a human-readable description of an entity
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - definition
+    exact_mappings:
+    - dcterms:description
+    - IAO:0000115
+    - schema:description
+    - skos:definitions
+    - sumo:NarrativeText
+    - wikidata:Q1200750
+    close_mappings:
+    - sumo:Descriptor
+    narrow_mappings:
+    - csrc:architecture_description
+    - CSO:architecture_description
+    - CSO:concept_description
+    - CSO:shape_description
+    - OM:longcomment
+    slot_uri: dcterms:description
+    alias: description
+    owner: PodmanSecret
+    domain_of:
+    - Entity
+    range: narrative text
+  hasAttribute:
+    name: hasAttribute
+    description: connects any entity to an attribute
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - aml:hasAttribute
+    - ctrl:hasParameter
+    - ssn:hasProperty
+    - SIO:000008
+    close_mappings:
+    - sumo:hasVariable
+    - sumo:property
+    narrow_mappings:
+    - aml:hasAttributeName
+    - aml:hasDescription
+    - aml:hasICID
+    - aml:hasName
+    - aml:hasProject
+    - aml:hasUnit
+    - aml:hasSchemaVersion
+    - aml:hasVersionSUC
+    - aml:hasWriterVersion
+    - schema:hasPart
+    - CDAO:has_Character
+    - CDAO:has_Root
+    - CDAO:has_First_Coordinate_Item
+    - CDAO:has_Coordinate
+    - CDAO:has_Change_Component
+    - CDAO:has_Datum
+    - CDAO:has_Node
+    - CDAO:has_Annotation
+    - CDAO:has_Remaining_Coordinate_List
+    - CDAO:has_State
+    - CDAO:has_Element
+    - ctrl:hasApplicationLogic
+    - ctrl:hasInput
+    - ctrl:hasMedium
+    - ctrl:hasOutput
+    - ctrl:isConnectedTo
+    - ctrl:isSupervisedBy
+    - dcterms:hasPart
+    - dcterms:hasFormat
+    - dcterms:hasVersion
+    - EFO:is_executed_in
+    - EFO:0006351
+    - geolink:hasAuthoritativeDigitalRepository
+    - geolink:hasRelatedSample
+    - geolink:hasAffiliation
+    - geolink:hasAuthor
+    - geolink:hasCollector
+    - geolink:hasContact
+    - geolink:hasContributor
+    - geolink:hasCollectionEndDate
+    - geolink:hasCollectionStartDate
+    - geolink:hasCreator
+    - geolink:hasDataset
+    - geolink:hasEditor
+    - geolink:hasEducator
+    - geolink:hasFirstAppearance
+    - geolink:hasIdentifierScheme
+    - geolink:hasObserver
+    - geolink:hasObservationArea
+    - geolink:hasOwner
+    - geolink:hasParticipant
+    - geolink:hasParticipationEndTime
+    - geolink:hasParticipationStartTime
+    - geolink:hasPart
+    - geolink:hasPublicationDate
+    - geolink:hasRegistrationDate
+    - geolink:hasStartDate
+    - geolink:hasRepository
+    - geolink:hasRightsHolder
+    - geolink:hasScheduler
+    - geolink:hasTimeStamp
+    - geolink:hasVendor
+    - gr:hasBusinessFunction
+    - gr:hasBrand
+    - gr:hasCurrency
+    - gr:hasEligibleQuantity
+    - gr:hasGlobalLocationNumber
+    - gr:hasInventoryLevel
+    - gr:hasManufacturer
+    - gr:hasMakeAndModel
+    - gr:hasNext
+    - gr:hasPrevious
+    - gr:hasUnitOfMeasurement
+    - gr:hasValue
+    - IAO:0000039
+    - IAO:0000407
+    - LOINC:has_action_guidance
+    - LOINC:has_adjustment
+    - LOINC:has_aggregation_view
+    - LOINC:has_approach_guidance
+    - LOINC:has_divisor
+    - LOINC:has_exam
+    - LOINC:has_method
+    - LOINC:has_modality_subtype
+    - LOINC:has_object_guidance
+    - LOINC:has_scale
+    - LOINC:has_suffix
+    - LOINC:has_time_aspect
+    - LOINC:has_time_modifier
+    - LOINC:has_timing_of
+    - NCIT:is_qualified_by
+    - NCIT:qualifier_applies_to
+    - NCIT:has_data_element
+    - NCIT:role_has_domain
+    - NCIT:role_has_range
+    - NCIT:C62618
+    - om:hasPhenomenon
+    - RO:0002002
+    - RO:0000053
+    - RO:0000086
+    - RO:0000087
+    - RO:0002520
+    - RO:0002018
+    - RO:0002017
+    - RO:0002013
+    - RO:0002016
+    - RO:0002025
+    - RO:0002521
+    - RO:0002348
+    - RO:0002566
+    - RO:0002002
+    - RO:0002338
+    - RO:0002339
+    - RO:0002573
+    - RO:0009004
+    - SAN:hasActuatingCapability
+    - SAN:hasActuatingProperty
+    - SAN:hasDateTime
+    - SAN:hasEffect
+    - SAN:hasWriter
+    - SIO:000011
+    - SIO:000586
+    - SIO:001277
+    - SIO:000671
+    - SIO:000312
+    - SIO:000552
+    - SIO:000420
+    - SIO:000253
+    - SIO:000132
+    - SIO:000255
+    - SIO:000008
+    - SIO:000364
+    - SIO:000230
+    - SIO:000235
+    - SIO:000234
+    - SIO:000228
+    - SIO:000229
+    - SIO:000900
+    - SIO:000905
+    - SIO:000221
+    - SIO:000225
+    - SIO:000223
+    - SIO:000217
+    - SIO:000291
+    - SIO:000054
+    - SIO:000059
+    - SIO:000028
+    - SIO:000139
+    - SIO:000772
+    - SIO:000641
+    - SIO:000635
+    - SIO:000066
+    - SIO:001279
+    - SIO:000300
+    - SIO:001278
+    - SIO:000680
+    - SIO:000681
+    - SIO:000679
+    - SIO:000673
+    - SIO:000369
+    - SIO:000053
+    - SIO:000972
+    - SIO:000971
+    - SIO:000273
+    - SIO:000644
+    - SIO:000974
+    - SIO:000553
+    - SIO:000145
+    - SWO:0004000
+    - sosa:hasFeatureOfInterest
+    - sosa:hasSample
+    - ssn:hasSubSystem
+    - ssn:isProxyFor
+    - ssn-system:hasSystemCapability
+    - ssn-system:hasSystemProperty
+    - ssn-system:hasOperatingRange
+    - ssn-system:hasOperatingProperty
+    - ssn-system:hasSurvivalRange
+    - ssn-system:hasSurvivalProperty
+    - ssn-system:inCondition
+    - sumo:hasAcrossVariable
+    - sumo:hasAccount
+    - sumo:hasAward
+    - sumo:hasDependency
+    - sumo:hasDimension
+    - sumo:hasExpertise
+    - sumo:hasGUEState
+    - sumo:hasOccupation
+    - sumo:hasPurpose
+    - sumo:hasPurposeForAgent
+    - sumo:hasSkill
+    - sumo:hasThroughVariable
+    - sumo:hasUniform
+    - sumo:hasVariable
+    - sumo:holdsRight
+    - SWO:9001002
+    - SWO:0004001
+    - SWO:9000067
+    - SWO:0004002
+    - SWO:0000087
+    - SWO:0000086
+    - SWO:0004004
+    - SWO:0000741
+    - SWO:0004002
+    - SWO:3000054
+    - SWO:0004000
+    domain: Entity
+    multivalued: true
+    alias: hasAttribute
+    owner: PodmanSecret
+    domain_of:
+    - Entity
+    range: Attribute
+  creationDate:
+    name: creationDate
+    description: date on which an entity was created. This can be applied to nodes
+      or edges
+    from_schema: https://w3id.org/lmodel/ucs-core
+    aliases:
+    - publicationDate
+    exact_mappings:
+    - dcterms:createdOn
+    - schema:dateCreated
+    - dwc:dateIdentified
+    - schema:datePublished
+    - sumo:dateEstablished
+    - wikidata.property:P577
+    narrow_mappings:
+    - dwc:eventDate
+    - dwc:verbatimEventDate
+    - dwc:relationshipEstablishedDate
+    broad_mappings:
+    - sumo:date
+    is_a: nodeProperty
+    domain: NamedThing
+    slot_uri: uco-observable:creationDate
+    alias: creationDate
+    owner: PodmanSecret
+    domain_of:
+    - InformationContentEntity
+    - OpenSource
+    range: date
+  affiliation:
+    name: affiliation
+    description: a professional relationship between one provider (x) within another
+      provider (often an organization). Target provider identity should be specified
+      by a CURIE. Providers may have multiple affiliations.
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - NCIT:C25412
+    - schema:affiliation
+    - SIO:000173
+    - wikidata.property:P1268
+    related_mappings:
+    - uco-identity:AffiliationFacet
+    is_a: nodeProperty
+    domain: Agent
+    multivalued: true
+    alias: affiliation
+    owner: PodmanSecret
+    domain_of:
+    - Agent
+    range: uriorcurie
+  address:
+    name: address
+    description: Collection of information that describes the location of a building,
+      apartment, or other structure
+    from_schema: https://w3id.org/lmodel/ucs-core
+    exact_mappings:
+    - wikidata:Q64826646
+    narrow_mappings:
+    - NCIT:C25407
+    - sumo:AddressFn
+    slot_uri: uco-identity:address
+    alias: address
+    owner: PodmanSecret
+    domain_of:
+    - Agent
+    range: string
+
+</code></pre>
+</details>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+<script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script><script>mermaid.initialize({});</script></body>
+</html>
