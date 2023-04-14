@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/noelmcloughlin/linkml-project-cookiecutter",
+  "commit": "e946313681274ac674f3d6ffbfa2dec8ae5ce6fb",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "ucs-containers",
+      "__project_slug": "ucs_containers",
+      "github_org": "lmodel",
+      "__source_path": "src/ucs_containers/schema/ucs_containers.yaml",
+      "project_description": "Classes and Properties representing Containers in Usecases Framework",
+      "full_name": "Noel McLoughlin",
+      "email": "noel.mcloughlin@gmail.com",
+      "__author": "Noel McLoughlin <noel.mcloughlin@gmail.com>",
+      "license": "Apache Software License 2.0",
+      "main_schema_class": "Container",
+      "create_python_classes": "Yes",
+      "use_schemasheets": "No",
+      "google_sheet_id": "1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ",
+      "google_sheet_tabs": "container enums",
+      "__google_sheet_module": "container_enums",
+      "github_token_for_pypi_deployment": "PYPI_PASSWORD",
+      "_template": "https://github.com/noelmcloughlin/linkml-project-cookiecutter"
+    }
+  },
+  "directory": null
+}

@@ -1,0 +1,2986 @@
+{
+    "$defs": {
+        "Agent": {
+            "additionalProperties": false,
+            "description": "person, group, organization or project that provides a piece of information (i.e. a knowledge association)",
+            "properties": {
+                "address": {
+                    "description": "Collection of information that describes the location of a building, apartment, or other structure",
+                    "type": "string"
+                },
+                "affiliation": {
+                    "description": "a professional relationship between one provider (x) within another provider (often an organization). Target provider identity should be specified by a CURIE. Providers may have multiple affiliations.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Agent",
+            "type": "object"
+        },
+        "Association": {
+            "additionalProperties": false,
+            "description": "A typed association between two entities, supported by evidence",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "hasEvidence": {
+                    "description": "connects an association to an instance of supporting evidence",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "negated": {
+                    "description": "if set to true, then the association is negated i.e. is not true",
+                    "type": "boolean"
+                },
+                "object": {
+                    "description": "Connects an association to the object of the association. For example, in a apple-to-orange assocation, the apple is subject and orange is object.",
+                    "type": "string"
+                },
+                "predicate": {
+                    "description": "A high-level grouping for the relationship type. AKA minimal predicate. This is analogous to category for nodes.",
+                    "type": "string"
+                },
+                "publications": {
+                    "description": "connects an association to publications supporting the association",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "qualifiers": {
+                    "description": "connects an association to qualifiers that modify or qualify the meaning of that association",
+                    "items": {
+                        "$ref": "#/$defs/OntologyClass"
+                    },
+                    "type": "array"
+                },
+                "subject": {
+                    "description": "Connects an association to the subject of the association. For example, in a apple-to-orange association, the apple is subject and orange is object.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "rdf:type of ucs-core:Association should be fixed at rdf:Statement",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "subject",
+                "predicate",
+                "object",
+                "id"
+            ],
+            "title": "Association",
+            "type": "object"
+        },
+        "Attribute": {
+            "additionalProperties": false,
+            "description": "A property or characteristic of an entity. For example, an apple may have properties such as color, shape, age, crispiness. An environmental sample may have attributes such as depth, lat, long, material.",
+            "properties": {
+                "hasAttributeType": {
+                    "$ref": "#/$defs/OntologyClass",
+                    "description": "connects an attribute to a class that describes it"
+                },
+                "hasQualitativeValue": {
+                    "description": "connects an attribute to a value",
+                    "type": "string"
+                },
+                "hasQuantitativeValue": {
+                    "description": "Connects an attribute to a value",
+                    "items": {
+                        "$ref": "#/$defs/QuantityValue"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The human-readable 'attribute name' can be set to a string which reflects its context of interpretation, e.g. SEPIO evidence/provenance/confidence annotation or it can default to the name associated with the 'has attribute type' slot ontology term.",
+                    "type": "string"
+                },
+                "src": {
+                    "description": "Object (person, place, text, thing, etc.) from which something (information, goods, etc.) comes or is acquired",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "hasAttributeType"
+            ],
+            "title": "Attribute",
+            "type": "object"
+        },
+        "CgroupsEnum": {
+            "description": "Use cgroups or not",
+            "enum": [
+                "enabled",
+                "disabled"
+            ],
+            "title": "CgroupsEnum",
+            "type": "string"
+        },
+        "Container": {
+            "additionalProperties": false,
+            "description": "Software that emulates a whole computer by means of an isolated user-space environment running on top of the operating system's kernel.",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Container",
+            "type": "object"
+        },
+        "ContainerImageFormatEnum": {
+            "description": "Container format",
+            "enum": [
+                "oci",
+                "v2s1",
+                "v2s2"
+            ],
+            "title": "ContainerImageFormatEnum",
+            "type": "string"
+        },
+        "ContainerImagePushTransportEnum": {
+            "description": "Transport to use when pushing in image.",
+            "enum": [
+                "dir",
+                "docker-archive",
+                "docker-daemon",
+                "oci-archive",
+                "ostree"
+            ],
+            "title": "ContainerImagePushTransportEnum",
+            "type": "string"
+        },
+        "ContainerImageStateEnum": {
+            "description": "Valid values for Container Image state",
+            "enum": [
+                "absent",
+                "present",
+                "build"
+            ],
+            "title": "ContainerImageStateEnum",
+            "type": "string"
+        },
+        "ContainerImageVolumeEnum": {
+            "description": "Builtin image volume handling",
+            "enum": [
+                "bind",
+                "tmpfs",
+                "ignore"
+            ],
+            "title": "ContainerImageVolumeEnum",
+            "type": "string"
+        },
+        "ContainerLogDriverEnum": {
+            "description": "Logging driver.",
+            "enum": [
+                "k8s-file",
+                "journald",
+                "json-file"
+            ],
+            "title": "ContainerLogDriverEnum",
+            "type": "string"
+        },
+        "ContainerLogLevelEnum": {
+            "description": "Logging level.",
+            "enum": [
+                "debug",
+                "info",
+                "warn",
+                "error",
+                "fatal",
+                "panic"
+            ],
+            "title": "ContainerLogLevelEnum",
+            "type": "string"
+        },
+        "ContainerNetworkStateEnum": {
+            "description": "",
+            "enum": [
+                "present",
+                "absent"
+            ],
+            "title": "ContainerNetworkStateEnum",
+            "type": "string"
+        },
+        "ContainerRestartPolicyEnum": {
+            "description": "Restart policy after exit",
+            "enum": [
+                "no",
+                "on-success",
+                "on-failure",
+                "on-abnormal",
+                "on-watchdog",
+                "on-abort",
+                "always"
+            ],
+            "title": "ContainerRestartPolicyEnum",
+            "type": "string"
+        },
+        "ContainerSaveFormatEnum": {
+            "description": "Image save format",
+            "enum": [
+                "docker-archive",
+                "oci-archive",
+                "oci-dir",
+                "docker-dir"
+            ],
+            "title": "ContainerSaveFormatEnum",
+            "type": "string"
+        },
+        "ContainerStateEnum": {
+            "description": "Valid values for Container state",
+            "enum": [
+                "absent",
+                "present",
+                "started",
+                "stopped",
+                "created"
+            ],
+            "title": "ContainerStateEnum",
+            "type": "string"
+        },
+        "Containerd": {
+            "additionalProperties": false,
+            "description": "Container runtime",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Containerd",
+            "type": "object"
+        },
+        "Docker": {
+            "additionalProperties": false,
+            "description": "open-source software for deploying containerized applications",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Docker",
+            "type": "object"
+        },
+        "EvidenceType": {
+            "additionalProperties": false,
+            "description": "Class of evidence that supports an association",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "creationDate": {
+                    "description": "date on which an entity was created. This can be applied to nodes or edges",
+                    "format": "date",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "license": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "rights": {
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "EvidenceType",
+            "type": "object"
+        },
+        "Hardware": {
+            "additionalProperties": false,
+            "description": "physical components of a computer",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Hardware",
+            "type": "object"
+        },
+        "Kubernetes": {
+            "additionalProperties": false,
+            "description": "software to manage containers on a server-cluster",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Kubernetes",
+            "type": "object"
+        },
+        "Linux": {
+            "additionalProperties": false,
+            "description": "family of Unix-like operating systems using Linux kernel and open source",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Linux",
+            "type": "object"
+        },
+        "Lxc": {
+            "additionalProperties": false,
+            "description": "Operating system-level virtualization for Linux",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Lxc",
+            "type": "object"
+        },
+        "LxcFs": {
+            "additionalProperties": false,
+            "description": "LXCFS is a simple userspace filesystem designed to work around some current limitations of the Linux kernel.",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "LxcFs",
+            "type": "object"
+        },
+        "Lxd": {
+            "additionalProperties": false,
+            "description": "Lxd is a system container and virtual machine manager for Linux OS",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Lxd",
+            "type": "object"
+        },
+        "MetaObject": {
+            "additionalProperties": true,
+            "description": "linkml:Any type is an experimental feature for allowing arbitrary objects",
+            "title": "MetaObject",
+            "type": "object"
+        },
+        "NamedThing": {
+            "additionalProperties": false,
+            "description": "a databased entity or concept/class",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "NamedThing",
+            "type": "object"
+        },
+        "OperatingSystem": {
+            "additionalProperties": false,
+            "description": "An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs.",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "OperatingSystem",
+            "type": "object"
+        },
+        "PodmanContainer": {
+            "additionalProperties": false,
+            "description": "Podman container",
+            "properties": {
+                "annotation": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Add an annotation to the container. The format is key value, multiple times."
+                },
+                "authfile": {
+                    "description": "Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` (Not available for remote commands) You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``",
+                    "type": "string"
+                },
+                "blkio_weight": {
+                    "description": "Block IO weight (relative weight) accepts a weight value between 10 and 1000        minimum_value: 10",
+                    "maximum": 1000,
+                    "minimum": 10,
+                    "type": "integer"
+                },
+                "blkio_weight_device": {
+                    "description": "Block IO weight (relative device weight, format DEVICE_NAME[:]WEIGHT).",
+                    "items": {
+                        "$ref": "#/$defs/MetaObject"
+                    },
+                    "type": "array"
+                },
+                "cap_add": {
+                    "description": "List of capabilities to add to the container.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "cap_drop": {
+                    "description": "List of capabilities to drop from the container.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "cgroup_parent": {
+                    "description": "Path to cgroups under which the cgroup for the container will be created. If the path is not absolute, the path is considered to be relative to the cgroups path of the init process. Cgroups will be created if they do not already exist.",
+                    "type": "string"
+                },
+                "cgroupns": {
+                    "description": "Path to cgroups under which the cgroup for the container will be created.",
+                    "type": "string"
+                },
+                "cgroups": {
+                    "description": "Determines whether the container will create CGroups. Valid values are enabled and disabled, which the default being enabled. The disabled option will force the container to not create CGroups, and thus conflicts with CGroup options cgroupns and cgroup-parent.",
+                    "type": "string"
+                },
+                "cidfile": {
+                    "description": "Write the container ID to the file",
+                    "type": "string"
+                },
+                "cmd_args": {
+                    "description": "Any additional command options you want to pass to podman command, cmd_args - [\u2019\u2013other-param\u2019, \u2018value\u2019] Be aware module doesn\u2019t support idempotency if this is set.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "command": {
+                    "description": "Override command of container. Can be a string or a list.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "conmon_pidfile": {
+                    "description": "Write the pid of the conmon process to a file. conmon runs in a separate process than Podman, so this is necessary when using systemd to restart Podman containers.",
+                    "type": "string"
+                },
+                "cpu_period": {
+                    "description": "Limit the CPU real-time period in microseconds",
+                    "type": "integer"
+                },
+                "cpu_rt_period": {
+                    "description": "Limit the CPU real-time period in microseconds. Limit the container\u2019s Real Time CPU usage. This flag tell the kernel to restrict the container\u2019s Real Time CPU usage to the period you specify.",
+                    "type": "integer"
+                },
+                "cpu_rt_runtime": {
+                    "description": "Limit the CPU real-time runtime in microseconds. This flag tells the kernel to limit the amount of time in a given CPU period Real Time tasks may consume.",
+                    "type": "integer"
+                },
+                "cpu_shares": {
+                    "description": "CPU shares (relative weight)",
+                    "type": "integer"
+                },
+                "cpus": {
+                    "description": "Number of CPUs. The default is 0.0 which means no limit.",
+                    "type": "string"
+                },
+                "cpuset_cpus": {
+                    "description": "CPUs in which to allow execution (0-3, 0,1)",
+                    "type": "string"
+                },
+                "cpuset_mems": {
+                    "description": "Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only effective on NUMA systems.",
+                    "type": "string"
+                },
+                "debug": {
+                    "description": "Return additional information which can be helpful for investigations.",
+                    "type": "boolean"
+                },
+                "detach": {
+                    "description": "Run container in detach mode",
+                    "type": "boolean"
+                },
+                "detach_keys": {
+                    "description": "Override the key sequence for detaching a container. Format is a single character or ctrl-value",
+                    "type": "string"
+                },
+                "device": {
+                    "description": "Add a host device to the container. The format is <device-on-host>[:<device-on-container>][:<permissions>] (e.g. device /dev/sdc:/dev/xvdc:rwm)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "device_read_bps": {
+                    "description": "Limit read rate (bytes per second) from a device (e.g. device-read-bps /dev/sda:1mb)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "device_read_iops": {
+                    "description": "Limit read rate (IO per second) from a device (e.g. device-read-iops /dev/sda:1000)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "device_write_bps": {
+                    "description": "Limit write rate (bytes per second) to a device (e.g. device-write-bps /dev/sda:1mb)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "device_write_iops": {
+                    "description": "Limit write rate (IO per second) to a device (e.g. device-write-iops /dev/sda:1000)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "dns": {
+                    "description": "Set custom DNS servers",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "dns_option": {
+                    "description": "Set custom DNS options",
+                    "type": "string"
+                },
+                "dns_search": {
+                    "description": "Set custom DNS search domains (Use dns_search with \u2018\u2019 if you don\u2019t wish to set the search domain)",
+                    "type": "string"
+                },
+                "entrypoint": {
+                    "description": "Overwrite the default ENTRYPOINT of the image",
+                    "type": "string"
+                },
+                "env": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Set environment variables. This option allows you to specify arbitrary environment variables that are available for the process that will be launched inside of the container."
+                },
+                "env_file": {
+                    "description": "Read in a line delimited file of environment variables. Doesn\u2019t support idempotency. If users changes the file with environment variables it\u2019s on them to recreate the container.",
+                    "type": "string"
+                },
+                "env_host": {
+                    "description": "Use all current host environment variables in container. Defaults to false.",
+                    "type": "boolean"
+                },
+                "etc_hosts": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Dict of host-to-IP mappings, where each host name is a key in the dictionary. Each host name will be added to the container\u2019s ``/etc/hosts`` file."
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "expose": {
+                    "description": "Expose a port, or a range of ports (e.g. expose \u201c3300-3310\u201d) to set up port redirection on the host system.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "force_restart": {
+                    "description": "Force restart of container.",
+                    "type": "boolean"
+                },
+                "generate_systemd": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Generate systemd unit file for container."
+                },
+                "gidmap": {
+                    "description": "Run the container in a new user namespace using the supplied mapping.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "group_add": {
+                    "description": "Add additional groups to run as",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "healthcheck": {
+                    "description": "Set or alter a healthcheck command for a container.",
+                    "type": "string"
+                },
+                "healthcheck_interval": {
+                    "description": "Set an interval for the healthchecks (a value of disable results in no automatic timer setup) (default \u201c30s\u201d)",
+                    "type": "string"
+                },
+                "healthcheck_retries": {
+                    "description": "The number of retries allowed before a healthcheck is considered to be unhealthy. The default value is 3.",
+                    "type": "integer"
+                },
+                "healthcheck_start_period": {
+                    "description": "The initialization time needed for a container to bootstrap. The value can be expressed in time format like 2m3s. The default value is 0s",
+                    "type": "string"
+                },
+                "healthcheck_timeout": {
+                    "description": "The maximum time allowed to complete the healthcheck before an interval is considered failed. Like start-period, the value can be expressed in a time format such as 1m22s. The default value is 30s",
+                    "type": "string"
+                },
+                "hostname": {
+                    "description": "Container host name. Sets the container host name that is available inside the container.",
+                    "type": "string"
+                },
+                "http_proxy": {
+                    "description": "By default proxy environment variables are passed into the container if set for the podman process. This can be disabled by setting the http_proxy option to false. The environment variables passed in include http_proxy, https_proxy, ftp_proxy, no_proxy, and also the upper case versions of those. Defaults to true",
+                    "type": "boolean"
+                },
+                "image_strict": {
+                    "description": "Whether to compare images in idempotency by taking into account a full name with registry and namespaces.",
+                    "type": "boolean"
+                },
+                "image_volume": {
+                    "$ref": "#/$defs/ContainerImageVolumeEnum",
+                    "description": "Tells podman how to handle the builtin image volumes. The options are bind, tmpfs, or ignore (default bind)"
+                },
+                "init": {
+                    "description": "Run an init inside the container that forwards signals and reaps processes. The default is false.",
+                    "type": "boolean"
+                },
+                "init_path": {
+                    "description": "Path to the container-init binary.",
+                    "type": "string"
+                },
+                "interactive": {
+                    "description": "Keep STDIN open even if not attached. The default is false. When set to true, keep stdin open even if not attached. The default is false.",
+                    "type": "boolean"
+                },
+                "ip": {
+                    "description": "Specify a static IP address for the container, for example \u201810.88.64.128\u2019. Can only be used if no additional CNI networks to join were specified via \u2018network:\u2019, and if the container is not joining another container\u2019s network namespace via \u2018network container:<name|id>\u2019. The address must be within the default CNI network\u2019s pool (default 10.88.0.0/16).",
+                    "type": "string"
+                },
+                "ipc": {
+                    "description": "Default is to create a private IPC namespace (POSIX SysV IPC) for the container",
+                    "type": "string"
+                },
+                "kernel_memory": {
+                    "description": "Kernel memory limit (format <number>[<unit>], where unit = b, k, m or g) Note - idempotency is supported for integers only.",
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Add metadata to a container, pass dictionary of label names and values"
+                },
+                "label_file": {
+                    "description": "Read in a line delimited file of labels",
+                    "type": "string"
+                },
+                "log_driver": {
+                    "$ref": "#/$defs/ContainerLogDriverEnum",
+                    "description": "Logging driver. Used to set the log driver for the container. For example log_driver \u201ck8s-file\u201d."
+                },
+                "log_level": {
+                    "$ref": "#/$defs/ContainerLogLevelEnum",
+                    "description": "Logging level for Podman. Log messages above specified level (\u201cdebug\u201d|\u201dinfo\u201d|\u201dwarn\u201d|\u201derror\u201d|\u201dfatal\u201d|\u201dpanic\u201d) (default \u201cerror\u201d)"
+                },
+                "log_opt": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Logging driver specific options. Used to set the path to the container log file."
+                },
+                "mac_address": {
+                    "description": "Specify a MAC address for the container, for example \u201892:d0:c6:0a:29:33\u2019. Don\u2019t forget that it must be unique within one Ethernet network.",
+                    "type": "string"
+                },
+                "memory": {
+                    "description": "Memory limit (format 10k, where unit = b, k, m or g) Note - idempotency is supported for integers only.",
+                    "type": "string"
+                },
+                "memory_reservation": {
+                    "description": "Memory soft limit (format 100m, where unit = b, k, m or g) Note - idempotency is supported for integers only.",
+                    "type": "string"
+                },
+                "memory_swap": {
+                    "description": "A limit value equal to memory plus swap. Must be used with the -m (\u2013memory) flag. The swap LIMIT should always be larger than -m (\u2013memory) value. By default, the swap LIMIT will be set to double the value of \u2013memory Note - idempotency is supported for integers only.",
+                    "type": "string"
+                },
+                "memory_swappiness": {
+                    "description": "Tune a container\u2019s memory swappiness behavior. Accepts an integer between 0 and 100.",
+                    "maximum": 100,
+                    "minimum": 0,
+                    "type": "integer"
+                },
+                "mount": {
+                    "description": "Attach a filesystem mount to the container. bind or tmpfs For example mount \u201ctype=bind,source=/path/on/host,destination=/path/in/container\u201d",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "description": "Name of the container",
+                    "type": "string"
+                },
+                "network": {
+                    "description": "Set the Network mode for the container * bridge create a network stack on the default bridge * none no networking * container:<name|id> reuse another container\u2019s network stack * host use the podman host network stack. * <network-name>|<network-id> connect to a user-defined network * ns:<path> path to a network namespace to join * slirp4netns use slirp4netns to create a user network stack. This is the default for rootless containers",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "network_aliases": {
+                    "description": "Add network-scoped alias for the container. A container will only have access to aliases on the first network that it joins. This is a limitation that will be removed in a later release.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "no_hosts": {
+                    "description": "Do not create /etc/hosts for the container Default is false.",
+                    "type": "boolean"
+                },
+                "oom_kill_disable": {
+                    "description": "Whether to disable OOM Killer for the container or not. Default is false.",
+                    "type": "boolean"
+                },
+                "oom_score_adj": {
+                    "description": "Tune the host\u2019s OOM preferences for containers (accepts -1000 to 1000)",
+                    "maximum": 1000,
+                    "minimum": -1000,
+                    "type": "integer"
+                },
+                "pid": {
+                    "description": "Set the PID mode for the container",
+                    "type": "string"
+                },
+                "pids_limit": {
+                    "description": "Tune the container\u2019s PIDs limit. Set -1 to have unlimited PIDs for the container.",
+                    "minimum": -1,
+                    "type": "integer"
+                },
+                "pod": {
+                    "description": "Run container in an existing pod. If you want podman to make the pod for you, prefix the pod name with \u201cnew:\u201d",
+                    "type": "string"
+                },
+                "privileged": {
+                    "description": "Give extended privileges to this container. The default is false.",
+                    "type": "boolean"
+                },
+                "publish": {
+                    "description": "Publish a container\u2019s port, or range of ports, to the host. Format - ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort | containerPort In case of only containerPort is set, the hostPort will chosen randomly by Podman.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "publish_all": {
+                    "description": "Publish all exposed ports to random ports on the host interfaces. The default is false.",
+                    "type": "boolean"
+                },
+                "read_only": {
+                    "description": "Mount the container\u2019s root filesystem as read only. Default is false",
+                    "type": "boolean"
+                },
+                "read_only_tmpfs": {
+                    "description": "If container is running in \u2013read-only mode, then mount a read-write tmpfs on /run, /tmp, and /var/tmp. The default is true",
+                    "type": "boolean"
+                },
+                "recreate": {
+                    "description": "Use with present and started states to force the re-creation of an existing container.",
+                    "type": "boolean"
+                },
+                "requires": {
+                    "description": "Specify one or more requirements. A requirement is a dependency container that will be started before this container. Containers can be specified by name or ID.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "restart_policy": {
+                    "description": "Restart policy to follow when containers exit. Restart policy will not take effect if a container is stopped via the podman kill or podman stop commands. Valid values are * no - Do not restart containers on exit * on-failure[:max_retries] - Restart containers when they exit with a non-0 exit code, retrying indefinitely or until the optional max_retries count is hit * always - Restart containers when they exit, regardless of status, retrying indefinitely",
+                    "type": "string"
+                },
+                "rm": {
+                    "description": "Automatically remove the container when it exits. The default is false.",
+                    "type": "boolean"
+                },
+                "rootfs": {
+                    "description": "If true, the first argument refers to an exploded container on the file system. The default is false.",
+                    "type": "boolean"
+                },
+                "sdnotify": {
+                    "description": "Determines how to use the NOTIFY_SOCKET, as passed with systemd and Type=notify. Can be container, conmon, ignore.",
+                    "type": "string"
+                },
+                "secrets": {
+                    "description": "Add the named secrets into the container. The format is secret[,opt=opt...], see documentation for more details.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "security_opt": {
+                    "description": "Security Options. For example security_opt \u201cseccomp=unconfined\u201d",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "shm_size": {
+                    "description": "Size of /dev/shm. The format is <number><unit>. number must be greater than 0. Unit is optional and can be b (bytes), k (kilobytes), m(megabytes), or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses 64m",
+                    "type": "string"
+                },
+                "sig_proxy": {
+                    "description": "Proxy signals sent to the podman run command to the container process. SIGCHLD, SIGSTOP, and SIGKILL are not proxied. The default is true.",
+                    "type": "boolean"
+                },
+                "state": {
+                    "$ref": "#/$defs/ContainerStateEnum",
+                    "description": "absent - A container matching the specified name will be stopped and removed.\npresent - Asserts the existence of a container matching the name and any provided configuration parameters. If no container matches the name, a container will be created. If a container matches the name but the provided configuration does not match, the container will be updated, if it can be. If it cannot be updated, it will be removed and re-created with the requested config. Image version will be taken into account when comparing configuration. Use the recreate option to force the re-creation of the matching container.\nstarted - Asserts there is a running container matching the name and any provided configuration. If no container matches the name, a container will be created and started. Use recreate to always re-create a matching container, even if it is running. Use force_restart to force a matching container to be stopped and restarted.\nstopped - Asserts that the container is first present, and then if the container is running moves it to a stopped state.\ncreated - Asserts that the container exists with given configuration. If container doesn\u2019t exist, the module creates it and leaves it in \u2018created\u2019 state. If configuration doesn\u2019t match or \u2018recreate\u2019 option is set, the container will be recreated"
+                },
+                "stop_signal": {
+                    "description": "Signal to stop a container. Default is SIGTERM.",
+                    "type": "integer"
+                },
+                "stop_timeout": {
+                    "description": "Timeout (in seconds) to stop a container. Default is 10.",
+                    "type": "integer"
+                },
+                "subgidname": {
+                    "description": "Run the container in a new user namespace using the map with \u2018name\u2019 in the /etc/subgid file.",
+                    "type": "string"
+                },
+                "subuidname": {
+                    "description": "Run the container in a new user namespace using the map with \u2018name\u2019 in the /etc/subuid file.",
+                    "type": "string"
+                },
+                "sysctl": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Configure namespaced kernel parameters at runtime"
+                },
+                "systemd": {
+                    "description": "Run container in systemd mode. The default is true.",
+                    "type": "string"
+                },
+                "timezone": {
+                    "description": "Set timezone in container. This flag takes area-based timezones, GMT time, as well as local, which sets the timezone in the container to match the host machine. See /usr/share/zoneinfo/ for valid timezones. Remote connections use local containers.conf for defaults.",
+                    "type": "string"
+                },
+                "tmpfs": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Create a tmpfs mount. For example tmpfs \u201c/tmp\u201d \u201crw,size=787448k,mode=1777\u201d"
+                },
+                "tty": {
+                    "description": "Allocate a pseudo-TTY. The default is false.",
+                    "type": "boolean"
+                },
+                "uidmap": {
+                    "description": "Run the container in a new user namespace using the supplied mapping.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "ulimit": {
+                    "description": "Ulimit options",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "user": {
+                    "description": "Sets the username or UID used and optionally the groupname or GID for the specified command.",
+                    "type": "string"
+                },
+                "userns": {
+                    "description": "Set the user namespace mode for the container. It defaults to the PODMAN_USERNS environment variable. An empty value means user namespaces are disabled.",
+                    "type": "string"
+                },
+                "uts": {
+                    "description": "Set the UTS mode for the container",
+                    "type": "string"
+                },
+                "volume": {
+                    "description": "Create a bind mount. If you specify, volume /HOST-DIR:/CONTAINER-DIR, podman bind mounts /HOST-DIR in the host to /CONTAINER-DIR in the podman container.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "volumes_from": {
+                    "description": "Mount volumes from the specified container(s).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "workdir": {
+                    "description": "Working directory inside the container. The default working directory for running binaries within a container is the root directory (/).",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "PodmanContainer",
+            "type": "object"
+        },
+        "PodmanContainers": {
+            "additionalProperties": false,
+            "description": "Podman containers",
+            "properties": {
+                "containers": {
+                    "description": "List of dictionaries with data for running containers for podman_container module.",
+                    "items": {
+                        "$ref": "#/$defs/MetaObject"
+                    },
+                    "type": "array"
+                },
+                "debug": {
+                    "description": "Return additional information which can be helpful for investigations.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "containers"
+            ],
+            "title": "PodmanContainers",
+            "type": "object"
+        },
+        "PodmanExport": {
+            "additionalProperties": false,
+            "description": "Export a Podman container",
+            "properties": {
+                "container": {
+                    "description": "Container to export.",
+                    "type": "string"
+                },
+                "dest": {
+                    "description": "Path to export container to.",
+                    "type": "string"
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "force": {
+                    "description": "Force saving to file even if it exists.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "container",
+                "dest"
+            ],
+            "title": "PodmanExport",
+            "type": "object"
+        },
+        "PodmanGenerateSystemd": {
+            "additionalProperties": false,
+            "description": "Generate systemd unit from a pod or a container",
+            "properties": {
+                "after": {
+                    "description": "Add the systemd unit after (After=) option, that ordering dependencies between the list of dependencies and this service.  This option may be specified more than once.  User-defined dependencies will be appended to the generated unit file. But any existing options such as needed or defined by default (e.g. online.target) will not be removed or overridden.  Only with Podman 4.0.0 and above",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "container_prefix": {
+                    "description": "Set the systemd unit name prefix for containers. If not set, use the default defined by podman, container. Refer to podman-generate-systemd(1) man page for more information.",
+                    "type": "string"
+                },
+                "dest": {
+                    "description": "Destination of the generated systemd unit file(s)",
+                    "type": "string"
+                },
+                "env": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Set environment variables to the systemd unit files. Keys are the environment variable names, and values are the environment variable values. Only with Podman 4.3.0 and above"
+                },
+                "executable": {
+                    "description": "Podman executable name or full path",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the pod or container to export",
+                    "type": "string"
+                },
+                "new": {
+                    "description": "Generate unit files that create containers and pods, not only start them. Refer to podman-generate-systemd(1) man page for more information.",
+                    "type": "boolean"
+                },
+                "no_header": {
+                    "description": "Do not generate the header including meta data such as the Podman version and the timestamp.",
+                    "type": "boolean"
+                },
+                "pod_prefix": {
+                    "description": "Set the systemd unit name prefix for pods. If not set, use the default defined by podman, pod. Refer to podman-generate-systemd(1) man page for more information.",
+                    "type": "string"
+                },
+                "requires": {
+                    "description": "Set the systemd unit requires (Requires=) option. Similar to wants, but declares a stronger requirement dependency. Only with Podman 4.0.0 and above",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "restart_policy": {
+                    "$ref": "#/$defs/ContainerRestartPolicyEnum",
+                    "description": "Restart policy of the service"
+                },
+                "restart_sec": {
+                    "description": "Configures the time to sleep before restarting a service (as configured with restart-policy).  Takes a value in seconds. Only with Podman 4.0.0 and above",
+                    "type": "integer"
+                },
+                "separator": {
+                    "description": "Systemd unit name separator between the name/id of a container/pod and the prefix. If not set, use the default defined by podman, -. Refer to podman-generate-systemd(1) man page for more information.",
+                    "type": "string"
+                },
+                "start_timeout": {
+                    "description": "Override the default start timeout for the container with the given value in seconds. Only with Podman 4.0.0 and above",
+                    "type": "integer"
+                },
+                "stop_timeout": {
+                    "description": "Override the default stop timeout for the container with the given value in seconds.",
+                    "type": "integer"
+                },
+                "use_names": {
+                    "description": "Use name of the containers for the start, stop, and description in the unit file.",
+                    "type": "boolean"
+                },
+                "wants": {
+                    "description": "Wanted things",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "PodmanGenerateSystemd",
+            "type": "object"
+        },
+        "PodmanImage": {
+            "additionalProperties": false,
+            "description": "Podman container image",
+            "properties": {
+                "auth_file": {
+                    "description": "Path to file containing authorization credentials to the remote registry.",
+                    "type": "string"
+                },
+                "build": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Arguments that control image build."
+                },
+                "ca_cert_dir": {
+                    "description": "Path to directory containing TLS certificates and keys to use.",
+                    "type": "string"
+                },
+                "compress": {
+                    "description": "Process of encoding information using fewer bits than original representation",
+                    "type": "string"
+                },
+                "dest": {
+                    "description": "Location where item appears, appeared, or is intended to be after transition",
+                    "type": "string"
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman.",
+                    "type": "string"
+                },
+                "force": {
+                    "description": "Whether or not to force push or pull an image. When building, force the build even if the image already exists.",
+                    "type": "boolean"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the image to pull, push, or delete. It may contain a tag using the format image:tag.",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "Password to use when authenticating to remote registries.",
+                    "type": "string"
+                },
+                "path": {
+                    "description": "Path to the build context directory.",
+                    "type": "string"
+                },
+                "pull": {
+                    "description": "Whether or not to pull the image.",
+                    "type": "boolean"
+                },
+                "push": {
+                    "description": "Whether or not to push an image.",
+                    "type": "boolean"
+                },
+                "push_args": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Arguments that control pushing images."
+                },
+                "remove_signatures": {
+                    "description": "Discard any pre-existing signatures",
+                    "type": "string"
+                },
+                "sign_by": {
+                    "description": "Path to a key file to use to sign the package.",
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/$defs/ContainerImageStateEnum",
+                    "description": "Whether an image should be present, absent, or built."
+                },
+                "tag": {
+                    "description": "Tag of the image to pull, push, or delete.",
+                    "type": "string"
+                },
+                "transport": {
+                    "description": "Human-directed movement of things or people between locations",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "username to use when authenticating to remote registries.",
+                    "type": "string"
+                },
+                "validate_certs": {
+                    "description": "Require HTTPS and validate certificates when pulling or pushing. Also used during build if a pull or push is necessary.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "PodmanImage",
+            "type": "object"
+        },
+        "PodmanImport": {
+            "additionalProperties": false,
+            "description": "Import Podman container from file",
+            "properties": {
+                "change": {
+                    "description": "Set changes as list of key-value pairs, see example.",
+                    "items": {
+                        "$ref": "#/$defs/MetaObject"
+                    },
+                    "type": "array"
+                },
+                "commit_message": {
+                    "description": "Set commit message for imported image",
+                    "type": "string"
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "src": {
+                    "description": "Path to image file to load.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "src"
+            ],
+            "title": "PodmanImport",
+            "type": "object"
+        },
+        "PodmanLoad": {
+            "additionalProperties": false,
+            "description": "Load container into container storage",
+            "properties": {
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "input": {
+                    "description": "Path to image file to load.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "input"
+            ],
+            "title": "PodmanLoad",
+            "type": "object"
+        },
+        "PodmanLogin": {
+            "additionalProperties": false,
+            "description": "Login to a Container registry using Podman",
+            "properties": {
+                "authfile": {
+                    "description": "Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``",
+                    "type": "string"
+                },
+                "certdir": {
+                    "description": "Use certificates at path (*.crt, *.cert, *.key) to connect to the registry. Default certificates directory is /etc/containers/certs.d.",
+                    "type": "string"
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "Password for the registry server.",
+                    "type": "string"
+                },
+                "registry": {
+                    "description": "Registry server. If the registry is not specified, the first registry under `[registries.search]` from `registries.conf` will be used.",
+                    "type": "string"
+                },
+                "tlsverify": {
+                    "description": "Require HTTPS and verify certificates when contacting registries. If explicitly set to true, then TLS verification will be used. If set to false, then TLS verification will not be used. If not specified, TLS verification will be used unless the target registry is listed as an insecure registry in registries.conf.",
+                    "type": "boolean"
+                },
+                "username": {
+                    "description": "Username for the registry server.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "password",
+                "username"
+            ],
+            "title": "PodmanLogin",
+            "type": "object"
+        },
+        "PodmanLogout": {
+            "additionalProperties": false,
+            "description": "Logout of a Container registry using Podman",
+            "properties": {
+                "all": {
+                    "description": "Remove the cached credentials for all registries in the auth file.",
+                    "type": "boolean"
+                },
+                "authfile": {
+                    "description": "Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``",
+                    "type": "string"
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "ignore_docker_credentials": {
+                    "description": "Credentials created using other tools such as `docker login` are not removed unless the corresponding `authfile` is explicitly specified. Since podman also uses existing credentials in these files by default (for docker e.g. `${HOME}/.docker/config.json`), module execution will fail if a docker login exists for the registry specified in any `authfile` is used by podman. This can be ignored by setting `ignore_docker_credentials` to `yes` - the credentials will be kept and `changed` will be false. This option cannot be used together with `all` since in this case podman will not check for existing `authfiles` created by other tools.",
+                    "type": "boolean"
+                }
+            },
+            "title": "PodmanLogout",
+            "type": "object"
+        },
+        "PodmanNetwork": {
+            "additionalProperties": false,
+            "description": "Manage podman networks",
+            "properties": {
+                "debug": {
+                    "description": "Return additional information which can be helpful for investigations.",
+                    "type": "boolean"
+                },
+                "disable_dns": {
+                    "description": "disable dns plugin (default \u201cfalse\u201d)",
+                    "type": "boolean"
+                },
+                "driver": {
+                    "description": "Driver to manage the network (default \u201cbridge\u201d)",
+                    "type": "string"
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman ifabsent: string(podman)",
+                    "type": "string"
+                },
+                "gateway": {
+                    "description": "IPv4 or IPv6 gateway for the subnet",
+                    "type": "string"
+                },
+                "internal": {
+                    "description": "Restrict external access from this network (default \u201cfalse\u201d)",
+                    "type": "boolean"
+                },
+                "ip_range": {
+                    "description": "Allocate container IP from range",
+                    "type": "string"
+                },
+                "ipv6": {
+                    "description": "Enable IPv6 (Dual Stack) networking. You must pass a IPv6 subnet. The subnet option must be used with the ipv6 option.",
+                    "type": "boolean"
+                },
+                "macvlan": {
+                    "description": "Create a Macvlan connection based on this device",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the network",
+                    "type": "string"
+                },
+                "opt": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Add network options. Currently \u2018vlan\u2019 and \u2018mtu\u2019 are supported."
+                },
+                "recreate": {
+                    "description": "Recreate network even if exists.",
+                    "type": "boolean"
+                },
+                "state": {
+                    "$ref": "#/$defs/ContainerNetworkStateEnum",
+                    "description": "State of network, default \u2018present\u2019"
+                },
+                "subnet": {
+                    "description": "Subnet in CIDR format",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "PodmanNetwork",
+            "type": "object"
+        },
+        "PodmanPlay": {
+            "additionalProperties": false,
+            "description": "Play kubernetes YAML file using podman",
+            "properties": {
+                "authfile": {
+                    "description": "Path of the authentication file. Default is ${XDG_RUNTIME_DIR}/containers/auth.json, which is set using podman login. If the authorization state is not found there, $HOME/.docker/config.json is checked, which is set using docker login. Note - You can also override the default path of the authentication file by setting the REGISTRY_AUTH_FILE environment variable. export REGISTRY_AUTH_FILE=path",
+                    "type": "string"
+                },
+                "cert_dir": {
+                    "description": "Use certificates at path (*.crt, *.cert, *.key) to connect to the registry. Default certificates directory is /etc/containers/certs.d. (This option is not available with the remote Podman client)",
+                    "type": "string"
+                },
+                "configmap": {
+                    "description": "Use Kubernetes configmap YAML at path to provide a source for environment variable values within the containers of the pod. Note - The configmap option can be used multiple times to pass multiple Kubernetes configmap YAMLs",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "debug": {
+                    "description": "Enable debug for the module.",
+                    "type": "boolean"
+                },
+                "executable": {
+                    "description": "Name of executable to run, by default \u2018podman\u2019 ifabsent: string(podman)",
+                    "type": "string"
+                },
+                "kube_file": {
+                    "description": "Path to file with YAML configuration for a Pod.",
+                    "type": "string"
+                },
+                "log_driver": {
+                    "description": "Set logging driver for all created containers.",
+                    "type": "string"
+                },
+                "log_level": {
+                    "$ref": "#/$defs/ContainerLogLevelEnum",
+                    "description": "Set logging level for podman calls. Log messages above specified level (\u201cdebug\u201d|\u201dinfo\u201d|\u201dwarn\u201d|\u201derror\u201d|\u201dfatal\u201d|\u201dpanic\u201d) (default \u201cerror\u201d)"
+                },
+                "network": {
+                    "description": "List of the names of CNI networks the pod should join.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "password": {
+                    "description": "The username and password to use to authenticate with the registry if required.",
+                    "type": "string"
+                },
+                "quiet": {
+                    "description": "Hide image pulls logs from output.",
+                    "type": "boolean"
+                },
+                "recreate": {
+                    "description": "If pod already exists, delete it and run the new one.",
+                    "type": "boolean"
+                },
+                "seccomp_profile_root": {
+                    "description": "Directory path for seccomp profiles (default is \u201c/var/lib/kubelet/seccomp\u201d). This option is not available with the remote Podman client",
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/$defs/ContainerStateEnum",
+                    "description": "Start the pod after creating it, or to leave it created only."
+                },
+                "tls_verify": {
+                    "description": "Require HTTPS and verify certificates when contacting registries (default is true). If explicitly set to true, then TLS verification will be used. If set to false, then TLS verification will not be used. If not specified, TLS verification will be used unless the target registry is listed as an insecure registry in registries.conf.",
+                    "type": "boolean"
+                },
+                "username": {
+                    "description": "The username and password to use to authenticate with the registry if required.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kube_file",
+                "state"
+            ],
+            "title": "PodmanPlay",
+            "type": "object"
+        },
+        "PodmanPod": {
+            "additionalProperties": false,
+            "description": "Manage Podman pods",
+            "properties": {
+                "add_host": {
+                    "description": "Add a host to the /etc/hosts file shared between all containers in the pod.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "cgroup_parent": {
+                    "description": "Path to cgroups under which the cgroup for the pod will be created. If the path is not absolute, he path is considered to be relative to the cgroups path of the init process. Cgroups will be created if they do not already exist.",
+                    "type": "string"
+                },
+                "cpus": {
+                    "description": "Set the total number of CPUs delegated to the pod. Default is 0.000 which indicates that there is no limit on computation power.",
+                    "type": "string"
+                },
+                "cpuset_cpus": {
+                    "description": "Limit the CPUs to support execution. First CPU is numbered 0. Unlike `cpus` this is of type string and parsed as a list of numbers. Format is 0-3,0,1",
+                    "type": "string"
+                },
+                "debug": {
+                    "description": "Return additional information which can be helpful for investigations.",
+                    "type": "boolean"
+                },
+                "device": {
+                    "description": "Add a host device to the pod. Optional permissions parameter can be used to specify device permissions. It is a combination of r for read, w for write, and m for mknod(2)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "device_read_bps": {
+                    "description": "Limit read rate (bytes per second) from a device (e.g. device-read-bps=/dev/sda:1mb)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "dns": {
+                    "description": "Set custom DNS servers in the /etc/resolv.conf file that will be shared between all containers in the pod. A special option, \u201cnone\u201d is allowed which disables creation of /etc/resolv.conf for the pod.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "dns_opt": {
+                    "description": "Set custom DNS options in the /etc/resolv.conf file that will be shared between all containers in the pod.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "dns_search": {
+                    "description": "Set custom DNS search domains in the /etc/resolv.conf file that will be shared between all containers in the pod.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "generate_systemd": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Generate systemd unit file for container."
+                },
+                "gidmap": {
+                    "description": "GID map for the user namespace. Using this flag will run the container with user namespace enabled. It conflicts with the `userns` and `subgidname` flags.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "hostname": {
+                    "description": "Set a hostname to the pod",
+                    "type": "string"
+                },
+                "infra": {
+                    "description": "Create an infra container and associate it with the pod. An infra container is a lightweight container used to coordinate the shared kernel namespace of a pod. Default is true.",
+                    "type": "boolean"
+                },
+                "infra_command": {
+                    "description": "The command that will be run to start the infra container. Default is \u201c/pause\u201d.",
+                    "type": "string"
+                },
+                "infra_conmon_pidfile": {
+                    "description": "Write the pid of the infra container\u2019s conmon process to a file. As conmon runs in a separate process than Podman, this is necessary when using systemd to manage Podman containers and pods.",
+                    "type": "string"
+                },
+                "infra_image": {
+                    "description": "The image that will be created for the infra container. Default is \u201ck8s.gcr.io/pause:3.1\u201d.",
+                    "type": "string"
+                },
+                "infra_name": {
+                    "description": "The name that will be used for the pod\u2019s infra container.",
+                    "type": "string"
+                },
+                "ip": {
+                    "description": "Set a static IP for the pod\u2019s shared network.",
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Add metadata to a pod, pass dictionary of label keys and values."
+                },
+                "label_file": {
+                    "description": "Read in a line delimited file of labels.",
+                    "type": "string"
+                },
+                "mac_address": {
+                    "description": "Set a static MAC address for the pod\u2019s shared network.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Assign a name to the pod.",
+                    "type": "string"
+                },
+                "network": {
+                    "description": "Set network mode for the pod. Supported values are bridge (the default), host (do not create a network namespace, all containers in the pod will use the host\u2019s network), or a list of names of CNI networks to join.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "network_alias": {
+                    "description": "Add a network-scoped alias for the pod, setting the alias for all networks that the pod joins. To set a name only for a specific network, use the alias option as described under the -`network` option. Network aliases work only with the bridge networking mode. This option can be specified multiple times.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "no_hosts": {
+                    "description": "Disable creation of /etc/hosts for the pod.",
+                    "type": "boolean"
+                },
+                "pid": {
+                    "description": "Set the PID mode for the pod. The default is to create a private PID namespace for the pod. Requires the PID namespace to be shared via `share` option.",
+                    "type": "string"
+                },
+                "pod_id_file": {
+                    "description": "Write the pod ID to the file.",
+                    "type": "string"
+                },
+                "publish": {
+                    "description": "Publish a port or range of ports from the pod to the host.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "recreate": {
+                    "description": "Use with present and started states to force the re-creation of an existing pod.",
+                    "type": "boolean"
+                },
+                "share": {
+                    "description": "A comma delimited list of kernel namespaces to share. If none or \u201c\u201d is specified, no namespaces will be shared. The namespaces to choose from are ipc, net, pid, user, uts.",
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "#/$defs/ContainerStateEnum",
+                    "description": "This variable is set for state"
+                },
+                "subgidname": {
+                    "description": "Name for GID map from the /etc/subgid file. Using this flag will run the container with user namespace enabled. This flag conflicts with `userns` and `gidmap`.",
+                    "type": "string"
+                },
+                "subuidname": {
+                    "description": "Name for UID map from the /etc/subuid file. Using this flag will run the container with user namespace enabled. This flag conflicts with `userns` and `uidmap`.",
+                    "type": "string"
+                },
+                "uidmap": {
+                    "description": "Run the container in a new user namespace using the supplied mapping. This option conflicts with the `userns` and `subuidname` options. This option provides a way to map host UIDs to container UIDs. It can be passed several times to map different ranges.\n",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "userns": {
+                    "description": "Set the user namespace mode for all the containers in a pod. It defaults to the PODMAN_USERNS environment variable. An empty value (\u201c\u201d) means user namespaces are disabled.",
+                    "type": "string"
+                },
+                "volume": {
+                    "description": "Create a bind mount.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "PodmanPod",
+            "type": "object"
+        },
+        "PodmanSave": {
+            "additionalProperties": false,
+            "description": "Saves podman image to tar file",
+            "properties": {
+                "compress": {
+                    "description": "Compress tarball image layers when pushing to a directory using the \u2018dir\u2019 transport. (default is same compression type, compressed or uncompressed, as source)",
+                    "type": "boolean"
+                },
+                "dest": {
+                    "description": "Destination file to write image to.",
+                    "type": "string"
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "force": {
+                    "description": "Force saving to file even if it exists.",
+                    "type": "boolean"
+                },
+                "format": {
+                    "$ref": "#/$defs/ContainerSaveFormatEnum",
+                    "description": "Save image to docker-archive, oci-archive (see containers-transports(5)), oci-dir (oci transport), or docker-dir (dir transport with v2s2 manifest type)."
+                },
+                "image": {
+                    "description": "Image to save.",
+                    "type": "string"
+                },
+                "multi_image_archive": {
+                    "description": "Allow for creating archives with more than one image. Additional names will be interpreted as images instead of tags. Only supported for docker-archive.",
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "dest",
+                "image"
+            ],
+            "title": "PodmanSave",
+            "type": "object"
+        },
+        "PodmanSecret": {
+            "additionalProperties": false,
+            "description": "Manage Podman secrets",
+            "properties": {
+                "data": {
+                    "description": "The value of the secret. Required when state is present.",
+                    "type": "string"
+                },
+                "driver": {
+                    "description": "Override default secrets driver, currently podman uses file which is unencrypted.",
+                    "type": "string"
+                },
+                "driver_opts": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Driver-specific key-value options."
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "force": {
+                    "description": "Use it when state is present to remove and recreate an existing secret.",
+                    "type": "boolean"
+                },
+                "name": {
+                    "description": "The name of the secret.",
+                    "type": "string"
+                },
+                "skip_existing": {
+                    "description": "Use it when state is present and secret with the same name already exists. If set to true, the secret will NOT be recreated and remains as is.",
+                    "type": "boolean"
+                },
+                "state": {
+                    "description": "Whether to create or remove the named secret.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "PodmanSecret",
+            "type": "object"
+        },
+        "PodmanTag": {
+            "additionalProperties": false,
+            "description": "Add an additional name to a local image",
+            "properties": {
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "image": {
+                    "description": "Image to tag.",
+                    "type": "string"
+                },
+                "target_names": {
+                    "description": "Additional names.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "image",
+                "target_names"
+            ],
+            "title": "PodmanTag",
+            "type": "object"
+        },
+        "PodmanVolume": {
+            "additionalProperties": false,
+            "description": "Manage Podman Volumes",
+            "properties": {
+                "debug": {
+                    "description": "Return additional information which can be helpful for investigations.",
+                    "type": "boolean"
+                },
+                "driver": {
+                    "description": "Specify volume driver name (default local).",
+                    "type": "string"
+                },
+                "executable": {
+                    "description": "Path to podman executable if it is not in the $PATH on the machine running podman",
+                    "type": "string"
+                },
+                "label": {
+                    "$ref": "#/$defs/MetaObject",
+                    "description": "Add metadata to a pod volume (e.g., label com.example.key=value)."
+                },
+                "name": {
+                    "description": "Name of volume.",
+                    "type": "string"
+                },
+                "options": {
+                    "description": "Set driver specific options. For example \u2018device=tpmfs\u2019, \u2018type=tmpfs\u2019. UID and GID idempotency is not supported due to changes in podman.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "recreate": {
+                    "description": "Recreate volume even if exists.",
+                    "type": "boolean"
+                },
+                "state": {
+                    "description": "State of volume, default \u2018present\u2019",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "PodmanVolume",
+            "type": "object"
+        },
+        "Project": {
+            "additionalProperties": false,
+            "description": "Collaborative enterprise, frequently involving research or design, that is carefully planned to achieve a particular aim",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Project",
+            "type": "object"
+        },
+        "Publication": {
+            "additionalProperties": false,
+            "description": "Any published piece of information. Can refer to a whole publication, its encompassing publication (i.e. journal or book) or to a part of a publication, if of significant knowledge scope (e.g. a figure, figure legend, or section highlighted by NLP). The scope is intended to be general and include information published on the web, as well as printed materials, either directly or in one of the Publication Csolink category subclasses.",
+            "properties": {
+                "authors": {
+                    "description": "Connects an publication to the list of authors who contributed to the publication. This property should be a comma-delimited list of author names. It is recommended that an author's name be formatted as \"surname, firstname initial.\".",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "creationDate": {
+                    "description": "date on which an entity was created. This can be applied to nodes or edges",
+                    "format": "date",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "keywords": {
+                    "description": "keywords tagging a publication",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "lcshTerms": {
+                    "description": "Library of Congress Subject Headings (LCSH) terms tagging a publication",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "license": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "pages": {
+                    "description": "Page number of source referenced for statement or publication",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "rights": {
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "executive  summary of a publication",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Publication",
+            "type": "object"
+        },
+        "QuantityValue": {
+            "additionalProperties": false,
+            "description": "A value of an attribute that is quantitative and measurable, available as a combination of a unit and a numeric value",
+            "properties": {
+                "hasNumericValue": {
+                    "description": "connects a quantity value to a number",
+                    "type": "number"
+                },
+                "hasUnit": {
+                    "description": "connects a quantity value to a unit",
+                    "type": "string"
+                }
+            },
+            "title": "QuantityValue",
+            "type": "object"
+        },
+        "Software": {
+            "additionalProperties": false,
+            "description": "A set of instructions in a computer programming language that can be executed by a computer, possibly after compilation into another programming language. The term Software includes ComputerPrograms (free-standing software), object methods, subroutines and software packages.",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Software",
+            "type": "object"
+        },
+        "Solaris": {
+            "additionalProperties": false,
+            "description": "Unix operating system originally developed by Sun Microsystems",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Solaris",
+            "type": "object"
+        },
+        "System": {
+            "additionalProperties": false,
+            "description": "An entity that intends to perform some functions, interacting with other systems. Relative to a given system, the entities with which it interacts, are considered its environment. A system is structurally composed of a set of components bound together.",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "System",
+            "type": "object"
+        },
+        "Windows": {
+            "additionalProperties": false,
+            "description": "family of computer operating systems developed by Microsoft",
+            "properties": {
+                "category": {
+                    "description": "Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.\n * In a neo4j database this MAY correspond to the neo4j label tag.\n * In an RDF database it should be a universal model class URI.\nThis field is multi-valued. It should include values for ancestors of the universal class.\nIn an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.",
+                    "items": {
+                        "pattern": "^ucs-core:[A-Z][A-Za-z]+$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "description": "a human-readable description of an entity",
+                    "type": "string"
+                },
+                "hasAttribute": {
+                    "description": "connects any entity to an attribute",
+                    "items": {
+                        "$ref": "#/$defs/Attribute"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "description": "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI",
+                    "type": "string"
+                },
+                "inTaxon": {
+                    "description": "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iri": {
+                    "description": "An IRI for an entity. This is determined by the id using expansion rules.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for an attribute or entity.",
+                    "type": "string"
+                },
+                "providedBy": {
+                    "description": "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "type": {
+                    "description": "Anchoring point (of a name) in taxonomy",
+                    "type": "string"
+                },
+                "xref": {
+                    "description": "Alternate CURIEs for a thing",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "category"
+            ],
+            "title": "Windows",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/lmodel/ucs-containers",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": true,
+    "metamodel_version": "1.7.0",
+    "title": "ucs-containers",
+    "type": "object",
+    "version": null
+}

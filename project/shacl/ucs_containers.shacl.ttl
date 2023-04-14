@@ -1,0 +1,2782 @@
+@prefix containers: <https://w3id.org/lmodel/ucs-containers/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema1: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix uco-core: <https://w3id.org/lmodel/uco-core/> .
+@prefix uco-identity: <https://w3id.org/lmodel/uco-identity/> .
+@prefix uco-observable: <https://w3id.org/lmodel/uco-observable/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<core:AdministrativeEntity> a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Relating to the arrangements and work that is needed to control the operation of a plan" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 8 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <core:id> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 1 ;
+            sh:path <core:xref> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 0 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path <rdf:type> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:iri> ] ;
+    sh:targetClass <core:AdministrativeEntity> .
+
+<core:Agent> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "person, group, organization or project that provides a piece of information (i.e. a knowledge association)" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 10 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdf:type> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path <core:id> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path <core:iri> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <rdfs:label> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 6 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 3 ;
+            sh:path <core:xref> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 2 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "Collection of information that describes the location of a building, apartment, or other structure" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path uco-identity:address ],
+        [ sh:description "a professional relationship between one provider (x) within another provider (often an organization). Target provider identity should be specified by a CURIE. Providers may have multiple affiliations." ;
+            sh:order 0 ;
+            sh:path <core:affiliation> ] ;
+    sh:targetClass <core:Agent> .
+
+<core:Association> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A typed association between two entities, supported by evidence" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class schema1:Thing ;
+            sh:description "Connects an association to the object of the association. For example, in a apple-to-orange assocation, the apple is subject and orange is object." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path <rdf:object> ],
+        [ sh:description "if set to true, then the association is negated i.e. is not true" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:negated> ],
+        [ sh:class <core:OntologyClass> ;
+            sh:description "connects an association to qualifiers that modify or qualify the meaning of that association" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 4 ;
+            sh:path <core:qualifiers> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <core:iri> ],
+        [ sh:description "A high-level grouping for the relationship type. AKA minimal predicate. This is analogous to category for nodes." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <rdf:predicate> ],
+        [ sh:class <core:EvidenceType> ;
+            sh:description "connects an association to an instance of supporting evidence" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 6 ;
+            sh:path <core:hasEvidence> ],
+        [ sh:description "rdf:type of ucs-core:Association should be fixed at rdf:Statement" ;
+            sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path <rdf:type> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:order 9 ;
+            sh:path <core:category> ],
+        [ sh:class schema1:Thing ;
+            sh:description "Connects an association to the subject of the association. For example, in a apple-to-orange association, the apple is subject and orange is object." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <rdf:subject> ],
+        [ sh:class <core:Publication> ;
+            sh:description "connects an association to publications supporting the association" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 5 ;
+            sh:path <core:publications> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 12 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 7 ;
+            sh:path <core:id> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 13 ;
+            sh:path <core:hasAttribute> ] ;
+    sh:targetClass <core:Association> .
+
+<core:Entity> a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Root Universal Model class for all things and informational relationships, real or imagined." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <rdf:type> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:iri> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <core:id> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <rdfs:label> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:order 2 ;
+            sh:path <core:category> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 6 ;
+            sh:path <core:hasAttribute> ] ;
+    sh:targetClass <core:Entity> .
+
+<core:Hardware> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "physical components of a computer" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ] ;
+    sh:targetClass <core:Hardware> .
+
+<core:InformationContentEntity> a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "A piece of information that typically describes some topic of discourse or is used as support." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <core:iri> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path <dcterms:description> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 12 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 4 ;
+            sh:path <core:providedBy> ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:license> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path <rdf:type> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 8 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "date on which an entity was created. This can be applied to nodes or edges" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path uco-observable:creationDate ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 6 ;
+            sh:path <core:id> ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path uco-observable:format ],
+        [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:rights> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 5 ;
+            sh:path <core:xref> ] ;
+    sh:targetClass <core:InformationContentEntity> .
+
+<core:Linux> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "family of Unix-like operating systems using Linux kernel and open source" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ] ;
+    sh:targetClass <core:Linux> .
+
+<core:OpenSource> a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Philosophy about free redistribution and access to a product" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass <core:OpenSource> .
+
+<core:Project> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Collaborative enterprise, frequently involving research or design, that is carefully planned to achieve a particular aim" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 0 ;
+            sh:path <core:providedBy> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 8 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:iri> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <core:id> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path <rdf:type> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 1 ;
+            sh:path <core:xref> ] ;
+    sh:targetClass <core:Project> .
+
+<core:SoftwareOrDevice> a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Either software or hardware" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ] ;
+    sh:targetClass <core:SoftwareOrDevice> .
+
+<core:Solaris> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Unix operating system originally developed by Sun Microsystems" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ] ;
+    sh:targetClass <core:Solaris> .
+
+<core:System> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "An entity that intends to perform some functions, interacting with other systems. Relative to a given system, the entities with which it interacts, are considered its environment. A system is structurally composed of a set of components bound together." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ] ;
+    sh:targetClass <core:System> .
+
+<core:ThingWithTaxon> a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "A mixin that can be used on any entity that can be taxonomically classified. This includes individual entities, their products, and other operational entities and processes." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ] ;
+    sh:targetClass <core:ThingWithTaxon> .
+
+<core:Virtualization> a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "computing technique for setting up virtual versions of operating systems or computer resources" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass <core:Virtualization> .
+
+<core:Windows> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "family of computer operating systems developed by Microsoft" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ] ;
+    sh:targetClass <core:Windows> .
+
+uco-core:Annotation a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Model root class for entity annotations." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass uco-core:Annotation .
+
+uco-core:Software a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A set of instructions in a computer programming language that can be executed by a computer, possibly after compilation into another programming language. The term Software includes ComputerPrograms (free-standing software), object methods, subroutines and software packages." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ] ;
+    sh:targetClass uco-core:Software .
+
+uco-observable:OperatingSystem a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ] ;
+    sh:targetClass uco-observable:OperatingSystem .
+
+containers:ClosedSoftwareModule a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Self contained software module" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass containers:ClosedSoftwareModule .
+
+containers:Container a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Software that emulates a whole computer by means of an isolated user-space environment running on top of the operating system's kernel." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ] ;
+    sh:targetClass containers:Container .
+
+containers:Containerd a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Container runtime" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ] ;
+    sh:targetClass containers:Containerd .
+
+containers:Docker a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "open-source software for deploying containerized applications" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ] ;
+    sh:targetClass containers:Docker .
+
+containers:Kubernetes a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "software to manage containers on a server-cluster" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ] ;
+    sh:targetClass containers:Kubernetes .
+
+containers:LinuxContainersProject a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Linux Containers is umbrella project for LXD, LXC, LXCFS and distrobuilder." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 1 ;
+            sh:path <core:xref> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <core:id> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 8 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 0 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:iri> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path <rdf:type> ] ;
+    sh:targetClass containers:LinuxContainersProject .
+
+containers:Lxc a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Operating system-level virtualization for Linux" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ] ;
+    sh:targetClass containers:Lxc .
+
+containers:LxcFs a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "LXCFS is a simple userspace filesystem designed to work around some current limitations of the Linux kernel." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ] ;
+    sh:targetClass containers:LxcFs .
+
+containers:Lxd a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Lxd is a system container and virtual machine manager for Linux OS" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ] ;
+    sh:targetClass containers:Lxd .
+
+containers:OciContainer a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "Open Container Initiative (OCI) compliant containers" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ] ;
+    sh:targetClass containers:OciContainer .
+
+containers:OpenContainerInitiative a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "An open governance structure for express purpose of creating open industry standards around container formats and runtime." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 8 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <core:id> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 0 ;
+            sh:path <core:providedBy> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:iri> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path <rdf:type> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 1 ;
+            sh:path <core:xref> ] ;
+    sh:targetClass containers:OpenContainerInitiative .
+
+containers:Podman a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "daemonless OCI-compliant container runtime" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 2 ;
+            sh:path <core:xref> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an entity to its taxonomic classification. Only certain kinds of entities can be taxonomically classified; see 'ThingWithTaxon'" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path <core:inTaxon> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdf:type> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path <core:id> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 9 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 1 ;
+            sh:path <core:providedBy> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ] ;
+    sh:targetClass containers:Podman .
+
+containers:PodmanContainer a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Podman container" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Logging driver. Used to set the log driver for the container. For example log_driver “k8s-file”." ;
+            sh:in ( "k8s-file" "journald" "json-file" ) ;
+            sh:maxCount 1 ;
+            sh:order 60 ;
+            sh:path <core:log_driver> ],
+        [ sh:description "Publish a container’s port, or range of ports, to the host. Format - ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort | containerPort In case of only containerPort is set, the hostPort will chosen randomly by Podman." ;
+            sh:order 79 ;
+            sh:path <core:publish> ],
+        [ sh:description "Do not create /etc/hosts for the container Default is false." ;
+            sh:maxCount 1 ;
+            sh:order 72 ;
+            sh:path containers:no_hosts ],
+        [ sh:description "Read in a line delimited file of labels" ;
+            sh:maxCount 1 ;
+            sh:order 59 ;
+            sh:path containers:label_file ],
+        [ sh:description "Force restart of container." ;
+            sh:maxCount 1 ;
+            sh:order 39 ;
+            sh:path containers:force_restart ],
+        [ sh:description "Specify a static IP address for the container, for example ‘10.88.64.128’. Can only be used if no additional CNI networks to join were specified via ‘network:’, and if the container is not joining another container’s network namespace via ‘network container:<name|id>’. The address must be within the default CNI network’s pool (default 10.88.0.0/16)." ;
+            sh:maxCount 1 ;
+            sh:order 55 ;
+            sh:path uco-observable:ip ],
+        [ sh:description "Logging level for Podman. Log messages above specified level (“debug”|”info”|”warn”|”error”|”fatal”|”panic”) (default “error”)" ;
+            sh:in ( "debug" "info" "warn" "error" "fatal" "panic" ) ;
+            sh:maxCount 1 ;
+            sh:order 61 ;
+            sh:path <core:log_level> ],
+        [ sh:description "Add the named secrets into the container. The format is secret[,opt=opt...], see documentation for more details." ;
+            sh:order 89 ;
+            sh:path <core:secrets> ],
+        [ sh:description "Memory soft limit (format 100m, where unit = b, k, m or g) Note - idempotency is supported for integers only." ;
+            sh:maxCount 1 ;
+            sh:order 65 ;
+            sh:path containers:memory_reservation ],
+        [ sh:description "Limit the CPU real-time period in microseconds" ;
+            sh:maxCount 1 ;
+            sh:order 15 ;
+            sh:path containers:cpu_period ],
+        [ sh:description "Automatically remove the container when it exits. The default is false." ;
+            sh:maxCount 1 ;
+            sh:order 86 ;
+            sh:path <core:rm> ],
+        [ sh:description "Add additional groups to run as" ;
+            sh:order 42 ;
+            sh:path containers:group_add ],
+        [ sh:class linkml:Any ;
+            sh:description "Add metadata to a container, pass dictionary of label names and values" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 58 ;
+            sh:path <core:label> ],
+        [ sh:description "Sets the username or UID used and optionally the groupname or GID for the specified command." ;
+            sh:maxCount 1 ;
+            sh:order 104 ;
+            sh:path <core:user> ],
+        [ sh:description "Limit the CPU real-time runtime in microseconds. This flag tells the kernel to limit the amount of time in a given CPU period Real Time tasks may consume." ;
+            sh:maxCount 1 ;
+            sh:order 17 ;
+            sh:path containers:cpu_rt_runtime ],
+        [ sh:description "The maximum time allowed to complete the healthcheck before an interval is considered failed. Like start-period, the value can be expressed in a time format such as 1m22s. The default value is 30s" ;
+            sh:maxCount 1 ;
+            sh:order 47 ;
+            sh:path <core:healthcheck_timeout> ],
+        [ sh:class linkml:Any ;
+            sh:description "Dict of host-to-IP mappings, where each host name is a key in the dictionary. Each host name will be added to the container’s ``/etc/hosts`` file." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 37 ;
+            sh:path <core:etc_hosts> ],
+        [ sh:description "CPU shares (relative weight)" ;
+            sh:maxCount 1 ;
+            sh:order 18 ;
+            sh:path containers:cpu_shares ],
+        [ sh:description """absent - A container matching the specified name will be stopped and removed.
+present - Asserts the existence of a container matching the name and any provided configuration parameters. If no container matches the name, a container will be created. If a container matches the name but the provided configuration does not match, the container will be updated, if it can be. If it cannot be updated, it will be removed and re-created with the requested config. Image version will be taken into account when comparing configuration. Use the recreate option to force the re-creation of the matching container.
+started - Asserts there is a running container matching the name and any provided configuration. If no container matches the name, a container will be created and started. Use recreate to always re-create a matching container, even if it is running. Use force_restart to force a matching container to be stopped and restarted.
+stopped - Asserts that the container is first present, and then if the container is running moves it to a stopped state.
+created - Asserts that the container exists with given configuration. If container doesn’t exist, the module creates it and leaves it in ‘created’ state. If configuration doesn’t match or ‘recreate’ option is set, the container will be recreated""" ;
+            sh:in ( "absent" "present" "started" "stopped" "created" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path uco-observable:state ],
+        [ sh:description "Specify one or more requirements. A requirement is a dependency container that will be started before this container. Containers can be specified by name or ID." ;
+            sh:order 84 ;
+            sh:path containers:requires ],
+        [ sh:description "A limit value equal to memory plus swap. Must be used with the -m (–memory) flag. The swap LIMIT should always be larger than -m (–memory) value. By default, the swap LIMIT will be set to double the value of –memory Note - idempotency is supported for integers only." ;
+            sh:maxCount 1 ;
+            sh:order 66 ;
+            sh:path containers:memory_swap ],
+        [ sh:description "CPUs in which to allow execution (0-3, 0,1)" ;
+            sh:maxCount 1 ;
+            sh:order 20 ;
+            sh:path containers:cpuset_cpus ],
+        [ sh:class linkml:Any ;
+            sh:description "Set environment variables. This option allows you to specify arbitrary environment variables that are available for the process that will be launched inside of the container." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 34 ;
+            sh:path <core:env> ],
+        [ sh:class linkml:Any ;
+            sh:description "Generate systemd unit file for container." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 40 ;
+            sh:path containers:generate_systemd ],
+        [ sh:description "Set custom DNS options" ;
+            sh:maxCount 1 ;
+            sh:order 31 ;
+            sh:path <core:dns_option> ],
+        [ sh:description "Tune the container’s PIDs limit. Set -1 to have unlimited PIDs for the container." ;
+            sh:maxCount 1 ;
+            sh:minInclusive -1 ;
+            sh:order 76 ;
+            sh:path containers:pids_limit ],
+        [ sh:description "If container is running in –read-only mode, then mount a read-write tmpfs on /run, /tmp, and /var/tmp. The default is true" ;
+            sh:maxCount 1 ;
+            sh:order 82 ;
+            sh:path containers:read_only_tmpfs ],
+        [ sh:description "If true, the first argument refers to an exploded container on the file system. The default is false." ;
+            sh:maxCount 1 ;
+            sh:order 87 ;
+            sh:path <core:rootfs> ],
+        [ sh:description "Name of the container" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 69 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "Path to cgroups under which the cgroup for the container will be created. If the path is not absolute, the path is considered to be relative to the cgroups path of the init process. Cgroups will be created if they do not already exist." ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path containers:cgroup_parent ],
+        [ sh:description "Whether to disable OOM Killer for the container or not. Default is false." ;
+            sh:maxCount 1 ;
+            sh:order 73 ;
+            sh:path containers:oom_kill_disable ],
+        [ sh:description "Override the key sequence for detaching a container. Format is a single character or ctrl-value" ;
+            sh:maxCount 1 ;
+            sh:order 24 ;
+            sh:path containers:detach_keys ],
+        [ sh:description "Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only effective on NUMA systems." ;
+            sh:maxCount 1 ;
+            sh:order 21 ;
+            sh:path containers:cpuset_mems ],
+        [ sh:description "Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` (Not available for remote commands) You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:authfile> ],
+        [ sh:description "Set the UTS mode for the container" ;
+            sh:maxCount 1 ;
+            sh:order 106 ;
+            sh:path <core:uts> ],
+        [ sh:description "List of capabilities to add to the container." ;
+            sh:order 6 ;
+            sh:path containers:cap_add ],
+        [ sh:description "Path to cgroups under which the cgroup for the container will be created." ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path containers:cgroupns ],
+        [ sh:description "Working directory inside the container. The default working directory for running binaries within a container is the root directory (/)." ;
+            sh:maxCount 1 ;
+            sh:order 109 ;
+            sh:path <core:workdir> ],
+        [ sh:class linkml:Any ;
+            sh:description "Create a tmpfs mount. For example tmpfs “/tmp” “rw,size=787448k,mode=1777”" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 100 ;
+            sh:path <core:tmpfs> ],
+        [ sh:description "Run an init inside the container that forwards signals and reaps processes. The default is false." ;
+            sh:maxCount 1 ;
+            sh:order 52 ;
+            sh:path <core:init> ],
+        [ sh:description "Proxy signals sent to the podman run command to the container process. SIGCHLD, SIGSTOP, and SIGKILL are not proxied. The default is true." ;
+            sh:maxCount 1 ;
+            sh:order 92 ;
+            sh:path containers:sig_proxy ],
+        [ sh:description "Use with present and started states to force the re-creation of an existing container." ;
+            sh:maxCount 1 ;
+            sh:order 83 ;
+            sh:path <core:recreate> ],
+        [ sh:description "Attach a filesystem mount to the container. bind or tmpfs For example mount “type=bind,source=/path/on/host,destination=/path/in/container”" ;
+            sh:order 68 ;
+            sh:path <core:mount> ],
+        [ sh:description "Tells podman how to handle the builtin image volumes. The options are bind, tmpfs, or ignore (default bind)" ;
+            sh:in ( "bind" "tmpfs" "ignore" ) ;
+            sh:maxCount 1 ;
+            sh:order 50 ;
+            sh:path containers:image_volume ],
+        [ sh:description "Specify a MAC address for the container, for example ‘92:d0:c6:0a:29:33’. Don’t forget that it must be unique within one Ethernet network." ;
+            sh:maxCount 1 ;
+            sh:order 63 ;
+            sh:path <core:mac_address> ],
+        [ sh:class linkml:Any ;
+            sh:description "Configure namespaced kernel parameters at runtime" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 97 ;
+            sh:path <core:sysctl> ],
+        [ sh:description "Limit write rate (bytes per second) to a device (e.g. device-write-bps /dev/sda:1mb)" ;
+            sh:order 28 ;
+            sh:path containers:device_write_bps ],
+        [ sh:description "Determines whether the container will create CGroups. Valid values are enabled and disabled, which the default being enabled. The disabled option will force the container to not create CGroups, and thus conflicts with CGroup options cgroupns and cgroup-parent." ;
+            sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path <core:cgroups> ],
+        [ sh:description "Path to the container-init binary." ;
+            sh:maxCount 1 ;
+            sh:order 53 ;
+            sh:path containers:init_path ],
+        [ sh:description "Add a host device to the container. The format is <device-on-host>[:<device-on-container>][:<permissions>] (e.g. device /dev/sdc:/dev/xvdc:rwm)" ;
+            sh:order 25 ;
+            sh:path <core:device> ],
+        [ sh:description "Run container in detach mode" ;
+            sh:maxCount 1 ;
+            sh:order 22 ;
+            sh:path containers:detach ],
+        [ sh:description "Set an interval for the healthchecks (a value of disable results in no automatic timer setup) (default “30s”)" ;
+            sh:maxCount 1 ;
+            sh:order 44 ;
+            sh:path <core:healthcheck_interval> ],
+        [ sh:description "Limit write rate (IO per second) to a device (e.g. device-write-iops /dev/sda:1000)" ;
+            sh:order 29 ;
+            sh:path containers:device_write_iops ],
+        [ sh:description "Keep STDIN open even if not attached. The default is false. When set to true, keep stdin open even if not attached. The default is false." ;
+            sh:maxCount 1 ;
+            sh:order 54 ;
+            sh:path <core:interactive> ],
+        [ sh:description "Write the pid of the conmon process to a file. conmon runs in a separate process than Podman, so this is necessary when using systemd to restart Podman containers." ;
+            sh:maxCount 1 ;
+            sh:order 13 ;
+            sh:path containers:conmon_pidfile ],
+        [ sh:description "Set the PID mode for the container" ;
+            sh:maxCount 1 ;
+            sh:order 75 ;
+            sh:path uco-observable:pid ],
+        [ sh:description "Restart policy to follow when containers exit. Restart policy will not take effect if a container is stopped via the podman kill or podman stop commands. Valid values are * no - Do not restart containers on exit * on-failure[:max_retries] - Restart containers when they exit with a non-0 exit code, retrying indefinitely or until the optional max_retries count is hit * always - Restart containers when they exit, regardless of status, retrying indefinitely" ;
+            sh:maxCount 1 ;
+            sh:order 85 ;
+            sh:path containers:restart_policy ],
+        [ sh:description "Add network-scoped alias for the container. A container will only have access to aliases on the first network that it joins. This is a limitation that will be removed in a later release." ;
+            sh:order 71 ;
+            sh:path containers:network_aliases ],
+        [ sh:description "Return additional information which can be helpful for investigations." ;
+            sh:maxCount 1 ;
+            sh:order 23 ;
+            sh:path <core:debug> ],
+        [ sh:description "List of capabilities to drop from the container." ;
+            sh:order 7 ;
+            sh:path containers:cap_drop ],
+        [ sh:description "Limit the CPU real-time period in microseconds. Limit the container’s Real Time CPU usage. This flag tell the kernel to restrict the container’s Real Time CPU usage to the period you specify." ;
+            sh:maxCount 1 ;
+            sh:order 16 ;
+            sh:path containers:cpu_rt_period ],
+        [ sh:description "Any additional command options you want to pass to podman command, cmd_args - [’–other-param’, ‘value’] Be aware module doesn’t support idempotency if this is set." ;
+            sh:order 12 ;
+            sh:path <core:cmd_args> ],
+        [ sh:description "Create a bind mount. If you specify, volume /HOST-DIR:/CONTAINER-DIR, podman bind mounts /HOST-DIR in the host to /CONTAINER-DIR in the podman container." ;
+            sh:order 107 ;
+            sh:path uco-observable:volume ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:executable> ],
+        [ sh:description "Kernel memory limit (format <number>[<unit>], where unit = b, k, m or g) Note - idempotency is supported for integers only." ;
+            sh:maxCount 1 ;
+            sh:order 57 ;
+            sh:path containers:kernel_memory ],
+        [ sh:description "Size of /dev/shm. The format is <number><unit>. number must be greater than 0. Unit is optional and can be b (bytes), k (kilobytes), m(megabytes), or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses 64m" ;
+            sh:maxCount 1 ;
+            sh:order 91 ;
+            sh:path containers:shm_size ],
+        [ sh:description "Default is to create a private IPC namespace (POSIX SysV IPC) for the container" ;
+            sh:maxCount 1 ;
+            sh:order 56 ;
+            sh:path containers:ipc ],
+        [ sh:description "Allocate a pseudo-TTY. The default is false." ;
+            sh:maxCount 1 ;
+            sh:order 101 ;
+            sh:path <core:tty> ],
+        [ sh:description "Run the container in a new user namespace using the map with ‘name’ in the /etc/subgid file." ;
+            sh:maxCount 1 ;
+            sh:order 95 ;
+            sh:path containers:subgidname ],
+        [ sh:description "Set or alter a healthcheck command for a container." ;
+            sh:maxCount 1 ;
+            sh:order 43 ;
+            sh:path <core:healthcheck> ],
+        [ sh:description "Number of CPUs. The default is 0.0 which means no limit." ;
+            sh:maxCount 1 ;
+            sh:order 19 ;
+            sh:path <core:cpus> ],
+        [ sh:description "Override command of container. Can be a string or a list." ;
+            sh:order 14 ;
+            sh:path <core:command> ],
+        [ sh:class linkml:Any ;
+            sh:description "Block IO weight (relative device weight, format DEVICE_NAME[:]WEIGHT)." ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 5 ;
+            sh:path containers:blkio_weight_device ],
+        [ sh:description "Read in a line delimited file of environment variables. Doesn’t support idempotency. If users changes the file with environment variables it’s on them to recreate the container." ;
+            sh:maxCount 1 ;
+            sh:order 35 ;
+            sh:path <core:env_file> ],
+        [ sh:description "The initialization time needed for a container to bootstrap. The value can be expressed in time format like 2m3s. The default value is 0s" ;
+            sh:maxCount 1 ;
+            sh:order 46 ;
+            sh:path containers:healthcheck_start_period ],
+        [ sh:description "The number of retries allowed before a healthcheck is considered to be unhealthy. The default value is 3." ;
+            sh:maxCount 1 ;
+            sh:order 45 ;
+            sh:path <core:healthcheck_retries> ],
+        [ sh:description "Timeout (in seconds) to stop a container. Default is 10." ;
+            sh:maxCount 1 ;
+            sh:order 94 ;
+            sh:path containers:stop_timeout ],
+        [ sh:description "Limit read rate (bytes per second) from a device (e.g. device-read-bps /dev/sda:1mb)" ;
+            sh:order 26 ;
+            sh:path containers:device_read_bps ],
+        [ sh:description "Set timezone in container. This flag takes area-based timezones, GMT time, as well as local, which sets the timezone in the container to match the host machine. See /usr/share/zoneinfo/ for valid timezones. Remote connections use local containers.conf for defaults." ;
+            sh:maxCount 1 ;
+            sh:order 99 ;
+            sh:path <core:timezone> ],
+        [ sh:description "Use all current host environment variables in container. Defaults to false." ;
+            sh:maxCount 1 ;
+            sh:order 36 ;
+            sh:path containers:env_host ],
+        [ sh:description "Set the user namespace mode for the container. It defaults to the PODMAN_USERNS environment variable. An empty value means user namespaces are disabled." ;
+            sh:maxCount 1 ;
+            sh:order 105 ;
+            sh:path containers:userns ],
+        [ sh:description "Set custom DNS search domains (Use dns_search with ‘’ if you don’t wish to set the search domain)" ;
+            sh:maxCount 1 ;
+            sh:order 32 ;
+            sh:path <core:dns_search> ],
+        [ sh:description "Determines how to use the NOTIFY_SOCKET, as passed with systemd and Type=notify. Can be container, conmon, ignore." ;
+            sh:maxCount 1 ;
+            sh:order 88 ;
+            sh:path containers:sdnotify ],
+        [ sh:description "Run container in an existing pod. If you want podman to make the pod for you, prefix the pod name with “new:”" ;
+            sh:maxCount 1 ;
+            sh:order 77 ;
+            sh:path containers:pod ],
+        [ sh:class linkml:Any ;
+            sh:description "Logging driver specific options. Used to set the path to the container log file." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 62 ;
+            sh:path containers:log_opt ],
+        [ sh:description "Set custom DNS servers" ;
+            sh:order 30 ;
+            sh:path <core:dns> ],
+        [ sh:description "Give extended privileges to this container. The default is false." ;
+            sh:maxCount 1 ;
+            sh:order 78 ;
+            sh:path <core:privileged> ],
+        [ sh:description "Overwrite the default ENTRYPOINT of the image" ;
+            sh:maxCount 1 ;
+            sh:order 33 ;
+            sh:path containers:entrypoint ],
+        [ sh:description "Tune the host’s OOM preferences for containers (accepts -1000 to 1000)" ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 1000 ;
+            sh:minInclusive -1000 ;
+            sh:order 74 ;
+            sh:path containers:oom_score_adj ],
+        [ sh:description "Container host name. Sets the container host name that is available inside the container." ;
+            sh:maxCount 1 ;
+            sh:order 48 ;
+            sh:path uco-observable:hostname ],
+        [ sh:description "Run the container in a new user namespace using the supplied mapping." ;
+            sh:order 41 ;
+            sh:path containers:gidmap ],
+        [ sh:description "Security Options. For example security_opt “seccomp=unconfined”" ;
+            sh:order 90 ;
+            sh:path containers:security_opt ],
+        [ sh:description "Mount the container’s root filesystem as read only. Default is false" ;
+            sh:maxCount 1 ;
+            sh:order 81 ;
+            sh:path <core:read_only> ],
+        [ sh:description "Write the container ID to the file" ;
+            sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path containers:cidfile ],
+        [ sh:description "Memory limit (format 10k, where unit = b, k, m or g) Note - idempotency is supported for integers only." ;
+            sh:maxCount 1 ;
+            sh:order 64 ;
+            sh:path <core:memory> ],
+        [ sh:description "Limit read rate (IO per second) from a device (e.g. device-read-iops /dev/sda:1000)" ;
+            sh:order 27 ;
+            sh:path containers:device_read_iops ],
+        [ sh:description "Run container in systemd mode. The default is true." ;
+            sh:maxCount 1 ;
+            sh:order 98 ;
+            sh:path <core:systemd> ],
+        [ sh:description "Ulimit options" ;
+            sh:order 103 ;
+            sh:path <core:ulimit> ],
+        [ sh:description "Set the Network mode for the container * bridge create a network stack on the default bridge * none no networking * container:<name|id> reuse another container’s network stack * host use the podman host network stack. * <network-name>|<network-id> connect to a user-defined network * ns:<path> path to a network namespace to join * slirp4netns use slirp4netns to create a user network stack. This is the default for rootless containers" ;
+            sh:order 70 ;
+            sh:path uco-observable:network ],
+        [ sh:description "Whether to compare images in idempotency by taking into account a full name with registry and namespaces." ;
+            sh:maxCount 1 ;
+            sh:order 51 ;
+            sh:path containers:image_strict ],
+        [ sh:class linkml:Any ;
+            sh:description "Add an annotation to the container. The format is key value, multiple times." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path <core:annotation> ],
+        [ sh:description "Run the container in a new user namespace using the map with ‘name’ in the /etc/subuid file." ;
+            sh:maxCount 1 ;
+            sh:order 96 ;
+            sh:path containers:subuidname ],
+        [ sh:description "Tune a container’s memory swappiness behavior. Accepts an integer between 0 and 100." ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 100 ;
+            sh:minInclusive 0 ;
+            sh:order 67 ;
+            sh:path containers:memory_swappiness ],
+        [ sh:description "Run the container in a new user namespace using the supplied mapping." ;
+            sh:order 102 ;
+            sh:path containers:uidmap ],
+        [ sh:description "Expose a port, or a range of ports (e.g. expose “3300-3310”) to set up port redirection on the host system." ;
+            sh:order 38 ;
+            sh:path containers:expose ],
+        [ sh:description "Block IO weight (relative weight) accepts a weight value between 10 and 1000        minimum_value: 10" ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 1000 ;
+            sh:minInclusive 10 ;
+            sh:order 4 ;
+            sh:path containers:blkio_weight ],
+        [ sh:description "By default proxy environment variables are passed into the container if set for the podman process. This can be disabled by setting the http_proxy option to false. The environment variables passed in include http_proxy, https_proxy, ftp_proxy, no_proxy, and also the upper case versions of those. Defaults to true" ;
+            sh:maxCount 1 ;
+            sh:order 49 ;
+            sh:path <core:http_proxy> ],
+        [ sh:description "Signal to stop a container. Default is SIGTERM." ;
+            sh:maxCount 1 ;
+            sh:order 93 ;
+            sh:path containers:stop_signal ],
+        [ sh:description "Publish all exposed ports to random ports on the host interfaces. The default is false." ;
+            sh:maxCount 1 ;
+            sh:order 80 ;
+            sh:path containers:publish_all ],
+        [ sh:description "Mount volumes from the specified container(s)." ;
+            sh:order 108 ;
+            sh:path containers:volumes_from ] ;
+    sh:targetClass containers:PodmanContainer .
+
+containers:PodmanContainers a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Podman containers" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Return additional information which can be helpful for investigations." ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:debug> ],
+        [ sh:class linkml:Any ;
+            sh:description "List of dictionaries with data for running containers for podman_container module." ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 0 ;
+            sh:path containers:containers ] ;
+    sh:targetClass containers:PodmanContainers .
+
+containers:PodmanExport a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Export a Podman container" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Container to export." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path <core:container> ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:executable> ],
+        [ sh:description "Path to export container to." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <core:dest> ],
+        [ sh:description "Force saving to file even if it exists." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:force> ] ;
+    sh:targetClass containers:PodmanExport .
+
+containers:PodmanGenerateSystemd a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Generate systemd unit from a pod or a container" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Override the default stop timeout for the container with the given value in seconds." ;
+            sh:maxCount 1 ;
+            sh:order 14 ;
+            sh:path containers:stop_timeout ],
+        [ sh:description "Set the systemd unit name prefix for pods. If not set, use the default defined by podman, pod. Refer to podman-generate-systemd(1) man page for more information." ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path containers:pod_prefix ],
+        [ sh:description "Podman executable name or full path" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:executable> ],
+        [ sh:description "Generate unit files that create containers and pods, not only start them. Refer to podman-generate-systemd(1) man page for more information." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <core:new> ],
+        [ sh:description "Do not generate the header including meta data such as the Podman version and the timestamp." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path containers:no_header ],
+        [ sh:class linkml:Any ;
+            sh:description "Set environment variables to the systemd unit files. Keys are the environment variable names, and values are the environment variable values. Only with Podman 4.3.0 and above" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path <core:env> ],
+        [ sh:description "Destination of the generated systemd unit file(s)" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:dest> ],
+        [ sh:description "Set the systemd unit requires (Requires=) option. Similar to wants, but declares a stronger requirement dependency. Only with Podman 4.0.0 and above" ;
+            sh:order 9 ;
+            sh:path containers:requires ],
+        [ sh:description "Systemd unit name separator between the name/id of a container/pod and the prefix. If not set, use the default defined by podman, -. Refer to podman-generate-systemd(1) man page for more information." ;
+            sh:maxCount 1 ;
+            sh:order 12 ;
+            sh:path <core:separator> ],
+        [ sh:description "Restart policy of the service" ;
+            sh:in ( "no" "on-success" "on-failure" "on-abnormal" "on-watchdog" "on-abort" "always" ) ;
+            sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path containers:restart_policy ],
+        [ sh:description "Wanted things" ;
+            sh:order 16 ;
+            sh:path containers:wants ],
+        [ sh:description "Name of the pod or container to export" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "Use name of the containers for the start, stop, and description in the unit file." ;
+            sh:maxCount 1 ;
+            sh:order 15 ;
+            sh:path containers:use_names ],
+        [ sh:description "Configures the time to sleep before restarting a service (as configured with restart-policy).  Takes a value in seconds. Only with Podman 4.0.0 and above" ;
+            sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path containers:restart_sec ],
+        [ sh:description "Set the systemd unit name prefix for containers. If not set, use the default defined by podman, container. Refer to podman-generate-systemd(1) man page for more information." ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path containers:container_prefix ],
+        [ sh:description "Add the systemd unit after (After=) option, that ordering dependencies between the list of dependencies and this service.  This option may be specified more than once.  User-defined dependencies will be appended to the generated unit file. But any existing options such as needed or defined by default (e.g. online.target) will not be removed or overridden.  Only with Podman 4.0.0 and above" ;
+            sh:order 0 ;
+            sh:path <core:after> ],
+        [ sh:description "Override the default start timeout for the container with the given value in seconds. Only with Podman 4.0.0 and above" ;
+            sh:maxCount 1 ;
+            sh:order 13 ;
+            sh:path containers:start_timeout ] ;
+    sh:targetClass containers:PodmanGenerateSystemd .
+
+containers:PodmanImage a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Podman container image" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Whether or not to push an image." ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path containers:push ],
+        [ sh:description "Require HTTPS and validate certificates when pulling or pushing. Also used during build if a pull or push is necessary." ;
+            sh:maxCount 1 ;
+            sh:order 20 ;
+            sh:path <core:validate_certs> ],
+        [ sh:description "Discard any pre-existing signatures" ;
+            sh:maxCount 1 ;
+            sh:order 14 ;
+            sh:path containers:remove_signatures ],
+        [ sh:description "Path to a key file to use to sign the package." ;
+            sh:maxCount 1 ;
+            sh:order 15 ;
+            sh:path containers:sign_by ],
+        [ sh:description "Path to the build context directory." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path uco-observable:path ],
+        [ sh:description "Tag of the image to pull, push, or delete." ;
+            sh:maxCount 1 ;
+            sh:order 18 ;
+            sh:path <core:tag> ],
+        [ sh:description "Process of encoding information using fewer bits than original representation" ;
+            sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path <core:compress> ],
+        [ sh:description "Whether or not to pull the image." ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path containers:pull ],
+        [ sh:description "Human-directed movement of things or people between locations" ;
+            sh:maxCount 1 ;
+            sh:order 16 ;
+            sh:path <core:transport> ],
+        [ sh:description "username to use when authenticating to remote registries." ;
+            sh:maxCount 1 ;
+            sh:order 19 ;
+            sh:path <core:username> ],
+        [ sh:description "Name of the image to pull, push, or delete. It may contain a tag using the format image:tag." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "Whether or not to force push or pull an image. When building, force the build even if the image already exists." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:force> ],
+        [ sh:description "Location where item appears, appeared, or is intended to be after transition" ;
+            sh:maxCount 1 ;
+            sh:order 12 ;
+            sh:path <core:dest> ],
+        [ sh:description "Password to use when authenticating to remote registries." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path uco-observable:password ],
+        [ sh:description "Whether an image should be present, absent, or built." ;
+            sh:in ( "absent" "present" "build" ) ;
+            sh:maxCount 1 ;
+            sh:order 17 ;
+            sh:path uco-observable:state ],
+        [ sh:class linkml:Any ;
+            sh:description "Arguments that control image build." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 1 ;
+            sh:path <core:build> ],
+        [ sh:description "Path to file containing authorization credentials to the remote registry." ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:auth_file> ],
+        [ sh:class linkml:Any ;
+            sh:description "Arguments that control pushing images." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 10 ;
+            sh:path containers:push_args ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:executable> ],
+        [ sh:maxCount 1 ;
+            sh:order 13 ;
+            sh:path uco-observable:format ],
+        [ sh:description "Path to directory containing TLS certificates and keys to use." ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path containers:ca_cert_dir ] ;
+    sh:targetClass containers:PodmanImage .
+
+containers:PodmanImport a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Import Podman container from file" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class linkml:Any ;
+            sh:description "Set changes as list of key-value pairs, see example." ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 0 ;
+            sh:path <core:change> ],
+        [ sh:description "Path to image file to load." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path uco-observable:src ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:executable> ],
+        [ sh:description "Set commit message for imported image" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:commit_message> ] ;
+    sh:targetClass containers:PodmanImport .
+
+containers:PodmanLoad a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Load container into container storage" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:executable> ],
+        [ sh:description "Path to image file to load." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <core:input> ] ;
+    sh:targetClass containers:PodmanLoad .
+
+containers:PodmanLogin a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Login to a Container registry using Podman" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:authfile> ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:executable> ],
+        [ sh:description "Registry server. If the registry is not specified, the first registry under `[registries.search]` from `registries.conf` will be used." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path containers:registry ],
+        [ sh:description "Use certificates at path (*.crt, *.cert, *.key) to connect to the registry. Default certificates directory is /etc/containers/certs.d." ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:certdir> ],
+        [ sh:description "Username for the registry server." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 6 ;
+            sh:path <core:username> ],
+        [ sh:description "Password for the registry server." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path uco-observable:password ],
+        [ sh:description "Require HTTPS and verify certificates when contacting registries. If explicitly set to true, then TLS verification will be used. If set to false, then TLS verification will not be used. If not specified, TLS verification will be used unless the target registry is listed as an insecure registry in registries.conf." ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path <core:tlsverify> ] ;
+    sh:targetClass containers:PodmanLogin .
+
+containers:PodmanLogout a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Logout of a Container registry using Podman" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Credentials created using other tools such as `docker login` are not removed unless the corresponding `authfile` is explicitly specified. Since podman also uses existing credentials in these files by default (for docker e.g. `${HOME}/.docker/config.json`), module execution will fail if a docker login exists for the registry specified in any `authfile` is used by podman. This can be ignored by setting `ignore_docker_credentials` to `yes` - the credentials will be kept and `changed` will be false. This option cannot be used together with `all` since in this case podman will not check for existing `authfiles` created by other tools." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path containers:ignore_docker_credentials ],
+        [ sh:description "Remove the cached credentials for all registries in the auth file." ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path containers:all ],
+        [ sh:description "Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:authfile> ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:executable> ] ;
+    sh:targetClass containers:PodmanLogout .
+
+containers:PodmanNetwork a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Manage podman networks" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Restrict external access from this network (default “false”)" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path <core:internal> ],
+        [ sh:description "Driver to manage the network (default “bridge”)" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:driver> ],
+        [ sh:description "Name of the network" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 9 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "Return additional information which can be helpful for investigations." ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:debug> ],
+        [ sh:description "Recreate network even if exists." ;
+            sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path <core:recreate> ],
+        [ sh:description "IPv4 or IPv6 gateway for the subnet" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:gateway> ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman ifabsent: string(podman)" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:executable> ],
+        [ sh:class linkml:Any ;
+            sh:description "Add network options. Currently ‘vlan’ and ‘mtu’ are supported." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 10 ;
+            sh:path <core:opt> ],
+        [ sh:description "Create a Macvlan connection based on this device" ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path containers:macvlan ],
+        [ sh:description "State of network, default ‘present’" ;
+            sh:in ( "present" "absent" ) ;
+            sh:maxCount 1 ;
+            sh:order 12 ;
+            sh:path uco-observable:state ],
+        [ sh:description "disable dns plugin (default “false”)" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path containers:disable_dns ],
+        [ sh:description "Enable IPv6 (Dual Stack) networking. You must pass a IPv6 subnet. The subnet option must be used with the ipv6 option." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <core:ipv6> ],
+        [ sh:description "Subnet in CIDR format" ;
+            sh:maxCount 1 ;
+            sh:order 13 ;
+            sh:path <core:subnet> ],
+        [ sh:description "Allocate container IP from range" ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <core:ip_range> ] ;
+    sh:targetClass containers:PodmanNetwork .
+
+containers:PodmanPlay a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Play kubernetes YAML file using podman" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Directory path for seccomp profiles (default is “/var/lib/kubelet/seccomp”). This option is not available with the remote Podman client" ;
+            sh:maxCount 1 ;
+            sh:order 12 ;
+            sh:path containers:seccomp_profile_root ],
+        [ sh:description "Name of executable to run, by default ‘podman’ ifabsent: string(podman)" ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:executable> ],
+        [ sh:description "Use Kubernetes configmap YAML at path to provide a source for environment variable values within the containers of the pod. Note - The configmap option can be used multiple times to pass multiple Kubernetes configmap YAMLs" ;
+            sh:order 2 ;
+            sh:path containers:configmap ],
+        [ sh:description "Require HTTPS and verify certificates when contacting registries (default is true). If explicitly set to true, then TLS verification will be used. If set to false, then TLS verification will not be used. If not specified, TLS verification will be used unless the target registry is listed as an insecure registry in registries.conf." ;
+            sh:maxCount 1 ;
+            sh:order 14 ;
+            sh:path <core:tls_verify> ],
+        [ sh:description "List of the names of CNI networks the pod should join." ;
+            sh:order 8 ;
+            sh:path uco-observable:network ],
+        [ sh:description "Enable debug for the module." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:debug> ],
+        [ sh:description "Path to file with YAML configuration for a Pod." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path containers:kube_file ],
+        [ sh:description "The username and password to use to authenticate with the registry if required." ;
+            sh:maxCount 1 ;
+            sh:order 15 ;
+            sh:path <core:username> ],
+        [ sh:description "The username and password to use to authenticate with the registry if required." ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path uco-observable:password ],
+        [ sh:description "Start the pod after creating it, or to leave it created only." ;
+            sh:in ( "absent" "present" "started" "stopped" "created" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 13 ;
+            sh:path uco-observable:state ],
+        [ sh:description "Use certificates at path (*.crt, *.cert, *.key) to connect to the registry. Default certificates directory is /etc/containers/certs.d. (This option is not available with the remote Podman client)" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:cert_dir> ],
+        [ sh:description "Set logging driver for all created containers." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <core:log_driver> ],
+        [ sh:description "Hide image pulls logs from output." ;
+            sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path <core:quiet> ],
+        [ sh:description "Path of the authentication file. Default is ${XDG_RUNTIME_DIR}/containers/auth.json, which is set using podman login. If the authorization state is not found there, $HOME/.docker/config.json is checked, which is set using docker login. Note - You can also override the default path of the authentication file by setting the REGISTRY_AUTH_FILE environment variable. export REGISTRY_AUTH_FILE=path" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:authfile> ],
+        [ sh:description "If pod already exists, delete it and run the new one." ;
+            sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path <core:recreate> ],
+        [ sh:description "Set logging level for podman calls. Log messages above specified level (“debug”|”info”|”warn”|”error”|”fatal”|”panic”) (default “error”)" ;
+            sh:in ( "debug" "info" "warn" "error" "fatal" "panic" ) ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <core:log_level> ] ;
+    sh:targetClass containers:PodmanPlay .
+
+containers:PodmanPod a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Manage Podman pods" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Publish a port or range of ports from the pod to the host." ;
+            sh:order 29 ;
+            sh:path <core:publish> ],
+        [ sh:description "Limit the CPUs to support execution. First CPU is numbered 0. Unlike `cpus` this is of type string and parsed as a list of numbers. Format is 0-3,0,1" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path containers:cpuset_cpus ],
+        [ sh:class linkml:Any ;
+            sh:description "Add metadata to a pod, pass dictionary of label keys and values." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 20 ;
+            sh:path <core:label> ],
+        [ sh:description "Set custom DNS options in the /etc/resolv.conf file that will be shared between all containers in the pod." ;
+            sh:order 8 ;
+            sh:path <core:dns_opt> ],
+        [ sh:description "Name for GID map from the /etc/subgid file. Using this flag will run the container with user namespace enabled. This flag conflicts with `userns` and `gidmap`." ;
+            sh:maxCount 1 ;
+            sh:order 33 ;
+            sh:path containers:subgidname ],
+        [ sh:description "Create an infra container and associate it with the pod. An infra container is a lightweight container used to coordinate the shared kernel namespace of a pod. Default is true." ;
+            sh:maxCount 1 ;
+            sh:order 14 ;
+            sh:path <core:infra> ],
+        [ sh:description "Add a host to the /etc/hosts file shared between all containers in the pod." ;
+            sh:order 0 ;
+            sh:path containers:add_host ],
+        [ sh:description "This variable is set for state" ;
+            sh:in ( "absent" "present" "started" "stopped" "created" ) ;
+            sh:maxCount 1 ;
+            sh:order 32 ;
+            sh:path uco-observable:state ],
+        [ sh:description "Set the user namespace mode for all the containers in a pod. It defaults to the PODMAN_USERNS environment variable. An empty value (“”) means user namespaces are disabled." ;
+            sh:maxCount 1 ;
+            sh:order 36 ;
+            sh:path containers:userns ],
+        [ sh:description "Set a hostname to the pod" ;
+            sh:maxCount 1 ;
+            sh:order 13 ;
+            sh:path uco-observable:hostname ],
+        [ sh:description "Name for UID map from the /etc/subuid file. Using this flag will run the container with user namespace enabled. This flag conflicts with `userns` and `uidmap`." ;
+            sh:maxCount 1 ;
+            sh:order 34 ;
+            sh:path containers:subuidname ],
+        [ sh:description "Set a static MAC address for the pod’s shared network." ;
+            sh:maxCount 1 ;
+            sh:order 22 ;
+            sh:path <core:mac_address> ],
+        [ sh:description """Run the container in a new user namespace using the supplied mapping. This option conflicts with the `userns` and `subuidname` options. This option provides a way to map host UIDs to container UIDs. It can be passed several times to map different ranges.
+""" ;
+            sh:order 35 ;
+            sh:path containers:uidmap ],
+        [ sh:description "Set network mode for the pod. Supported values are bridge (the default), host (do not create a network namespace, all containers in the pod will use the host’s network), or a list of names of CNI networks to join." ;
+            sh:order 24 ;
+            sh:path uco-observable:network ],
+        [ sh:description "The name that will be used for the pod’s infra container." ;
+            sh:maxCount 1 ;
+            sh:order 17 ;
+            sh:path containers:infra_name ],
+        [ sh:description "Set custom DNS servers in the /etc/resolv.conf file that will be shared between all containers in the pod. A special option, “none” is allowed which disables creation of /etc/resolv.conf for the pod." ;
+            sh:order 7 ;
+            sh:path <core:dns> ],
+        [ sh:description "The command that will be run to start the infra container. Default is “/pause”." ;
+            sh:maxCount 1 ;
+            sh:order 15 ;
+            sh:path containers:infra_command ],
+        [ sh:description "Write the pod ID to the file." ;
+            sh:maxCount 1 ;
+            sh:order 28 ;
+            sh:path containers:pod_id_file ],
+        [ sh:description "Assign a name to the pod." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 23 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "Disable creation of /etc/hosts for the pod." ;
+            sh:maxCount 1 ;
+            sh:order 26 ;
+            sh:path containers:no_hosts ],
+        [ sh:description "Set custom DNS search domains in the /etc/resolv.conf file that will be shared between all containers in the pod." ;
+            sh:order 9 ;
+            sh:path <core:dns_search> ],
+        [ sh:description "Use with present and started states to force the re-creation of an existing pod." ;
+            sh:maxCount 1 ;
+            sh:order 30 ;
+            sh:path <core:recreate> ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path <core:executable> ],
+        [ sh:description "Create a bind mount." ;
+            sh:order 37 ;
+            sh:path uco-observable:volume ],
+        [ sh:description "Path to cgroups under which the cgroup for the pod will be created. If the path is not absolute, he path is considered to be relative to the cgroups path of the init process. Cgroups will be created if they do not already exist." ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path containers:cgroup_parent ],
+        [ sh:description "Set the PID mode for the pod. The default is to create a private PID namespace for the pod. Requires the PID namespace to be shared via `share` option." ;
+            sh:maxCount 1 ;
+            sh:order 27 ;
+            sh:path uco-observable:pid ],
+        [ sh:description "Add a network-scoped alias for the pod, setting the alias for all networks that the pod joins. To set a name only for a specific network, use the alias option as described under the -`network` option. Network aliases work only with the bridge networking mode. This option can be specified multiple times." ;
+            sh:order 25 ;
+            sh:path containers:network_alias ],
+        [ sh:description "Set the total number of CPUs delegated to the pod. Default is 0.000 which indicates that there is no limit on computation power." ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:cpus> ],
+        [ sh:description "Return additional information which can be helpful for investigations." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:debug> ],
+        [ sh:description "Write the pid of the infra container’s conmon process to a file. As conmon runs in a separate process than Podman, this is necessary when using systemd to manage Podman containers and pods." ;
+            sh:maxCount 1 ;
+            sh:order 16 ;
+            sh:path containers:infra_conmon_pidfile ],
+        [ sh:description "GID map for the user namespace. Using this flag will run the container with user namespace enabled. It conflicts with the `userns` and `subgidname` flags." ;
+            sh:order 12 ;
+            sh:path containers:gidmap ],
+        [ sh:description "Set a static IP for the pod’s shared network." ;
+            sh:maxCount 1 ;
+            sh:order 19 ;
+            sh:path uco-observable:ip ],
+        [ sh:description "A comma delimited list of kernel namespaces to share. If none or “” is specified, no namespaces will be shared. The namespaces to choose from are ipc, net, pid, user, uts." ;
+            sh:maxCount 1 ;
+            sh:order 31 ;
+            sh:path <core:share> ],
+        [ sh:description "Limit read rate (bytes per second) from a device (e.g. device-read-bps=/dev/sda:1mb)" ;
+            sh:order 6 ;
+            sh:path containers:device_read_bps ],
+        [ sh:class linkml:Any ;
+            sh:description "Generate systemd unit file for container." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 11 ;
+            sh:path containers:generate_systemd ],
+        [ sh:description "Add a host device to the pod. Optional permissions parameter can be used to specify device permissions. It is a combination of r for read, w for write, and m for mknod(2)" ;
+            sh:order 5 ;
+            sh:path <core:device> ],
+        [ sh:description "The image that will be created for the infra container. Default is “k8s.gcr.io/pause:3.1”." ;
+            sh:maxCount 1 ;
+            sh:order 18 ;
+            sh:path containers:infra_image ],
+        [ sh:description "Read in a line delimited file of labels." ;
+            sh:maxCount 1 ;
+            sh:order 21 ;
+            sh:path containers:label_file ] ;
+    sh:targetClass containers:PodmanPod .
+
+containers:PodmanSave a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Saves podman image to tar file" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Force saving to file even if it exists." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:force> ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:executable> ],
+        [ sh:description "Save image to docker-archive, oci-archive (see containers-transports(5)), oci-dir (oci transport), or docker-dir (dir transport with v2s2 manifest type)." ;
+            sh:in ( "docker-archive" "oci-archive" "oci-dir" "docker-dir" ) ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path uco-observable:format ],
+        [ sh:description "Destination file to write image to." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <core:dest> ],
+        [ sh:description "Compress tarball image layers when pushing to a directory using the ‘dir’ transport. (default is same compression type, compressed or uncompressed, as source)" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:compress> ],
+        [ sh:description "Allow for creating archives with more than one image. Additional names will be interpreted as images instead of tags. Only supported for docker-archive." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path containers:multi_image_archive ],
+        [ sh:description "Image to save." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <core:image> ] ;
+    sh:targetClass containers:PodmanSave .
+
+containers:PodmanSecret a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Manage Podman secrets" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Use it when state is present to remove and recreate an existing secret." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:force> ],
+        [ sh:class linkml:Any ;
+            sh:description "Driver-specific key-value options." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path <core:driver_opts> ],
+        [ sh:description "Override default secrets driver, currently podman uses file which is unencrypted." ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:driver> ],
+        [ sh:description "The value of the secret. Required when state is present." ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path uco-observable:data ],
+        [ sh:description "Use it when state is present and secret with the same name already exists. If set to true, the secret will NOT be recreated and remains as is." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path containers:skip_existing ],
+        [ sh:description "The name of the secret." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:executable> ],
+        [ sh:description "Whether to create or remove the named secret." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path uco-observable:state ] ;
+    sh:targetClass containers:PodmanSecret .
+
+containers:PodmanTag a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Add an additional name to a local image" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Additional names." ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path containers:target_names ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:executable> ],
+        [ sh:description "Image to tag." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path <core:image> ] ;
+    sh:targetClass containers:PodmanTag .
+
+containers:PodmanVolume a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Manage Podman Volumes" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Set driver specific options. For example ‘device=tpmfs’, ‘type=tmpfs’. UID and GID idempotency is not supported due to changes in podman." ;
+            sh:order 5 ;
+            sh:path <core:options> ],
+        [ sh:description "Name of volume." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path <rdfs:label> ],
+        [ sh:class linkml:Any ;
+            sh:description "Add metadata to a pod volume (e.g., label com.example.key=value)." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 3 ;
+            sh:path <core:label> ],
+        [ sh:description "Specify volume driver name (default local)." ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:driver> ],
+        [ sh:description "Recreate volume even if exists." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <core:recreate> ],
+        [ sh:description "State of volume, default ‘present’" ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path uco-observable:state ],
+        [ sh:description "Path to podman executable if it is not in the $PATH on the machine running podman" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:executable> ],
+        [ sh:description "Return additional information which can be helpful for investigations." ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:debug> ] ;
+    sh:targetClass containers:PodmanVolume .
+
+<core:EvidenceType> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Class of evidence that supports an association" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path <rdf:type> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path <dcterms:description> ],
+        [ sh:description "date on which an entity was created. This can be applied to nodes or edges" ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path uco-observable:creationDate ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 12 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 5 ;
+            sh:path <core:xref> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path <rdfs:label> ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:license> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <core:iri> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 6 ;
+            sh:path <core:id> ],
+        [ sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:rights> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 8 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 4 ;
+            sh:path <core:providedBy> ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path uco-observable:format ] ;
+    sh:targetClass <core:EvidenceType> .
+
+<core:Publication> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Any published piece of information. Can refer to a whole publication, its encompassing publication (i.e. journal or book) or to a part of a publication, if of significant knowledge scope (e.g. a figure, figure legend, or section highlighted by NLP). The scope is intended to be general and include information published on the web, as well as printed materials, either directly or in one of the Publication Csolink category subclasses." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 15 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 16 ;
+            sh:path <dcterms:description> ],
+        [ sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <core:rights> ],
+        [ sh:description "keywords tagging a publication" ;
+            sh:order 3 ;
+            sh:path <core:keywords> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 10 ;
+            sh:path <core:providedBy> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 12 ;
+            sh:path <core:iri> ],
+        [ sh:description "executive  summary of a publication" ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path <core:summary> ],
+        [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 11 ;
+            sh:path <core:id> ],
+        [ sh:description "Library of Congress Subject Headings (LCSH) terms tagging a publication" ;
+            sh:order 4 ;
+            sh:path <core:lcshTerms> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 17 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <core:license> ],
+        [ sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path uco-observable:format ],
+        [ sh:description "Page number of source referenced for statement or publication" ;
+            sh:order 1 ;
+            sh:path <core:pages> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 14 ;
+            sh:path <rdf:type> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 13 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "Connects an publication to the list of authors who contributed to the publication. This property should be a comma-delimited list of author names. It is recommended that an author's name be formatted as \"surname, firstname initial.\"." ;
+            sh:order 0 ;
+            sh:path <core:authors> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 5 ;
+            sh:path <core:xref> ],
+        [ sh:description "date on which an entity was created. This can be applied to nodes or edges" ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path uco-observable:creationDate ] ;
+    sh:targetClass <core:Publication> .
+
+<core:QuantityValue> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A value of an attribute that is quantitative and measurable, available as a combination of a unit and a numeric value" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "connects a quantity value to a unit" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <core:hasUnit> ],
+        [ sh:description "connects a quantity value to a number" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path <core:hasNumericValue> ] ;
+    sh:targetClass <core:QuantityValue> .
+
+<core:OntologyClass> a sh:NodeShape ;
+    sh:closed false ;
+    sh:description "A concept or class in an ontology, vocabulary or thesaurus. Note that nodes in a ucs compatible KG can be considered both instances of ucs classes, and OWL classes in their own right. In general you should not need to use this class directly.  Instead, use the appropriate ucs class, i.e. cso:ComputationalProcess" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass <core:OntologyClass> .
+
+linkml:Any a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "linkml:Any type is an experimental feature for allowing arbitrary objects" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass linkml:Any .
+
+schema1:Thing a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "a databased entity or concept/class" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "A unique identifier for an entity. Must be either a CURIE shorthand for a URI or a complete URI" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path <core:id> ],
+        [ sh:description "A human-readable name for an attribute or entity." ;
+            sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "Alternate CURIEs for a thing" ;
+            sh:order 1 ;
+            sh:path <core:xref> ],
+        [ sh:description "Anchoring point (of a name) in taxonomy" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path <rdf:type> ],
+        [ sh:class <core:Attribute> ;
+            sh:description "connects any entity to an attribute" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 8 ;
+            sh:path <core:hasAttribute> ],
+        [ sh:description "a human-readable description of an entity" ;
+            sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path <dcterms:description> ],
+        [ sh:description """Name of the high level OntologyClass in which this entity is categorized. Corresponds to the label for the base entity type class.
+ * In a neo4j database this MAY correspond to the neo4j label tag.
+ * In an RDF database it should be a universal model class URI.
+This field is multi-valued. It should include values for ancestors of the universal class.
+In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific base class, or potentially to a class more specific than something in base.""" ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path <core:category> ;
+            sh:pattern "^ucs-core:[A-Z][A-Za-z]+$" ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path <core:iri> ],
+        [ sh:description "The value in this nodeProperty represents the knowledge provider that created or assembled the node and all of its attributes.  Used internally to represent how a particular node made its way into a knowledge provider or graph." ;
+            sh:order 0 ;
+            sh:path <core:providedBy> ] ;
+    sh:targetClass schema1:Thing .
+
+<core:Attribute> a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "A property or characteristic of an entity. For example, an apple may have properties such as color, shape, age, crispiness. An environmental sample may have attributes such as depth, lat, long, material." ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "The human-readable 'attribute name' can be set to a string which reflects its context of interpretation, e.g. SEPIO evidence/provenance/confidence annotation or it can default to the name associated with the 'has attribute type' slot ontology term." ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path <rdfs:label> ],
+        [ sh:description "An IRI for an entity. This is determined by the id using expansion rules." ;
+            sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path <core:iri> ],
+        [ sh:class schema1:Thing ;
+            sh:description "connects an attribute to a value" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path <core:hasQualitativeValue> ],
+        [ sh:class <core:QuantityValue> ;
+            sh:description "Connects an attribute to a value" ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 2 ;
+            sh:path <core:hasQuantitativeValue> ],
+        [ sh:description "Object (person, place, text, thing, etc.) from which something (information, goods, etc.) comes or is acquired" ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path uco-observable:src ],
+        [ sh:class <core:OntologyClass> ;
+            sh:description "connects an attribute to a class that describes it" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 1 ;
+            sh:path <core:hasAttributeType> ] ;
+    sh:targetClass <core:Attribute> .
+

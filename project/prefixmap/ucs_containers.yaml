@@ -1,0 +1,147 @@
+{
+   "AML": "https://w3id.org/i40/aml#",
+   "BFO": "http://purl.obolibrary.org/obo/BFO_",
+   "BTO": "http://purl.obolibrary.org/obo/BTO_",
+   "CDAO": "http://purl.obolibrary.org/obo/CDAO_",
+   "CSO": "https://cso.kmi.open.ac.uk/topics/",
+   "CTRL": "https://w3id.org/ibp/CTRLont#",
+   "DOI": "http://identifiers.org/doi/",
+   "ECO": "http://purl.obolibrary.org/obo/ECO_",
+   "EFO": "http://identifiers.org/efo/",
+   "GR": "http://purl.org/goodrelations/v1#",
+   "GSSO": "http://purl.obolibrary.org/obo/GSSO_",
+   "IAO": "http://purl.obolibrary.org/obo/IAO_",
+   "INO": "http://purl.obolibrary.org/obo/INO_",
+   "LCSH": "http://id.loc.gov/authorities/subjects/",
+   "LOINC": "http://loinc.org/rdf/",
+   "MS": "http://purl.obolibrary.org/obo/MS_",
+   "NCIT": "http://purl.obolibrary.org/obo/NCIT_",
+   "OBAN": "http://purl.org/oban/",
+   "OIO": "http://www.geneontology.org/formats/oboInOwl#",
+   "OM": "http://www.ontology-of-units-of-measure.org/resource/om-2/",
+   "ONTOAVIDA": "http://purl.obolibrary.org/obo/ONTOAVIDA_",
+   "PATO": "http://purl.obolibrary.org/obo/PATO_",
+   "REPR": "https://w3id.org/reproduceme#",
+   "RO": "http://purl.obolibrary.org/obo/RO_",
+   "SAN": "https://www.irit.fr/recherches/MELODI/ontologies/SAN.html#",
+   "SIO": "http://semanticscience.org/resource/SIO_",
+   "SO": "http://purl.obolibrary.org/obo/SO_",
+   "SWO": "http://purl.obolibrary.org/obo/SWO_",
+   "T4FS": "http://purl.obolibrary.org/obo/T4FS_",
+   "UO": "http://purl.obolibrary.org/obo/UO_",
+   "XAPI": "http://ns.inria.fr/ludo/v1/docs/xapi.html#",
+   "aml": "https://w3id.org/i40/aml#",
+   "containers": "https://w3id.org/lmodel/ucs-containers/",
+   "core": "https://w3id.org/lmodel/ucs-core/",
+   "csrc": "https://csrc.nist.gov/glossary/term/",
+   "ctrl": "https://w3id.org/ibp/CTRLont#",
+   "dcid": "https://datacommons.org/browser/",
+   "dcterms": "http://purl.org/dc/terms/",
+   "dwc": "https://dwc.tdwg.org/terms/#dc:",
+   "edam.data": "http://edamontology.org/data_",
+   "edam.format": "http://edamontology.org/format_",
+   "edam.operation": "http://edamontology.org/operation_",
+   "edam.topic": "http://edamontology.org/topic_",
+   "geolink": "http://schema.geolink.org/1.0/base/main.html#",
+   "gr": "http://purl.org/goodrelations/v1#",
+   "gvp": "http://vocab.getty.edu/ontology#",
+   "linkml": "https://w3id.org/linkml/",
+   "om": "http://www.ontology-of-units-of-measure.org/resource/om-2/",
+   "owl": "http://www.w3.org/2002/07/owl#",
+   "pav": "http://purl.org/pav/",
+   "qud": "http://qudt.org/1.1/schema/qudt#",
+   "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+   "rr": "http://www.w3.org/ns/r2rml#",
+   "schema": "http://schema.org/",
+   "schema_ucs_core": "https://w3id.org/lmodel/ucs-core/schema/",
+   "skos": "http://www.w3.org/2004/02/skos/core#",
+   "sosa": "http://www.w3.org/ns/sosa/",
+   "ssn": "http://www.w3.org/ns/ssn/",
+   "ssn-system": "http://www.w3.org/ns/ssn/systems/",
+   "sumo": "https://w3id.org/sumo/kb/",
+   "uberon": "http://purl.obolibrary.org/obo/UBERON_",
+   "uco-core": "https://w3id.org/lmodel/uco-core/",
+   "uco-identity": "https://w3id.org/lmodel/uco-identity/",
+   "uco-observable": "https://w3id.org/lmodel/uco-observable/",
+   "uco-types": "https://w3id.org/lmodel/uco-types/",
+   "ucs-core": "https://w3id.org/lmodel/ucs-core/",
+   "wikidata": "http://identifiers.org/wikidata/",
+   "wikidata.property": "https://www.wikidata.org/wiki/Property:",
+   "xsd": "http://www.w3.org/2001/XMLSchema#",
+   "AdministrativeEntity": {
+      "@id": "core:AdministrativeEntity"
+   },
+   "Agent": {
+      "@id": "core:Agent"
+   },
+   "Annotation": {
+      "@id": "uco-core:Annotation"
+   },
+   "Association": {
+      "@id": "core:Association"
+   },
+   "Attribute": {
+      "@id": "core:Attribute"
+   },
+   "Entity": {
+      "@id": "core:Entity"
+   },
+   "EvidenceType": {
+      "@id": "core:EvidenceType"
+   },
+   "Hardware": {
+      "@id": "core:Hardware"
+   },
+   "InformationContentEntity": {
+      "@id": "core:InformationContentEntity"
+   },
+   "Linux": {
+      "@id": "core:Linux"
+   },
+   "MetaObject": {
+      "@id": "linkml:Any"
+   },
+   "NamedThing": {
+      "@id": "schema:Thing"
+   },
+   "OntologyClass": {
+      "@id": "core:OntologyClass"
+   },
+   "OpenSource": {
+      "@id": "core:OpenSource"
+   },
+   "OperatingSystem": {
+      "@id": "uco-observable:OperatingSystem"
+   },
+   "Project": {
+      "@id": "core:Project"
+   },
+   "Publication": {
+      "@id": "core:Publication"
+   },
+   "QuantityValue": {
+      "@id": "core:QuantityValue"
+   },
+   "Software": {
+      "@id": "uco-core:Software"
+   },
+   "SoftwareOrDevice": {
+      "@id": "core:SoftwareOrDevice"
+   },
+   "Solaris": {
+      "@id": "core:Solaris"
+   },
+   "System": {
+      "@id": "core:System"
+   },
+   "ThingWithTaxon": {
+      "@id": "core:ThingWithTaxon"
+   },
+   "Virtualization": {
+      "@id": "core:Virtualization"
+   },
+   "Windows": {
+      "@id": "core:Windows"
+   }
+}

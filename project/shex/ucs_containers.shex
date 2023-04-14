@@ -1,0 +1,837 @@
+BASE <https://w3id.org/lmodel/ucs-containers/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX schema1: <http://schema.org/>
+PREFIX uco-core: <https://w3id.org/lmodel/uco-core/>
+PREFIX uco-identity: <https://w3id.org/lmodel/uco-identity/>
+PREFIX uco-observable: <https://w3id.org/lmodel/uco-observable/>
+PREFIX UO: <http://purl.obolibrary.org/obo/UO_>
+PREFIX core: <https://w3id.org/lmodel/ucs-core/>
+
+
+linkml:String xsd:string
+
+linkml:Integer xsd:integer
+
+linkml:Boolean xsd:boolean
+
+linkml:Float xsd:float
+
+linkml:Double xsd:double
+
+linkml:Decimal xsd:decimal
+
+linkml:Time xsd:dateTime
+
+linkml:Date xsd:date
+
+linkml:Datetime xsd:dateTime
+
+linkml:DateOrDatetime linkml:DateOrDatetime
+
+linkml:Uriorcurie IRI
+
+linkml:Curie xsd:string
+
+linkml:Uri IRI
+
+linkml:Ncname xsd:string
+
+linkml:Objectidentifier IRI
+
+linkml:Nodeidentifier NONLITERAL
+
+core:CategoryType IRI
+
+core:IriType IRI
+
+core:LabelType xsd:string
+
+core:PredicateType IRI
+
+core:NarrativeText xsd:string
+
+core:Unit UO:0000000
+
+core:AdministrativeEntity  (
+    @core:Agent OR @core:Project
+)
+
+core:AdministrativeEntity_struct {
+    (  $core:AdministrativeEntity_tes (  &core:NamedThing_tes ;
+          rdf:type [ schema1:Thing ] ?
+       ) ;
+       rdf:type [ core:AdministrativeEntity ]
+    )
+}
+
+core:Agent CLOSED {
+    (  $core:Agent_tes (  &core:AdministrativeEntity_tes ;
+          rdf:type [ core:AdministrativeEntity ] ? ;
+          core:affiliation @linkml:Uriorcurie * ;
+          uco-identity:address @linkml:String ?
+       ) ;
+       rdf:type [ core:Agent ]
+    )
+}
+
+core:Annotation  (
+    @core:Attribute OR @core:QuantityValue
+)
+
+core:Annotation_struct {
+    (  $core:Annotation_tes rdf:type . * ;
+       rdf:type [ uco-core:Annotation ] ?
+    )
+}
+
+core:Association CLOSED {
+    (  $core:Association_tes (  &core:Entity_tes ;
+          rdf:type [ core:Entity ] ? ;
+          rdf:subject @core:NamedThing ;
+          rdf:predicate @core:PredicateType ;
+          rdf:object @core:NamedThing ;
+          core:negated @linkml:Boolean ? ;
+          core:qualifiers @core:OntologyClass * ;
+          core:publications @core:Publication * ;
+          core:hasEvidence @core:EvidenceType * ;
+          rdf:type @linkml:String ? ;
+          core:category @core:CategoryType *
+       ) ;
+       rdf:type [ core:Association ]
+    )
+}
+
+core:Attribute CLOSED {
+    (  $core:Attribute_tes (  &core:Annotation_tes ;
+          rdf:type [ uco-core:Annotation ] ? ;
+          &core:OntologyClass_tes ;
+          rdf:type [ core:OntologyClass ] ? ;
+          rdfs:label @core:LabelType ? ;
+          core:hasAttributeType @core:OntologyClass ;
+          core:hasQuantitativeValue @core:QuantityValue * ;
+          core:hasQualitativeValue @core:NamedThing ? ;
+          core:iri @core:IriType ? ;
+          uco-observable:src @linkml:String ?
+       ) ;
+       rdf:type [ core:Attribute ] ?
+    )
+}
+
+<ClosedSoftwareModule>  (
+    @<PodmanContainer> OR @<PodmanContainers> OR @<PodmanExport> OR @<PodmanGenerateSystemd> OR @<PodmanImage> OR @<PodmanImport>
+    OR @<PodmanLoad> OR @<PodmanLogin> OR @<PodmanLogout> OR @<PodmanNetwork> OR @<PodmanPlay> OR @<PodmanPod> OR @<PodmanSave> OR
+    @<PodmanSecret> OR @<PodmanTag> OR @<PodmanVolume>
+)
+
+<ClosedSoftwareModule_struct> {
+    (  $<ClosedSoftwareModule_tes> rdf:type . * ;
+       rdf:type [ <ClosedSoftwareModule> ] ?
+    )
+}
+
+<Container>  (
+    CLOSED {
+       (  $<Container_tes> (  &core:Software_tes ;
+             rdf:type [ uco-core:Software ] ? ;
+             &core:Virtualization_tes ;
+             rdf:type [ core:Virtualization ] ?
+          ) ;
+          rdf:type [ <Container> ]
+       )
+    } OR @<OciContainer>
+)
+
+<Containerd> CLOSED {
+    (  $<Containerd_tes> (  &core:Software_tes ;
+          rdf:type [ uco-core:Software ] ? ;
+          &<OpenContainerInitiative_tes> ;
+          rdf:type [ <OpenContainerInitiative> ] ?
+       ) ;
+       rdf:type [ <Containerd> ]
+    )
+}
+
+<Docker> CLOSED {
+    (  $<Docker_tes> (  &core:Software_tes ;
+          rdf:type [ uco-core:Software ] ?
+       ) ;
+       rdf:type [ <Docker> ]
+    )
+}
+
+core:Entity  (
+    @core:Association OR @core:NamedThing
+)
+
+core:Entity_struct {
+    (  $core:Entity_tes (  core:iri @core:IriType ? ;
+          core:category @core:CategoryType * ;
+          rdf:type @linkml:String ? ;
+          rdfs:label @core:LabelType ? ;
+          dcterms:description @core:NarrativeText ? ;
+          core:hasAttribute @core:Attribute *
+       ) ;
+       rdf:type [ core:Entity ]
+    )
+}
+
+core:EvidenceType CLOSED {
+    (  $core:EvidenceType_tes (  &core:InformationContentEntity_tes ;
+          rdf:type [ core:InformationContentEntity ] ?
+       ) ;
+       rdf:type [ core:EvidenceType ]
+    )
+}
+
+core:Hardware CLOSED {
+    (  $core:Hardware_tes (  &core:SoftwareOrDevice_tes ;
+          rdf:type [ core:SoftwareOrDevice ] ?
+       ) ;
+       rdf:type [ core:Hardware ]
+    )
+}
+
+core:InformationContentEntity  (
+    @core:EvidenceType OR @core:Publication
+)
+
+core:InformationContentEntity_struct {
+    (  $core:InformationContentEntity_tes (  &core:NamedThing_tes ;
+          rdf:type [ schema1:Thing ] ? ;
+          core:license @linkml:String ? ;
+          core:rights @linkml:String ? ;
+          uco-observable:format @linkml:String ? ;
+          uco-observable:creationDate @linkml:Date ?
+       ) ;
+       rdf:type [ core:InformationContentEntity ]
+    )
+}
+
+<Kubernetes> CLOSED {
+    (  $<Kubernetes_tes> (  &core:Software_tes ;
+          rdf:type [ uco-core:Software ] ?
+       ) ;
+       rdf:type [ <Kubernetes> ]
+    )
+}
+
+core:Linux CLOSED {
+    (  $core:Linux_tes (  &core:OperatingSystem_tes ;
+          rdf:type [ uco-observable:OperatingSystem ] ? ;
+          &core:OpenSource_tes ;
+          rdf:type [ core:OpenSource ] ?
+       ) ;
+       rdf:type [ core:Linux ]
+    )
+}
+
+<LinuxContainersProject> {
+    (  $<LinuxContainersProject_tes> (  &core:Project_tes ;
+          rdf:type [ core:Project ] ? ;
+          &core:OpenSource_tes ;
+          rdf:type [ core:OpenSource ] ?
+       ) ;
+       rdf:type [ <LinuxContainersProject> ]
+    )
+}
+
+<Lxc> CLOSED {
+    (  $<Lxc_tes> (  &core:Software_tes ;
+          rdf:type [ uco-core:Software ] ? ;
+          &core:Virtualization_tes ;
+          rdf:type [ core:Virtualization ] ? ;
+          &<LinuxContainersProject_tes> ;
+          rdf:type [ <LinuxContainersProject> ] ?
+       ) ;
+       rdf:type [ <Lxc> ]
+    )
+}
+
+<LxcFs> CLOSED {
+    (  $<LxcFs_tes> (  &core:Software_tes ;
+          rdf:type [ uco-core:Software ] ? ;
+          &<LinuxContainersProject_tes> ;
+          rdf:type [ <LinuxContainersProject> ] ?
+       ) ;
+       rdf:type [ <LxcFs> ]
+    )
+}
+
+<Lxd> CLOSED {
+    (  $<Lxd_tes> (  &core:Software_tes ;
+          rdf:type [ uco-core:Software ] ? ;
+          &<LinuxContainersProject_tes> ;
+          rdf:type [ <LinuxContainersProject> ] ?
+       ) ;
+       rdf:type [ <Lxd> ]
+    )
+}
+
+core:MetaObject CLOSED {
+    (  $core:MetaObject_tes rdf:type . * ;
+       rdf:type [ linkml:Any ] ?
+    )
+}
+
+core:NamedThing  (
+    CLOSED {
+       (  $core:NamedThing_tes (  &core:Entity_tes ;
+             rdf:type [ core:Entity ] ? ;
+             core:providedBy @linkml:String * ;
+             core:xref @linkml:Uriorcurie * ;
+             core:category @core:CategoryType +
+          ) ;
+          rdf:type [ schema1:Thing ]
+       )
+    } OR @core:AdministrativeEntity OR @core:InformationContentEntity OR @core:System
+)
+
+<OciContainer> {
+    (  $<OciContainer_tes> (  &<Container_tes> ;
+          rdf:type [ <Container> ] ? ;
+          &<OpenContainerInitiative_tes> ;
+          rdf:type [ <OpenContainerInitiative> ] ?
+       ) ;
+       rdf:type [ <OciContainer> ]
+    )
+}
+
+core:OntologyClass {
+    (  $core:OntologyClass_tes rdf:type . * ;
+       rdf:type [ core:OntologyClass ] ?
+    )
+}
+
+<OpenContainerInitiative> {
+    (  $<OpenContainerInitiative_tes> (  &core:Project_tes ;
+          rdf:type [ core:Project ] ? ;
+          &core:OpenSource_tes ;
+          rdf:type [ core:OpenSource ] ?
+       ) ;
+       rdf:type [ <OpenContainerInitiative> ]
+    )
+}
+
+core:OpenSource {
+    (  $core:OpenSource_tes rdf:type . * ;
+       rdf:type [ core:OpenSource ] ?
+    )
+}
+
+core:OperatingSystem  (
+    CLOSED {
+       (  $core:OperatingSystem_tes (  &core:Software_tes ;
+             rdf:type [ uco-core:Software ] ?
+          ) ;
+          rdf:type [ uco-observable:OperatingSystem ]
+       )
+    } OR @core:Linux OR @core:Solaris OR @core:Windows
+)
+
+<Podman> {
+    (  $<Podman_tes> (  &core:Software_tes ;
+          rdf:type [ uco-core:Software ] ? ;
+          &<OpenContainerInitiative_tes> ;
+          rdf:type [ <OpenContainerInitiative> ] ?
+       ) ;
+       rdf:type [ <Podman> ]
+    )
+}
+
+<PodmanContainer> CLOSED {
+    (  $<PodmanContainer_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:executable @linkml:String ? ;
+          uco-observable:state @<ContainerStateEnum> ? ;
+          core:annotation @core:MetaObject ? ;
+          core:authfile @linkml:String ? ;
+          <blkio_weight> @linkml:Integer ? ;
+          <blkio_weight_device> @core:MetaObject * ;
+          <cap_add> @linkml:String * ;
+          <cap_drop> @linkml:String * ;
+          <cgroup_parent> @linkml:String ? ;
+          <cgroupns> @linkml:String ? ;
+          core:cgroups @linkml:String ? ;
+          <cidfile> @linkml:String ? ;
+          core:cmd_args @linkml:String * ;
+          <conmon_pidfile> @linkml:String ? ;
+          core:command @linkml:String * ;
+          <cpu_period> @linkml:Integer ? ;
+          <cpu_rt_period> @linkml:Integer ? ;
+          <cpu_rt_runtime> @linkml:Integer ? ;
+          <cpu_shares> @linkml:Integer ? ;
+          core:cpus @linkml:String ? ;
+          <cpuset_cpus> @linkml:String ? ;
+          <cpuset_mems> @linkml:String ? ;
+          <detach> @linkml:Boolean ? ;
+          core:debug @linkml:Boolean ? ;
+          <detach_keys> @linkml:String ? ;
+          core:device @linkml:String * ;
+          <device_read_bps> @linkml:String * ;
+          <device_read_iops> @linkml:String * ;
+          <device_write_bps> @linkml:String * ;
+          <device_write_iops> @linkml:String * ;
+          core:dns @linkml:String * ;
+          core:dns_option @linkml:String ? ;
+          core:dns_search @linkml:String ? ;
+          <entrypoint> @linkml:String ? ;
+          core:env @core:MetaObject ? ;
+          core:env_file @linkml:String ? ;
+          <env_host> @linkml:Boolean ? ;
+          core:etc_hosts @core:MetaObject ? ;
+          <expose> @linkml:String * ;
+          <force_restart> @linkml:Boolean ? ;
+          <generate_systemd> @core:MetaObject ? ;
+          <gidmap> @linkml:String * ;
+          <group_add> @linkml:String * ;
+          core:healthcheck @linkml:String ? ;
+          core:healthcheck_interval @linkml:String ? ;
+          core:healthcheck_retries @linkml:Integer ? ;
+          <healthcheck_start_period> @linkml:String ? ;
+          core:healthcheck_timeout @linkml:String ? ;
+          uco-observable:hostname @linkml:String ? ;
+          core:http_proxy @linkml:Boolean ? ;
+          <image_volume> @<ContainerImageVolumeEnum> ? ;
+          <image_strict> @linkml:Boolean ? ;
+          core:init @linkml:Boolean ? ;
+          <init_path> @linkml:String ? ;
+          core:interactive @linkml:Boolean ? ;
+          uco-observable:ip @linkml:String ? ;
+          <ipc> @linkml:String ? ;
+          <kernel_memory> @linkml:String ? ;
+          core:label @core:MetaObject ? ;
+          <label_file> @linkml:String ? ;
+          core:log_driver @<ContainerLogDriverEnum> ? ;
+          core:log_level @<ContainerLogLevelEnum> ? ;
+          <log_opt> @core:MetaObject ? ;
+          core:mac_address @linkml:String ? ;
+          core:memory @linkml:String ? ;
+          <memory_reservation> @linkml:String ? ;
+          <memory_swap> @linkml:String ? ;
+          <memory_swappiness> @linkml:Integer ? ;
+          core:mount @linkml:String * ;
+          rdfs:label @core:LabelType ;
+          uco-observable:network @linkml:String * ;
+          <network_aliases> @linkml:String * ;
+          <no_hosts> @linkml:Boolean ? ;
+          <oom_kill_disable> @linkml:Boolean ? ;
+          <oom_score_adj> @linkml:Integer ? ;
+          uco-observable:pid @linkml:String ? ;
+          <pids_limit> @linkml:Integer ? ;
+          <pod> @linkml:String ? ;
+          core:privileged @linkml:Boolean ? ;
+          core:publish @linkml:String * ;
+          <publish_all> @linkml:Boolean ? ;
+          core:read_only @linkml:Boolean ? ;
+          <read_only_tmpfs> @linkml:Boolean ? ;
+          core:recreate @linkml:Boolean ? ;
+          <requires> @linkml:String * ;
+          <restart_policy> @linkml:String ? ;
+          core:rm @linkml:Boolean ? ;
+          core:rootfs @linkml:Boolean ? ;
+          <sdnotify> @linkml:String ? ;
+          core:secrets @linkml:String * ;
+          <security_opt> @linkml:String * ;
+          <shm_size> @linkml:String ? ;
+          <sig_proxy> @linkml:Boolean ? ;
+          <stop_signal> @linkml:Integer ? ;
+          <stop_timeout> @linkml:Integer ? ;
+          <subgidname> @linkml:String ? ;
+          <subuidname> @linkml:String ? ;
+          core:sysctl @core:MetaObject ? ;
+          core:systemd @linkml:String ? ;
+          core:timezone @linkml:String ? ;
+          core:tmpfs @core:MetaObject ? ;
+          core:tty @linkml:Boolean ? ;
+          <uidmap> @linkml:String * ;
+          core:ulimit @linkml:String * ;
+          core:user @linkml:String ? ;
+          <userns> @linkml:String ? ;
+          core:uts @linkml:String ? ;
+          uco-observable:volume @linkml:String * ;
+          <volumes_from> @linkml:String * ;
+          core:workdir @linkml:String ? ;
+          core:image @linkml:String ?
+       ) ;
+       rdf:type [ <PodmanContainer> ] ?
+    )
+}
+
+<PodmanContainers> CLOSED {
+    (  $<PodmanContainers_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          <containers> @core:MetaObject + ;
+          core:debug @linkml:Boolean ?
+       ) ;
+       rdf:type [ <PodmanContainers> ] ?
+    )
+}
+
+<PodmanExport> CLOSED {
+    (  $<PodmanExport_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:container @linkml:String ;
+          core:dest @linkml:String ;
+          core:executable @linkml:String ? ;
+          core:force @linkml:Boolean ?
+       ) ;
+       rdf:type [ <PodmanExport> ] ?
+    )
+}
+
+<PodmanGenerateSystemd> CLOSED {
+    (  $<PodmanGenerateSystemd_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:after @linkml:String * ;
+          <container_prefix> @linkml:String ? ;
+          core:dest @linkml:String ? ;
+          core:env @core:MetaObject ? ;
+          core:executable @linkml:String ? ;
+          rdfs:label @core:LabelType ;
+          core:new @linkml:Boolean ? ;
+          <no_header> @linkml:Boolean ? ;
+          <pod_prefix> @linkml:String ? ;
+          <requires> @linkml:String * ;
+          <restart_policy> @<ContainerRestartPolicyEnum> ? ;
+          <restart_sec> @linkml:Integer ? ;
+          core:separator @linkml:String ? ;
+          <start_timeout> @linkml:Integer ? ;
+          <stop_timeout> @linkml:Integer ? ;
+          <use_names> @linkml:Boolean ? ;
+          <wants> @linkml:String *
+       ) ;
+       rdf:type [ <PodmanGenerateSystemd> ] ?
+    )
+}
+
+<PodmanImage> CLOSED {
+    (  $<PodmanImage_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:auth_file @linkml:String ? ;
+          core:build @core:MetaObject ? ;
+          <ca_cert_dir> @linkml:String ? ;
+          core:executable @linkml:String ? ;
+          core:force @linkml:Boolean ? ;
+          rdfs:label @core:LabelType ;
+          uco-observable:password @linkml:String ? ;
+          uco-observable:path @linkml:String ? ;
+          <pull> @linkml:Boolean ? ;
+          <push> @linkml:Boolean ? ;
+          <push_args> @core:MetaObject ? ;
+          core:compress @linkml:String ? ;
+          core:dest @linkml:String ? ;
+          uco-observable:format @linkml:String ? ;
+          <remove_signatures> @linkml:String ? ;
+          <sign_by> @linkml:String ? ;
+          core:transport @linkml:String ? ;
+          uco-observable:state @<ContainerImageStateEnum> ? ;
+          core:tag @linkml:String ? ;
+          core:username @linkml:String ? ;
+          core:validate_certs @linkml:Boolean ?
+       ) ;
+       rdf:type [ <PodmanImage> ] ?
+    )
+}
+
+<PodmanImport> CLOSED {
+    (  $<PodmanImport_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:change @core:MetaObject * ;
+          core:commit_message @linkml:String ? ;
+          core:executable @linkml:String ? ;
+          uco-observable:src @linkml:String
+       ) ;
+       rdf:type [ <PodmanImport> ] ?
+    )
+}
+
+<PodmanLoad> CLOSED {
+    (  $<PodmanLoad_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:executable @linkml:String ? ;
+          core:input @linkml:String
+       ) ;
+       rdf:type [ <PodmanLoad> ] ?
+    )
+}
+
+<PodmanLogin> CLOSED {
+    (  $<PodmanLogin_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:authfile @linkml:String ? ;
+          core:certdir @linkml:String ? ;
+          core:executable @linkml:String ? ;
+          uco-observable:password @linkml:String ;
+          <registry> @linkml:String ? ;
+          core:tlsverify @linkml:Boolean ? ;
+          core:username @linkml:String
+       ) ;
+       rdf:type [ <PodmanLogin> ] ?
+    )
+}
+
+<PodmanLogout> CLOSED {
+    (  $<PodmanLogout_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          <all> @linkml:Boolean ? ;
+          core:authfile @linkml:String ? ;
+          core:executable @linkml:String ? ;
+          <ignore_docker_credentials> @linkml:Boolean ? ;
+          <registry> @linkml:String ?
+       ) ;
+       rdf:type [ <PodmanLogout> ] ?
+    )
+}
+
+<PodmanNetwork> CLOSED {
+    (  $<PodmanNetwork_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:debug @linkml:Boolean ? ;
+          <disable_dns> @linkml:Boolean ? ;
+          core:driver @linkml:String ? ;
+          core:executable @linkml:String ? ;
+          core:gateway @linkml:String ? ;
+          core:internal @linkml:Boolean ? ;
+          core:ip_range @linkml:String ? ;
+          core:ipv6 @linkml:Boolean ? ;
+          <macvlan> @linkml:String ? ;
+          rdfs:label @core:LabelType ;
+          core:opt @core:MetaObject ? ;
+          core:recreate @linkml:Boolean ? ;
+          uco-observable:state @<ContainerNetworkStateEnum> ? ;
+          core:subnet @linkml:String ?
+       ) ;
+       rdf:type [ <PodmanNetwork> ] ?
+    )
+}
+
+<PodmanPlay> CLOSED {
+    (  $<PodmanPlay_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:authfile @linkml:String ? ;
+          core:cert_dir @linkml:String ? ;
+          <configmap> @linkml:String * ;
+          core:debug @linkml:Boolean ? ;
+          core:executable @linkml:String ? ;
+          <kube_file> @linkml:String ;
+          core:log_driver @linkml:String ? ;
+          core:log_level @<ContainerLogLevelEnum> ? ;
+          uco-observable:network @linkml:String * ;
+          uco-observable:password @linkml:String ? ;
+          core:quiet @linkml:Boolean ? ;
+          core:recreate @linkml:Boolean ? ;
+          <seccomp_profile_root> @linkml:String ? ;
+          uco-observable:state @<ContainerStateEnum> ;
+          core:tls_verify @linkml:Boolean ? ;
+          core:username @linkml:String ?
+       ) ;
+       rdf:type [ <PodmanPlay> ] ?
+    )
+}
+
+<PodmanPod> CLOSED {
+    (  $<PodmanPod_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          <add_host> @linkml:String * ;
+          <cgroup_parent> @linkml:String ? ;
+          core:cpus @linkml:String ? ;
+          <cpuset_cpus> @linkml:String ? ;
+          core:debug @linkml:Boolean ? ;
+          core:device @linkml:String * ;
+          <device_read_bps> @linkml:String * ;
+          core:dns @linkml:String * ;
+          core:dns_opt @linkml:String * ;
+          core:dns_search @linkml:String * ;
+          core:executable @linkml:String ? ;
+          <generate_systemd> @core:MetaObject ? ;
+          <gidmap> @linkml:String * ;
+          uco-observable:hostname @linkml:String ? ;
+          core:infra @linkml:Boolean ? ;
+          <infra_command> @linkml:String ? ;
+          <infra_conmon_pidfile> @linkml:String ? ;
+          <infra_name> @linkml:String ? ;
+          <infra_image> @linkml:String ? ;
+          uco-observable:ip @linkml:String ? ;
+          core:label @core:MetaObject ? ;
+          <label_file> @linkml:String ? ;
+          core:mac_address @linkml:String ? ;
+          rdfs:label @core:LabelType ;
+          uco-observable:network @linkml:String * ;
+          <network_alias> @linkml:String * ;
+          <no_hosts> @linkml:Boolean ? ;
+          uco-observable:pid @linkml:String ? ;
+          <pod_id_file> @linkml:String ? ;
+          core:publish @linkml:String * ;
+          core:recreate @linkml:Boolean ? ;
+          core:share @linkml:String ? ;
+          uco-observable:state @<ContainerStateEnum> ? ;
+          <subgidname> @linkml:String ? ;
+          <subuidname> @linkml:String ? ;
+          <uidmap> @linkml:String * ;
+          <userns> @linkml:String ? ;
+          uco-observable:volume @linkml:String *
+       ) ;
+       rdf:type [ <PodmanPod> ] ?
+    )
+}
+
+<PodmanSave> CLOSED {
+    (  $<PodmanSave_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:compress @linkml:Boolean ? ;
+          core:dest @linkml:String ;
+          core:executable @linkml:String ? ;
+          core:force @linkml:Boolean ? ;
+          uco-observable:format @<ContainerSaveFormatEnum> ? ;
+          core:image @linkml:String ;
+          <multi_image_archive> @linkml:Boolean ?
+       ) ;
+       rdf:type [ <PodmanSave> ] ?
+    )
+}
+
+<PodmanSecret> CLOSED {
+    (  $<PodmanSecret_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          uco-observable:data @linkml:String ? ;
+          core:driver @linkml:String ? ;
+          core:driver_opts @core:MetaObject ? ;
+          core:executable @linkml:String ? ;
+          core:force @linkml:Boolean ? ;
+          rdfs:label @core:LabelType ;
+          <skip_existing> @linkml:Boolean ? ;
+          uco-observable:state @linkml:String ?
+       ) ;
+       rdf:type [ <PodmanSecret> ] ?
+    )
+}
+
+<PodmanTag> CLOSED {
+    (  $<PodmanTag_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:executable @linkml:String ? ;
+          core:image @linkml:String ;
+          <target_names> @linkml:String +
+       ) ;
+       rdf:type [ <PodmanTag> ] ?
+    )
+}
+
+<PodmanVolume> CLOSED {
+    (  $<PodmanVolume_tes> (  &<ClosedSoftwareModule_tes> ;
+          rdf:type [ <ClosedSoftwareModule> ] ? ;
+          core:debug @linkml:Boolean ? ;
+          core:driver @linkml:String ? ;
+          core:executable @linkml:String ? ;
+          core:label @core:MetaObject ? ;
+          rdfs:label @core:LabelType ;
+          core:options @linkml:String * ;
+          core:recreate @linkml:Boolean ? ;
+          uco-observable:state @linkml:String ?
+       ) ;
+       rdf:type [ <PodmanVolume> ] ?
+    )
+}
+
+core:Project  (
+    CLOSED {
+       (  $core:Project_tes (  &core:AdministrativeEntity_tes ;
+             rdf:type [ core:AdministrativeEntity ] ?
+          ) ;
+          rdf:type [ core:Project ]
+       )
+    } OR @<LinuxContainersProject> OR @<OpenContainerInitiative>
+)
+
+core:Publication CLOSED {
+    (  $core:Publication_tes (  &core:InformationContentEntity_tes ;
+          rdf:type [ core:InformationContentEntity ] ? ;
+          core:authors @linkml:String * ;
+          core:pages @linkml:String * ;
+          core:summary @linkml:String ? ;
+          core:keywords @linkml:String * ;
+          core:lcshTerms @linkml:Uriorcurie *
+       ) ;
+       rdf:type [ core:Publication ]
+    )
+}
+
+core:QuantityValue CLOSED {
+    (  $core:QuantityValue_tes (  &core:Annotation_tes ;
+          rdf:type [ uco-core:Annotation ] ? ;
+          core:hasUnit @core:Unit ? ;
+          core:hasNumericValue @linkml:Double ?
+       ) ;
+       rdf:type [ core:QuantityValue ] ?
+    )
+}
+
+core:Software  (
+    CLOSED {
+       (  $core:Software_tes (  &core:SoftwareOrDevice_tes ;
+             rdf:type [ core:SoftwareOrDevice ] ?
+          ) ;
+          rdf:type [ uco-core:Software ]
+       )
+    } OR @<Container> OR @<Containerd> OR @<Docker> OR @<Kubernetes> OR @<Lxc> OR @<LxcFs> OR @<Lxd> OR @core:OperatingSystem OR
+    @<Podman>
+)
+
+core:SoftwareOrDevice  (
+    @core:Hardware OR @core:Software
+)
+
+core:SoftwareOrDevice_struct {
+    (  $core:SoftwareOrDevice_tes (  &core:System_tes ;
+          rdf:type [ core:System ] ?
+       ) ;
+       rdf:type [ core:SoftwareOrDevice ]
+    )
+}
+
+core:Solaris CLOSED {
+    (  $core:Solaris_tes (  &core:OperatingSystem_tes ;
+          rdf:type [ uco-observable:OperatingSystem ] ?
+       ) ;
+       rdf:type [ core:Solaris ]
+    )
+}
+
+core:System  (
+    CLOSED {
+       (  $core:System_tes (  &core:NamedThing_tes ;
+             rdf:type [ schema1:Thing ] ? ;
+             &core:ThingWithTaxon_tes ;
+             rdf:type [ core:ThingWithTaxon ] ? ;
+             core:inTaxon @core:NamedThing *
+          ) ;
+          rdf:type [ core:System ]
+       )
+    } OR @core:SoftwareOrDevice
+)
+
+core:ThingWithTaxon {
+    (  $core:ThingWithTaxon_tes core:inTaxon @core:NamedThing * ;
+       rdf:type [ core:ThingWithTaxon ] ?
+    )
+}
+
+core:Virtualization {
+    (  $core:Virtualization_tes rdf:type . * ;
+       rdf:type [ core:Virtualization ] ?
+    )
+}
+
+core:Windows CLOSED {
+    (  $core:Windows_tes (  &core:OperatingSystem_tes ;
+          rdf:type [ uco-observable:OperatingSystem ] ?
+       ) ;
+       rdf:type [ core:Windows ]
+    )
+}
+
+

@@ -1,0 +1,641 @@
+// person, group, organization or project that provides a piece of information (i.e. a knowledge association)
+message Agent
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  uriorcurie affiliation = 0
+  string address = 0
+ }
+// A typed association between two entities, supported by evidence
+message Association
+ {
+  string id = 0
+  iriType iri = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+  namedThing subject = 0
+  predicateType predicate = 0
+  namedThing object = 0
+  boolean negated = 0
+ repeated  ontologyClass qualifiers = 0
+ repeated  publication publications = 0
+ repeated  evidenceType hasEvidence = 0
+  string type = 0
+ repeated  categoryType category = 0
+ }
+// A property or characteristic of an entity. For example, an apple may have properties such as color, shape, age, crispiness. An environmental sample may have attributes such as depth, lat, long, material.
+message Attribute
+ {
+  labelType name = 0
+  ontologyClass hasAttributeType = 0
+ repeated  quantityValue hasQuantitativeValue = 0
+  namedThing hasQualitativeValue = 0
+  iriType iri = 0
+  string src = 0
+ }
+// Software that emulates a whole computer by means of an isolated user-space environment running on top of the operating system's kernel.
+message Container
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// Container runtime
+message Containerd
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// open-source software for deploying containerized applications
+message Docker
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// Class of evidence that supports an association
+message EvidenceType
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+  string license = 0
+  string rights = 0
+  string format = 0
+  date creationDate = 0
+ }
+// physical components of a computer
+message Hardware
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// software to manage containers on a server-cluster
+message Kubernetes
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// family of Unix-like operating systems using Linux kernel and open source
+message Linux
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// Operating system-level virtualization for Linux
+message Lxc
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// LXCFS is a simple userspace filesystem designed to work around some current limitations of the Linux kernel.
+message LxcFs
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// Lxd is a system container and virtual machine manager for Linux OS
+message Lxd
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// a databased entity or concept/class
+message NamedThing
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ }
+// An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs.
+message OperatingSystem
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// Podman container
+message PodmanContainer
+ {
+  string executable = 0
+  containerStateEnum state = 0
+  metaObject annotation = 0
+  string authfile = 0
+  integer blkioWeight = 0
+ repeated  metaObject blkioWeightDevice = 0
+ repeated  string capAdd = 0
+ repeated  string capDrop = 0
+  string cgroupParent = 0
+  string cgroupns = 0
+  string cgroups = 0
+  string cidfile = 0
+ repeated  string cmdArgs = 0
+  string conmonPidfile = 0
+ repeated  string command = 0
+  integer cpuPeriod = 0
+  integer cpuRtPeriod = 0
+  integer cpuRtRuntime = 0
+  integer cpuShares = 0
+  string cpus = 0
+  string cpusetCpus = 0
+  string cpusetMems = 0
+  boolean detach = 0
+  boolean debug = 0
+  string detachKeys = 0
+ repeated  string device = 0
+ repeated  string deviceReadBps = 0
+ repeated  string deviceReadIops = 0
+ repeated  string deviceWriteBps = 0
+ repeated  string deviceWriteIops = 0
+ repeated  string dns = 0
+  string dnsOption = 0
+  string dnsSearch = 0
+  string entrypoint = 0
+  metaObject env = 0
+  string envFile = 0
+  boolean envHost = 0
+  metaObject etcHosts = 0
+ repeated  string expose = 0
+  boolean forceRestart = 0
+  metaObject generateSystemd = 0
+ repeated  string gidmap = 0
+ repeated  string groupAdd = 0
+  string healthcheck = 0
+  string healthcheckInterval = 0
+  integer healthcheckRetries = 0
+  string healthcheckStartPeriod = 0
+  string healthcheckTimeout = 0
+  string hostname = 0
+  boolean httpProxy = 0
+  containerImageVolumeEnum imageVolume = 0
+  boolean imageStrict = 0
+  boolean init = 0
+  string initPath = 0
+  boolean interactive = 0
+  string ip = 0
+  string ipc = 0
+  string kernelMemory = 0
+  metaObject label = 0
+  string labelFile = 0
+  containerLogDriverEnum logDriver = 0
+  containerLogLevelEnum logLevel = 0
+  metaObject logOpt = 0
+  string macAddress = 0
+  string memory = 0
+  string memoryReservation = 0
+  string memorySwap = 0
+  integer memorySwappiness = 0
+ repeated  string mount = 0
+  labelType name = 0
+ repeated  string network = 0
+ repeated  string networkAliases = 0
+  boolean noHosts = 0
+  boolean oomKillDisable = 0
+  integer oomScoreAdj = 0
+  string pid = 0
+  integer pidsLimit = 0
+  string pod = 0
+  boolean privileged = 0
+ repeated  string publish = 0
+  boolean publishAll = 0
+  boolean readOnly = 0
+  boolean readOnlyTmpfs = 0
+  boolean recreate = 0
+ repeated  string requires = 0
+  string restartPolicy = 0
+  boolean rm = 0
+  boolean rootfs = 0
+  string sdnotify = 0
+ repeated  string secrets = 0
+ repeated  string securityOpt = 0
+  string shmSize = 0
+  boolean sigProxy = 0
+  integer stopSignal = 0
+  integer stopTimeout = 0
+  string subgidname = 0
+  string subuidname = 0
+  metaObject sysctl = 0
+  string systemd = 0
+  string timezone = 0
+  metaObject tmpfs = 0
+  boolean tty = 0
+ repeated  string uidmap = 0
+ repeated  string ulimit = 0
+  string user = 0
+  string userns = 0
+  string uts = 0
+ repeated  string volume = 0
+ repeated  string volumesFrom = 0
+  string workdir = 0
+  string image = 0
+ }
+// Podman containers
+message PodmanContainers
+ {
+ repeated  metaObject containers = 0
+  boolean debug = 0
+ }
+// Export a Podman container
+message PodmanExport
+ {
+  string container = 0
+  string dest = 0
+  string executable = 0
+  boolean force = 0
+ }
+// Generate systemd unit from a pod or a container
+message PodmanGenerateSystemd
+ {
+ repeated  string after = 0
+  string containerPrefix = 0
+  string dest = 0
+  metaObject env = 0
+  string executable = 0
+  labelType name = 0
+  boolean new = 0
+  boolean noHeader = 0
+  string podPrefix = 0
+ repeated  string requires = 0
+  containerRestartPolicyEnum restartPolicy = 0
+  integer restartSec = 0
+  string separator = 0
+  integer startTimeout = 0
+  integer stopTimeout = 0
+  boolean useNames = 0
+ repeated  string wants = 0
+ }
+// Podman container image
+message PodmanImage
+ {
+  string authFile = 0
+  metaObject build = 0
+  string caCertDir = 0
+  string executable = 0
+  boolean force = 0
+  labelType name = 0
+  string password = 0
+  string path = 0
+  boolean pull = 0
+  boolean push = 0
+  metaObject pushArgs = 0
+  string compress = 0
+  string dest = 0
+  string format = 0
+  string removeSignatures = 0
+  string signBy = 0
+  string transport = 0
+  containerImageStateEnum state = 0
+  string tag = 0
+  string username = 0
+  boolean validateCerts = 0
+ }
+// Import Podman container from file
+message PodmanImport
+ {
+ repeated  metaObject change = 0
+  string commitMessage = 0
+  string executable = 0
+  string src = 0
+ }
+// Load container into container storage
+message PodmanLoad
+ {
+  string executable = 0
+  string input = 0
+ }
+// Login to a Container registry using Podman
+message PodmanLogin
+ {
+  string authfile = 0
+  string certdir = 0
+  string executable = 0
+  string password = 0
+  string registry = 0
+  boolean tlsverify = 0
+  string username = 0
+ }
+// Logout of a Container registry using Podman
+message PodmanLogout
+ {
+  boolean all = 0
+  string authfile = 0
+  string executable = 0
+  boolean ignoreDockerCredentials = 0
+  string registry = 0
+ }
+// Manage podman networks
+message PodmanNetwork
+ {
+  boolean debug = 0
+  boolean disableDns = 0
+  string driver = 0
+  string executable = 0
+  string gateway = 0
+  boolean internal = 0
+  string ipRange = 0
+  boolean ipv6 = 0
+  string macvlan = 0
+  labelType name = 0
+  metaObject opt = 0
+  boolean recreate = 0
+  containerNetworkStateEnum state = 0
+  string subnet = 0
+ }
+// Play kubernetes YAML file using podman
+message PodmanPlay
+ {
+  string authfile = 0
+  string certDir = 0
+ repeated  string configmap = 0
+  boolean debug = 0
+  string executable = 0
+  string kubeFile = 0
+  string logDriver = 0
+  containerLogLevelEnum logLevel = 0
+ repeated  string network = 0
+  string password = 0
+  boolean quiet = 0
+  boolean recreate = 0
+  string seccompProfileRoot = 0
+  containerStateEnum state = 0
+  boolean tlsVerify = 0
+  string username = 0
+ }
+// Manage Podman pods
+message PodmanPod
+ {
+ repeated  string addHost = 0
+  string cgroupParent = 0
+  string cpus = 0
+  string cpusetCpus = 0
+  boolean debug = 0
+ repeated  string device = 0
+ repeated  string deviceReadBps = 0
+ repeated  string dns = 0
+ repeated  string dnsOpt = 0
+ repeated  string dnsSearch = 0
+  string executable = 0
+  metaObject generateSystemd = 0
+ repeated  string gidmap = 0
+  string hostname = 0
+  boolean infra = 0
+  string infraCommand = 0
+  string infraConmonPidfile = 0
+  string infraName = 0
+  string infraImage = 0
+  string ip = 0
+  metaObject label = 0
+  string labelFile = 0
+  string macAddress = 0
+  labelType name = 0
+ repeated  string network = 0
+ repeated  string networkAlias = 0
+  boolean noHosts = 0
+  string pid = 0
+  string podIdFile = 0
+ repeated  string publish = 0
+  boolean recreate = 0
+  string share = 0
+  containerStateEnum state = 0
+  string subgidname = 0
+  string subuidname = 0
+ repeated  string uidmap = 0
+  string userns = 0
+ repeated  string volume = 0
+ }
+// Saves podman image to tar file
+message PodmanSave
+ {
+  boolean compress = 0
+  string dest = 0
+  string executable = 0
+  boolean force = 0
+  containerSaveFormatEnum format = 0
+  string image = 0
+  boolean multiImageArchive = 0
+ }
+// Manage Podman secrets
+message PodmanSecret
+ {
+  string data = 0
+  string driver = 0
+  metaObject driverOpts = 0
+  string executable = 0
+  boolean force = 0
+  labelType name = 0
+  boolean skipExisting = 0
+  string state = 0
+ }
+// Add an additional name to a local image
+message PodmanTag
+ {
+  string executable = 0
+  string image = 0
+ repeated  string targetNames = 0
+ }
+// Manage Podman Volumes
+message PodmanVolume
+ {
+  boolean debug = 0
+  string driver = 0
+  string executable = 0
+  metaObject label = 0
+  labelType name = 0
+ repeated  string options = 0
+  boolean recreate = 0
+  string state = 0
+ }
+// Collaborative enterprise, frequently involving research or design, that is carefully planned to achieve a particular aim
+message Project
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ }
+// Any published piece of information. Can refer to a whole publication, its encompassing publication (i.e. journal or book) or to a part of a publication, if of significant knowledge scope (e.g. a figure, figure legend, or section highlighted by NLP). The scope is intended to be general and include information published on the web, as well as printed materials, either directly or in one of the Publication Csolink category subclasses.
+message Publication
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  categoryType category = 0
+  string license = 0
+  string rights = 0
+  string format = 0
+  date creationDate = 0
+ repeated  string authors = 0
+ repeated  string pages = 0
+  string summary = 0
+ repeated  string keywords = 0
+ repeated  uriorcurie lcshTerms = 0
+ repeated  uriorcurie xref = 0
+ }
+// A value of an attribute that is quantitative and measurable, available as a combination of a unit and a numeric value
+message QuantityValue
+ {
+  unit hasUnit = 0
+  double hasNumericValue = 0
+ }
+// A set of instructions in a computer programming language that can be executed by a computer, possibly after compilation into another programming language. The term Software includes ComputerPrograms (free-standing software), object methods, subroutines and software packages.
+message Software
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// Unix operating system originally developed by Sun Microsystems
+message Solaris
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// An entity that intends to perform some functions, interacting with other systems. Relative to a given system, the entities with which it interacts, are considered its environment. A system is structurally composed of a set of components bound together.
+message System
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }
+// family of computer operating systems developed by Microsoft
+message Windows
+ {
+  string id = 0
+  iriType iri = 0
+  string type = 0
+  labelType name = 0
+  narrativeText description = 0
+ repeated  attribute hasAttribute = 0
+ repeated  string providedBy = 0
+ repeated  uriorcurie xref = 0
+ repeated  categoryType category = 0
+ repeated  namedThing inTaxon = 0
+ }

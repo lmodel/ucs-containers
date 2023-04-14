@@ -1,0 +1,7 @@
+---
+name: ucs_containers
+author: Noel McLoughlin <noel.mcloughlin@gmail.com>
+description: Classes and Properties representing Containers in Usecases Framework
+source_schema_path: src/ucs_containers/schema/ucs_containers.yaml
+google_sheet_id: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
+google_sheet_tabs: container enums

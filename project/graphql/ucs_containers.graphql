@@ -1,0 +1,779 @@
+interface AdministrativeEntity
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+  }
+
+type Agent
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    affiliation: [Uriorcurie]
+    address: String
+  }
+
+interface Annotation
+  {
+  }
+
+type Association
+  {
+    id: String!
+    iri: IriType
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    subject: NamedThing!
+    predicate: PredicateType!
+    object: NamedThing!
+    negated: Boolean
+    qualifiers: [OntologyClass]
+    publications: [Publication]
+    hasEvidence: [EvidenceType]
+    type: String
+    category: [CategoryType]
+  }
+
+type Attribute implements OntologyClass
+  {
+    name: LabelType
+    hasAttributeType: OntologyClass!
+    hasQuantitativeValue: [QuantityValue]
+    hasQualitativeValue: NamedThing
+    iri: IriType
+    src: String
+  }
+
+interface ClosedSoftwareModule
+  {
+  }
+
+type Container implements Virtualization
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type Containerd implements OpenContainerInitiative
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type Docker
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+interface Entity
+  {
+    id: String!
+    iri: IriType
+    category: [CategoryType]
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+  }
+
+type EvidenceType
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    license: String
+    rights: String
+    format: String
+    creationDate: Date
+  }
+
+type Hardware
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+interface InformationContentEntity
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    license: String
+    rights: String
+    format: String
+    creationDate: Date
+  }
+
+type Kubernetes
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type Linux implements OpenSource
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type LinuxContainersProject implements OpenSource
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+  }
+
+type Lxc implements Virtualization, LinuxContainersProject
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type LxcFs implements LinuxContainersProject
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type Lxd implements LinuxContainersProject
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type MetaObject
+  {
+  }
+
+type NamedThing
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+  }
+
+type OciContainer implements OpenContainerInitiative
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+interface OntologyClass
+  {
+  }
+
+type OpenContainerInitiative implements OpenSource
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+  }
+
+interface OpenSource
+  {
+  }
+
+type OperatingSystem
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type Podman implements OpenContainerInitiative
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type PodmanContainer
+  {
+    executable: String
+    state: ContainerStateEnum
+    annotation: MetaObject
+    authfile: String
+    blkioWeight: Integer
+    blkioWeightDevice: [MetaObject]
+    capAdd: [String]
+    capDrop: [String]
+    cgroupParent: String
+    cgroupns: String
+    cgroups: String
+    cidfile: String
+    cmdArgs: [String]
+    conmonPidfile: String
+    command: [String]
+    cpuPeriod: Integer
+    cpuRtPeriod: Integer
+    cpuRtRuntime: Integer
+    cpuShares: Integer
+    cpus: String
+    cpusetCpus: String
+    cpusetMems: String
+    detach: Boolean
+    debug: Boolean
+    detachKeys: String
+    device: [String]
+    deviceReadBps: [String]
+    deviceReadIops: [String]
+    deviceWriteBps: [String]
+    deviceWriteIops: [String]
+    dns: [String]
+    dnsOption: String
+    dnsSearch: String
+    entrypoint: String
+    env: MetaObject
+    envFile: String
+    envHost: Boolean
+    etcHosts: MetaObject
+    expose: [String]
+    forceRestart: Boolean
+    generateSystemd: MetaObject
+    gidmap: [String]
+    groupAdd: [String]
+    healthcheck: String
+    healthcheckInterval: String
+    healthcheckRetries: Integer
+    healthcheckStartPeriod: String
+    healthcheckTimeout: String
+    hostname: String
+    httpProxy: Boolean
+    imageVolume: ContainerImageVolumeEnum
+    imageStrict: Boolean
+    init: Boolean
+    initPath: String
+    interactive: Boolean
+    ip: String
+    ipc: String
+    kernelMemory: String
+    label: MetaObject
+    labelFile: String
+    logDriver: ContainerLogDriverEnum
+    logLevel: ContainerLogLevelEnum
+    logOpt: MetaObject
+    macAddress: String
+    memory: String
+    memoryReservation: String
+    memorySwap: String
+    memorySwappiness: Integer
+    mount: [String]
+    name: LabelType!
+    network: [String]
+    networkAliases: [String]
+    noHosts: Boolean
+    oomKillDisable: Boolean
+    oomScoreAdj: Integer
+    pid: String
+    pidsLimit: Integer
+    pod: String
+    privileged: Boolean
+    publish: [String]
+    publishAll: Boolean
+    readOnly: Boolean
+    readOnlyTmpfs: Boolean
+    recreate: Boolean
+    requires: [String]
+    restartPolicy: String
+    rm: Boolean
+    rootfs: Boolean
+    sdnotify: String
+    secrets: [String]
+    securityOpt: [String]
+    shmSize: String
+    sigProxy: Boolean
+    stopSignal: Integer
+    stopTimeout: Integer
+    subgidname: String
+    subuidname: String
+    sysctl: MetaObject
+    systemd: String
+    timezone: String
+    tmpfs: MetaObject
+    tty: Boolean
+    uidmap: [String]
+    ulimit: [String]
+    user: String
+    userns: String
+    uts: String
+    volume: [String]
+    volumesFrom: [String]
+    workdir: String
+    image: String
+  }
+
+type PodmanContainers
+  {
+    containers: [MetaObject]!
+    debug: Boolean
+  }
+
+type PodmanExport
+  {
+    container: String!
+    dest: String!
+    executable: String
+    force: Boolean
+  }
+
+type PodmanGenerateSystemd
+  {
+    after: [String]
+    containerPrefix: String
+    dest: String
+    env: MetaObject
+    executable: String
+    name: LabelType!
+    new: Boolean
+    noHeader: Boolean
+    podPrefix: String
+    requires: [String]
+    restartPolicy: ContainerRestartPolicyEnum
+    restartSec: Integer
+    separator: String
+    startTimeout: Integer
+    stopTimeout: Integer
+    useNames: Boolean
+    wants: [String]
+  }
+
+type PodmanImage
+  {
+    authFile: String
+    build: MetaObject
+    caCertDir: String
+    executable: String
+    force: Boolean
+    name: LabelType!
+    password: String
+    path: String
+    pull: Boolean
+    push: Boolean
+    pushArgs: MetaObject
+    compress: String
+    dest: String
+    format: String
+    removeSignatures: String
+    signBy: String
+    transport: String
+    state: ContainerImageStateEnum
+    tag: String
+    username: String
+    validateCerts: Boolean
+  }
+
+type PodmanImport
+  {
+    change: [MetaObject]
+    commitMessage: String
+    executable: String
+    src: String!
+  }
+
+type PodmanLoad
+  {
+    executable: String
+    input: String!
+  }
+
+type PodmanLogin
+  {
+    authfile: String
+    certdir: String
+    executable: String
+    password: String!
+    registry: String
+    tlsverify: Boolean
+    username: String!
+  }
+
+type PodmanLogout
+  {
+    all: Boolean
+    authfile: String
+    executable: String
+    ignoreDockerCredentials: Boolean
+    registry: String
+  }
+
+type PodmanNetwork
+  {
+    debug: Boolean
+    disableDns: Boolean
+    driver: String
+    executable: String
+    gateway: String
+    internal: Boolean
+    ipRange: String
+    ipv6: Boolean
+    macvlan: String
+    name: LabelType!
+    opt: MetaObject
+    recreate: Boolean
+    state: ContainerNetworkStateEnum
+    subnet: String
+  }
+
+type PodmanPlay
+  {
+    authfile: String
+    certDir: String
+    configmap: [String]
+    debug: Boolean
+    executable: String
+    kubeFile: String!
+    logDriver: String
+    logLevel: ContainerLogLevelEnum
+    network: [String]
+    password: String
+    quiet: Boolean
+    recreate: Boolean
+    seccompProfileRoot: String
+    state: ContainerStateEnum!
+    tlsVerify: Boolean
+    username: String
+  }
+
+type PodmanPod
+  {
+    addHost: [String]
+    cgroupParent: String
+    cpus: String
+    cpusetCpus: String
+    debug: Boolean
+    device: [String]
+    deviceReadBps: [String]
+    dns: [String]
+    dnsOpt: [String]
+    dnsSearch: [String]
+    executable: String
+    generateSystemd: MetaObject
+    gidmap: [String]
+    hostname: String
+    infra: Boolean
+    infraCommand: String
+    infraConmonPidfile: String
+    infraName: String
+    infraImage: String
+    ip: String
+    label: MetaObject
+    labelFile: String
+    macAddress: String
+    name: LabelType!
+    network: [String]
+    networkAlias: [String]
+    noHosts: Boolean
+    pid: String
+    podIdFile: String
+    publish: [String]
+    recreate: Boolean
+    share: String
+    state: ContainerStateEnum
+    subgidname: String
+    subuidname: String
+    uidmap: [String]
+    userns: String
+    volume: [String]
+  }
+
+type PodmanSave
+  {
+    compress: Boolean
+    dest: String!
+    executable: String
+    force: Boolean
+    format: ContainerSaveFormatEnum
+    image: String!
+    multiImageArchive: Boolean
+  }
+
+type PodmanSecret
+  {
+    data: String
+    driver: String
+    driverOpts: MetaObject
+    executable: String
+    force: Boolean
+    name: LabelType!
+    skipExisting: Boolean
+    state: String
+  }
+
+type PodmanTag
+  {
+    executable: String
+    image: String!
+    targetNames: [String]!
+  }
+
+type PodmanVolume
+  {
+    debug: Boolean
+    driver: String
+    executable: String
+    label: MetaObject
+    name: LabelType!
+    options: [String]
+    recreate: Boolean
+    state: String
+  }
+
+type Project
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+  }
+
+type Publication
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    category: [CategoryType]!
+    license: String
+    rights: String
+    format: String
+    creationDate: Date
+    authors: [String]
+    pages: [String]
+    summary: String
+    keywords: [String]
+    lcshTerms: [Uriorcurie]
+    xref: [Uriorcurie]
+  }
+
+type QuantityValue
+  {
+    hasUnit: Unit
+    hasNumericValue: Double
+  }
+
+type Software
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+interface SoftwareOrDevice
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type Solaris
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+type System implements ThingWithTaxon
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+
+interface ThingWithTaxon
+  {
+    inTaxon: [NamedThing]
+  }
+
+interface Virtualization
+  {
+  }
+
+type Windows
+  {
+    id: String!
+    iri: IriType
+    type: String
+    name: LabelType
+    description: NarrativeText
+    hasAttribute: [Attribute]
+    providedBy: [String]
+    xref: [Uriorcurie]
+    category: [CategoryType]!
+    inTaxon: [NamedThing]
+  }
+

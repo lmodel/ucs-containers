@@ -1,0 +1,2454 @@
+---
+id: https://w3id.org/lmodel/ucs-containers
+name: ucs-containers
+title: UCS Containers
+description: |-
+  Classes and Properties representing Containers in UseCaseS Framework
+license: Apache Software License 2.0
+see_also:
+  - https://lmodel.github.io/ucs-containers
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  edam.topic: http://edamontology.org/topic_
+  GSSO: http://purl.obolibrary.org/obo/GSSO_
+  IAO: http://purl.obolibrary.org/obo/IAO_
+  INO: http://purl.obolibrary.org/obo/INO_
+  MS: http://purl.obolibrary.org/obo/MS_
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  T4FS: http://purl.obolibrary.org/obo/T4FS_
+  ONTOAVIDA: http://purl.obolibrary.org/obo/ONTOAVIDA_
+  wikidata: 'http://identifiers.org/wikidata/'
+  wikidata.property: 'https://www.wikidata.org/wiki/Property:'
+
+  containers: 'https://w3id.org/lmodel/ucs-containers/'
+
+  ucs-core: 'https://w3id.org/lmodel/ucs-core/'
+  uco-core: 'https://w3id.org/lmodel/uco-core/'
+  uco-types: 'https://w3id.org/lmodel/uco-types/'
+  uco-identity: 'https://w3id.org/lmodel/uco-identity/'
+  uco-observable: 'https://w3id.org/lmodel/uco-observable/'
+
+  schema_ucs_core: 'https://w3id.org/lmodel/ucs-core/schema/'
+
+default_prefix: containers
+default_range: string
+
+imports:
+  - linkml:types
+  - schema_ucs_core:ucs_core
+
+enums:
+
+  ContainerRestartPolicyEnum:
+    description: >-
+      Restart policy after exit
+    permissible_values:
+      'no':
+      'on-success':
+      'on-failure':
+      'on-abnormal':
+      'on-watchdog':
+      'on-abort':
+      'always':
+
+  ContainerStateEnum:
+    description: >-
+      Valid values for Container state
+    permissible_values:
+      "absent":
+        description: >-
+          A container matching the specified name will be stopped and removed.
+      "present":
+        description: >-
+          Asserts the existence of a container matching the name and any provided configuration parameters.
+      "started":
+        description: >-
+          Asserts there is a running container matching the name and any provided configuration.
+      "stopped":
+        description: >-
+          Asserts that the container is first present, and then if the container is running moves it to a stopped state.
+      "created":
+        description: >-
+          Asserts that the container exists with given configuration.
+
+  ContainerImageStateEnum:
+    description: >-
+      Valid values for Container Image state
+    permissible_values:
+      "absent":
+      "present":
+      "build":
+
+  CgroupsEnum:
+    description: >-
+      Use cgroups or not
+    permissible_values:
+      'enabled':
+      'disabled':
+
+  ContainerImageVolumeEnum:
+    description: >-
+      Builtin image volume handling
+    permissible_values:
+      'bind':
+      'tmpfs':
+      'ignore':
+
+  ContainerLogDriverEnum:
+    description: >-
+      Logging driver.
+    permissible_values:
+      "k8s-file":
+      "journald":
+      "json-file":
+
+  ContainerSaveFormatEnum:
+    description: >-
+      Image save format
+    permissible_values:
+      "docker-archive":
+      "oci-archive":
+      "oci-dir":
+      "docker-dir":
+
+  ContainerLogLevelEnum:
+    description: >-
+      Logging level.
+    permissible_values:
+      "debug":
+      "info":
+      "warn":
+      "error":
+      "fatal":
+      "panic":
+
+  ContainerImageFormatEnum:
+    description: >-
+      Container format
+    permissible_values:
+      "oci":
+      "v2s1":
+      "v2s2":
+
+  ContainerImagePushTransportEnum:
+    description: >-
+      Transport to use when pushing in image.
+    permissible_values:
+      "dir":
+      "docker-archive":
+      "docker-daemon":
+      "oci-archive":
+      "ostree":
+
+  ContainerNetworkStateEnum:
+    permissible_values:
+      "present":
+      "absent":
+
+slots:
+
+  blkio_weight:
+    description: >-
+      Specifies per cgroup weight. This is default weight of the group on all the devices until and unless overridden by per device rule. (See blkio.weight_device). Currently allowed range of weights is from 10 to 1000.
+    range: integer
+    see_also:
+      - https://www.kernel.org/doc/Documentation/cgroup-v1/blkio-controller.txt
+    minimum_value: 10
+    maximum_value: 1000
+
+  blkio_weight_device:
+    description: >-
+      Per cgroup per device rules using this interface. These rules override the default value of group weight as specified by blkio.weight.
+    see_also:
+      - https://www.kernel.org/doc/Documentation/cgroup-v1/blkio-controller.txt
+    multivalued: true
+
+  cap_add:
+    description: >-
+      List of capabilities to add to OCI container.
+    multivalued: true
+
+  cap_drop:
+    description: >-
+      List of capabilities to drop from OCI container.
+    multivalued: true
+
+  cgroup_parent:
+    description: >-
+      On creation, all processes are put in the cgroup that the parent process belongs to at the time.
+
+  cgroupns:
+    aliases: ['cgroup-namespace',]
+    description: >-
+      cgroup namespace provides a mechanism to virtualize the view of the "/proc/$PID/cgroup" file and cgroup mounts.
+    see_also:
+      - https://www.kernel.org/doc/Documentation/cgroup-v2.txt
+
+  cidfile:
+    description: >-
+      Write the container ID to the file
+
+  conmon_pidfile:
+    description: >-
+      File to which the conman daemon's PID is written
+
+  cpu_period:
+    description: >-
+      Configure CPU allocation parameters using platform realtime scheduler.
+    see_also:
+      - https://www.kernel.org/doc/Documentation/scheduler/sched-rt-group.txt
+    range: integer
+
+  cpu_rt_period:
+    description: >-
+      Configure CPU allocation parameters using platform realtime scheduler.
+    see_also:
+      - https://www.kernel.org/doc/Documentation/scheduler/sched-rt-group.txt
+    range: integer
+    
+
+  cpu_rt_runtime:
+    description: >-
+      A global limit on how much time platform realtime scheduling may use.
+    see_also:
+      - https://www.kernel.org/doc/Documentation/scheduler/sched-rt-group.txt
+    range: integer
+
+  cpu_shares:
+    description: >-
+      Control how much CPU time a process in a hierarchy can use.
+    range: integer
+
+  cpuset_cpus:
+    description: >-
+      CPUs in which to allow execution (0-3, 0,1). Cpusets mechanism for assigning a set of CPUs to a set of tasks.
+
+  cpuset_mems:
+    description: >-
+      Memory nodes (MEMs) in which to allow execution (0-3, 0,1) on NUMA systems. Cpusets mechanism for assigning a set of Memory Nodes to a set of tasks.
+
+  detach:
+    description: >-
+      Separate one entity to form another entity
+    exact_mappings:
+      - wikidata:Q18511800
+
+  detach_keys:
+    description: >-
+      Override the key sequence for detaching a container. Format is a single character or ctrl-value
+
+  device_read_bps:
+    description: >-
+      Limit read rate (bytes per second) from a device.
+
+  device_read_iops:
+    description: >-
+      Limit read rate (IO per second) from a device.
+
+  device_write_bps:
+    description: >-
+      Limit write rate (bytes per second) to a device.
+
+  device_write_iops:
+    description: >-
+      Limit write rate (IO per second) to a device.
+
+  entrypoint:
+    description: >-
+      Point in a computer program where instruction-execution begins
+    exact_mappings:
+      - wikidata:Q2005914
+
+  env_host:
+    description: >-
+      Environment variables for a host
+
+  force_restart:
+    description: >-
+      Force restart of entity
+    range: boolean
+    ifabsent: false
+    aliases:
+      - restart
+
+  generate_systemd:
+    description: >-
+      Generate systemd unit file for a service
+    range: MetaObject
+
+  no_header:
+    description: >-
+      Do not generate the header including meta data.
+    range: boolean
+
+  use_names:
+    description: >-
+      Use names
+    range: boolean
+
+  container_prefix:
+    description: >-
+      Prefix for a Container
+
+  containers:
+    description: >-
+      Bunch of containers
+
+  pod_prefix:
+    description: >-
+      Prefix for a Pod
+
+  wants:
+    multivalued: true
+    description: >-
+      Wanted things
+
+  gidmap:
+    description: >-
+      Group id mapping
+    multivalued: true
+
+  group_add:
+    description: >-
+      Add additional groups
+    multivalued: true
+    aliases:
+      - groups
+
+  healthcheck_start_period:
+    description: >-
+      The initialization time needed for a container to bootstrap. The value can be expressed in time format like 2m3s. The default value is 0s
+    ifabsent: string(0s)
+
+  hooks_dir:
+    description: >-
+      Directory containing hooks, a technique to alter the behavior of a software by appending or replacing functions at predetermined attachment points
+    exact_mappings:
+      - wikidata:Q1203383
+
+  image_volume:
+    description: >-
+      Volume created from an Image.
+
+  multi_image_archive:
+    range: boolean
+    description: >-
+      Allow for creating archives with more than one image.
+
+  target_names:
+    description: >-
+      Target names
+
+  skip_existing:
+    range: boolean
+    description: >-
+      Skip existing entity.
+    ifabsent: false
+
+  image_strict:
+    description: >-
+      Whether to compare images in idempotency by taking into account a full name with repository and namespaces.
+    range: boolean
+    ifabsent: false
+
+  init_path:
+    description: >-
+      Path to the init binary.
+
+  ipc:
+    description: >-
+      Mechanisms an operating system provides allowing processes to manage shared data
+    aliases:
+      - ipc_mode
+
+  kernel_memory:
+    description: >-
+      The kernel has full access to the system's memory and allows processes to safely access this memory as they require it.
+    exact_mappings:
+      - wikidata:Q70792317
+
+  label_file:
+    description: >-
+      Line delimited file of labels
+
+  log_opt:
+    description: >-
+      Logging driver specific options.
+    range: MetaObject
+    aliases:
+      - log_options
+
+  memory_reservation:
+    description: >-
+      A memory reservation ensures that even as other virtual devices on the same host consume memory, there is still a certain minimum amount for this virtual device.
+
+  memory_swap:
+    description: >-
+      Memory management scheme by which a computer stores and retrieves data from secondary storage for use in main memory
+    exact_mappings:
+      - wikidata:Q656083
+
+  memory_swappiness:
+    description: >-
+      Swappiness is a Linux kernel parameter that controls the relative weight given to swapping out of runtime memory, as opposed to dropping pages from the system page cache, whenever a memory allocation request cannot be met from free memory. Swappiness can be set to a value from 0 to 200.
+    range: integer
+    minimum_value: 0
+    maximum_value: 200
+    broad_mappings:
+      - wikidata:Q656083
+
+  network_aliases:
+    description: >-
+      Add network-scoped alias.
+    multivalued: true
+
+  network_alias:
+    description: >-
+      Add network-scoped alias.
+
+  no_hosts:
+    description: >-
+      Do not create /etc/hosts
+    range: boolean
+    ifabsent: false
+
+  oom_kill_disable:
+    description: >-
+      Whether to disable OOM Killer for the entity or not.
+    range: boolean
+    ifabsent: false
+
+  oom_score_adj:
+    description: >-
+      Tune the host's OOM preferences for entity (accepts -1000 to 1000)
+    range: integer
+    minimum_value: -1000
+    maximum_value: 1000
+
+  pids_limit:
+    description: >-
+      Tune the entity's PIDs limit. Set -1 for unlimited PIDs for container.
+    range: integer
+    minimum_value: -1
+
+  pod:
+    description: >-
+      Vessel that contains seeds for an entity.
+
+  expose:
+    description: >-
+      To present to view; exhibit; display
+
+  publish_all:
+    description: >-
+      Publish all exposed ports to random ports on the host interfaces.
+    range: boolean
+    ifabsent: false
+
+  read_only_tmpfs:
+    description: >-
+      If container is running in --read-only mode, then mount a read-write tmpfs on /run, /tmp, and /var/tmp. The default is true
+    range: boolean
+    ifabsent: true
+
+  requires:
+    description: >-
+      Specify one or more requirements.
+    multivalued: true
+
+  restart_policy:
+    description: >-
+      Restart policy to follow when entity exits.
+
+  restart_sec:
+    description: >-
+      Time to sleep before restart.
+
+  sdnotify:
+    description: >-
+      Notify service manager about start-up completion and other service status changes
+
+  security_opt:
+    description: >-
+      Security Options.
+    multivalued: true
+
+  shm_size:
+    description: >-
+      Size of /dev/shm.
+
+  sig_proxy:
+    description: >-
+      Proxy signals.
+
+  stop_signal:
+    description: >-
+      Signal to stop a process. Default is SIGTERM.
+    range: integer
+
+  start_timeout:
+    description: >-
+      Timeout (in seconds) to start a process.
+    range: integer
+
+  stop_timeout:
+    description: >-
+        Timeout (in seconds) to stop a process.
+    range: integer
+
+  subgidname:
+    description: >-
+      Name from /etc/subgid. Subgid authorizes a group id to map ranges of group ids from its namespace into child namespaces
+
+  subuidname:
+    description: >-
+      Name from /etc/subuid. Subuid authorizes a user id to map ranges of user ids from its namespace into child namespaces.
+
+  uidmap:
+    description: >-
+      Run the container in a new user namespace using the supplied mapping.
+
+  userns:
+    description: >-
+      User namespaces are an isolation feature allowing processes to run with different user identifiers and/or privileges inside that namespace than are permitted outside.
+    aliases:
+      - userns_mode
+
+  volumes_from:
+    description: >-
+      Mount volumes from the specified source.
+    multivalued: true
+
+  ca_cert_dir:
+    description: >-
+      Path to directory containing TLS certificates and keys.
+
+  extra_args:
+    description: >-
+      Extra arguments passed
+
+  force_rm:
+    description: >-
+      Force removal
+
+  pull:
+    description: >-
+      Exert force on entity so as to cause movement towards oneself.
+
+  push:
+    description: >-
+      Exert force on entity so as to cause movement away from oneself.
+
+  remove_signatures:
+    description: >-
+      Discard any pre-existing signatures
+
+  sign_by:
+    description: >-
+      Path to a key file to use to sign the package.
+
+  push_args:
+    description: >-
+      Arguments that control push action
+
+  registry:
+    description: >-
+      Set of records with a single structure arranged according to a criterion, providing an authoritative list of one kind of information
+    exact_mappings:
+      - wikidata:Q19386377
+
+  all:
+    description: >-
+      The whole quantity or extent of a particular group or thing.
+    broad_mappings:
+      - wikidata:Q1
+
+  ignore_docker_credentials:
+    description: >-
+      Credentials created using other tools such as `docker login` are not removed unless the corresponding `authfile` is explicitly specified.
+
+  disable_dns:
+    description: >-
+      Disable dns
+    range: boolean
+
+  macvlan:
+    description: >-
+      Macvlan is a virtual LAN that you can use if you want to assign several IP addresses to the same network interface, basically splitting up the network interface into several sub-interfaces with their own IP addresses. You can then assign IP addresses based on the randomly generated MAC addresses.
+
+  configmap:
+    description: >-
+      A ConfigMap is an API object that lets you store configuration for other objects to use. Unlike most Kubernetes objects that have a spec , a ConfigMap has data and binaryData fields. These fields accept key-value pairs as their values. Both the data field and the binaryData are optional.
+
+  kube_file:
+    description: >-
+      Path to file with YAML configuration for a Pod.
+
+  seccomp_profile_root:
+    description: >-
+      Directory path for seccomp profiles.
+
+  add_host:
+    description: >-
+      Add host to system
+
+  infra_command:
+    description: >-
+      Infrastructure command
+
+  infra_conmon_pidfile:
+    description: >-
+      Write the pid of the infra container’s conmon process to a file. As conmon runs in a separate process than Podman, this is necessary when using systemd to manage Podman containers and pods.
+ 
+  infra_name:
+    description: >-
+      The name that will be used for the pod’s infra container.
+
+  infra_image:
+    description: >-
+      The image that will be created for the infra container. Default is “k8s.gcr.io/pause:3.1”.
+    ifabsent: string(k8s.gcr.io/pause:3.1)
+
+  pod_id_file:
+    description: >-
+      Write the pod ID to the file.
+
+classes:
+
+  OpenContainerInitiative:
+    mixin: true
+    aliases: ['OCI',]
+    is_a: Project
+    mixins:
+      - OpenSource
+    description: >-
+      An open governance structure for express purpose of creating open industry standards around container formats and runtime.
+    exact_mappings:
+      - wikidata:Q30588589
+
+  LinuxContainersProject:
+    mixin: true
+    is_a: Project
+    mixins:
+      - OpenSource
+    description: >-
+      Linux Containers is umbrella project for LXD, LXC, LXCFS and distrobuilder.
+
+  Container:
+    is_a: Software
+    mixins:
+      - Virtualization
+    description: >-
+      Software that emulates a whole computer by means of an isolated user-space environment running on top of the operating system's kernel.
+    exact_mappings:
+      - wikidata:Q88465956
+
+  Lxc:
+    is_a: Software
+    mixins:
+      - Virtualization
+      - LinuxContainersProject
+    description: >-
+      Operating system-level virtualization for Linux
+    exact_mappings:
+      - wikidata:Q2597211
+
+  LxcFs:
+    is_a: Software
+    mixins:
+      - LinuxContainersProject
+    description: >-
+      LXCFS is a simple userspace filesystem designed to work around some current limitations of the Linux kernel.
+    exact_mappings:
+      - wikidata:Q28975144
+
+  Lxd:
+    is_a: Software
+    mixins:
+      - LinuxContainersProject
+    description: >-
+      Lxd is a system container and virtual machine manager for Linux OS
+    exact_mappings:
+      - wikidata:Q47013045
+
+  OciContainer:
+    mixin: true
+    is_a: Container
+    mixins:
+      - OpenContainerInitiative
+    description: >-
+      Open Container Initiative (OCI) compliant containers
+
+  Podman:
+    is_a: Software
+    mixin: true
+    description: >-
+      daemonless OCI-compliant container runtime
+    mixins:
+      - OpenContainerInitiative
+    exact_mappings:
+      - wikidata:Q70876440
+
+  Containerd:
+    is_a: Software
+    description: >-
+      Container runtime
+    mixins:
+      - OpenContainerInitiative
+    exact_mappings:
+      - wikidata:Q102171343
+
+  Docker:
+    is_a: Software
+    description: >-
+      open-source software for deploying containerized applications
+    exact_mappings:
+      - wikidata:Q15206305
+
+  Kubernetes:
+    aliases: ['k8s',]
+    is_a: Software
+    description: >-
+      software to manage containers on a server-cluster
+    exact_mappings:
+      - wikidata:Q22661306
+
+  ClosedSoftwareModule:
+    abstract: true
+    description: >-
+      Self contained software module
+
+  PodmanContainer:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Podman container
+    slots:
+      - executable
+      - state
+      - annotation
+      - authfile
+      - blkio_weight
+      - blkio_weight_device
+      - cap_add
+      - cap_drop
+      - cgroup_parent
+      - cgroupns
+      - cgroups
+      - cidfile
+      - cmd_args
+      - conmon_pidfile
+      - command
+      - cpu_period
+      - cpu_rt_period
+      - cpu_rt_runtime
+      - cpu_shares
+      - cpus
+      - cpuset_cpus
+      - cpuset_mems
+      - detach
+      - debug
+      - detach_keys
+      - device
+      - device_read_bps
+      - device_read_iops
+      - device_write_bps
+      - device_write_iops
+      - dns
+      - dns_option
+      - dns_search
+      - entrypoint
+      - env
+      - env_file
+      - env_host
+      - etc_hosts
+      - expose
+      - force_restart
+      - generate_systemd
+      - gidmap
+      - group_add
+      - healthcheck
+      - healthcheck_interval
+      - healthcheck_retries
+      - healthcheck_start_period
+      - healthcheck_timeout
+      - hostname
+      - http_proxy
+      - image_volume
+      - image_strict
+      - init
+      - init_path
+      - interactive
+      - ip
+      - ipc
+      - kernel_memory
+      - label
+      - label_file
+      - log_driver
+      - log_level
+      - log_opt
+      - mac_address
+      - memory
+      - memory_reservation
+      - memory_swap
+      - memory_swappiness
+      - mount
+      - name
+      - network
+      - network_aliases
+      - no_hosts
+      - oom_kill_disable
+      - oom_score_adj
+      - pid
+      - pids_limit
+      - pod
+      - privileged
+      - publish
+      - publish_all
+      - read_only
+      - read_only_tmpfs
+      - recreate
+      - requires
+      - restart_policy
+      - rm
+      - rootfs
+      - sdnotify
+      - secrets
+      - security_opt
+      - shm_size
+      - sig_proxy
+      - stop_signal
+      - stop_timeout
+      - state
+      - subgidname
+      - subuidname
+      - sysctl
+      - systemd
+      - timezone
+      - tmpfs
+      - tty
+      - uidmap
+      - ulimit
+      - user
+      - userns
+      - uts
+      - volume
+      - volumes_from
+      - workdir
+    slot_usage:
+      annotation:
+        range: MetaObject
+        description: >-
+          Add an annotation to the container. The format is key value, multiple times.
+
+      authfile:
+        description: >-
+          Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` (Not available for remote commands) You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``
+
+      blkio_weight:
+        range: integer
+        description: >-
+          Block IO weight (relative weight) accepts a weight value between 10 and 1000        minimum_value: 10
+        maximum_value: 1000
+
+      blkio_weight_device:
+        range: MetaObject
+        description: >-
+          Block IO weight (relative device weight, format DEVICE_NAME[:]WEIGHT).
+
+      cap_add:
+        aliases:
+          - capabilities
+        multivalued: true
+        description: >-
+          List of capabilities to add to the container.
+
+      cap_drop:
+        multivalued: true
+        description: >-
+          List of capabilities to drop from the container.
+
+      cgroup_parent:
+        description: >-
+          Path to cgroups under which the cgroup for the container will be created. If the path is not absolute, the path is considered to be relative to the cgroups path of the init process. Cgroups will be created if they do not already exist.
+
+      cgroupns:
+        description: >-
+          Path to cgroups under which the cgroup for the container will be created.
+
+      cgroups:
+        description: >-
+          Determines whether the container will create CGroups. Valid values are enabled and disabled, which the default being enabled. The disabled option will force the container to not create CGroups, and thus conflicts with CGroup options cgroupns and cgroup-parent.
+
+      cidfile:
+        description: >-
+          Write the container ID to the file
+
+      cmd_args:
+        multivalued: true
+        description: >-
+          Any additional command options you want to pass to podman command, cmd_args - [’–other-param’, ‘value’] Be aware module doesn’t support idempotency if this is set.
+
+      command:
+        multivalued: true
+        description: >-
+          Override command of container. Can be a string or a list.
+
+      conmon_pidfile:
+        description: >-
+          Write the pid of the conmon process to a file. conmon runs in a separate process than Podman, so this is necessary when using systemd to restart Podman containers.
+
+      cpu_period:
+        range: integer
+        description: >-
+          Limit the CPU real-time period in microseconds
+
+      cpu_rt_period:
+        range: integer
+        description: >-
+          Limit the CPU real-time period in microseconds. Limit the container’s Real Time CPU usage. This flag tell the kernel to restrict the container’s Real Time CPU usage to the period you specify.
+
+      cpu_rt_runtime:
+        range: integer
+        description: >-
+          Limit the CPU real-time runtime in microseconds. This flag tells the kernel to limit the amount of time in a given CPU period Real Time tasks may consume.
+
+      cpu_shares:
+        range: integer
+        description: >-
+          CPU shares (relative weight)
+
+      cpus:
+        description: >-
+          Number of CPUs. The default is 0.0 which means no limit.
+
+      cpuset_cpus:
+        description: >-
+          CPUs in which to allow execution (0-3, 0,1)
+
+      cpuset_mems:
+        description: >-
+          Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only effective on NUMA systems.
+
+      debug:
+        range: boolean
+        description: >-
+          Return additional information which can be helpful for investigations.
+        ifabsent: false
+
+      detach:
+        range: boolean
+        description: >-
+          Run container in detach mode
+        ifabsent: true
+
+      detach_keys:
+        description: >-
+          Override the key sequence for detaching a container. Format is a single character or ctrl-value
+
+      device:
+        multivalued: true
+        description: >-
+          Add a host device to the container. The format is <device-on-host>[:<device-on-container>][:<permissions>] (e.g. device /dev/sdc:/dev/xvdc:rwm)
+
+      device_read_bps:
+        multivalued: true
+        description: >-
+          Limit read rate (bytes per second) from a device (e.g. device-read-bps /dev/sda:1mb)
+
+      device_read_iops:
+        multivalued: true
+        description: >-
+          Limit read rate (IO per second) from a device (e.g. device-read-iops /dev/sda:1000)
+
+      device_write_bps:
+        multivalued: true
+        description: >-
+          Limit write rate (bytes per second) to a device (e.g. device-write-bps /dev/sda:1mb)
+
+      device_write_iops:
+        multivalued: true
+        description: >-
+          Limit write rate (IO per second) to a device (e.g. device-write-iops /dev/sda:1000)
+
+      dns:
+        aliases:
+          - dns_servers
+        multivalued: true
+        description: >-
+          Set custom DNS servers
+
+      dns_option:
+        aliases:
+          - dns_opts
+        description: >-
+          Set custom DNS options
+
+      dns_search:
+        aliases:
+          - dns_search_domains
+        description: >-
+          Set custom DNS search domains (Use dns_search with ‘’ if you don’t wish to set the search domain)
+
+      entrypoint:
+        description: >-
+          Overwrite the default ENTRYPOINT of the image
+
+      env:
+        range: MetaObject
+        description: >-
+          Set environment variables. This option allows you to specify arbitrary environment variables that are available for the process that will be launched inside of the container.
+
+      env_file:
+        description: >-
+          Read in a line delimited file of environment variables. Doesn’t support idempotency. If users changes the file with environment variables it’s on them to recreate the container.
+
+      env_host:
+        range: boolean
+        description: >-
+          Use all current host environment variables in container. Defaults to false.
+        ifabsent: false
+
+      etc_hosts:
+        aliases:
+          - add_hosts
+        range: MetaObject
+        description: >-
+          Dict of host-to-IP mappings, where each host name is a key in the dictionary. Each host name will be added to the container’s ``/etc/hosts`` file.
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      expose:
+        aliases:
+          - exposed
+          - exposed_ports
+        multivalued: true
+        description: >-
+          Expose a port, or a range of ports (e.g. expose “3300-3310”) to set up port redirection on the host system.
+
+      force_restart:
+        aliases:
+          - restart
+        range: boolean
+        description: >-
+          Force restart of container.
+        ifabsent: false
+
+      generate_systemd:
+        range: MetaObject
+        description: >-
+          Generate systemd unit file for container.
+
+      gidmap:
+        multivalued: true
+        description: >-
+          Run the container in a new user namespace using the supplied mapping.
+
+      group_add:
+        aliases:
+          - groups
+        multivalued: true
+        description: >-
+          Add additional groups to run as
+
+      healthcheck:
+        description: >-
+          Set or alter a healthcheck command for a container.
+
+      healthcheck_interval:
+        description: >-
+          Set an interval for the healthchecks (a value of disable results in no automatic timer setup) (default “30s”)
+
+      healthcheck_retries:
+        range: integer
+        description: >-
+          The number of retries allowed before a healthcheck is considered to be unhealthy. The default value is 3.
+        ifabsent: int(3)
+
+      healthcheck_start_period:
+        description: >-
+          The initialization time needed for a container to bootstrap. The value can be expressed in time format like 2m3s. The default value is 0s
+
+      healthcheck_timeout:
+        description: >-
+          The maximum time allowed to complete the healthcheck before an interval is considered failed. Like start-period, the value can be expressed in a time format such as 1m22s. The default value is 30s
+
+      hostname:
+        description: >-
+          Container host name. Sets the container host name that is available inside the container.
+
+      http_proxy:
+        range: boolean
+        description: >-
+          By default proxy environment variables are passed into the container if set for the podman process. This can be disabled by setting the http_proxy option to false. The environment variables passed in include http_proxy, https_proxy, ftp_proxy, no_proxy, and also the upper case versions of those. Defaults to true
+        ifabsent: true
+
+      image:
+        description: >-
+          Repository path (or image name) and tag used to create the container. If an image is not found, the image will be pulled from the registry. If no tag is included, latest will be used. Can also be an image ID. If this is the case, the image is assumed to be available locally.
+
+      image_strict:
+        range: boolean
+        description: >-
+          Whether to compare images in idempotency by taking into account a full name with registry and namespaces.
+        ifabsent: false
+
+      image_volume:
+        description: >-
+          Tells podman how to handle the builtin image volumes. The options are bind, tmpfs, or ignore (default bind)
+        range: ContainerImageVolumeEnum
+
+      init:
+        range: boolean
+        description: >-
+          Run an init inside the container that forwards signals and reaps processes. The default is false.
+        ifabsent: false
+
+      init_path:
+        description: >-
+          Path to the container-init binary.
+
+      interactive:
+        range: boolean
+        description: >-
+          Keep STDIN open even if not attached. The default is false. When set to true, keep stdin open even if not attached. The default is false.
+        ifabsent: false
+
+      ip:
+        description: >-
+          Specify a static IP address for the container, for example ‘10.88.64.128’. Can only be used if no additional CNI networks to join were specified via ‘network:’, and if the container is not joining another container’s network namespace via ‘network container:<name|id>’. The address must be within the default CNI network’s pool (default 10.88.0.0/16).
+
+      ipc:
+        aliases:
+          - ipc_mode
+        description: >-
+          Default is to create a private IPC namespace (POSIX SysV IPC) for the container
+
+      kernel_memory:
+        description: >-
+          Kernel memory limit (format <number>[<unit>], where unit = b, k, m or g) Note - idempotency is supported for integers only.
+
+      label:
+        aliases:
+          - labels
+        range: MetaObject
+        description: >-
+          Add metadata to a container, pass dictionary of label names and values
+
+      label_file:
+        description: >-
+          Read in a line delimited file of labels
+
+      log_driver:
+        description: >-
+          Logging driver. Used to set the log driver for the container. For example log_driver “k8s-file”.
+        range: ContainerLogDriverEnum
+
+      log_level:
+        description: >-
+          Logging level for Podman. Log messages above specified level (“debug”|”info”|”warn”|”error”|”fatal”|”panic”) (default “error”)
+        range: ContainerLogLevelEnum
+
+      log_opt:
+        aliases:
+          - log_options
+        range: MetaObject
+        description: >-
+          Logging driver specific options. Used to set the path to the container log file.
+
+      mac_address:
+        description: >-
+          Specify a MAC address for the container, for example ‘92:d0:c6:0a:29:33’. Don’t forget that it must be unique within one Ethernet network.
+
+      memory:
+        description: >-
+          Memory limit (format 10k, where unit = b, k, m or g) Note - idempotency is supported for integers only.
+
+      memory_reservation:
+        description: >-
+          Memory soft limit (format 100m, where unit = b, k, m or g) Note - idempotency is supported for integers only.
+
+      memory_swap:
+        description: >-
+          A limit value equal to memory plus swap. Must be used with the -m (–memory) flag. The swap LIMIT should always be larger than -m (–memory) value. By default, the swap LIMIT will be set to double the value of –memory Note - idempotency is supported for integers only.
+
+      memory_swappiness:
+        range: integer
+        description: >-
+          Tune a container’s memory swappiness behavior. Accepts an integer between 0 and 100.
+        minimum_value: 0
+        maximum_value: 100
+
+      mount:
+        aliases:
+          - mounts
+        multivalued: true
+        description: >-
+          Attach a filesystem mount to the container. bind or tmpfs For example mount “type=bind,source=/path/on/host,destination=/path/in/container”
+
+      name:
+        required: true
+        description: >-
+          Name of the container
+
+      network:
+        aliases:
+          - net
+          - network_mode
+        multivalued: true
+        description: >-
+          Set the Network mode for the container * bridge create a network stack on the default bridge * none no networking * container:<name|id> reuse another container’s network stack * host use the podman host network stack. * <network-name>|<network-id> connect to a user-defined network * ns:<path> path to a network namespace to join * slirp4netns use slirp4netns to create a user network stack. This is the default for rootless containers
+
+      network_aliases:
+        multivalued: true
+        description: >-
+          Add network-scoped alias for the container. A container will only have access to aliases on the first network that it joins. This is a limitation that will be removed in a later release.
+
+      no_hosts:
+        range: boolean
+        description: >-
+          Do not create /etc/hosts for the container Default is false.
+        ifabsent: false
+
+      oom_kill_disable:
+        range: boolean
+        description: >-
+          Whether to disable OOM Killer for the container or not. Default is false.
+        ifabsent: false
+
+      oom_score_adj:
+        range: integer
+        description: >-
+          Tune the host’s OOM preferences for containers (accepts -1000 to 1000)
+        minimum_value: -1000
+        maximum_value: 1000
+
+      pid:
+        aliases:
+          - pid_mode
+        description: >-
+          Set the PID mode for the container
+
+      pids_limit:
+        description: >-
+          Tune the container’s PIDs limit. Set -1 to have unlimited PIDs for the container.
+
+      pod:
+        description: >-
+          Run container in an existing pod. If you want podman to make the pod for you, prefix the pod name with “new:”
+
+      privileged:
+        range: boolean
+        description: >-
+          Give extended privileges to this container. The default is false.
+        ifabsent: false
+
+      publish:
+        aliases:
+          - ports
+          - published
+          - published_ports
+        multivalued: true
+        description: >-
+          Publish a container’s port, or range of ports, to the host. Format - ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort | containerPort In case of only containerPort is set, the hostPort will chosen randomly by Podman.
+
+      publish_all:
+        range: boolean
+        description: >-
+          Publish all exposed ports to random ports on the host interfaces. The default is false.
+        ifabsent: false
+
+      read_only:
+        range: boolean
+        description: >-
+          Mount the container’s root filesystem as read only. Default is false
+        ifabsent: false
+
+      read_only_tmpfs:
+        range: boolean
+        description: >-
+          If container is running in –read-only mode, then mount a read-write tmpfs on /run, /tmp, and /var/tmp. The default is true
+        ifabsent: true
+
+      recreate:
+        range: boolean
+        description: >-
+          Use with present and started states to force the re-creation of an existing container.
+        ifabsent: false
+
+      requires:
+        multivalued: true
+        description: >-
+          Specify one or more requirements. A requirement is a dependency container that will be started before this container. Containers can be specified by name or ID.
+
+      restart_policy:
+        description: >-
+          Restart policy to follow when containers exit. Restart policy will not take effect if a container is stopped via the podman kill or podman stop commands. Valid values are * no - Do not restart containers on exit * on-failure[:max_retries] - Restart containers when they exit with a non-0 exit code, retrying indefinitely or until the optional max_retries count is hit * always - Restart containers when they exit, regardless of status, retrying indefinitely
+
+      rm:
+        aliases:
+          - remove
+          - auto_remove
+        range: boolean
+        description: >-
+          Automatically remove the container when it exits. The default is false.
+        ifabsent: false
+
+      rootfs:
+        range: boolean
+        description: >-
+          If true, the first argument refers to an exploded container on the file system. The default is false.
+        ifabsent: false
+
+      sdnotify:
+        description: >-
+          Determines how to use the NOTIFY_SOCKET, as passed with systemd and Type=notify. Can be container, conmon, ignore.
+
+      secrets:
+        multivalued: true
+        description: >-
+          Add the named secrets into the container. The format is secret[,opt=opt...], see documentation for more details.
+
+      security_opt:
+        multivalued: true
+        description: >-
+          Security Options. For example security_opt “seccomp=unconfined”
+
+      shm_size:
+        description: >-
+          Size of /dev/shm. The format is <number><unit>. number must be greater than 0. Unit is optional and can be b (bytes), k (kilobytes), m(megabytes), or g (gigabytes). If you omit the unit, the system uses bytes. If you omit the size entirely, the system uses 64m
+
+      sig_proxy:
+        range: boolean
+        description: >-
+          Proxy signals sent to the podman run command to the container process. SIGCHLD, SIGSTOP, and SIGKILL are not proxied. The default is true.
+        ifabsent: true
+
+      state:
+        description: >-
+          absent - A container matching the specified name will be stopped and removed.
+
+          present - Asserts the existence of a container matching the name and any provided configuration parameters. If no container matches the name, a container will be created. If a container matches the name but the provided configuration does not match, the container will be updated, if it can be. If it cannot be updated, it will be removed and re-created with the requested config. Image version will be taken into account when comparing configuration. Use the recreate option to force the re-creation of the matching container.
+
+          started - Asserts there is a running container matching the name and any provided configuration. If no container matches the name, a container will be created and started. Use recreate to always re-create a matching container, even if it is running. Use force_restart to force a matching container to be stopped and restarted.
+
+          stopped - Asserts that the container is first present, and then if the container is running moves it to a stopped state.
+
+          created - Asserts that the container exists with given configuration. If container doesn’t exist, the module creates it and leaves it in ‘created’ state. If configuration doesn’t match or ‘recreate’ option is set, the container will be recreated
+        ifabsent: string(started)
+        range: ContainerStateEnum
+
+      stop_signal:
+        range: integer
+        description: >-
+          Signal to stop a container. Default is SIGTERM.
+
+      stop_timeout:
+        range: integer
+        description: >-
+          Timeout (in seconds) to stop a container. Default is 10.
+        ifabsent: int(10)
+
+      subgidname:
+        description: >-
+          Run the container in a new user namespace using the map with ‘name’ in the /etc/subgid file.
+
+      subuidname:
+        description: >-
+          Run the container in a new user namespace using the map with ‘name’ in the /etc/subuid file.
+
+      sysctl:
+        range: MetaObject
+        description: >-
+          Configure namespaced kernel parameters at runtime
+
+      systemd:
+        description: >-
+          Run container in systemd mode. The default is true.
+        ifabsent: string(true)
+
+      timezone:
+        description: >-
+          Set timezone in container. This flag takes area-based timezones, GMT time, as well as local, which sets the timezone in the container to match the host machine. See /usr/share/zoneinfo/ for valid timezones. Remote connections use local containers.conf for defaults.
+
+      tmpfs:
+        range: MetaObject
+        description: >-
+          Create a tmpfs mount. For example tmpfs “/tmp” “rw,size=787448k,mode=1777”
+
+      tty:
+        range: boolean
+        description: >-
+          Allocate a pseudo-TTY. The default is false.
+        ifabsent: false
+
+      uidmap:
+        multivalued: true
+        description: >-
+          Run the container in a new user namespace using the supplied mapping.
+
+      ulimit:
+        aliases:
+          - ulimits
+        multivalued: true
+        description: >-
+          Ulimit options
+
+      user:
+        description: >-
+          Sets the username or UID used and optionally the groupname or GID for the specified command.
+
+      userns:
+        aliases:
+          - userns_mode
+        description: >-
+          Set the user namespace mode for the container. It defaults to the PODMAN_USERNS environment variable. An empty value means user namespaces are disabled.
+
+      uts:
+        description: >-
+          Set the UTS mode for the container
+
+      volume:
+        aliases:
+          - volumes
+        multivalued: true
+        description: >-
+          Create a bind mount. If you specify, volume /HOST-DIR:/CONTAINER-DIR, podman bind mounts /HOST-DIR in the host to /CONTAINER-DIR in the podman container.
+
+      volumes_from:
+        multivalued: true
+        description: >-
+          Mount volumes from the specified container(s).
+
+      workdir:
+        aliases:
+          - working_dir
+        description: >-
+          Working directory inside the container. The default working directory for running binaries within a container is the root directory (/).
+
+
+  PodmanContainers:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Podman containers
+    slots:
+      - containers
+      - debug
+    slot_usage:
+      containers:
+        multivalued: true
+        range: MetaObject
+        required: true
+        description: >-
+          List of dictionaries with data for running containers for podman_container module.
+
+      debug:
+        range: boolean
+        description: >-
+          Return additional information which can be helpful for investigations.
+        ifabsent: false
+
+  PodmanExport:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Export a Podman container
+    slots:
+      - container
+      - dest
+      - executable
+      - force
+    slot_usage:
+      container:
+        required: true
+        description: >-
+          Container to export.
+
+      dest:
+        required: true
+        description: >-
+          Path to export container to.
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      force:
+        range: boolean
+        description: >-
+          Force saving to file even if it exists.
+        ifabsent: true
+
+  PodmanGenerateSystemd:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Generate systemd unit from a pod or a container
+    slots:
+      - after
+      - container_prefix
+      - dest
+      - env
+      - executable
+      - name
+      - new
+      - no_header
+      - pod_prefix
+      - requires
+      - restart_policy
+      - restart_sec
+      - separator
+      - start_timeout
+      - stop_timeout
+      - use_names
+      - wants
+    slot_usage:
+      after:
+        multivalued: true
+        description: >-
+          Add the systemd unit after (After=) option, that ordering dependencies between the list of dependencies and this service.  This option may be specified more than once.  User-defined dependencies will be appended to the generated unit file. But any existing options such as needed or defined by default (e.g. online.target) will not be removed or overridden.  Only with Podman 4.0.0 and above
+
+      container_prefix:
+        description: >-
+          Set the systemd unit name prefix for containers. If not set, use the default defined by podman, container. Refer to podman-generate-systemd(1) man page for more information.
+
+      dest:
+        description: >-
+          Destination of the generated systemd unit file(s)
+
+      env:
+        range: MetaObject
+        description: >-
+          Set environment variables to the systemd unit files. Keys are the environment variable names, and values are the environment variable values. Only with Podman 4.3.0 and above
+
+      executable:
+        description: >-
+          Podman executable name or full path
+        ifabsent: string(podman)
+
+      name:
+        required: true
+        description: >-
+          Name of the pod or container to export
+
+      new:
+        range: boolean
+        description: >-
+          Generate unit files that create containers and pods, not only start them. Refer to podman-generate-systemd(1) man page for more information.
+        ifabsent: false
+
+      no_header:
+        range: boolean
+        description: >-
+          Do not generate the header including meta data such as the Podman version and the timestamp.
+        ifabsent: false
+
+      pod_prefix:
+        description: >-
+          Set the systemd unit name prefix for pods. If not set, use the default defined by podman, pod. Refer to podman-generate-systemd(1) man page for more information.
+
+      requires:
+        multivalued: true
+        description: >-
+          Set the systemd unit requires (Requires=) option. Similar to wants, but declares a stronger requirement dependency. Only with Podman 4.0.0 and above
+
+      restart_policy:
+        description: >-
+          Restart policy of the service
+        range: ContainerRestartPolicyEnum
+
+      restart_sec:
+        range: integer
+        description: >-
+          Configures the time to sleep before restarting a service (as configured with restart-policy).  Takes a value in seconds. Only with Podman 4.0.0 and above
+
+      separator:
+        description: >-
+          Systemd unit name separator between the name/id of a container/pod and the prefix. If not set, use the default defined by podman, -. Refer to podman-generate-systemd(1) man page for more information.
+
+      start_timeout:
+        range: integer
+        description: >-
+          Override the default start timeout for the container with the given value in seconds. Only with Podman 4.0.0 and above
+
+      stop_timeout:
+        range: integer
+        description: >-
+          Override the default stop timeout for the container with the given value in seconds.
+
+      use_names:
+        range: boolean
+        description: >-
+          Use name of the containers for the start, stop, and description in the unit file.
+        ifabsent: true
+
+
+  PodmanImage:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Podman container image
+    slots:
+      - auth_file
+      - build
+      # - annotation
+      # - cache
+      # - extra_args
+      # - file
+      # - force_rm
+      # - format
+      # - rm
+      # - volume
+      - ca_cert_dir
+      - executable
+      - force
+      - name
+      - password
+      - path
+      - pull
+      - push
+      - push_args
+      - compress
+      - dest
+      - format
+      - remove_signatures
+      - sign_by
+      - transport
+      - state
+      - tag
+      - username
+      - validate_certs
+    slot_usage:
+      auth_file:
+        aliases:
+          - authfile
+        description: >-
+          Path to file containing authorization credentials to the remote registry.
+
+      build:
+        aliases:
+          - build_args
+          - buildargs
+        range: MetaObject
+        description: >-
+          Arguments that control image build.
+
+      ca_cert_dir:
+        description: >-
+          Path to directory containing TLS certificates and keys to use.
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman.
+        ifabsent: string(podman)
+
+      force:
+        range: boolean
+        description: >-
+          Whether or not to force push or pull an image. When building, force the build even if the image already exists.
+        ifabsent: false
+
+      name:
+        required: true
+        description: >-
+          Name of the image to pull, push, or delete. It may contain a tag using the format image:tag.
+
+      password:
+        description: >-
+          Password to use when authenticating to remote registries.
+
+      path:
+        description: >-
+          Path to the build context directory.
+
+      pull:
+        range: boolean
+        description: >-
+          Whether or not to pull the image.
+        ifabsent: true
+
+      push:
+        range: boolean
+        description: >-
+          Whether or not to push an image.
+        ifabsent: false
+
+      push_args:
+        range: MetaObject
+        description: >-
+          Arguments that control pushing images.
+
+      state:
+        description: >-
+          Whether an image should be present, absent, or built.
+        range: ContainerImageStateEnum
+        ifabsent: string(present)
+
+      tag:
+        description: >-
+          Tag of the image to pull, push, or delete.
+        ifabsent: string(latest)
+
+      username:
+        description: >-
+          username to use when authenticating to remote registries.
+
+      validate_certs:
+        aliases:
+          - tlsverify
+          - tls_verify
+        range: boolean
+        description: >-
+          Require HTTPS and validate certificates when pulling or pushing. Also used during build if a pull or push is necessary.
+
+  PodmanImport:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Import Podman container from file
+    slots:
+      - change
+      - commit_message
+      - executable
+      - src
+    slot_usage:
+      change:
+        multivalued: true
+        range: MetaObject
+        description: >-
+          Set changes as list of key-value pairs, see example.
+
+      commit_message:
+        description: >-
+          Set commit message for imported image
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      src:
+        required: true
+        description: >-
+          Path to image file to load.
+
+  PodmanLoad:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Load container into container storage
+    slots:
+      - executable
+      - input
+    slot_usage:
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      input:
+        description: >-
+          Path to image file to load.
+        required: true
+
+
+  PodmanLogin:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Login to a Container registry using Podman
+    slots:
+      - authfile
+      - certdir
+      - executable
+      - password
+      - registry
+      - tlsverify
+      - username
+    slot_usage:
+      authfile:
+        description: >-
+          Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``
+
+      certdir:
+        description: >-
+          Use certificates at path (*.crt, *.cert, *.key) to connect to the registry. Default certificates directory is /etc/containers/certs.d.
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      password:
+        required: true
+        description: >-
+          Password for the registry server.
+
+      registry:
+        description: >-
+          Registry server. If the registry is not specified, the first registry under `[registries.search]` from `registries.conf` will be used.
+
+      tlsverify:
+        range: boolean
+        description: >-
+          Require HTTPS and verify certificates when contacting registries. If explicitly set to true, then TLS verification will be used. If set to false, then TLS verification will not be used. If not specified, TLS verification will be used unless the target registry is listed as an insecure registry in registries.conf.
+
+      username:
+        required: true
+        description: >-
+          Username for the registry server.
+
+
+  PodmanLogout:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Logout of a Container registry using Podman
+    slots:
+      - all
+      - authfile
+      - executable
+      - ignore_docker_credentials
+    slot_usage:
+      all:
+        range: boolean
+        description: >-
+          Remove the cached credentials for all registries in the auth file.
+
+      authfile:
+        description: >-
+          Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      ignore_docker_credentials:
+        range: boolean
+        description: >-
+          Credentials created using other tools such as `docker login` are not removed unless the corresponding `authfile` is explicitly specified. Since podman also uses existing credentials in these files by default (for docker e.g. `${HOME}/.docker/config.json`), module execution will fail if a docker login exists for the registry specified in any `authfile` is used by podman. This can be ignored by setting `ignore_docker_credentials` to `yes` - the credentials will be kept and `changed` will be false. This option cannot be used together with `all` since in this case podman will not check for existing `authfiles` created by other tools.
+
+      registry:
+        description: >-
+          Registry server. If the registry is not specified, the first registry under `[registries.search]` from `registries.conf` will be used.
+
+
+  PodmanNetwork:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Manage podman networks
+    slots:
+      - debug
+      - disable_dns
+      - driver
+      - executable
+      - gateway
+      - internal
+      - ip_range
+      - ipv6
+      - macvlan
+      - name
+      - opt
+      # - mtu
+      # - vlan
+      - recreate
+      - state
+      - subnet
+    slot_usage:
+      debug:
+        range: boolean
+        description: >-
+          Return additional information which can be helpful for investigations.
+        ifabsent: false
+
+      disable_dns:
+        range: boolean
+        description: >-
+          disable dns plugin (default “false”)
+        ifabsent: false
+
+      driver:
+        description: >-
+          Driver to manage the network (default “bridge”)
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+          ifabsent: string(podman)
+
+      gateway:
+        description: >-
+          IPv4 or IPv6 gateway for the subnet
+
+      internal:
+        range: boolean
+        description: >-
+          Restrict external access from this network (default “false”)
+
+      ip_range:
+        description: >-
+          Allocate container IP from range
+
+      ipv6:
+        range: boolean
+        description: >-
+          Enable IPv6 (Dual Stack) networking. You must pass a IPv6 subnet. The subnet option must be used with the ipv6 option.
+
+      macvlan:
+        description: >-
+          Create a Macvlan connection based on this device
+
+      name:
+        required: true
+        description: >-
+          Name of the network
+
+      opt:
+        range: MetaObject
+        description: >-
+          Add network options. Currently ‘vlan’ and ‘mtu’ are supported.
+
+      recreate:
+        range: boolean
+        description: >-
+          Recreate network even if exists.
+        ifabsent: false
+
+      state:
+        description: >-
+          State of network, default ‘present’
+        range: ContainerNetworkStateEnum
+        ifabsent: string(present)
+
+      subnet:
+        description: >-
+          Subnet in CIDR format
+
+
+  PodmanPlay:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Play kubernetes YAML file using podman
+    slots:
+      - authfile
+      - cert_dir
+      - configmap
+      - debug
+      - executable
+      - kube_file
+      - log_driver
+      - log_level
+      - network
+      - password
+      - quiet
+      - recreate
+      - seccomp_profile_root
+      - state
+      - tls_verify
+      - username
+    slot_usage:
+      authfile:
+        description: >-
+          Path of the authentication file. Default is ${XDG_RUNTIME_DIR}/containers/auth.json, which is set using podman login. If the authorization state is not found there, $HOME/.docker/config.json is checked, which is set using docker login. Note - You can also override the default path of the authentication file by setting the REGISTRY_AUTH_FILE environment variable. export REGISTRY_AUTH_FILE=path
+
+      cert_dir:
+        description: >-
+          Use certificates at path (*.crt, *.cert, *.key) to connect to the registry. Default certificates directory is /etc/containers/certs.d. (This option is not available with the remote Podman client)
+
+      configmap:
+        multivalued: true
+        description: >-
+          Use Kubernetes configmap YAML at path to provide a source for environment variable values within the containers of the pod. Note - The configmap option can be used multiple times to pass multiple Kubernetes configmap YAMLs
+
+      debug:
+        range: boolean
+        description: >-
+          Enable debug for the module.
+
+      executable:
+        description: >-
+          Name of executable to run, by default ‘podman’
+          ifabsent: string(podman)
+
+      kube_file:
+        required: true
+        description: >-
+          Path to file with YAML configuration for a Pod.
+
+      log_driver:
+        description: >-
+          Set logging driver for all created containers.
+
+      log_level:
+        description: >-
+          Set logging level for podman calls. Log messages above specified level (“debug”|”info”|”warn”|”error”|”fatal”|”panic”) (default “error”)
+        range: ContainerLogLevelEnum
+
+      network:
+        multivalued: true
+        description: >-
+          List of the names of CNI networks the pod should join.
+
+      password:
+        description: >-
+          The username and password to use to authenticate with the registry if required.
+
+      quiet:
+        range: boolean
+        description: >-
+          Hide image pulls logs from output.
+
+      recreate:
+        range: boolean
+        description: >-
+          If pod already exists, delete it and run the new one.
+
+      seccomp_profile_root:
+        description: >-
+          Directory path for seccomp profiles (default is “/var/lib/kubelet/seccomp”). This option is not available with the remote Podman client
+
+      state:
+        required: true
+        description: >-
+          Start the pod after creating it, or to leave it created only.
+        range: ContainerStateEnum
+
+      tls_verify:
+        range: boolean
+        description: >-
+          Require HTTPS and verify certificates when contacting registries (default is true). If explicitly set to true, then TLS verification will be used. If set to false, then TLS verification will not be used. If not specified, TLS verification will be used unless the target registry is listed as an insecure registry in registries.conf.
+
+      username:
+        description: >-
+          The username and password to use to authenticate with the registry if required.
+
+
+  PodmanPod:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Manage Podman pods
+    slots:
+      - add_host
+      - cgroup_parent
+      - cpus
+      - cpuset_cpus
+      - debug
+      - device
+      - device_read_bps
+      - dns
+      - dns_opt
+      - dns_search
+      - executable
+      - generate_systemd
+      # - after
+      # - container_prefix
+      # - names
+      # - new
+      # - no_header
+      # - path
+      # - pod_prefix
+      # - requires
+      # - restart_policy
+      # - separator
+      # - time
+      # - wants
+      - gidmap
+      - hostname
+      - infra
+      - infra_command
+      - infra_conmon_pidfile
+      - infra_name
+      - infra_image
+      - ip
+      - label
+      - label_file
+      - mac_address
+      - name
+      - network
+      - network_alias
+      - no_hosts
+      - pid
+      - pod_id_file
+      - publish
+      - recreate
+      - share
+      - state
+      - subgidname
+      - subuidname
+      - uidmap
+      - userns
+      - volume
+    slot_usage:
+
+      add_host:
+        multivalued: true
+        description: >-
+          Add a host to the /etc/hosts file shared between all containers in the pod.
+
+      cgroup_parent:
+        description: >-
+          Path to cgroups under which the cgroup for the pod will be created. If the path is not absolute, he path is considered to be relative to the cgroups path of the init process. Cgroups will be created if they do not already exist.
+
+      cpus:
+        description: >-
+          Set the total number of CPUs delegated to the pod. Default is 0.000 which indicates that there is no limit on computation power.
+
+      cpuset_cpus:
+        description: >-
+          Limit the CPUs to support execution. First CPU is numbered 0. Unlike `cpus` this is of type string and parsed as a list of numbers. Format is 0-3,0,1
+
+      debug:
+        range: boolean
+        description: >-
+          Return additional information which can be helpful for investigations.
+        ifabsent: false
+
+      device:
+        multivalued: true
+        description: >-
+          Add a host device to the pod. Optional permissions parameter can be used to specify device permissions. It is a combination of r for read, w for write, and m for mknod(2)
+
+      device_read_bps:
+        multivalued: true
+        description: >-
+          Limit read rate (bytes per second) from a device (e.g. device-read-bps=/dev/sda:1mb)
+
+      dns:
+        multivalued: true
+        description: >-
+          Set custom DNS servers in the /etc/resolv.conf file that will be shared between all containers in the pod. A special option, “none” is allowed which disables creation of /etc/resolv.conf for the pod.
+
+      dns_opt:
+        multivalued: true
+        description: >-
+          Set custom DNS options in the /etc/resolv.conf file that will be shared between all containers in the pod.
+
+      dns_search:
+        multivalued: true
+        description: >-
+          Set custom DNS search domains in the /etc/resolv.conf file that will be shared between all containers in the pod.
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      generate_systemd:
+        range: MetaObject
+        description: >-
+          Generate systemd unit file for container.
+
+      gidmap:
+        multivalued: true
+        description: >-
+          GID map for the user namespace. Using this flag will run the container with user namespace enabled. It conflicts with the `userns` and `subgidname` flags.
+
+      hostname:
+        description: >-
+          Set a hostname to the pod
+
+      infra:
+        range: boolean
+        description: >-
+          Create an infra container and associate it with the pod. An infra container is a lightweight container used to coordinate the shared kernel namespace of a pod. Default is true.
+        ifabsent: true
+
+      infra_command:
+        description: >-
+          The command that will be run to start the infra container. Default is “/pause”.
+      infra_conmon_pidfile:
+        description: >-
+          Write the pid of the infra container’s conmon process to a file. As conmon runs in a separate process than Podman, this is necessary when using systemd to manage Podman containers and pods.
+
+      infra_image:
+        description: >-
+          The image that will be created for the infra container. Default is “k8s.gcr.io/pause:3.1”.
+        ifabsent: string(k8s.gcr.io/pause:3.1)
+
+      infra_name:
+        description: >-
+          The name that will be used for the pod’s infra container.
+
+      ip:
+        description: >-
+          Set a static IP for the pod’s shared network.
+
+      label:
+        range: MetaObject
+        description: >-
+          Add metadata to a pod, pass dictionary of label keys and values.
+
+      label_file:
+        description: >-
+          Read in a line delimited file of labels.
+
+      mac_address:
+        description: >-
+          Set a static MAC address for the pod’s shared network.
+
+      name:
+        required: true
+        description: >-
+          Assign a name to the pod.
+
+      network:
+        multivalued: true
+        description: >-
+          Set network mode for the pod. Supported values are bridge (the default), host (do not create a network namespace, all containers in the pod will use the host’s network), or a list of names of CNI networks to join.
+
+      network_alias:
+        aliases:
+          - network_aliases:
+        multivalued: true
+        description: >-
+          Add a network-scoped alias for the pod, setting the alias for all networks that the pod joins. To set a name only for a specific network, use the alias option as described under the -`network` option. Network aliases work only with the bridge networking mode. This option can be specified multiple times.
+
+      no_hosts:
+        range: boolean
+        description: >-
+          Disable creation of /etc/hosts for the pod.
+        ifabsent: true
+
+      pid:
+        description: >-
+          Set the PID mode for the pod. The default is to create a private PID namespace for the pod. Requires the PID namespace to be shared via `share` option.
+
+      pod_id_file:
+        description: >-
+          Write the pod ID to the file.
+
+      publish:
+        aliases:
+          - ports:
+        multivalued: true
+        description: >-
+          Publish a port or range of ports from the pod to the host.
+
+      recreate:
+        description: >-
+          Use with present and started states to force the re-creation of an existing pod.
+        range: boolean
+        ifabsent: false
+
+      share:
+        description: >-
+          A comma delimited list of kernel namespaces to share. If none or “” is specified, no namespaces will be shared. The namespaces to choose from are ipc, net, pid, user, uts.
+
+      state:
+        description: >-
+          This variable is set for state
+        range: ContainerStateEnum
+
+      subgidname:
+        description: >-
+          Name for GID map from the /etc/subgid file. Using this flag will run the container with user namespace enabled. This flag conflicts with `userns` and `gidmap`.
+
+      subuidname:
+        description: >-
+          Name for UID map from the /etc/subuid file. Using this flag will run the container with user namespace enabled. This flag conflicts with `userns` and `uidmap`.
+
+      uidmap:
+        multivalued: true
+        description: >
+          Run the container in a new user namespace using the supplied mapping. This option conflicts with the `userns` and `subuidname` options. This option provides a way to map host UIDs to container UIDs. It can be passed several times to map different ranges.
+
+      userns:
+        description: >-
+          Set the user namespace mode for all the containers in a pod. It defaults to the PODMAN_USERNS environment variable. An empty value (“”) means user namespaces are disabled.
+
+      volume:
+        aliases:
+          - volumes
+        multivalued: true
+        description: >-
+          Create a bind mount.
+
+
+  PodmanSave:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Saves podman image to tar file
+    slots:
+      - compress
+      - dest
+      - executable
+      - force
+      - format
+      - image
+      - multi_image_archive
+    slot_usage:
+      compress:
+        range: boolean
+        description: >-
+          Compress tarball image layers when pushing to a directory using the ‘dir’ transport. (default is same compression type, compressed or uncompressed, as source)
+
+      dest:
+        aliases:
+          - path
+        required: true
+        description: >-
+          Destination file to write image to.
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      force:
+        range: boolean
+        description: >-
+          Force saving to file even if it exists.
+        ifabsent: false
+
+      format:
+        description: >-
+          Save image to docker-archive, oci-archive (see containers-transports(5)), oci-dir (oci transport), or docker-dir (dir transport with v2s2 manifest type).
+        range: ContainerSaveFormatEnum
+
+      image:
+        required: true
+        description: >-
+          Image to save.
+
+      multi_image_archive:
+        range: boolean
+        description: >-
+          Allow for creating archives with more than one image. Additional names will be interpreted as images instead of tags. Only supported for docker-archive.
+
+
+  PodmanSecret:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Manage Podman secrets
+    slots:
+      - data
+      - driver
+      - driver_opts
+      - executable
+      - force
+      - name
+      - skip_existing
+      - state
+    slot_usage:
+      data:
+        description: >-
+          The value of the secret. Required when state is present.
+
+      driver:
+        description: >-
+          Override default secrets driver, currently podman uses file which is unencrypted.
+
+      driver_opts:
+        range: MetaObject
+        description: >-
+          Driver-specific key-value options.
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      force:
+        range: boolean
+        description: >-
+          Use it when state is present to remove and recreate an existing secret.
+        ifabsent: false
+
+      name:
+        required: true
+        description: >-
+          The name of the secret.
+
+      skip_existing:
+        range: boolean
+        description: >-
+          Use it when state is present and secret with the same name already exists. If set to true, the secret will NOT be recreated and remains as is.
+        ifabsent: false
+
+      state:
+        description: >-
+          Whether to create or remove the named secret.
+        ifabsent: string(present)
+
+
+  PodmanTag:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Add an additional name to a local image
+    slots:
+      - executable
+      - image
+      - target_names
+    slot_usage:
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      image:
+        required: true
+        description: >-
+          Image to tag.
+
+      target_names:
+        multivalued: true
+        required: true
+        description: >-
+          Additional names.
+
+
+  PodmanVolume:
+    is_a: ClosedSoftwareModule
+    description: >-
+      Manage Podman Volumes
+    slots:
+      - debug
+      - driver
+      - executable
+      - label
+      - name
+      - options
+      - recreate
+      - state
+    slot_usage:
+      debug:
+        range: boolean
+        description: >-
+          Return additional information which can be helpful for investigations.
+        ifabsent: false
+
+      driver:
+        description: >-
+          Specify volume driver name (default local).
+
+      executable:
+        description: >-
+          Path to podman executable if it is not in the $PATH on the machine running podman
+        ifabsent: string(podman)
+
+      label:
+        range: MetaObject
+        description: >-
+          Add metadata to a pod volume (e.g., label com.example.key=value).
+
+      name:
+        required: true
+        description: >-
+          Name of volume.
+
+      options:
+        multivalued: true
+        description: >-
+          Set driver specific options. For example ‘device=tpmfs’, ‘type=tmpfs’. UID and GID idempotency is not supported due to changes in podman.
+
+      recreate:
+        range: boolean
+        description: >-
+          Recreate volume even if exists.
+        ifabsent: false
+
+      state:
+        description: >-
+          State of volume, default ‘present’
+        ifabsent: string(present)
+
+...
