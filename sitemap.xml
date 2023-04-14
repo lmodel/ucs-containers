@@ -121,6 +121,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://lmodel.github.io/ucs-containers/IacModule/</loc>
+         <lastmod>2023-04-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://lmodel.github.io/ucs-containers/InformationContentEntity/</loc>
          <lastmod>2023-04-14</lastmod>
          <changefreq>daily</changefreq>

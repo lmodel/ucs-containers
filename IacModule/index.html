@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://lmodel.github.io/ucs-containers/PodmanLoad/" rel="canonical"/>
+<link href="https://lmodel.github.io/ucs-containers/IacModule/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
-<title>Class: PodmanLoad - ucs-containers</title>
+<title>Class: IacModule - ucs-containers</title>
 <link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -21,7 +21,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-podmanload">
+<a class="md-skip" href="#class-iacmodule">
           Skip to content
         </a>
 </div>
@@ -45,7 +45,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: PodmanLoad
+              Class: IacModule
             
           </span>
 </div>
@@ -196,30 +196,59 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/lmodel/ucs-containers/edit/master/docs/PodmanLoad.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/lmodel/ucs-containers/edit/master/docs/IacModule.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="class-podmanload">Class: PodmanLoad</h1>
-<p><em>Load container into container storage</em></p>
-<p>URI: <a href="https://w3id.org/lmodel/ucs-containers/PodmanLoad">containers:PodmanLoad</a></p>
+<h1 id="class-iacmodule">Class: IacModule</h1>
+<p><em>Self contained software module</em></p>
+<ul>
+<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
+</ul>
+<p>URI: <a href="https://w3id.org/lmodel/ucs-containers/IacModule">containers:IacModule</a></p>
 <div class="mermaid"> classDiagram
-    class PodmanLoad
+    class IacModule
+      IacModule &lt;|-- PodmanContainer
+      IacModule &lt;|-- PodmanContainers
+      IacModule &lt;|-- PodmanExport
+      IacModule &lt;|-- PodmanGenerateSystemd
+      IacModule &lt;|-- PodmanImage
+      IacModule &lt;|-- PodmanImport
       IacModule &lt;|-- PodmanLoad
+      IacModule &lt;|-- PodmanLogin
+      IacModule &lt;|-- PodmanLogout
+      IacModule &lt;|-- PodmanNetwork
+      IacModule &lt;|-- PodmanPlay
+      IacModule &lt;|-- PodmanPod
+      IacModule &lt;|-- PodmanSave
+      IacModule &lt;|-- PodmanSecret
+      IacModule &lt;|-- PodmanTag
+      IacModule &lt;|-- PodmanVolume
 
-      PodmanLoad : executable
+      IacModule : executable
 
-          PodmanLoad ..&gt; string : executable
-
-      PodmanLoad : input
-
-          PodmanLoad ..&gt; string : input
+          IacModule ..&gt; string : executable
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../IacModule/">IacModule</a><ul>
-<li><strong>PodmanLoad</strong></li>
+<li><strong>IacModule</strong><ul>
+<li><a href="../PodmanContainer/">PodmanContainer</a></li>
+<li><a href="../PodmanContainers/">PodmanContainers</a></li>
+<li><a href="../PodmanExport/">PodmanExport</a></li>
+<li><a href="../PodmanGenerateSystemd/">PodmanGenerateSystemd</a></li>
+<li><a href="../PodmanImage/">PodmanImage</a></li>
+<li><a href="../PodmanImport/">PodmanImport</a></li>
+<li><a href="../PodmanLoad/">PodmanLoad</a></li>
+<li><a href="../PodmanLogin/">PodmanLogin</a></li>
+<li><a href="../PodmanLogout/">PodmanLogout</a></li>
+<li><a href="../PodmanNetwork/">PodmanNetwork</a></li>
+<li><a href="../PodmanPlay/">PodmanPlay</a></li>
+<li><a href="../PodmanPod/">PodmanPod</a></li>
+<li><a href="../PodmanSave/">PodmanSave</a></li>
+<li><a href="../PodmanSecret/">PodmanSecret</a></li>
+<li><a href="../PodmanTag/">PodmanTag</a></li>
+<li><a href="../PodmanVolume/">PodmanVolume</a></li>
 </ul>
 </li>
 </ul>
@@ -235,16 +264,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../input/">input</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Input of a program or process, i</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../executable/">executable</a></td>
 <td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Path to podman executable if it is not in the $PATH on the machine running po...</td>
-<td><a href="../IacModule/">IacModule</a></td>
+<td>file that can be directly run by a computer</td>
+<td>direct</td>
 </tr>
 </tbody>
 </table>
@@ -264,11 +287,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>containers:PodmanLoad</td>
+<td>containers:IacModule</td>
 </tr>
 <tr>
 <td>native</td>
-<td>containers:PodmanLoad</td>
+<td>containers:IacModule</td>
 </tr>
 </tbody>
 </table>
@@ -276,70 +299,33 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: PodmanLoad
-description: Load container into container storage
+<pre><code class="language-yaml">name: IacModule
+description: Self contained software module
 from_schema: https://w3id.org/lmodel/ucs-containers
 rank: 1000
-is_a: IacModule
+abstract: true
 slots:
-- input
-slot_usage:
-  executable:
-    name: executable
-    description: Path to podman executable if it is not in the $PATH on the machine
-      running podman
-    ifabsent: string(podman)
-    domain_of:
-    - IacModule
-  input:
-    name: input
-    description: Path to image file to load.
-    domain_of:
-    - PodmanLoad
-    required: true
+- executable
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: PodmanLoad
-description: Load container into container storage
+<pre><code class="language-yaml">name: IacModule
+description: Self contained software module
 from_schema: https://w3id.org/lmodel/ucs-containers
 rank: 1000
-is_a: IacModule
-slot_usage:
-  executable:
-    name: executable
-    description: Path to podman executable if it is not in the $PATH on the machine
-      running podman
-    ifabsent: string(podman)
-    domain_of:
-    - IacModule
-  input:
-    name: input
-    description: Path to image file to load.
-    domain_of:
-    - PodmanLoad
-    required: true
+abstract: true
 attributes:
-  input:
-    name: input
-    description: Path to image file to load.
-    from_schema: https://w3id.org/lmodel/ucs-core
-    alias: input
-    owner: PodmanLoad
-    domain_of:
-    - PodmanLoad
-    range: string
-    required: true
   executable:
     name: executable
-    description: Path to podman executable if it is not in the $PATH on the machine
-      running podman
+    description: file that can be directly run by a computer
     from_schema: https://w3id.org/lmodel/ucs-core
-    ifabsent: string(podman)
+    exact_mappings:
+    - ONTOAVIDA:00000002
+    - wikidata:Q778586
     alias: executable
-    owner: PodmanLoad
+    owner: IacModule
     domain_of:
     - IacModule
     range: string
