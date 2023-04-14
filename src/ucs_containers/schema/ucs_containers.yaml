@@ -716,7 +716,7 @@ classes:
     exact_mappings:
       - wikidata:Q22661306
 
-  ClosedSoftwareModule:
+  IacModule:
     abstract: true
     slots:
       - executable
@@ -724,7 +724,7 @@ classes:
       Self contained software module
 
   PodmanContainer:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Podman container
     slots:
@@ -1434,7 +1434,7 @@ classes:
 
 
   PodmanContainers:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Podman containers
     slots:
@@ -1455,7 +1455,7 @@ classes:
         ifabsent: false
 
   PodmanExport:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Export a Podman container
     slots:
@@ -1485,7 +1485,7 @@ classes:
         ifabsent: true
 
   PodmanGenerateSystemd:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Generate systemd unit from a pod or a container
     slots:
@@ -1587,7 +1587,7 @@ classes:
 
 
   PodmanImage:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Podman container image
     slots:
@@ -1703,7 +1703,7 @@ classes:
           Require HTTPS and validate certificates when pulling or pushing. Also used during build if a pull or push is necessary.
 
   PodmanImport:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Import Podman container from file
     slots:
@@ -1732,7 +1732,7 @@ classes:
           Path to image file to load.
 
   PodmanLoad:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Load container into container storage
     slots:
@@ -1750,7 +1750,7 @@ classes:
 
 
   PodmanLogin:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Login to a Container registry using Podman
     slots:
@@ -1795,7 +1795,7 @@ classes:
 
 
   PodmanLogout:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Logout of a Container registry using Podman
     slots:
@@ -1828,7 +1828,7 @@ classes:
 
 
   PodmanNetwork:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Manage podman networks
     slots:
@@ -1919,7 +1919,7 @@ classes:
 
 
   PodmanPlay:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Play kubernetes YAML file using podman
     slots:
@@ -2016,7 +2016,7 @@ classes:
 
 
   PodmanPod:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Manage Podman pods
     slots:
@@ -2255,7 +2255,7 @@ classes:
 
 
   PodmanSave:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Saves podman image to tar file
     slots:
@@ -2306,7 +2306,7 @@ classes:
 
 
   PodmanSecret:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Manage Podman secrets
     slots:
@@ -2360,7 +2360,7 @@ classes:
 
 
   PodmanTag:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Add an additional name to a local image
     slots:
@@ -2385,7 +2385,7 @@ classes:
 
 
   PodmanVolume:
-    is_a: ClosedSoftwareModule
+    is_a: IacModule
     description: >-
       Manage Podman Volumes
     slots:
