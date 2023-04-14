@@ -371,6 +371,10 @@
 <td>native</td>
 <td>containers:Kubernetes</td>
 </tr>
+<tr>
+<td>exact</td>
+<td>wikidata:Q22661306</td>
+</tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
@@ -382,6 +386,8 @@ description: software to manage containers on a server-cluster
 from_schema: https://w3id.org/lmodel/ucs-containers
 aliases:
 - k8s
+exact_mappings:
+- wikidata:Q22661306
 rank: 1000
 is_a: Software
 
@@ -394,6 +400,8 @@ description: software to manage containers on a server-cluster
 from_schema: https://w3id.org/lmodel/ucs-containers
 aliases:
 - k8s
+exact_mappings:
+- wikidata:Q22661306
 rank: 1000
 is_a: Software
 attributes:
@@ -517,7 +525,6 @@ attributes:
     owner: Kubernetes
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -628,7 +635,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
   description:
     name: description

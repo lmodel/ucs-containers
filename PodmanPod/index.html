@@ -205,19 +205,11 @@
 <div class="mermaid"> classDiagram
     class PodmanPod
       Podman &lt;|-- PodmanPod
-      Software &lt;|-- PodmanPod
+      NamedThing &lt;|-- PodmanPod
 
       PodmanPod : add_host
 
           PodmanPod ..&gt; string : add_host
-
-      PodmanPod : address
-
-          PodmanPod ..&gt; string : address
-
-      PodmanPod : affiliation
-
-          PodmanPod ..&gt; uriorcurie : affiliation
 
       PodmanPod : category
 
@@ -234,10 +226,6 @@
       PodmanPod : cpuset_cpus
 
           PodmanPod ..&gt; string : cpuset_cpus
-
-      PodmanPod : creationDate
-
-          PodmanPod ..&gt; date : creationDate
 
       PodmanPod : debug
 
@@ -306,6 +294,10 @@
       PodmanPod : infra_image
 
           PodmanPod ..&gt; string : infra_image
+
+      PodmanPod : infra_name
+
+          PodmanPod ..&gt; string : infra_name
 
       PodmanPod : inTaxon
 
@@ -409,16 +401,7 @@
 <ul>
 <li><a href="../Entity/">Entity</a><ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
-<li><a href="../System/">System</a> [ <a href="../ThingWithTaxon/">ThingWithTaxon</a>]<ul>
-<li><a href="../SoftwareOrDevice/">SoftwareOrDevice</a><ul>
-<li><a href="../Software/">Software</a><ul>
 <li><strong>PodmanPod</strong> [ <a href="../Podman/">Podman</a>]</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -535,6 +518,12 @@
 <td><a href="../infra_conmon_pidfile/">infra_conmon_pidfile</a></td>
 <td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
 <td>Write the pid of the infra container’s conmon process to a file</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../infra_name/">infra_name</a></td>
+<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
+<td>The name that will be used for the pod’s infra container</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -658,12 +647,6 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>0..* <br/> <a href="../NamedThing/">NamedThing</a></td>
-<td>connects an entity to its taxonomic classification</td>
-<td><a href="../ThingWithTaxon/">ThingWithTaxon</a></td>
-</tr>
-<tr>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
 <td>The value in this nodeProperty represents the knowledge provider that created...</td>
@@ -679,7 +662,7 @@
 <td><a href="../id/">id</a></td>
 <td>1..1 <br/> <a href="xsd:string">xsd:string</a></td>
 <td>A unique identifier for an entity</td>
-<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+<td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
 <td><a href="../iri/">iri</a></td>
@@ -712,22 +695,10 @@
 <td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>0..1 <br/> <a href="xsd:date">xsd:date</a></td>
-<td>date on which an entity was created</td>
-<td><a href="../OpenSource/">OpenSource</a></td>
-</tr>
-<tr>
-<td><a href="../affiliation/">affiliation</a></td>
-<td>0..* <br/> <a href="xsd:anyURI">xsd:anyURI</a></td>
-<td>a professional relationship between one provider (x) within another provider ...</td>
-<td><a href="../Agent/">Agent</a></td>
-</tr>
-<tr>
-<td><a href="../address/">address</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Collection of information that describes the location of a building, apartmen...</td>
-<td><a href="../Agent/">Agent</a></td>
+<td><a href="../inTaxon/">inTaxon</a></td>
+<td>0..* <br/> <a href="../NamedThing/">NamedThing</a></td>
+<td>connects an entity to its taxonomic classification</td>
+<td><a href="../ThingWithTaxon/">ThingWithTaxon</a></td>
 </tr>
 </tbody>
 </table>
@@ -763,7 +734,7 @@
 description: Manage Podman pods
 from_schema: https://w3id.org/lmodel/ucs-containers
 rank: 1000
-is_a: Software
+is_a: NamedThing
 mixins:
 - Podman
 slots:
@@ -784,6 +755,7 @@ slots:
 - infra
 - infra_command
 - infra_conmon_pidfile
+- infra_name
 - infra_image
 - ip
 - label
@@ -961,6 +933,8 @@ slot_usage:
   infra_name:
     name: infra_name
     description: The name that will be used for the pod’s infra container.
+    domain_of:
+    - PodmanPod
   ip:
     name: ip
     description: Set a static IP for the pod’s shared network.
@@ -1000,7 +974,6 @@ slot_usage:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     required: true
   network:
     name: network
@@ -1052,7 +1025,6 @@ slot_usage:
     - '{''ports'': None}'
     multivalued: true
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanPod
   recreate:
@@ -1078,7 +1050,6 @@ slot_usage:
     name: state
     description: This variable is set for state
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanImage
     - PodmanNetwork
@@ -1141,7 +1112,7 @@ slot_usage:
 description: Manage Podman pods
 from_schema: https://w3id.org/lmodel/ucs-containers
 rank: 1000
-is_a: Software
+is_a: NamedThing
 mixins:
 - Podman
 slot_usage:
@@ -1301,6 +1272,8 @@ slot_usage:
   infra_name:
     name: infra_name
     description: The name that will be used for the pod’s infra container.
+    domain_of:
+    - PodmanPod
   ip:
     name: ip
     description: Set a static IP for the pod’s shared network.
@@ -1340,7 +1313,6 @@ slot_usage:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     required: true
   network:
     name: network
@@ -1392,7 +1364,6 @@ slot_usage:
     - '{''ports'': None}'
     multivalued: true
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanPod
   recreate:
@@ -1418,7 +1389,6 @@ slot_usage:
     name: state
     description: This variable is set for state
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanImage
     - PodmanNetwork
@@ -1693,6 +1663,16 @@ attributes:
     domain_of:
     - PodmanPod
     range: string
+  infra_name:
+    name: infra_name
+    description: The name that will be used for the pod’s infra container.
+    from_schema: https://w3id.org/lmodel/ucs-containers
+    rank: 1000
+    alias: infra_name
+    owner: PodmanPod
+    domain_of:
+    - PodmanPod
+    range: string
   infra_image:
     name: infra_image
     description: The image that will be created for the infra container. Default is
@@ -1765,7 +1745,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
     required: true
   network:
@@ -1845,7 +1824,6 @@ attributes:
     alias: publish
     owner: PodmanPod
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanPod
     range: string
@@ -1885,7 +1863,6 @@ attributes:
     alias: state
     owner: PodmanPod
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanImage
     - PodmanNetwork
@@ -1966,29 +1943,6 @@ attributes:
     - PodmanContainer
     - PodmanPod
     range: string
-  inTaxon:
-    name: inTaxon
-    annotations:
-      canonical_predicate:
-        tag: canonical_predicate
-        value: 'True'
-    description: connects an entity to its taxonomic classification. Only certain
-      kinds of entities can be taxonomically classified; see 'ThingWithTaxon'
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - RO:0002162
-    - wikidata.property:P703
-    narrow_mappings:
-    - RO:0002160
-    is_a: relatedToAtInstanceLevel
-    domain: ThingWithTaxon
-    multivalued: true
-    inherited: true
-    alias: inTaxon
-    owner: PodmanPod
-    domain_of:
-    - ThingWithTaxon
-    range: NamedThing
   providedBy:
     name: providedBy
     description: The value in this nodeProperty represents the knowledge provider
@@ -2086,7 +2040,6 @@ attributes:
     owner: PodmanPod
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -2421,72 +2374,29 @@ attributes:
     domain_of:
     - Entity
     range: Attribute
-  creationDate:
-    name: creationDate
-    description: date on which an entity was created. This can be applied to nodes
-      or edges
+  inTaxon:
+    name: inTaxon
+    annotations:
+      canonical_predicate:
+        tag: canonical_predicate
+        value: 'True'
+    description: connects an entity to its taxonomic classification. Only certain
+      kinds of entities can be taxonomically classified; see 'ThingWithTaxon'
     from_schema: https://w3id.org/lmodel/ucs-core
-    aliases:
-    - publicationDate
     exact_mappings:
-    - dcterms:createdOn
-    - schema:dateCreated
-    - dwc:dateIdentified
-    - schema:datePublished
-    - sumo:dateEstablished
-    - wikidata.property:P577
+    - RO:0002162
+    - wikidata.property:P703
     narrow_mappings:
-    - dwc:eventDate
-    - dwc:verbatimEventDate
-    - dwc:relationshipEstablishedDate
-    broad_mappings:
-    - sumo:date
-    is_a: nodeProperty
-    domain: NamedThing
-    slot_uri: uco-observable:creationDate
-    alias: creationDate
-    owner: PodmanPod
-    domain_of:
-    - InformationContentEntity
-    - OpenSource
-    range: date
-  affiliation:
-    name: affiliation
-    description: a professional relationship between one provider (x) within another
-      provider (often an organization). Target provider identity should be specified
-      by a CURIE. Providers may have multiple affiliations.
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - NCIT:C25412
-    - schema:affiliation
-    - SIO:000173
-    - wikidata.property:P1268
-    related_mappings:
-    - uco-identity:AffiliationFacet
-    is_a: nodeProperty
-    domain: Agent
+    - RO:0002160
+    is_a: relatedToAtInstanceLevel
+    domain: ThingWithTaxon
     multivalued: true
-    alias: affiliation
+    inherited: true
+    alias: inTaxon
     owner: PodmanPod
     domain_of:
-    - Agent
-    range: uriorcurie
-  address:
-    name: address
-    description: Collection of information that describes the location of a building,
-      apartment, or other structure
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - wikidata:Q64826646
-    narrow_mappings:
-    - NCIT:C25407
-    - sumo:AddressFn
-    slot_uri: uco-identity:address
-    alias: address
-    owner: PodmanPod
-    domain_of:
-    - Agent
-    range: string
+    - ThingWithTaxon
+    range: NamedThing
 
 </code></pre>
 </details>

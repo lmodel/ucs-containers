@@ -211,10 +211,6 @@
 
           Linux ..&gt; category type : category
 
-      Linux : creationDate
-
-          Linux ..&gt; date : creationDate
-
       Linux : description
 
           Linux ..&gt; narrative text : description
@@ -286,12 +282,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>0..1 <br/> <a href="xsd:date">xsd:date</a></td>
-<td>date on which an entity was created</td>
-<td><a href="../OpenSource/">OpenSource</a></td>
-</tr>
 <tr>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>0..* <br/> <a href="../NamedThing/">NamedThing</a></td>
@@ -408,35 +398,6 @@ is_a: OperatingSystem
 mixins:
 - OpenSource
 attributes:
-  creationDate:
-    name: creationDate
-    description: date on which an entity was created. This can be applied to nodes
-      or edges
-    from_schema: https://w3id.org/lmodel/ucs-core
-    aliases:
-    - publicationDate
-    exact_mappings:
-    - dcterms:createdOn
-    - schema:dateCreated
-    - dwc:dateIdentified
-    - schema:datePublished
-    - sumo:dateEstablished
-    - wikidata.property:P577
-    narrow_mappings:
-    - dwc:eventDate
-    - dwc:verbatimEventDate
-    - dwc:relationshipEstablishedDate
-    broad_mappings:
-    - sumo:date
-    is_a: nodeProperty
-    domain: NamedThing
-    slot_uri: uco-observable:creationDate
-    alias: creationDate
-    owner: Linux
-    domain_of:
-    - InformationContentEntity
-    - OpenSource
-    range: date
   inTaxon:
     name: inTaxon
     annotations:
@@ -557,7 +518,6 @@ attributes:
     owner: Linux
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -668,7 +628,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
   description:
     name: description

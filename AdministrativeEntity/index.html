@@ -211,6 +211,7 @@
 
 
       AdministrativeEntity &lt;|-- Agent
+      AdministrativeEntity &lt;|-- Project
 
 
       AdministrativeEntity : category
@@ -257,6 +258,7 @@
 <li><a href="../NamedThing/">NamedThing</a><ul>
 <li><strong>AdministrativeEntity</strong><ul>
 <li><a href="../Agent/">Agent</a></li>
+<li><a href="../Project/">Project</a></li>
 </ul>
 </li>
 </ul>
@@ -474,7 +476,6 @@ attributes:
     owner: AdministrativeEntity
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -585,7 +586,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
   description:
     name: description

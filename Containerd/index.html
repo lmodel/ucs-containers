@@ -204,6 +204,7 @@
 <p>URI: <a href="https://w3id.org/lmodel/ucs-containers/Containerd">containers:Containerd</a></p>
 <div class="mermaid"> classDiagram
     class Containerd
+      OpenContainerInitiative &lt;|-- Containerd
       Software &lt;|-- Containerd
 
       Containerd : category
@@ -255,7 +256,7 @@
 <li><a href="../System/">System</a> [ <a href="../ThingWithTaxon/">ThingWithTaxon</a>]<ul>
 <li><a href="../SoftwareOrDevice/">SoftwareOrDevice</a><ul>
 <li><a href="../Software/">Software</a><ul>
-<li><strong>Containerd</strong></li>
+<li><strong>Containerd</strong> [ <a href="../OpenContainerInitiative/">OpenContainerInitiative</a>]</li>
 </ul>
 </li>
 </ul>
@@ -379,6 +380,8 @@ exact_mappings:
 - wikidata:Q102171343
 rank: 1000
 is_a: Software
+mixins:
+- OpenContainerInitiative
 
 </code></pre>
 </details>
@@ -391,6 +394,8 @@ exact_mappings:
 - wikidata:Q102171343
 rank: 1000
 is_a: Software
+mixins:
+- OpenContainerInitiative
 attributes:
   inTaxon:
     name: inTaxon
@@ -512,7 +517,6 @@ attributes:
     owner: Containerd
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -623,7 +627,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
   description:
     name: description

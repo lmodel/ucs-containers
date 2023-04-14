@@ -205,16 +205,7 @@
 <div class="mermaid"> classDiagram
     class PodmanContainer
       OciContainer &lt;|-- PodmanContainer
-      Podman &lt;|-- PodmanContainer
-      OciContainer &lt;|-- PodmanContainer
-
-      PodmanContainer : address
-
-          PodmanContainer ..&gt; string : address
-
-      PodmanContainer : affiliation
-
-          PodmanContainer ..&gt; uriorcurie : affiliation
+      NamedThing &lt;|-- PodmanContainer
 
       PodmanContainer : annotation
 
@@ -299,10 +290,6 @@
       PodmanContainer : cpuset_mems
 
           PodmanContainer ..&gt; string : cpuset_mems
-
-      PodmanContainer : creationDate
-
-          PodmanContainer ..&gt; date : creationDate
 
       PodmanContainer : debug
 
@@ -431,10 +418,6 @@
       PodmanContainer : id
 
           PodmanContainer ..&gt; string : id
-
-      PodmanContainer : image
-
-          PodmanContainer ..&gt; string : image
 
       PodmanContainer : image_strict
 
@@ -706,22 +689,7 @@
 <ul>
 <li><a href="../Entity/">Entity</a><ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
-<li><a href="../System/">System</a> [ <a href="../ThingWithTaxon/">ThingWithTaxon</a>]<ul>
-<li><a href="../SoftwareOrDevice/">SoftwareOrDevice</a><ul>
-<li><a href="../Software/">Software</a><ul>
-<li><a href="../Container/">Container</a> [ <a href="../Virtualization/">Virtualization</a>]<ul>
-<li><a href="../OciContainer/">OciContainer</a> [ <a href="../OpenContainerInitiative/">OpenContainerInitiative</a> <a href="../Virtualization/">Virtualization</a>]<ul>
-<li><strong>PodmanContainer</strong> [ <a href="../OciContainer/">OciContainer</a> <a href="../Podman/">Podman</a>]</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><strong>PodmanContainer</strong> [ <a href="../OciContainer/">OciContainer</a>]</li>
 </ul>
 </li>
 </ul>
@@ -1405,18 +1373,6 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../image/">image</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Repository path (or image name) and tag used to create the container</td>
-<td><a href="../OciContainer/">OciContainer</a></td>
-</tr>
-<tr>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>0..* <br/> <a href="../NamedThing/">NamedThing</a></td>
-<td>connects an entity to its taxonomic classification</td>
-<td><a href="../ThingWithTaxon/">ThingWithTaxon</a></td>
-</tr>
-<tr>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
 <td>The value in this nodeProperty represents the knowledge provider that created...</td>
@@ -1432,7 +1388,7 @@
 <td><a href="../id/">id</a></td>
 <td>1..1 <br/> <a href="xsd:string">xsd:string</a></td>
 <td>A unique identifier for an entity</td>
-<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+<td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
 <td><a href="../iri/">iri</a></td>
@@ -1465,22 +1421,10 @@
 <td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>0..1 <br/> <a href="xsd:date">xsd:date</a></td>
-<td>date on which an entity was created</td>
-<td><a href="../OpenSource/">OpenSource</a></td>
-</tr>
-<tr>
-<td><a href="../affiliation/">affiliation</a></td>
-<td>0..* <br/> <a href="xsd:anyURI">xsd:anyURI</a></td>
-<td>a professional relationship between one provider (x) within another provider ...</td>
-<td><a href="../Agent/">Agent</a></td>
-</tr>
-<tr>
-<td><a href="../address/">address</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Collection of information that describes the location of a building, apartmen...</td>
-<td><a href="../Agent/">Agent</a></td>
+<td><a href="../inTaxon/">inTaxon</a></td>
+<td>0..* <br/> <a href="../NamedThing/">NamedThing</a></td>
+<td>connects an entity to its taxonomic classification</td>
+<td><a href="../ThingWithTaxon/">ThingWithTaxon</a></td>
 </tr>
 </tbody>
 </table>
@@ -1516,10 +1460,9 @@
 description: Podman container
 from_schema: https://w3id.org/lmodel/ucs-containers
 rank: 1000
-is_a: OciContainer
+is_a: NamedThing
 mixins:
 - OciContainer
-- Podman
 slots:
 - executable
 - state
@@ -1720,7 +1663,6 @@ slot_usage:
     description: Override command of container. Can be a string or a list.
     multivalued: true
     domain_of:
-    - OciContainer
     - PodmanContainer
   conmon_pidfile:
     name: conmon_pidfile
@@ -1873,7 +1815,6 @@ slot_usage:
       environment variables that are available for the process that will be launched
       inside of the container.
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanGenerateSystemd
     range: MetaObject
@@ -1931,7 +1872,6 @@ slot_usage:
     - exposed_ports
     multivalued: true
     domain_of:
-    - OciContainer
     - PodmanContainer
   force_restart:
     name: force_restart
@@ -2020,10 +1960,6 @@ slot_usage:
       If an image is not found, the image will be pulled from the registry. If no
       tag is included, latest will be used. Can also be an image ID. If this is the
       case, the image is assumed to be available locally.
-    domain_of:
-    - OciContainer
-    - PodmanSave
-    - PodmanTag
   image_strict:
     name: image_strict
     description: Whether to compare images in idempotency by taking into account a
@@ -2183,7 +2119,6 @@ slot_usage:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     required: true
   network:
     name: network
@@ -2272,7 +2207,6 @@ slot_usage:
     - published_ports
     multivalued: true
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanPod
   publish_all:
@@ -2411,7 +2345,6 @@ slot_usage:
       doesn’t match or ‘recreate’ option is set, the container will be recreated'
     ifabsent: string(started)
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanImage
     - PodmanNetwork
@@ -2550,10 +2483,9 @@ slot_usage:
 description: Podman container
 from_schema: https://w3id.org/lmodel/ucs-containers
 rank: 1000
-is_a: OciContainer
+is_a: NamedThing
 mixins:
 - OciContainer
-- Podman
 slot_usage:
   annotation:
     name: annotation
@@ -2642,7 +2574,6 @@ slot_usage:
     description: Override command of container. Can be a string or a list.
     multivalued: true
     domain_of:
-    - OciContainer
     - PodmanContainer
   conmon_pidfile:
     name: conmon_pidfile
@@ -2795,7 +2726,6 @@ slot_usage:
       environment variables that are available for the process that will be launched
       inside of the container.
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanGenerateSystemd
     range: MetaObject
@@ -2853,7 +2783,6 @@ slot_usage:
     - exposed_ports
     multivalued: true
     domain_of:
-    - OciContainer
     - PodmanContainer
   force_restart:
     name: force_restart
@@ -2942,10 +2871,6 @@ slot_usage:
       If an image is not found, the image will be pulled from the registry. If no
       tag is included, latest will be used. Can also be an image ID. If this is the
       case, the image is assumed to be available locally.
-    domain_of:
-    - OciContainer
-    - PodmanSave
-    - PodmanTag
   image_strict:
     name: image_strict
     description: Whether to compare images in idempotency by taking into account a
@@ -3105,7 +3030,6 @@ slot_usage:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     required: true
   network:
     name: network
@@ -3194,7 +3118,6 @@ slot_usage:
     - published_ports
     multivalued: true
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanPod
   publish_all:
@@ -3333,7 +3256,6 @@ slot_usage:
       doesn’t match or ‘recreate’ option is set, the container will be recreated'
     ifabsent: string(started)
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanImage
     - PodmanNetwork
@@ -3522,7 +3444,6 @@ attributes:
     alias: state
     owner: PodmanContainer
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanImage
     - PodmanNetwork
@@ -3683,7 +3604,6 @@ attributes:
     alias: command
     owner: PodmanContainer
     domain_of:
-    - OciContainer
     - PodmanContainer
     range: string
   cpu_period:
@@ -3916,7 +3836,6 @@ attributes:
     alias: env
     owner: PodmanContainer
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanGenerateSystemd
     range: MetaObject
@@ -3968,7 +3887,6 @@ attributes:
     alias: expose
     owner: PodmanContainer
     domain_of:
-    - OciContainer
     - PodmanContainer
     range: string
   force_restart:
@@ -4341,7 +4259,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
     required: true
   network:
@@ -4475,7 +4392,6 @@ attributes:
     alias: publish
     owner: PodmanContainer
     domain_of:
-    - OciContainer
     - PodmanContainer
     - PodmanPod
     range: string
@@ -4835,43 +4751,6 @@ attributes:
     domain_of:
     - PodmanContainer
     range: string
-  image:
-    name: image
-    description: Repository path (or image name) and tag used to create the container.
-      If an image is not found, the image will be pulled from the registry. If no
-      tag is included, latest will be used. Can also be an image ID. If this is the
-      case, the image is assumed to be available locally.
-    from_schema: https://w3id.org/lmodel/ucs-core
-    alias: image
-    owner: PodmanContainer
-    domain_of:
-    - OciContainer
-    - PodmanSave
-    - PodmanTag
-    range: string
-  inTaxon:
-    name: inTaxon
-    annotations:
-      canonical_predicate:
-        tag: canonical_predicate
-        value: 'True'
-    description: connects an entity to its taxonomic classification. Only certain
-      kinds of entities can be taxonomically classified; see 'ThingWithTaxon'
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - RO:0002162
-    - wikidata.property:P703
-    narrow_mappings:
-    - RO:0002160
-    is_a: relatedToAtInstanceLevel
-    domain: ThingWithTaxon
-    multivalued: true
-    inherited: true
-    alias: inTaxon
-    owner: PodmanContainer
-    domain_of:
-    - ThingWithTaxon
-    range: NamedThing
   providedBy:
     name: providedBy
     description: The value in this nodeProperty represents the knowledge provider
@@ -4969,7 +4848,6 @@ attributes:
     owner: PodmanContainer
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -5304,72 +5182,29 @@ attributes:
     domain_of:
     - Entity
     range: Attribute
-  creationDate:
-    name: creationDate
-    description: date on which an entity was created. This can be applied to nodes
-      or edges
+  inTaxon:
+    name: inTaxon
+    annotations:
+      canonical_predicate:
+        tag: canonical_predicate
+        value: 'True'
+    description: connects an entity to its taxonomic classification. Only certain
+      kinds of entities can be taxonomically classified; see 'ThingWithTaxon'
     from_schema: https://w3id.org/lmodel/ucs-core
-    aliases:
-    - publicationDate
     exact_mappings:
-    - dcterms:createdOn
-    - schema:dateCreated
-    - dwc:dateIdentified
-    - schema:datePublished
-    - sumo:dateEstablished
-    - wikidata.property:P577
+    - RO:0002162
+    - wikidata.property:P703
     narrow_mappings:
-    - dwc:eventDate
-    - dwc:verbatimEventDate
-    - dwc:relationshipEstablishedDate
-    broad_mappings:
-    - sumo:date
-    is_a: nodeProperty
-    domain: NamedThing
-    slot_uri: uco-observable:creationDate
-    alias: creationDate
-    owner: PodmanContainer
-    domain_of:
-    - InformationContentEntity
-    - OpenSource
-    range: date
-  affiliation:
-    name: affiliation
-    description: a professional relationship between one provider (x) within another
-      provider (often an organization). Target provider identity should be specified
-      by a CURIE. Providers may have multiple affiliations.
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - NCIT:C25412
-    - schema:affiliation
-    - SIO:000173
-    - wikidata.property:P1268
-    related_mappings:
-    - uco-identity:AffiliationFacet
-    is_a: nodeProperty
-    domain: Agent
+    - RO:0002160
+    is_a: relatedToAtInstanceLevel
+    domain: ThingWithTaxon
     multivalued: true
-    alias: affiliation
+    inherited: true
+    alias: inTaxon
     owner: PodmanContainer
     domain_of:
-    - Agent
-    range: uriorcurie
-  address:
-    name: address
-    description: Collection of information that describes the location of a building,
-      apartment, or other structure
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - wikidata:Q64826646
-    narrow_mappings:
-    - NCIT:C25407
-    - sumo:AddressFn
-    slot_uri: uco-identity:address
-    alias: address
-    owner: PodmanContainer
-    domain_of:
-    - Agent
-    range: string
+    - ThingWithTaxon
+    range: NamedThing
 
 </code></pre>
 </details>

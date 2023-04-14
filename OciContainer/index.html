@@ -210,44 +210,19 @@
 <div class="mermaid"> classDiagram
     class OciContainer
       OpenContainerInitiative &lt;|-- OciContainer
-      Virtualization &lt;|-- OciContainer
       Container &lt;|-- OciContainer
 
 
       OciContainer &lt;|-- PodmanContainer
 
 
-      OciContainer : address
-
-          OciContainer ..&gt; string : address
-
-      OciContainer : affiliation
-
-          OciContainer ..&gt; uriorcurie : affiliation
-
       OciContainer : category
 
           OciContainer ..&gt; category type : category
 
-      OciContainer : command
-
-          OciContainer ..&gt; string : command
-
-      OciContainer : creationDate
-
-          OciContainer ..&gt; date : creationDate
-
       OciContainer : description
 
           OciContainer ..&gt; narrative text : description
-
-      OciContainer : env
-
-          OciContainer ..&gt; string : env
-
-      OciContainer : expose
-
-          OciContainer ..&gt; string : expose
 
       OciContainer : hasAttribute
 
@@ -256,10 +231,6 @@
       OciContainer : id
 
           OciContainer ..&gt; string : id
-
-      OciContainer : image
-
-          OciContainer ..&gt; string : image
 
       OciContainer : inTaxon
 
@@ -276,14 +247,6 @@
       OciContainer : providedBy
 
           OciContainer ..&gt; string : providedBy
-
-      OciContainer : publish
-
-          OciContainer ..&gt; string : publish
-
-      OciContainer : state
-
-          OciContainer ..&gt; string : state
 
       OciContainer : type
 
@@ -303,10 +266,7 @@
 <li><a href="../SoftwareOrDevice/">SoftwareOrDevice</a><ul>
 <li><a href="../Software/">Software</a><ul>
 <li><a href="../Container/">Container</a> [ <a href="../Virtualization/">Virtualization</a>]<ul>
-<li><strong>OciContainer</strong> [ <a href="../OpenContainerInitiative/">OpenContainerInitiative</a> <a href="../Virtualization/">Virtualization</a>]<ul>
-<li><a href="../PodmanContainer/">PodmanContainer</a> [ <a href="./">OciContainer</a> <a href="../Podman/">Podman</a>]</li>
-</ul>
-</li>
+<li><strong>OciContainer</strong> [ <a href="../OpenContainerInitiative/">OpenContainerInitiative</a>]</li>
 </ul>
 </li>
 </ul>
@@ -332,42 +292,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../command/">command</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Directive to a computer program</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../image/">image</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>artifact that depicts or records visual perception</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../state/">state</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>The way something is with respect to its main attributes</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../expose/">expose</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>To present to view; exhibit; display</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../publish/">publish</a></td>
-<td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Publish things to make something externally available</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../env/">env</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Set environment variables</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>0..* <br/> <a href="../NamedThing/">NamedThing</a></td>
 <td>connects an entity to its taxonomic classification</td>
@@ -389,7 +313,7 @@
 <td><a href="../id/">id</a></td>
 <td>1..1 <br/> <a href="xsd:string">xsd:string</a></td>
 <td>A unique identifier for an entity</td>
-<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+<td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
 <td><a href="../iri/">iri</a></td>
@@ -413,7 +337,7 @@
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../LabelType/">LabelType</a></td>
 <td>A human-readable name for an attribute or entity</td>
-<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+<td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
@@ -426,24 +350,6 @@
 <td>0..* <br/> <a href="../Attribute/">Attribute</a></td>
 <td>connects any entity to an attribute</td>
 <td><a href="../Entity/">Entity</a></td>
-</tr>
-<tr>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>0..1 <br/> <a href="xsd:date">xsd:date</a></td>
-<td>date on which an entity was created</td>
-<td><a href="../OpenSource/">OpenSource</a></td>
-</tr>
-<tr>
-<td><a href="../affiliation/">affiliation</a></td>
-<td>0..* <br/> <a href="xsd:anyURI">xsd:anyURI</a></td>
-<td>a professional relationship between one provider (x) within another provider ...</td>
-<td><a href="../Agent/">Agent</a></td>
-</tr>
-<tr>
-<td><a href="../address/">address</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Collection of information that describes the location of a building, apartmen...</td>
-<td><a href="../Agent/">Agent</a></td>
 </tr>
 </tbody>
 </table>
@@ -498,28 +404,6 @@ is_a: Container
 mixin: true
 mixins:
 - OpenContainerInitiative
-- Virtualization
-slots:
-- command
-- image
-- state
-- expose
-- publish
-- env
-slot_usage:
-  image:
-    name: image
-    description: Image to use for the container
-    domain_of:
-    - OciContainer
-    - PodmanSave
-    - PodmanTag
-  expose:
-    name: expose
-    description: Expose a port, or a range of ports (e.g. expose “3300-3310”).
-    domain_of:
-    - OciContainer
-    - PodmanContainer
 
 </code></pre>
 </details>
@@ -533,104 +417,7 @@ is_a: Container
 mixin: true
 mixins:
 - OpenContainerInitiative
-- Virtualization
-slot_usage:
-  image:
-    name: image
-    description: Image to use for the container
-    domain_of:
-    - OciContainer
-    - PodmanSave
-    - PodmanTag
-  expose:
-    name: expose
-    description: Expose a port, or a range of ports (e.g. expose “3300-3310”).
-    domain_of:
-    - OciContainer
-    - PodmanContainer
 attributes:
-  command:
-    name: command
-    description: Directive to a computer program
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - wikidata:Q1079196
-    alias: command
-    owner: OciContainer
-    domain_of:
-    - OciContainer
-    - PodmanContainer
-    range: string
-  image:
-    name: image
-    description: Image to use for the container
-    from_schema: https://w3id.org/lmodel/ucs-core
-    alias: image
-    owner: OciContainer
-    domain_of:
-    - OciContainer
-    - PodmanSave
-    - PodmanTag
-    range: string
-  state:
-    name: state
-    description: The way something is with respect to its main attributes.
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - NCIT:C25687
-    is_a: associationSlot
-    domain: Association
-    slot_uri: uco-observable:state
-    alias: state
-    owner: OciContainer
-    domain_of:
-    - OciContainer
-    - PodmanContainer
-    - PodmanImage
-    - PodmanNetwork
-    - PodmanPlay
-    - PodmanPod
-    - PodmanSecret
-    - PodmanVolume
-    range: string
-  expose:
-    name: expose
-    description: Expose a port, or a range of ports (e.g. expose “3300-3310”).
-    from_schema: https://w3id.org/lmodel/ucs-containers
-    rank: 1000
-    alias: expose
-    owner: OciContainer
-    domain_of:
-    - OciContainer
-    - PodmanContainer
-    range: string
-  publish:
-    name: publish
-    description: Publish things to make something externally available
-    from_schema: https://w3id.org/lmodel/ucs-core
-    aliases:
-    - ports
-    - published
-    - published_ports
-    multivalued: true
-    alias: publish
-    owner: OciContainer
-    domain_of:
-    - OciContainer
-    - PodmanContainer
-    - PodmanPod
-    range: string
-  env:
-    name: env
-    description: Set environment variables.
-    from_schema: https://w3id.org/lmodel/ucs-core
-    alias: env
-    owner: OciContainer
-    domain_of:
-    - OciContainer
-    - PodmanContainer
-    - PodmanGenerateSystemd
-    range: string
   inTaxon:
     name: inTaxon
     annotations:
@@ -751,7 +538,6 @@ attributes:
     owner: OciContainer
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -862,7 +648,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
   description:
     name: description
@@ -1117,72 +902,6 @@ attributes:
     domain_of:
     - Entity
     range: Attribute
-  creationDate:
-    name: creationDate
-    description: date on which an entity was created. This can be applied to nodes
-      or edges
-    from_schema: https://w3id.org/lmodel/ucs-core
-    aliases:
-    - publicationDate
-    exact_mappings:
-    - dcterms:createdOn
-    - schema:dateCreated
-    - dwc:dateIdentified
-    - schema:datePublished
-    - sumo:dateEstablished
-    - wikidata.property:P577
-    narrow_mappings:
-    - dwc:eventDate
-    - dwc:verbatimEventDate
-    - dwc:relationshipEstablishedDate
-    broad_mappings:
-    - sumo:date
-    is_a: nodeProperty
-    domain: NamedThing
-    slot_uri: uco-observable:creationDate
-    alias: creationDate
-    owner: OciContainer
-    domain_of:
-    - InformationContentEntity
-    - OpenSource
-    range: date
-  affiliation:
-    name: affiliation
-    description: a professional relationship between one provider (x) within another
-      provider (often an organization). Target provider identity should be specified
-      by a CURIE. Providers may have multiple affiliations.
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - NCIT:C25412
-    - schema:affiliation
-    - SIO:000173
-    - wikidata.property:P1268
-    related_mappings:
-    - uco-identity:AffiliationFacet
-    is_a: nodeProperty
-    domain: Agent
-    multivalued: true
-    alias: affiliation
-    owner: OciContainer
-    domain_of:
-    - Agent
-    range: uriorcurie
-  address:
-    name: address
-    description: Collection of information that describes the location of a building,
-      apartment, or other structure
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - wikidata:Q64826646
-    narrow_mappings:
-    - NCIT:C25407
-    - sumo:AddressFn
-    slot_uri: uco-identity:address
-    alias: address
-    owner: OciContainer
-    domain_of:
-    - Agent
-    range: string
 
 </code></pre>
 </details>

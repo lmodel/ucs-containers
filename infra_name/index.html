@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://lmodel.github.io/ucs-containers/affiliation/">
+        <link rel="canonical" href="https://lmodel.github.io/ucs-containers/infra_name/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>Slot: affiliation - ucs-containers</title>
+        <title>Slot: infra_name - ucs-containers</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-affiliation" class="md-skip">
+        <a href="#slot-infra_name" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: affiliation
+              Slot: infra_name
             
           </span>
         </div>
@@ -256,13 +256,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#inheritance" class="md-nav__link">
-    Inheritance
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     Applicable Classes
   </a>
@@ -317,22 +310,17 @@
                 
                   
 
-  <a href="https://github.com/lmodel/ucs-containers/edit/master/docs/affiliation.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/lmodel/ucs-containers/edit/master/docs/infra_name.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slot-affiliation">Slot: affiliation</h1>
-<p><em>a professional relationship between one provider (x) within another provider (often an organization). Target provider identity should be specified by a CURIE. Providers may have multiple affiliations.</em></p>
-<p>URI: <a href="core:affiliation">core:affiliation</a></p>
-<h2 id="inheritance">Inheritance</h2>
-<ul>
-<li><a href="../nodeProperty/">nodeProperty</a><ul>
-<li><strong>affiliation</strong></li>
-</ul>
-</li>
-</ul>
+<h1 id="slot-infra_name">Slot: infra_name</h1>
+<p><em>The name that will be used for the pod’s infra container.</em></p>
+<p>URI: <a href="https://w3id.org/lmodel/ucs-containers/infra_name">containers:infra_name</a></p>
+<!-- no inheritance hierarchy -->
+
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -343,43 +331,31 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Agent/">Agent</a></td>
-<td>person, group, organization or project that provides a piece of information (...</td>
+<td><a href="../PodmanPod/">PodmanPod</a></td>
+<td>Manage Podman pods</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="xsd:anyURI">xsd:anyURI</a></li>
-<li>Multivalued: True</li>
+<li>Range: <a href="xsd:string">xsd:string</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
-<li>from schema: https://w3id.org/lmodel/ucs-core</li>
+<li>from schema: https://w3id.org/lmodel/ucs-containers</li>
 </ul>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: affiliation
-description: a professional relationship between one provider (x) within another provider
-  (often an organization). Target provider identity should be specified by a CURIE.
-  Providers may have multiple affiliations.
-from_schema: https://w3id.org/lmodel/ucs-core
-exact_mappings:
-- NCIT:C25412
-- schema:affiliation
-- SIO:000173
-- wikidata.property:P1268
-related_mappings:
-- uco-identity:AffiliationFacet
-is_a: nodeProperty
-domain: Agent
-multivalued: true
-alias: affiliation
+<pre><code class="language-yaml">name: infra_name
+description: The name that will be used for the pod’s infra container.
+from_schema: https://w3id.org/lmodel/ucs-containers
+rank: 1000
+alias: infra_name
 domain_of:
-- Agent
-range: uriorcurie
+- PodmanPod
+range: string
 
 </code></pre>
 

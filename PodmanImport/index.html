@@ -204,16 +204,7 @@
 <p>URI: <a href="https://w3id.org/lmodel/ucs-containers/PodmanImport">containers:PodmanImport</a></p>
 <div class="mermaid"> classDiagram
     class PodmanImport
-      Podman &lt;|-- PodmanImport
-      Software &lt;|-- PodmanImport
-
-      PodmanImport : address
-
-          PodmanImport ..&gt; string : address
-
-      PodmanImport : affiliation
-
-          PodmanImport ..&gt; uriorcurie : affiliation
+      NamedThing &lt;|-- PodmanImport
 
       PodmanImport : category
 
@@ -226,10 +217,6 @@
       PodmanImport : commit_message
 
           PodmanImport ..&gt; string : commit_message
-
-      PodmanImport : creationDate
-
-          PodmanImport ..&gt; date : creationDate
 
       PodmanImport : description
 
@@ -246,10 +233,6 @@
       PodmanImport : id
 
           PodmanImport ..&gt; string : id
-
-      PodmanImport : inTaxon
-
-          PodmanImport ..&gt; NamedThing : inTaxon
 
       PodmanImport : iri
 
@@ -281,16 +264,7 @@
 <ul>
 <li><a href="../Entity/">Entity</a><ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
-<li><a href="../System/">System</a> [ <a href="../ThingWithTaxon/">ThingWithTaxon</a>]<ul>
-<li><a href="../SoftwareOrDevice/">SoftwareOrDevice</a><ul>
-<li><a href="../Software/">Software</a><ul>
-<li><strong>PodmanImport</strong> [ <a href="../Podman/">Podman</a>]</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><strong>PodmanImport</strong></li>
 </ul>
 </li>
 </ul>
@@ -332,12 +306,6 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>0..* <br/> <a href="../NamedThing/">NamedThing</a></td>
-<td>connects an entity to its taxonomic classification</td>
-<td><a href="../ThingWithTaxon/">ThingWithTaxon</a></td>
-</tr>
-<tr>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>0..* <br/> <a href="xsd:string">xsd:string</a></td>
 <td>The value in this nodeProperty represents the knowledge provider that created...</td>
@@ -353,7 +321,7 @@
 <td><a href="../id/">id</a></td>
 <td>1..1 <br/> <a href="xsd:string">xsd:string</a></td>
 <td>A unique identifier for an entity</td>
-<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+<td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
 <td><a href="../iri/">iri</a></td>
@@ -377,7 +345,7 @@
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../LabelType/">LabelType</a></td>
 <td>A human-readable name for an attribute or entity</td>
-<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+<td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
@@ -390,24 +358,6 @@
 <td>0..* <br/> <a href="../Attribute/">Attribute</a></td>
 <td>connects any entity to an attribute</td>
 <td><a href="../Entity/">Entity</a></td>
-</tr>
-<tr>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>0..1 <br/> <a href="xsd:date">xsd:date</a></td>
-<td>date on which an entity was created</td>
-<td><a href="../OpenSource/">OpenSource</a></td>
-</tr>
-<tr>
-<td><a href="../affiliation/">affiliation</a></td>
-<td>0..* <br/> <a href="xsd:anyURI">xsd:anyURI</a></td>
-<td>a professional relationship between one provider (x) within another provider ...</td>
-<td><a href="../Agent/">Agent</a></td>
-</tr>
-<tr>
-<td><a href="../address/">address</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Collection of information that describes the location of a building, apartmen...</td>
-<td><a href="../Agent/">Agent</a></td>
 </tr>
 </tbody>
 </table>
@@ -443,9 +393,7 @@
 description: Import Podman container from file
 from_schema: https://w3id.org/lmodel/ucs-containers
 rank: 1000
-is_a: Software
-mixins:
-- Podman
+is_a: NamedThing
 slots:
 - change
 - commit_message
@@ -501,9 +449,7 @@ slot_usage:
 description: Import Podman container from file
 from_schema: https://w3id.org/lmodel/ucs-containers
 rank: 1000
-is_a: Software
-mixins:
-- Podman
+is_a: NamedThing
 slot_usage:
   change:
     name: change
@@ -602,29 +548,6 @@ attributes:
     - Attribute
     range: string
     required: true
-  inTaxon:
-    name: inTaxon
-    annotations:
-      canonical_predicate:
-        tag: canonical_predicate
-        value: 'True'
-    description: connects an entity to its taxonomic classification. Only certain
-      kinds of entities can be taxonomically classified; see 'ThingWithTaxon'
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - RO:0002162
-    - wikidata.property:P703
-    narrow_mappings:
-    - RO:0002160
-    is_a: relatedToAtInstanceLevel
-    domain: ThingWithTaxon
-    multivalued: true
-    inherited: true
-    alias: inTaxon
-    owner: PodmanImport
-    domain_of:
-    - ThingWithTaxon
-    range: NamedThing
   providedBy:
     name: providedBy
     description: The value in this nodeProperty represents the knowledge provider
@@ -722,7 +645,6 @@ attributes:
     owner: PodmanImport
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -833,7 +755,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
   description:
     name: description
@@ -1088,72 +1009,6 @@ attributes:
     domain_of:
     - Entity
     range: Attribute
-  creationDate:
-    name: creationDate
-    description: date on which an entity was created. This can be applied to nodes
-      or edges
-    from_schema: https://w3id.org/lmodel/ucs-core
-    aliases:
-    - publicationDate
-    exact_mappings:
-    - dcterms:createdOn
-    - schema:dateCreated
-    - dwc:dateIdentified
-    - schema:datePublished
-    - sumo:dateEstablished
-    - wikidata.property:P577
-    narrow_mappings:
-    - dwc:eventDate
-    - dwc:verbatimEventDate
-    - dwc:relationshipEstablishedDate
-    broad_mappings:
-    - sumo:date
-    is_a: nodeProperty
-    domain: NamedThing
-    slot_uri: uco-observable:creationDate
-    alias: creationDate
-    owner: PodmanImport
-    domain_of:
-    - InformationContentEntity
-    - OpenSource
-    range: date
-  affiliation:
-    name: affiliation
-    description: a professional relationship between one provider (x) within another
-      provider (often an organization). Target provider identity should be specified
-      by a CURIE. Providers may have multiple affiliations.
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - NCIT:C25412
-    - schema:affiliation
-    - SIO:000173
-    - wikidata.property:P1268
-    related_mappings:
-    - uco-identity:AffiliationFacet
-    is_a: nodeProperty
-    domain: Agent
-    multivalued: true
-    alias: affiliation
-    owner: PodmanImport
-    domain_of:
-    - Agent
-    range: uriorcurie
-  address:
-    name: address
-    description: Collection of information that describes the location of a building,
-      apartment, or other structure
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - wikidata:Q64826646
-    narrow_mappings:
-    - NCIT:C25407
-    - sumo:AddressFn
-    slot_uri: uco-identity:address
-    alias: address
-    owner: PodmanImport
-    domain_of:
-    - Agent
-    range: string
 
 </code></pre>
 </details>

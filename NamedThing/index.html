@@ -212,13 +212,25 @@
       Entity &lt;|-- NamedThing
 
 
+      NamedThing &lt;|-- PodmanContainer
       NamedThing &lt;|-- PodmanContainers
       NamedThing &lt;|-- PodmanExport
       NamedThing &lt;|-- PodmanGenerateSystemd
+      NamedThing &lt;|-- PodmanImage
+      NamedThing &lt;|-- PodmanImport
+      NamedThing &lt;|-- PodmanLoad
+      NamedThing &lt;|-- PodmanLogin
+      NamedThing &lt;|-- PodmanLogout
+      NamedThing &lt;|-- PodmanNetwork
+      NamedThing &lt;|-- PodmanPlay
+      NamedThing &lt;|-- PodmanPod
+      NamedThing &lt;|-- PodmanSave
+      NamedThing &lt;|-- PodmanSecret
+      NamedThing &lt;|-- PodmanTag
+      NamedThing &lt;|-- PodmanVolume
       NamedThing &lt;|-- AdministrativeEntity
       NamedThing &lt;|-- InformationContentEntity
       NamedThing &lt;|-- System
-      NamedThing &lt;|-- OpenSource
 
 
       NamedThing : category
@@ -263,13 +275,25 @@
 <ul>
 <li><a href="../Entity/">Entity</a><ul>
 <li><strong>NamedThing</strong><ul>
-<li><a href="../PodmanContainers/">PodmanContainers</a> [ <a href="../Podman/">Podman</a>]</li>
-<li><a href="../PodmanExport/">PodmanExport</a> [ <a href="../Podman/">Podman</a>]</li>
-<li><a href="../PodmanGenerateSystemd/">PodmanGenerateSystemd</a> [ <a href="../Podman/">Podman</a>]</li>
+<li><a href="../PodmanContainer/">PodmanContainer</a> [ <a href="../OciContainer/">OciContainer</a>]</li>
+<li><a href="../PodmanContainers/">PodmanContainers</a></li>
+<li><a href="../PodmanExport/">PodmanExport</a></li>
+<li><a href="../PodmanGenerateSystemd/">PodmanGenerateSystemd</a></li>
+<li><a href="../PodmanImage/">PodmanImage</a></li>
+<li><a href="../PodmanImport/">PodmanImport</a></li>
+<li><a href="../PodmanLoad/">PodmanLoad</a></li>
+<li><a href="../PodmanLogin/">PodmanLogin</a></li>
+<li><a href="../PodmanLogout/">PodmanLogout</a></li>
+<li><a href="../PodmanNetwork/">PodmanNetwork</a></li>
+<li><a href="../PodmanPlay/">PodmanPlay</a> [ <a href="../Podman/">Podman</a>]</li>
+<li><a href="../PodmanPod/">PodmanPod</a> [ <a href="../Podman/">Podman</a>]</li>
+<li><a href="../PodmanSave/">PodmanSave</a> [ <a href="../Podman/">Podman</a>]</li>
+<li><a href="../PodmanSecret/">PodmanSecret</a> [ <a href="../Podman/">Podman</a>]</li>
+<li><a href="../PodmanTag/">PodmanTag</a> [ <a href="../Podman/">Podman</a>]</li>
+<li><a href="../PodmanVolume/">PodmanVolume</a> [ <a href="../Podman/">Podman</a>]</li>
 <li><a href="../AdministrativeEntity/">AdministrativeEntity</a></li>
 <li><a href="../InformationContentEntity/">InformationContentEntity</a></li>
 <li><a href="../System/">System</a> [ <a href="../ThingWithTaxon/">ThingWithTaxon</a>]</li>
-<li><a href="../OpenSource/">OpenSource</a></li>
 </ul>
 </li>
 </ul>
@@ -355,12 +379,6 @@
 <tbody>
 <tr>
 <td><a href="../OpenContainerInitiative/">OpenContainerInitiative</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../OpenContainerInitiative/">OpenContainerInitiative</a></td>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>domain</td>
 <td><a href="./">NamedThing</a></td>
@@ -373,12 +391,6 @@
 </tr>
 <tr>
 <td><a href="../LinuxContainersProject/">LinuxContainersProject</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../LinuxContainersProject/">LinuxContainersProject</a></td>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>domain</td>
 <td><a href="./">NamedThing</a></td>
@@ -426,12 +438,6 @@
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
-<td><a href="../Lxc/">Lxc</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
 <td><a href="../LxcFs/">LxcFs</a></td>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>range</td>
@@ -446,12 +452,6 @@
 <tr>
 <td><a href="../LxcFs/">LxcFs</a></td>
 <td><a href="../xref/">xref</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../LxcFs/">LxcFs</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
 <td>domain</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
@@ -474,12 +474,6 @@
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
-<td><a href="../Lxd/">Lxd</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
 <td><a href="../OciContainer/">OciContainer</a></td>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>range</td>
@@ -498,12 +492,6 @@
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
-<td><a href="../OciContainer/">OciContainer</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
 <td><a href="../Podman/">Podman</a></td>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>range</td>
@@ -518,12 +506,6 @@
 <tr>
 <td><a href="../Podman/">Podman</a></td>
 <td><a href="../xref/">xref</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../Podman/">Podman</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
 <td>domain</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
@@ -583,12 +565,6 @@
 </tr>
 <tr>
 <td><a href="../PodmanContainer/">PodmanContainer</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanContainer/">PodmanContainer</a></td>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>domain</td>
 <td><a href="./">NamedThing</a></td>
@@ -601,8 +577,8 @@
 </tr>
 <tr>
 <td><a href="../PodmanContainer/">PodmanContainer</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
+<td><a href="../inTaxon/">inTaxon</a></td>
+<td>range</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
@@ -614,18 +590,6 @@
 <tr>
 <td><a href="../PodmanContainers/">PodmanContainers</a></td>
 <td><a href="../xref/">xref</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanContainers/">PodmanContainers</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanContainers/">PodmanContainers</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
 <td>domain</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
@@ -642,18 +606,6 @@
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
-<td><a href="../PodmanExport/">PodmanExport</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanExport/">PodmanExport</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
 <td><a href="../PodmanGenerateSystemd/">PodmanGenerateSystemd</a></td>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>domain</td>
@@ -663,24 +615,6 @@
 <td><a href="../PodmanGenerateSystemd/">PodmanGenerateSystemd</a></td>
 <td><a href="../xref/">xref</a></td>
 <td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanGenerateSystemd/">PodmanGenerateSystemd</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanGenerateSystemd/">PodmanGenerateSystemd</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanImage/">PodmanImage</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
@@ -696,18 +630,6 @@
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
-<td><a href="../PodmanImage/">PodmanImage</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanImport/">PodmanImport</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
 <td><a href="../PodmanImport/">PodmanImport</a></td>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>domain</td>
@@ -717,18 +639,6 @@
 <td><a href="../PodmanImport/">PodmanImport</a></td>
 <td><a href="../xref/">xref</a></td>
 <td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanImport/">PodmanImport</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanLoad/">PodmanLoad</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
@@ -744,18 +654,6 @@
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
-<td><a href="../PodmanLoad/">PodmanLoad</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanLogin/">PodmanLogin</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
 <td><a href="../PodmanLogin/">PodmanLogin</a></td>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>domain</td>
@@ -765,18 +663,6 @@
 <td><a href="../PodmanLogin/">PodmanLogin</a></td>
 <td><a href="../xref/">xref</a></td>
 <td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanLogin/">PodmanLogin</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanLogout/">PodmanLogout</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
@@ -792,18 +678,6 @@
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
-<td><a href="../PodmanLogout/">PodmanLogout</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanNetwork/">PodmanNetwork</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
 <td><a href="../PodmanNetwork/">PodmanNetwork</a></td>
 <td><a href="../providedBy/">providedBy</a></td>
 <td>domain</td>
@@ -813,18 +687,6 @@
 <td><a href="../PodmanNetwork/">PodmanNetwork</a></td>
 <td><a href="../xref/">xref</a></td>
 <td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanNetwork/">PodmanNetwork</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanPlay/">PodmanPlay</a></td>
-<td><a href="../inTaxon/">inTaxon</a></td>
-<td>range</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
@@ -841,12 +703,6 @@
 </tr>
 <tr>
 <td><a href="../PodmanPlay/">PodmanPlay</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanPod/">PodmanPod</a></td>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>range</td>
 <td><a href="./">NamedThing</a></td>
@@ -865,12 +721,6 @@
 </tr>
 <tr>
 <td><a href="../PodmanPod/">PodmanPod</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanSave/">PodmanSave</a></td>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>range</td>
 <td><a href="./">NamedThing</a></td>
@@ -889,12 +739,6 @@
 </tr>
 <tr>
 <td><a href="../PodmanSave/">PodmanSave</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanSecret/">PodmanSecret</a></td>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>range</td>
 <td><a href="./">NamedThing</a></td>
@@ -913,12 +757,6 @@
 </tr>
 <tr>
 <td><a href="../PodmanSecret/">PodmanSecret</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanTag/">PodmanTag</a></td>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>range</td>
 <td><a href="./">NamedThing</a></td>
@@ -937,12 +775,6 @@
 </tr>
 <tr>
 <td><a href="../PodmanTag/">PodmanTag</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../PodmanVolume/">PodmanVolume</a></td>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>range</td>
 <td><a href="./">NamedThing</a></td>
@@ -961,8 +793,8 @@
 </tr>
 <tr>
 <td><a href="../PodmanVolume/">PodmanVolume</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
+<td><a href="../inTaxon/">inTaxon</a></td>
+<td>range</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
@@ -1152,24 +984,6 @@
 <td><a href="./">NamedThing</a></td>
 </tr>
 <tr>
-<td><a href="../OpenSource/">OpenSource</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../OpenSource/">OpenSource</a></td>
-<td><a href="../providedBy/">providedBy</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../OpenSource/">OpenSource</a></td>
-<td><a href="../xref/">xref</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
 <td><a href="../OperatingSystem/">OperatingSystem</a></td>
 <td><a href="../inTaxon/">inTaxon</a></td>
 <td>range</td>
@@ -1202,12 +1016,6 @@
 <tr>
 <td><a href="../Solaris/">Solaris</a></td>
 <td><a href="../xref/">xref</a></td>
-<td>domain</td>
-<td><a href="./">NamedThing</a></td>
-</tr>
-<tr>
-<td><a href="../Linux/">Linux</a></td>
-<td><a href="../creationDate/">creationDate</a></td>
 <td>domain</td>
 <td><a href="./">NamedThing</a></td>
 </tr>
@@ -1430,7 +1238,6 @@ attributes:
     owner: NamedThing
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -1541,7 +1348,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
   description:
     name: description

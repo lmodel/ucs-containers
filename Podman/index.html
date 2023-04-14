@@ -213,16 +213,6 @@
       Software &lt;|-- Podman
 
 
-      Podman &lt;|-- PodmanContainer
-      Podman &lt;|-- PodmanContainers
-      Podman &lt;|-- PodmanExport
-      Podman &lt;|-- PodmanGenerateSystemd
-      Podman &lt;|-- PodmanImage
-      Podman &lt;|-- PodmanImport
-      Podman &lt;|-- PodmanLoad
-      Podman &lt;|-- PodmanLogin
-      Podman &lt;|-- PodmanLogout
-      Podman &lt;|-- PodmanNetwork
       Podman &lt;|-- PodmanPlay
       Podman &lt;|-- PodmanPod
       Podman &lt;|-- PodmanSave
@@ -231,21 +221,9 @@
       Podman &lt;|-- PodmanVolume
 
 
-      Podman : address
-
-          Podman ..&gt; string : address
-
-      Podman : affiliation
-
-          Podman ..&gt; uriorcurie : affiliation
-
       Podman : category
 
           Podman ..&gt; category type : category
-
-      Podman : creationDate
-
-          Podman ..&gt; date : creationDate
 
       Podman : description
 
@@ -337,7 +315,7 @@
 <td><a href="../id/">id</a></td>
 <td>1..1 <br/> <a href="xsd:string">xsd:string</a></td>
 <td>A unique identifier for an entity</td>
-<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+<td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
 <td><a href="../iri/">iri</a></td>
@@ -361,7 +339,7 @@
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../LabelType/">LabelType</a></td>
 <td>A human-readable name for an attribute or entity</td>
-<td><a href="../Entity/">Entity</a>, <a href="../Agent/">Agent</a></td>
+<td><a href="../Entity/">Entity</a></td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
@@ -375,24 +353,6 @@
 <td>connects any entity to an attribute</td>
 <td><a href="../Entity/">Entity</a></td>
 </tr>
-<tr>
-<td><a href="../creationDate/">creationDate</a></td>
-<td>0..1 <br/> <a href="xsd:date">xsd:date</a></td>
-<td>date on which an entity was created</td>
-<td><a href="../OpenSource/">OpenSource</a></td>
-</tr>
-<tr>
-<td><a href="../affiliation/">affiliation</a></td>
-<td>0..* <br/> <a href="xsd:anyURI">xsd:anyURI</a></td>
-<td>a professional relationship between one provider (x) within another provider ...</td>
-<td><a href="../Agent/">Agent</a></td>
-</tr>
-<tr>
-<td><a href="../address/">address</a></td>
-<td>0..1 <br/> <a href="xsd:string">xsd:string</a></td>
-<td>Collection of information that describes the location of a building, apartmen...</td>
-<td><a href="../Agent/">Agent</a></td>
-</tr>
 </tbody>
 </table>
 <h2 id="mixin-usage">Mixin Usage</h2>
@@ -404,46 +364,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><a href="../PodmanContainer/">PodmanContainer</a></td>
-<td>Podman container</td>
-</tr>
-<tr>
-<td><a href="../PodmanContainers/">PodmanContainers</a></td>
-<td>Podman containers</td>
-</tr>
-<tr>
-<td><a href="../PodmanExport/">PodmanExport</a></td>
-<td>Export a Podman container</td>
-</tr>
-<tr>
-<td><a href="../PodmanGenerateSystemd/">PodmanGenerateSystemd</a></td>
-<td>Generate systemd unit from a pod or a container</td>
-</tr>
-<tr>
-<td><a href="../PodmanImage/">PodmanImage</a></td>
-<td>Podman container image</td>
-</tr>
-<tr>
-<td><a href="../PodmanImport/">PodmanImport</a></td>
-<td>Import Podman container from file</td>
-</tr>
-<tr>
-<td><a href="../PodmanLoad/">PodmanLoad</a></td>
-<td>Load container into container storage</td>
-</tr>
-<tr>
-<td><a href="../PodmanLogin/">PodmanLogin</a></td>
-<td>Login to a Container registry using Podman</td>
-</tr>
-<tr>
-<td><a href="../PodmanLogout/">PodmanLogout</a></td>
-<td>Logout of a Container registry using Podman</td>
-</tr>
-<tr>
-<td><a href="../PodmanNetwork/">PodmanNetwork</a></td>
-<td>Manage podman networks</td>
-</tr>
 <tr>
 <td><a href="../PodmanPlay/">PodmanPlay</a></td>
 <td>Play kubernetes YAML file using podman</td>
@@ -492,6 +412,10 @@
 <td>native</td>
 <td>containers:Podman</td>
 </tr>
+<tr>
+<td>exact</td>
+<td>wikidata:Q70876440</td>
+</tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
@@ -501,6 +425,8 @@
 <pre><code class="language-yaml">name: Podman
 description: daemonless OCI-compliant container runtime
 from_schema: https://w3id.org/lmodel/ucs-containers
+exact_mappings:
+- wikidata:Q70876440
 rank: 1000
 is_a: Software
 mixin: true
@@ -514,6 +440,8 @@ mixins:
 <pre><code class="language-yaml">name: Podman
 description: daemonless OCI-compliant container runtime
 from_schema: https://w3id.org/lmodel/ucs-containers
+exact_mappings:
+- wikidata:Q70876440
 rank: 1000
 is_a: Software
 mixin: true
@@ -640,7 +568,6 @@ attributes:
     owner: Podman
     domain_of:
     - Entity
-    - Agent
     range: string
     required: true
   iri:
@@ -751,7 +678,6 @@ attributes:
     - PodmanVolume
     - Attribute
     - Entity
-    - Agent
     range: label type
   description:
     name: description
@@ -1006,72 +932,6 @@ attributes:
     domain_of:
     - Entity
     range: Attribute
-  creationDate:
-    name: creationDate
-    description: date on which an entity was created. This can be applied to nodes
-      or edges
-    from_schema: https://w3id.org/lmodel/ucs-core
-    aliases:
-    - publicationDate
-    exact_mappings:
-    - dcterms:createdOn
-    - schema:dateCreated
-    - dwc:dateIdentified
-    - schema:datePublished
-    - sumo:dateEstablished
-    - wikidata.property:P577
-    narrow_mappings:
-    - dwc:eventDate
-    - dwc:verbatimEventDate
-    - dwc:relationshipEstablishedDate
-    broad_mappings:
-    - sumo:date
-    is_a: nodeProperty
-    domain: NamedThing
-    slot_uri: uco-observable:creationDate
-    alias: creationDate
-    owner: Podman
-    domain_of:
-    - InformationContentEntity
-    - OpenSource
-    range: date
-  affiliation:
-    name: affiliation
-    description: a professional relationship between one provider (x) within another
-      provider (often an organization). Target provider identity should be specified
-      by a CURIE. Providers may have multiple affiliations.
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - NCIT:C25412
-    - schema:affiliation
-    - SIO:000173
-    - wikidata.property:P1268
-    related_mappings:
-    - uco-identity:AffiliationFacet
-    is_a: nodeProperty
-    domain: Agent
-    multivalued: true
-    alias: affiliation
-    owner: Podman
-    domain_of:
-    - Agent
-    range: uriorcurie
-  address:
-    name: address
-    description: Collection of information that describes the location of a building,
-      apartment, or other structure
-    from_schema: https://w3id.org/lmodel/ucs-core
-    exact_mappings:
-    - wikidata:Q64826646
-    narrow_mappings:
-    - NCIT:C25407
-    - sumo:AddressFn
-    slot_uri: uco-identity:address
-    alias: address
-    owner: Podman
-    domain_of:
-    - Agent
-    range: string
 
 </code></pre>
 </details>
