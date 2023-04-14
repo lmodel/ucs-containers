@@ -18,7 +18,6 @@ public class PodmanSecret extends ClosedSoftwareModule {
   private String data;
   private String driver;
   private MetaObject driverOpts;
-  private String executable;
   private boolean force;
   private String name;
   private boolean skipExisting;

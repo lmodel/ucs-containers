@@ -17,7 +17,6 @@ public class PodmanSave extends ClosedSoftwareModule {
 
   private boolean compress;
   private String dest;
-  private String executable;
   private boolean force;
   private String format;
   private String image;

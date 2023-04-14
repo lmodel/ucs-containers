@@ -19,7 +19,6 @@ public class PodmanPlay extends ClosedSoftwareModule {
   private String certDir;
   private List<String> configmap;
   private boolean debug;
-  private String executable;
   private String kubeFile;
   private String logDriver;
   private String logLevel;

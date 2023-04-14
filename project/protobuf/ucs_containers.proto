@@ -214,7 +214,6 @@ message OperatingSystem
 // Podman container
 message PodmanContainer
  {
-  string executable = 0
   containerStateEnum state = 0
   metaObject annotation = 0
   string authfile = 0
@@ -324,11 +323,13 @@ message PodmanContainer
  repeated  string volume = 0
  repeated  string volumesFrom = 0
   string workdir = 0
+  string executable = 0
   string image = 0
  }
 // Podman containers
 message PodmanContainers
  {
+  string executable = 0
  repeated  metaObject containers = 0
   boolean debug = 0
  }
@@ -337,8 +338,8 @@ message PodmanExport
  {
   string container = 0
   string dest = 0
-  string executable = 0
   boolean force = 0
+  string executable = 0
  }
 // Generate systemd unit from a pod or a container
 message PodmanGenerateSystemd
@@ -347,7 +348,6 @@ message PodmanGenerateSystemd
   string containerPrefix = 0
   string dest = 0
   metaObject env = 0
-  string executable = 0
   labelType name = 0
   boolean new = 0
   boolean noHeader = 0
@@ -360,6 +360,7 @@ message PodmanGenerateSystemd
   integer stopTimeout = 0
   boolean useNames = 0
  repeated  string wants = 0
+  string executable = 0
  }
 // Podman container image
 message PodmanImage
@@ -367,7 +368,6 @@ message PodmanImage
   string authFile = 0
   metaObject build = 0
   string caCertDir = 0
-  string executable = 0
   boolean force = 0
   labelType name = 0
   string password = 0
@@ -385,39 +385,40 @@ message PodmanImage
   string tag = 0
   string username = 0
   boolean validateCerts = 0
+  string executable = 0
  }
 // Import Podman container from file
 message PodmanImport
  {
  repeated  metaObject change = 0
   string commitMessage = 0
-  string executable = 0
   string src = 0
+  string executable = 0
  }
 // Load container into container storage
 message PodmanLoad
  {
-  string executable = 0
   string input = 0
+  string executable = 0
  }
 // Login to a Container registry using Podman
 message PodmanLogin
  {
   string authfile = 0
   string certdir = 0
-  string executable = 0
   string password = 0
   string registry = 0
   boolean tlsverify = 0
   string username = 0
+  string executable = 0
  }
 // Logout of a Container registry using Podman
 message PodmanLogout
  {
   boolean all = 0
   string authfile = 0
-  string executable = 0
   boolean ignoreDockerCredentials = 0
+  string executable = 0
   string registry = 0
  }
 // Manage podman networks
@@ -426,7 +427,6 @@ message PodmanNetwork
   boolean debug = 0
   boolean disableDns = 0
   string driver = 0
-  string executable = 0
   string gateway = 0
   boolean internal = 0
   string ipRange = 0
@@ -437,6 +437,7 @@ message PodmanNetwork
   boolean recreate = 0
   containerNetworkStateEnum state = 0
   string subnet = 0
+  string executable = 0
  }
 // Play kubernetes YAML file using podman
 message PodmanPlay
@@ -445,7 +446,6 @@ message PodmanPlay
   string certDir = 0
  repeated  string configmap = 0
   boolean debug = 0
-  string executable = 0
   string kubeFile = 0
   string logDriver = 0
   containerLogLevelEnum logLevel = 0
@@ -457,6 +457,7 @@ message PodmanPlay
   containerStateEnum state = 0
   boolean tlsVerify = 0
   string username = 0
+  string executable = 0
  }
 // Manage Podman pods
 message PodmanPod
@@ -471,7 +472,6 @@ message PodmanPod
  repeated  string dns = 0
  repeated  string dnsOpt = 0
  repeated  string dnsSearch = 0
-  string executable = 0
   metaObject generateSystemd = 0
  repeated  string gidmap = 0
   string hostname = 0
@@ -499,17 +499,18 @@ message PodmanPod
  repeated  string uidmap = 0
   string userns = 0
  repeated  string volume = 0
+  string executable = 0
  }
 // Saves podman image to tar file
 message PodmanSave
  {
   boolean compress = 0
   string dest = 0
-  string executable = 0
   boolean force = 0
   containerSaveFormatEnum format = 0
   string image = 0
   boolean multiImageArchive = 0
+  string executable = 0
  }
 // Manage Podman secrets
 message PodmanSecret
@@ -517,30 +518,30 @@ message PodmanSecret
   string data = 0
   string driver = 0
   metaObject driverOpts = 0
-  string executable = 0
   boolean force = 0
   labelType name = 0
   boolean skipExisting = 0
   string state = 0
+  string executable = 0
  }
 // Add an additional name to a local image
 message PodmanTag
  {
-  string executable = 0
   string image = 0
  repeated  string targetNames = 0
+  string executable = 0
  }
 // Manage Podman Volumes
 message PodmanVolume
  {
   boolean debug = 0
   string driver = 0
-  string executable = 0
   metaObject label = 0
   labelType name = 0
  repeated  string options = 0
   boolean recreate = 0
   string state = 0
+  string executable = 0
  }
 // Collaborative enterprise, frequently involving research or design, that is carefully planned to achieve a particular aim
 message Project

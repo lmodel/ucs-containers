@@ -60,6 +60,7 @@ type Attribute implements OntologyClass
 
 interface ClosedSoftwareModule
   {
+    executable: String
   }
 
 type Container implements Virtualization
@@ -328,7 +329,6 @@ type Podman implements OpenContainerInitiative
 
 type PodmanContainer
   {
-    executable: String
     state: ContainerStateEnum
     annotation: MetaObject
     authfile: String
@@ -438,11 +438,13 @@ type PodmanContainer
     volume: [String]
     volumesFrom: [String]
     workdir: String
+    executable: String
     image: String
   }
 
 type PodmanContainers
   {
+    executable: String
     containers: [MetaObject]!
     debug: Boolean
   }
@@ -451,8 +453,8 @@ type PodmanExport
   {
     container: String!
     dest: String!
-    executable: String
     force: Boolean
+    executable: String
   }
 
 type PodmanGenerateSystemd
@@ -461,7 +463,6 @@ type PodmanGenerateSystemd
     containerPrefix: String
     dest: String
     env: MetaObject
-    executable: String
     name: LabelType!
     new: Boolean
     noHeader: Boolean
@@ -474,6 +475,7 @@ type PodmanGenerateSystemd
     stopTimeout: Integer
     useNames: Boolean
     wants: [String]
+    executable: String
   }
 
 type PodmanImage
@@ -481,7 +483,6 @@ type PodmanImage
     authFile: String
     build: MetaObject
     caCertDir: String
-    executable: String
     force: Boolean
     name: LabelType!
     password: String
@@ -499,39 +500,40 @@ type PodmanImage
     tag: String
     username: String
     validateCerts: Boolean
+    executable: String
   }
 
 type PodmanImport
   {
     change: [MetaObject]
     commitMessage: String
-    executable: String
     src: String!
+    executable: String
   }
 
 type PodmanLoad
   {
-    executable: String
     input: String!
+    executable: String
   }
 
 type PodmanLogin
   {
     authfile: String
     certdir: String
-    executable: String
     password: String!
     registry: String
     tlsverify: Boolean
     username: String!
+    executable: String
   }
 
 type PodmanLogout
   {
     all: Boolean
     authfile: String
-    executable: String
     ignoreDockerCredentials: Boolean
+    executable: String
     registry: String
   }
 
@@ -540,7 +542,6 @@ type PodmanNetwork
     debug: Boolean
     disableDns: Boolean
     driver: String
-    executable: String
     gateway: String
     internal: Boolean
     ipRange: String
@@ -551,6 +552,7 @@ type PodmanNetwork
     recreate: Boolean
     state: ContainerNetworkStateEnum
     subnet: String
+    executable: String
   }
 
 type PodmanPlay
@@ -559,7 +561,6 @@ type PodmanPlay
     certDir: String
     configmap: [String]
     debug: Boolean
-    executable: String
     kubeFile: String!
     logDriver: String
     logLevel: ContainerLogLevelEnum
@@ -571,6 +572,7 @@ type PodmanPlay
     state: ContainerStateEnum!
     tlsVerify: Boolean
     username: String
+    executable: String
   }
 
 type PodmanPod
@@ -585,7 +587,6 @@ type PodmanPod
     dns: [String]
     dnsOpt: [String]
     dnsSearch: [String]
-    executable: String
     generateSystemd: MetaObject
     gidmap: [String]
     hostname: String
@@ -613,17 +614,18 @@ type PodmanPod
     uidmap: [String]
     userns: String
     volume: [String]
+    executable: String
   }
 
 type PodmanSave
   {
     compress: Boolean
     dest: String!
-    executable: String
     force: Boolean
     format: ContainerSaveFormatEnum
     image: String!
     multiImageArchive: Boolean
+    executable: String
   }
 
 type PodmanSecret
@@ -631,30 +633,30 @@ type PodmanSecret
     data: String
     driver: String
     driverOpts: MetaObject
-    executable: String
     force: Boolean
     name: LabelType!
     skipExisting: Boolean
     state: String
+    executable: String
   }
 
 type PodmanTag
   {
-    executable: String
     image: String!
     targetNames: [String]!
+    executable: String
   }
 
 type PodmanVolume
   {
     debug: Boolean
     driver: String
-    executable: String
     label: MetaObject
     name: LabelType!
     options: [String]
     recreate: Boolean
     state: String
+    executable: String
   }
 
 type Project

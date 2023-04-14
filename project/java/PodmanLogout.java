@@ -17,7 +17,6 @@ public class PodmanLogout extends ClosedSoftwareModule {
 
   private boolean all;
   private String authfile;
-  private String executable;
   private boolean ignoreDockerCredentials;
 
 }

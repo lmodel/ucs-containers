@@ -19,7 +19,6 @@ public class PodmanGenerateSystemd extends ClosedSoftwareModule {
   private String containerPrefix;
   private String dest;
   private MetaObject env;
-  private String executable;
   private String name;
   private boolean new;
   private boolean noHeader;

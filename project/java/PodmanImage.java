@@ -18,7 +18,6 @@ public class PodmanImage extends ClosedSoftwareModule {
   private String authFile;
   private MetaObject build;
   private String caCertDir;
-  private String executable;
   private boolean force;
   private String name;
   private String password;

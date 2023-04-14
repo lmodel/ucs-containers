@@ -718,6 +718,8 @@ classes:
 
   ClosedSoftwareModule:
     abstract: true
+    slots:
+      - executable
     description: >-
       Self contained software module
 
@@ -726,7 +728,6 @@ classes:
     description: >-
       Podman container
     slots:
-      - executable
       - state
       - annotation
       - authfile
@@ -1460,7 +1461,6 @@ classes:
     slots:
       - container
       - dest
-      - executable
       - force
     slot_usage:
       container:
@@ -1493,7 +1493,6 @@ classes:
       - container_prefix
       - dest
       - env
-      - executable
       - name
       - new
       - no_header
@@ -1603,7 +1602,6 @@ classes:
       # - rm
       # - volume
       - ca_cert_dir
-      - executable
       - force
       - name
       - password
@@ -1711,7 +1709,6 @@ classes:
     slots:
       - change
       - commit_message
-      - executable
       - src
     slot_usage:
       change:
@@ -1739,7 +1736,6 @@ classes:
     description: >-
       Load container into container storage
     slots:
-      - executable
       - input
     slot_usage:
       executable:
@@ -1760,7 +1756,6 @@ classes:
     slots:
       - authfile
       - certdir
-      - executable
       - password
       - registry
       - tlsverify
@@ -1806,7 +1801,6 @@ classes:
     slots:
       - all
       - authfile
-      - executable
       - ignore_docker_credentials
     slot_usage:
       all:
@@ -1841,7 +1835,6 @@ classes:
       - debug
       - disable_dns
       - driver
-      - executable
       - gateway
       - internal
       - ip_range
@@ -1934,7 +1927,6 @@ classes:
       - cert_dir
       - configmap
       - debug
-      - executable
       - kube_file
       - log_driver
       - log_level
@@ -2038,7 +2030,6 @@ classes:
       - dns
       - dns_opt
       - dns_search
-      - executable
       - generate_systemd
       # - after
       # - container_prefix
@@ -2270,7 +2261,6 @@ classes:
     slots:
       - compress
       - dest
-      - executable
       - force
       - format
       - image
@@ -2323,7 +2313,6 @@ classes:
       - data
       - driver
       - driver_opts
-      - executable
       - force
       - name
       - skip_existing
@@ -2375,7 +2364,6 @@ classes:
     description: >-
       Add an additional name to a local image
     slots:
-      - executable
       - image
       - target_names
     slot_usage:
@@ -2403,7 +2391,6 @@ classes:
     slots:
       - debug
       - driver
-      - executable
       - label
       - name
       - options

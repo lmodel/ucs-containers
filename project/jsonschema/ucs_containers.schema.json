@@ -1684,6 +1684,10 @@
                 "debug": {
                     "description": "Return additional information which can be helpful for investigations.",
                     "type": "boolean"
+                },
+                "executable": {
+                    "description": "file that can be directly run by a computer",
+                    "type": "string"
                 }
             },
             "required": [

@@ -17,7 +17,6 @@ public class PodmanExport extends ClosedSoftwareModule {
 
   private String container;
   private String dest;
-  private String executable;
   private boolean force;
 
 }

@@ -25,7 +25,6 @@ public class PodmanPod extends ClosedSoftwareModule {
   private List<String> dns;
   private List<String> dnsOpt;
   private List<String> dnsSearch;
-  private String executable;
   private MetaObject generateSystemd;
   private List<String> gidmap;
   private String hostname;

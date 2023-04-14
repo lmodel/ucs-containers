@@ -15,7 +15,6 @@ import lombok.*;
 @EqualsAndHashCode(callSuper=false)
 public class PodmanTag extends ClosedSoftwareModule {
 
-  private String executable;
   private String image;
   private List<String> targetNames;
 

@@ -17,7 +17,6 @@ public class PodmanVolume extends ClosedSoftwareModule {
 
   private boolean debug;
   private String driver;
-  private String executable;
   private MetaObject label;
   private String name;
   private List<String> options;

@@ -132,7 +132,6 @@ CREATE TABLE "OperatingSystem" (
 );
 
 CREATE TABLE "PodmanContainer" (
-	executable TEXT, 
 	state VARCHAR(7), 
 	annotation TEXT, 
 	authfile TEXT, 
@@ -242,22 +241,24 @@ CREATE TABLE "PodmanContainer" (
 	volume TEXT, 
 	volumes_from TEXT, 
 	workdir TEXT, 
+	executable TEXT, 
 	image TEXT, 
-	PRIMARY KEY (executable, state, annotation, authfile, blkio_weight, blkio_weight_device, cap_add, cap_drop, cgroup_parent, cgroupns, cgroups, cidfile, cmd_args, conmon_pidfile, command, cpu_period, cpu_rt_period, cpu_rt_runtime, cpu_shares, cpus, cpuset_cpus, cpuset_mems, "detach", debug, detach_keys, device, device_read_bps, device_read_iops, device_write_bps, device_write_iops, dns, dns_option, dns_search, entrypoint, env, env_file, env_host, etc_hosts, expose, force_restart, generate_systemd, gidmap, group_add, healthcheck, healthcheck_interval, healthcheck_retries, healthcheck_start_period, healthcheck_timeout, hostname, http_proxy, image_volume, image_strict, init, init_path, interactive, ip, ipc, kernel_memory, label, label_file, log_driver, log_level, log_opt, mac_address, memory, memory_reservation, memory_swap, memory_swappiness, mount, name, network, network_aliases, no_hosts, oom_kill_disable, oom_score_adj, pid, pids_limit, pod, privileged, publish, publish_all, read_only, read_only_tmpfs, recreate, requires, restart_policy, rm, rootfs, sdnotify, secrets, security_opt, shm_size, sig_proxy, stop_signal, stop_timeout, subgidname, subuidname, sysctl, systemd, timezone, tmpfs, tty, uidmap, ulimit, user, userns, uts, volume, volumes_from, workdir, image)
+	PRIMARY KEY (state, annotation, authfile, blkio_weight, blkio_weight_device, cap_add, cap_drop, cgroup_parent, cgroupns, cgroups, cidfile, cmd_args, conmon_pidfile, command, cpu_period, cpu_rt_period, cpu_rt_runtime, cpu_shares, cpus, cpuset_cpus, cpuset_mems, "detach", debug, detach_keys, device, device_read_bps, device_read_iops, device_write_bps, device_write_iops, dns, dns_option, dns_search, entrypoint, env, env_file, env_host, etc_hosts, expose, force_restart, generate_systemd, gidmap, group_add, healthcheck, healthcheck_interval, healthcheck_retries, healthcheck_start_period, healthcheck_timeout, hostname, http_proxy, image_volume, image_strict, init, init_path, interactive, ip, ipc, kernel_memory, label, label_file, log_driver, log_level, log_opt, mac_address, memory, memory_reservation, memory_swap, memory_swappiness, mount, name, network, network_aliases, no_hosts, oom_kill_disable, oom_score_adj, pid, pids_limit, pod, privileged, publish, publish_all, read_only, read_only_tmpfs, recreate, requires, restart_policy, rm, rootfs, sdnotify, secrets, security_opt, shm_size, sig_proxy, stop_signal, stop_timeout, subgidname, subuidname, sysctl, systemd, timezone, tmpfs, tty, uidmap, ulimit, user, userns, uts, volume, volumes_from, workdir, executable, image)
 );
 
 CREATE TABLE "PodmanContainers" (
+	executable TEXT, 
 	containers TEXT NOT NULL, 
 	debug BOOLEAN, 
-	PRIMARY KEY (containers, debug)
+	PRIMARY KEY (executable, containers, debug)
 );
 
 CREATE TABLE "PodmanExport" (
 	container TEXT NOT NULL, 
 	dest TEXT NOT NULL, 
-	executable TEXT, 
 	force BOOLEAN, 
-	PRIMARY KEY (container, dest, executable, force)
+	executable TEXT, 
+	PRIMARY KEY (container, dest, force, executable)
 );
 
 CREATE TABLE "PodmanGenerateSystemd" (
@@ -265,7 +266,6 @@ CREATE TABLE "PodmanGenerateSystemd" (
 	container_prefix TEXT, 
 	dest TEXT, 
 	env TEXT, 
-	executable TEXT, 
 	name TEXT NOT NULL, 
 	new BOOLEAN, 
 	no_header BOOLEAN, 
@@ -278,14 +278,14 @@ CREATE TABLE "PodmanGenerateSystemd" (
 	stop_timeout INTEGER, 
 	use_names BOOLEAN, 
 	wants TEXT, 
-	PRIMARY KEY ("after", container_prefix, dest, env, executable, name, new, no_header, pod_prefix, requires, restart_policy, restart_sec, separator, start_timeout, stop_timeout, use_names, wants)
+	executable TEXT, 
+	PRIMARY KEY ("after", container_prefix, dest, env, name, new, no_header, pod_prefix, requires, restart_policy, restart_sec, separator, start_timeout, stop_timeout, use_names, wants, executable)
 );
 
 CREATE TABLE "PodmanImage" (
 	auth_file TEXT, 
 	build TEXT, 
 	ca_cert_dir TEXT, 
-	executable TEXT, 
 	force BOOLEAN, 
 	name TEXT NOT NULL, 
 	password TEXT, 
@@ -303,48 +303,48 @@ CREATE TABLE "PodmanImage" (
 	tag TEXT, 
 	username TEXT, 
 	validate_certs BOOLEAN, 
-	PRIMARY KEY (auth_file, build, ca_cert_dir, executable, force, name, password, path, pull, push, push_args, compress, dest, format, remove_signatures, sign_by, transport, state, tag, username, validate_certs)
+	executable TEXT, 
+	PRIMARY KEY (auth_file, build, ca_cert_dir, force, name, password, path, pull, push, push_args, compress, dest, format, remove_signatures, sign_by, transport, state, tag, username, validate_certs, executable)
 );
 
 CREATE TABLE "PodmanImport" (
 	change TEXT, 
 	commit_message TEXT, 
-	executable TEXT, 
 	src TEXT NOT NULL, 
-	PRIMARY KEY (change, commit_message, executable, src)
+	executable TEXT, 
+	PRIMARY KEY (change, commit_message, src, executable)
 );
 
 CREATE TABLE "PodmanLoad" (
-	executable TEXT, 
 	input TEXT NOT NULL, 
-	PRIMARY KEY (executable, input)
+	executable TEXT, 
+	PRIMARY KEY (input, executable)
 );
 
 CREATE TABLE "PodmanLogin" (
 	authfile TEXT, 
 	certdir TEXT, 
-	executable TEXT, 
 	password TEXT NOT NULL, 
 	registry TEXT, 
 	tlsverify BOOLEAN, 
 	username TEXT NOT NULL, 
-	PRIMARY KEY (authfile, certdir, executable, password, registry, tlsverify, username)
+	executable TEXT, 
+	PRIMARY KEY (authfile, certdir, password, registry, tlsverify, username, executable)
 );
 
 CREATE TABLE "PodmanLogout" (
 	"all" BOOLEAN, 
 	authfile TEXT, 
-	executable TEXT, 
 	ignore_docker_credentials BOOLEAN, 
+	executable TEXT, 
 	registry TEXT, 
-	PRIMARY KEY ("all", authfile, executable, ignore_docker_credentials, registry)
+	PRIMARY KEY ("all", authfile, ignore_docker_credentials, executable, registry)
 );
 
 CREATE TABLE "PodmanNetwork" (
 	debug BOOLEAN, 
 	disable_dns BOOLEAN, 
 	driver TEXT, 
-	executable TEXT, 
 	gateway TEXT, 
 	internal BOOLEAN, 
 	ip_range TEXT, 
@@ -355,7 +355,8 @@ CREATE TABLE "PodmanNetwork" (
 	recreate BOOLEAN, 
 	state VARCHAR(7), 
 	subnet TEXT, 
-	PRIMARY KEY (debug, disable_dns, driver, executable, gateway, internal, ip_range, ipv6, macvlan, name, opt, recreate, state, subnet)
+	executable TEXT, 
+	PRIMARY KEY (debug, disable_dns, driver, gateway, internal, ip_range, ipv6, macvlan, name, opt, recreate, state, subnet, executable)
 );
 
 CREATE TABLE "PodmanPlay" (
@@ -363,7 +364,6 @@ CREATE TABLE "PodmanPlay" (
 	cert_dir TEXT, 
 	configmap TEXT, 
 	debug BOOLEAN, 
-	executable TEXT, 
 	kube_file TEXT NOT NULL, 
 	log_driver TEXT, 
 	log_level VARCHAR(5), 
@@ -375,7 +375,8 @@ CREATE TABLE "PodmanPlay" (
 	state VARCHAR(7) NOT NULL, 
 	tls_verify BOOLEAN, 
 	username TEXT, 
-	PRIMARY KEY (authfile, cert_dir, configmap, debug, executable, kube_file, log_driver, log_level, network, password, quiet, recreate, seccomp_profile_root, state, tls_verify, username)
+	executable TEXT, 
+	PRIMARY KEY (authfile, cert_dir, configmap, debug, kube_file, log_driver, log_level, network, password, quiet, recreate, seccomp_profile_root, state, tls_verify, username, executable)
 );
 
 CREATE TABLE "PodmanPod" (
@@ -389,7 +390,6 @@ CREATE TABLE "PodmanPod" (
 	dns TEXT, 
 	dns_opt TEXT, 
 	dns_search TEXT, 
-	executable TEXT, 
 	generate_systemd TEXT, 
 	gidmap TEXT, 
 	hostname TEXT, 
@@ -417,49 +417,50 @@ CREATE TABLE "PodmanPod" (
 	uidmap TEXT, 
 	userns TEXT, 
 	volume TEXT, 
-	PRIMARY KEY (add_host, cgroup_parent, cpus, cpuset_cpus, debug, device, device_read_bps, dns, dns_opt, dns_search, executable, generate_systemd, gidmap, hostname, infra, infra_command, infra_conmon_pidfile, infra_name, infra_image, ip, label, label_file, mac_address, name, network, network_alias, no_hosts, pid, pod_id_file, publish, recreate, share, state, subgidname, subuidname, uidmap, userns, volume)
+	executable TEXT, 
+	PRIMARY KEY (add_host, cgroup_parent, cpus, cpuset_cpus, debug, device, device_read_bps, dns, dns_opt, dns_search, generate_systemd, gidmap, hostname, infra, infra_command, infra_conmon_pidfile, infra_name, infra_image, ip, label, label_file, mac_address, name, network, network_alias, no_hosts, pid, pod_id_file, publish, recreate, share, state, subgidname, subuidname, uidmap, userns, volume, executable)
 );
 
 CREATE TABLE "PodmanSave" (
 	compress BOOLEAN, 
 	dest TEXT NOT NULL, 
-	executable TEXT, 
 	force BOOLEAN, 
 	format VARCHAR(14), 
 	image TEXT NOT NULL, 
 	multi_image_archive BOOLEAN, 
-	PRIMARY KEY (compress, dest, executable, force, format, image, multi_image_archive)
+	executable TEXT, 
+	PRIMARY KEY (compress, dest, force, format, image, multi_image_archive, executable)
 );
 
 CREATE TABLE "PodmanSecret" (
 	data TEXT, 
 	driver TEXT, 
 	driver_opts TEXT, 
-	executable TEXT, 
 	force BOOLEAN, 
 	name TEXT NOT NULL, 
 	skip_existing BOOLEAN, 
 	state TEXT, 
-	PRIMARY KEY (data, driver, driver_opts, executable, force, name, skip_existing, state)
+	executable TEXT, 
+	PRIMARY KEY (data, driver, driver_opts, force, name, skip_existing, state, executable)
 );
 
 CREATE TABLE "PodmanTag" (
-	executable TEXT, 
 	image TEXT NOT NULL, 
 	target_names TEXT NOT NULL, 
-	PRIMARY KEY (executable, image, target_names)
+	executable TEXT, 
+	PRIMARY KEY (image, target_names, executable)
 );
 
 CREATE TABLE "PodmanVolume" (
 	debug BOOLEAN, 
 	driver TEXT, 
-	executable TEXT, 
 	label TEXT, 
 	name TEXT NOT NULL, 
 	options TEXT, 
 	recreate BOOLEAN, 
 	state TEXT, 
-	PRIMARY KEY (debug, driver, executable, label, name, options, recreate, state)
+	executable TEXT, 
+	PRIMARY KEY (debug, driver, label, name, options, recreate, state, executable)
 );
 
 CREATE TABLE "Project" (

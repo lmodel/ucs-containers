@@ -1,5 +1,5 @@
 # Auto generated from ucs_containers.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-04-14T02:08:57
+# Generation date: 2023-04-14T02:12:39
 # Schema: ucs-containers
 #
 # id: https://w3id.org/lmodel/ucs-containers
@@ -266,6 +266,7 @@ class AssociationId(EntityId):
     pass
 
 
+@dataclass
 class ClosedSoftwareModule(YAMLRoot):
     """
     Self contained software module
@@ -276,6 +277,14 @@ class ClosedSoftwareModule(YAMLRoot):
     class_class_curie: ClassVar[str] = "containers:ClosedSoftwareModule"
     class_name: ClassVar[str] = "ClosedSoftwareModule"
     class_model_uri: ClassVar[URIRef] = CONTAINERS.ClosedSoftwareModule
+
+    executable: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
+
+        super().__post_init__(**kwargs)
 
 
 @dataclass
@@ -291,7 +300,6 @@ class PodmanContainer(ClosedSoftwareModule):
     class_model_uri: ClassVar[URIRef] = CONTAINERS.PodmanContainer
 
     name: Union[str, LabelType] = None
-    executable: Optional[str] = "podman"
     state: Optional[Union[str, "ContainerStateEnum"]] = "started"
     annotation: Optional[Union[dict, "MetaObject"]] = None
     authfile: Optional[str] = None
@@ -400,6 +408,7 @@ class PodmanContainer(ClosedSoftwareModule):
     volume: Optional[Union[str, List[str]]] = empty_list()
     volumes_from: Optional[Union[str, List[str]]] = empty_list()
     workdir: Optional[str] = None
+    executable: Optional[str] = "podman"
     image: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -407,9 +416,6 @@ class PodmanContainer(ClosedSoftwareModule):
             self.MissingRequiredField("name")
         if not isinstance(self.name, LabelType):
             self.name = LabelType(self.name)
-
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
 
         if self.state is not None and not isinstance(self.state, ContainerStateEnum):
             self.state = ContainerStateEnum(self.state)
@@ -735,6 +741,9 @@ class PodmanContainer(ClosedSoftwareModule):
         if self.workdir is not None and not isinstance(self.workdir, str):
             self.workdir = str(self.workdir)
 
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
+
         if self.image is not None and not isinstance(self.image, str):
             self.image = str(self.image)
 
@@ -777,8 +786,8 @@ class PodmanExport(ClosedSoftwareModule):
 
     container: str = None
     dest: str = None
-    executable: Optional[str] = "podman"
     force: Optional[Union[bool, Bool]] = True
+    executable: Optional[str] = "podman"
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.container):
@@ -791,11 +800,11 @@ class PodmanExport(ClosedSoftwareModule):
         if not isinstance(self.dest, str):
             self.dest = str(self.dest)
 
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
-
         if self.force is not None and not isinstance(self.force, Bool):
             self.force = Bool(self.force)
+
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
 
         super().__post_init__(**kwargs)
 
@@ -817,7 +826,6 @@ class PodmanGenerateSystemd(ClosedSoftwareModule):
     container_prefix: Optional[str] = None
     dest: Optional[str] = None
     env: Optional[Union[dict, "MetaObject"]] = None
-    executable: Optional[str] = "podman"
     new: Optional[Union[bool, Bool]] = False
     no_header: Optional[Union[bool, Bool]] = False
     pod_prefix: Optional[str] = None
@@ -829,6 +837,7 @@ class PodmanGenerateSystemd(ClosedSoftwareModule):
     stop_timeout: Optional[int] = None
     use_names: Optional[Union[bool, Bool]] = True
     wants: Optional[Union[str, List[str]]] = empty_list()
+    executable: Optional[str] = "podman"
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.name):
@@ -845,9 +854,6 @@ class PodmanGenerateSystemd(ClosedSoftwareModule):
 
         if self.dest is not None and not isinstance(self.dest, str):
             self.dest = str(self.dest)
-
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
 
         if self.new is not None and not isinstance(self.new, Bool):
             self.new = Bool(self.new)
@@ -884,6 +890,9 @@ class PodmanGenerateSystemd(ClosedSoftwareModule):
             self.wants = [self.wants] if self.wants is not None else []
         self.wants = [v if isinstance(v, str) else str(v) for v in self.wants]
 
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
+
         super().__post_init__(**kwargs)
 
 
@@ -903,7 +912,6 @@ class PodmanImage(ClosedSoftwareModule):
     auth_file: Optional[str] = None
     build: Optional[Union[dict, "MetaObject"]] = None
     ca_cert_dir: Optional[str] = None
-    executable: Optional[str] = "podman"
     force: Optional[Union[bool, Bool]] = False
     password: Optional[str] = None
     path: Optional[str] = None
@@ -920,6 +928,7 @@ class PodmanImage(ClosedSoftwareModule):
     tag: Optional[str] = "latest"
     username: Optional[str] = None
     validate_certs: Optional[Union[bool, Bool]] = None
+    executable: Optional[str] = "podman"
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.name):
@@ -932,9 +941,6 @@ class PodmanImage(ClosedSoftwareModule):
 
         if self.ca_cert_dir is not None and not isinstance(self.ca_cert_dir, str):
             self.ca_cert_dir = str(self.ca_cert_dir)
-
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
 
         if self.force is not None and not isinstance(self.force, Bool):
             self.force = Bool(self.force)
@@ -980,6 +986,9 @@ class PodmanImage(ClosedSoftwareModule):
 
         if self.validate_certs is not None and not isinstance(self.validate_certs, Bool):
             self.validate_certs = Bool(self.validate_certs)
+
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
 
         super().__post_init__(**kwargs)
 
@@ -1059,9 +1068,9 @@ class PodmanLogin(ClosedSoftwareModule):
     username: str = None
     authfile: Optional[str] = None
     certdir: Optional[str] = None
-    executable: Optional[str] = "podman"
     registry: Optional[str] = None
     tlsverify: Optional[Union[bool, Bool]] = None
+    executable: Optional[str] = "podman"
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.password):
@@ -1080,14 +1089,14 @@ class PodmanLogin(ClosedSoftwareModule):
         if self.certdir is not None and not isinstance(self.certdir, str):
             self.certdir = str(self.certdir)
 
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
-
         if self.registry is not None and not isinstance(self.registry, str):
             self.registry = str(self.registry)
 
         if self.tlsverify is not None and not isinstance(self.tlsverify, Bool):
             self.tlsverify = Bool(self.tlsverify)
+
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
 
         super().__post_init__(**kwargs)
 
@@ -1106,8 +1115,8 @@ class PodmanLogout(ClosedSoftwareModule):
 
     all: Optional[Union[bool, Bool]] = None
     authfile: Optional[str] = None
-    executable: Optional[str] = "podman"
     ignore_docker_credentials: Optional[Union[bool, Bool]] = None
+    executable: Optional[str] = "podman"
     registry: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1117,11 +1126,11 @@ class PodmanLogout(ClosedSoftwareModule):
         if self.authfile is not None and not isinstance(self.authfile, str):
             self.authfile = str(self.authfile)
 
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
-
         if self.ignore_docker_credentials is not None and not isinstance(self.ignore_docker_credentials, Bool):
             self.ignore_docker_credentials = Bool(self.ignore_docker_credentials)
+
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
 
         if self.registry is not None and not isinstance(self.registry, str):
             self.registry = str(self.registry)
@@ -1145,7 +1154,6 @@ class PodmanNetwork(ClosedSoftwareModule):
     debug: Optional[Union[bool, Bool]] = False
     disable_dns: Optional[Union[bool, Bool]] = False
     driver: Optional[str] = None
-    executable: Optional[str] = None
     gateway: Optional[str] = None
     internal: Optional[Union[bool, Bool]] = None
     ip_range: Optional[str] = None
@@ -1155,6 +1163,7 @@ class PodmanNetwork(ClosedSoftwareModule):
     recreate: Optional[Union[bool, Bool]] = False
     state: Optional[Union[str, "ContainerNetworkStateEnum"]] = "present"
     subnet: Optional[str] = None
+    executable: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.name):
@@ -1170,9 +1179,6 @@ class PodmanNetwork(ClosedSoftwareModule):
 
         if self.driver is not None and not isinstance(self.driver, str):
             self.driver = str(self.driver)
-
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
 
         if self.gateway is not None and not isinstance(self.gateway, str):
             self.gateway = str(self.gateway)
@@ -1198,6 +1204,9 @@ class PodmanNetwork(ClosedSoftwareModule):
         if self.subnet is not None and not isinstance(self.subnet, str):
             self.subnet = str(self.subnet)
 
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
+
         super().__post_init__(**kwargs)
 
 
@@ -1219,7 +1228,6 @@ class PodmanPlay(ClosedSoftwareModule):
     cert_dir: Optional[str] = None
     configmap: Optional[Union[str, List[str]]] = empty_list()
     debug: Optional[Union[bool, Bool]] = None
-    executable: Optional[str] = None
     log_driver: Optional[str] = None
     log_level: Optional[Union[str, "ContainerLogLevelEnum"]] = None
     network: Optional[Union[str, List[str]]] = empty_list()
@@ -1229,6 +1237,7 @@ class PodmanPlay(ClosedSoftwareModule):
     seccomp_profile_root: Optional[str] = None
     tls_verify: Optional[Union[bool, Bool]] = None
     username: Optional[str] = None
+    executable: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.kube_file):
@@ -1253,9 +1262,6 @@ class PodmanPlay(ClosedSoftwareModule):
 
         if self.debug is not None and not isinstance(self.debug, Bool):
             self.debug = Bool(self.debug)
-
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
 
         if self.log_driver is not None and not isinstance(self.log_driver, str):
             self.log_driver = str(self.log_driver)
@@ -1285,6 +1291,9 @@ class PodmanPlay(ClosedSoftwareModule):
         if self.username is not None and not isinstance(self.username, str):
             self.username = str(self.username)
 
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
+
         super().__post_init__(**kwargs)
 
 
@@ -1311,7 +1320,6 @@ class PodmanPod(ClosedSoftwareModule):
     dns: Optional[Union[str, List[str]]] = empty_list()
     dns_opt: Optional[Union[str, List[str]]] = empty_list()
     dns_search: Optional[Union[str, List[str]]] = empty_list()
-    executable: Optional[str] = "podman"
     generate_systemd: Optional[Union[dict, "MetaObject"]] = None
     gidmap: Optional[Union[str, List[str]]] = empty_list()
     hostname: Optional[str] = None
@@ -1338,6 +1346,7 @@ class PodmanPod(ClosedSoftwareModule):
     uidmap: Optional[Union[str, List[str]]] = empty_list()
     userns: Optional[str] = None
     volume: Optional[Union[str, List[str]]] = empty_list()
+    executable: Optional[str] = "podman"
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.name):
@@ -1380,9 +1389,6 @@ class PodmanPod(ClosedSoftwareModule):
         if not isinstance(self.dns_search, list):
             self.dns_search = [self.dns_search] if self.dns_search is not None else []
         self.dns_search = [v if isinstance(v, str) else str(v) for v in self.dns_search]
-
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
 
         if not isinstance(self.gidmap, list):
             self.gidmap = [self.gidmap] if self.gidmap is not None else []
@@ -1462,6 +1468,9 @@ class PodmanPod(ClosedSoftwareModule):
             self.volume = [self.volume] if self.volume is not None else []
         self.volume = [v if isinstance(v, str) else str(v) for v in self.volume]
 
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
+
         super().__post_init__(**kwargs)
 
 
@@ -1480,10 +1489,10 @@ class PodmanSave(ClosedSoftwareModule):
     dest: str = None
     image: str = None
     compress: Optional[Union[bool, Bool]] = None
-    executable: Optional[str] = "podman"
     force: Optional[Union[bool, Bool]] = False
     format: Optional[Union[str, "ContainerSaveFormatEnum"]] = None
     multi_image_archive: Optional[Union[bool, Bool]] = None
+    executable: Optional[str] = "podman"
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.dest):
@@ -1499,9 +1508,6 @@ class PodmanSave(ClosedSoftwareModule):
         if self.compress is not None and not isinstance(self.compress, Bool):
             self.compress = Bool(self.compress)
 
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
-
         if self.force is not None and not isinstance(self.force, Bool):
             self.force = Bool(self.force)
 
@@ -1510,6 +1516,9 @@ class PodmanSave(ClosedSoftwareModule):
 
         if self.multi_image_archive is not None and not isinstance(self.multi_image_archive, Bool):
             self.multi_image_archive = Bool(self.multi_image_archive)
+
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
 
         super().__post_init__(**kwargs)
 
@@ -1530,10 +1539,10 @@ class PodmanSecret(ClosedSoftwareModule):
     data: Optional[str] = None
     driver: Optional[str] = None
     driver_opts: Optional[Union[dict, "MetaObject"]] = None
-    executable: Optional[str] = "podman"
     force: Optional[Union[bool, Bool]] = False
     skip_existing: Optional[Union[bool, Bool]] = False
     state: Optional[str] = "present"
+    executable: Optional[str] = "podman"
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.name):
@@ -1547,9 +1556,6 @@ class PodmanSecret(ClosedSoftwareModule):
         if self.driver is not None and not isinstance(self.driver, str):
             self.driver = str(self.driver)
 
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
-
         if self.force is not None and not isinstance(self.force, Bool):
             self.force = Bool(self.force)
 
@@ -1558,6 +1564,9 @@ class PodmanSecret(ClosedSoftwareModule):
 
         if self.state is not None and not isinstance(self.state, str):
             self.state = str(self.state)
+
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
 
         super().__post_init__(**kwargs)
 
@@ -1611,11 +1620,11 @@ class PodmanVolume(ClosedSoftwareModule):
     name: Union[str, LabelType] = None
     debug: Optional[Union[bool, Bool]] = False
     driver: Optional[str] = None
-    executable: Optional[str] = "podman"
     label: Optional[Union[dict, "MetaObject"]] = None
     options: Optional[Union[str, List[str]]] = empty_list()
     recreate: Optional[Union[bool, Bool]] = False
     state: Optional[str] = "present"
+    executable: Optional[str] = "podman"
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.name):
@@ -1629,9 +1638,6 @@ class PodmanVolume(ClosedSoftwareModule):
         if self.driver is not None and not isinstance(self.driver, str):
             self.driver = str(self.driver)
 
-        if self.executable is not None and not isinstance(self.executable, str):
-            self.executable = str(self.executable)
-
         if not isinstance(self.options, list):
             self.options = [self.options] if self.options is not None else []
         self.options = [v if isinstance(v, str) else str(v) for v in self.options]
@@ -1641,6 +1647,9 @@ class PodmanVolume(ClosedSoftwareModule):
 
         if self.state is not None and not isinstance(self.state, str):
             self.state = str(self.state)
+
+        if self.executable is not None and not isinstance(self.executable, str):
+            self.executable = str(self.executable)
 
         super().__post_init__(**kwargs)
 

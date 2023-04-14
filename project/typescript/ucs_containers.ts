@@ -453,14 +453,14 @@ In an RDF database, nodes will typically have an rdf:type triples. This can be t
  * Self contained software module
  */
 export interface ClosedSoftwareModule  {
+    /**
+     * file that can be directly run by a computer
+     */executable?: string,
 }
 /**
  * Podman container
  */
 export interface PodmanContainer  extends ClosedSoftwareModule  {
-    /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
     /**
      * absent - A container matching the specified name will be stopped and removed.
 present - Asserts the existence of a container matching the name and any provided configuration parameters. If no container matches the name, a container will be created. If a container matches the name but the provided configuration does not match, the container will be updated, if it can be. If it cannot be updated, it will be removed and re-created with the requested config. Image version will be taken into account when comparing configuration. Use the recreate option to force the re-creation of the matching container.
@@ -792,6 +792,9 @@ created - Asserts that the container exists with given configuration. If contain
     /**
      * Working directory inside the container. The default working directory for running binaries within a container is the root directory (/).
      */workdir?: string,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Podman containers
@@ -803,6 +806,9 @@ export interface PodmanContainers  extends ClosedSoftwareModule  {
     /**
      * Return additional information which can be helpful for investigations.
      */debug?: boolean,
+    /**
+     * file that can be directly run by a computer
+     */executable?: string,
 }
 /**
  * Export a Podman container
@@ -815,11 +821,11 @@ export interface PodmanExport  extends ClosedSoftwareModule  {
      * Path to export container to.
      */dest?: string,
     /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
-    /**
      * Force saving to file even if it exists.
      */force?: boolean,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Generate systemd unit from a pod or a container
@@ -837,9 +843,6 @@ export interface PodmanGenerateSystemd  extends ClosedSoftwareModule  {
     /**
      * Set environment variables to the systemd unit files. Keys are the environment variable names, and values are the environment variable values. Only with Podman 4.3.0 and above
      */env?: MetaObject,
-    /**
-     * Podman executable name or full path
-     */executable?: string,
     /**
      * Name of the pod or container to export
      */name?: string,
@@ -876,6 +879,9 @@ export interface PodmanGenerateSystemd  extends ClosedSoftwareModule  {
     /**
      * Wanted things
      */wants?: string,
+    /**
+     * Podman executable name or full path
+     */executable?: string,
 }
 /**
  * Podman container image
@@ -890,9 +896,6 @@ export interface PodmanImage  extends ClosedSoftwareModule  {
     /**
      * Path to directory containing TLS certificates and keys to use.
      */ca_cert_dir?: string,
-    /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman.
-     */executable?: string,
     /**
      * Whether or not to force push or pull an image. When building, force the build even if the image already exists.
      */force?: boolean,
@@ -942,6 +945,9 @@ export interface PodmanImage  extends ClosedSoftwareModule  {
     /**
      * Require HTTPS and validate certificates when pulling or pushing. Also used during build if a pull or push is necessary.
      */validate_certs?: boolean,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman.
+     */executable?: string,
 }
 /**
  * Import Podman container from file
@@ -954,22 +960,22 @@ export interface PodmanImport  extends ClosedSoftwareModule  {
      * Set commit message for imported image
      */commit_message?: string,
     /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
-    /**
      * Path to image file to load.
      */src?: string,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Load container into container storage
  */
 export interface PodmanLoad  extends ClosedSoftwareModule  {
     /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
-    /**
      * Path to image file to load.
      */input?: string,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Login to a Container registry using Podman
@@ -982,9 +988,6 @@ export interface PodmanLogin  extends ClosedSoftwareModule  {
      * Use certificates at path (*.crt, *.cert, *.key) to connect to the registry. Default certificates directory is /etc/containers/certs.d.
      */certdir?: string,
     /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
-    /**
      * Password for the registry server.
      */password?: string,
     /**
@@ -996,6 +999,9 @@ export interface PodmanLogin  extends ClosedSoftwareModule  {
     /**
      * Username for the registry server.
      */username?: string,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Logout of a Container registry using Podman
@@ -1008,11 +1014,11 @@ export interface PodmanLogout  extends ClosedSoftwareModule  {
      * Path of the authentication file. Default is ``${XDG_RUNTIME_DIR}/containers/auth.json`` You can also override the default path of the authentication file by setting the ``REGISTRY_AUTH_FILE`` environment variable. ``export REGISTRY_AUTH_FILE=path``
      */authfile?: string,
     /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
-    /**
      * Credentials created using other tools such as `docker login` are not removed unless the corresponding `authfile` is explicitly specified. Since podman also uses existing credentials in these files by default (for docker e.g. `${HOME}/.docker/config.json`), module execution will fail if a docker login exists for the registry specified in any `authfile` is used by podman. This can be ignored by setting `ignore_docker_credentials` to `yes` - the credentials will be kept and `changed` will be false. This option cannot be used together with `all` since in this case podman will not check for existing `authfiles` created by other tools.
      */ignore_docker_credentials?: boolean,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Manage podman networks
@@ -1027,9 +1033,6 @@ export interface PodmanNetwork  extends ClosedSoftwareModule  {
     /**
      * Driver to manage the network (default “bridge”)
      */driver?: string,
-    /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman ifabsent: string(podman)
-     */executable?: string,
     /**
      * IPv4 or IPv6 gateway for the subnet
      */gateway?: string,
@@ -1060,6 +1063,9 @@ export interface PodmanNetwork  extends ClosedSoftwareModule  {
     /**
      * Subnet in CIDR format
      */subnet?: string,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman ifabsent: string(podman)
+     */executable?: string,
 }
 /**
  * Play kubernetes YAML file using podman
@@ -1077,9 +1083,6 @@ export interface PodmanPlay  extends ClosedSoftwareModule  {
     /**
      * Enable debug for the module.
      */debug?: boolean,
-    /**
-     * Name of executable to run, by default ‘podman’ ifabsent: string(podman)
-     */executable?: string,
     /**
      * Path to file with YAML configuration for a Pod.
      */kube_file?: string,
@@ -1113,6 +1116,9 @@ export interface PodmanPlay  extends ClosedSoftwareModule  {
     /**
      * The username and password to use to authenticate with the registry if required.
      */username?: string,
+    /**
+     * Name of executable to run, by default ‘podman’ ifabsent: string(podman)
+     */executable?: string,
 }
 /**
  * Manage Podman pods
@@ -1148,9 +1154,6 @@ export interface PodmanPod  extends ClosedSoftwareModule  {
     /**
      * Set custom DNS search domains in the /etc/resolv.conf file that will be shared between all containers in the pod.
      */dns_search?: string,
-    /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
     /**
      * Generate systemd unit file for container.
      */generate_systemd?: MetaObject,
@@ -1233,6 +1236,9 @@ export interface PodmanPod  extends ClosedSoftwareModule  {
     /**
      * Create a bind mount.
      */volume?: string,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Saves podman image to tar file
@@ -1245,9 +1251,6 @@ export interface PodmanSave  extends ClosedSoftwareModule  {
      * Destination file to write image to.
      */dest?: string,
     /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
-    /**
      * Force saving to file even if it exists.
      */force?: boolean,
     /**
@@ -1259,6 +1262,9 @@ export interface PodmanSave  extends ClosedSoftwareModule  {
     /**
      * Allow for creating archives with more than one image. Additional names will be interpreted as images instead of tags. Only supported for docker-archive.
      */multi_image_archive?: boolean,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Manage Podman secrets
@@ -1274,9 +1280,6 @@ export interface PodmanSecret  extends ClosedSoftwareModule  {
      * Driver-specific key-value options.
      */driver_opts?: MetaObject,
     /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
-    /**
      * Use it when state is present to remove and recreate an existing secret.
      */force?: boolean,
     /**
@@ -1288,20 +1291,23 @@ export interface PodmanSecret  extends ClosedSoftwareModule  {
     /**
      * Whether to create or remove the named secret.
      */state?: string,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Add an additional name to a local image
  */
 export interface PodmanTag  extends ClosedSoftwareModule  {
     /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
-    /**
      * Image to tag.
      */image?: string,
     /**
      * Additional names.
      */target_names?: string,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * Manage Podman Volumes
@@ -1313,9 +1319,6 @@ export interface PodmanVolume  extends ClosedSoftwareModule  {
     /**
      * Specify volume driver name (default local).
      */driver?: string,
-    /**
-     * Path to podman executable if it is not in the $PATH on the machine running podman
-     */executable?: string,
     /**
      * Add metadata to a pod volume (e.g., label com.example.key=value).
      */label?: MetaObject,
@@ -1331,6 +1334,9 @@ export interface PodmanVolume  extends ClosedSoftwareModule  {
     /**
      * State of volume, default ‘present’
      */state?: string,
+    /**
+     * Path to podman executable if it is not in the $PATH on the machine running podman
+     */executable?: string,
 }
 /**
  * linkml:Any type is an experimental feature for allowing arbitrary objects

@@ -17,7 +17,6 @@ public class PodmanLogin extends ClosedSoftwareModule {
 
   private String authfile;
   private String certdir;
-  private String executable;
   private String password;
   private String registry;
   private boolean tlsverify;

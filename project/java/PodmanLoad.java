@@ -15,7 +15,6 @@ import lombok.*;
 @EqualsAndHashCode(callSuper=false)
 public class PodmanLoad extends ClosedSoftwareModule {
 
-  private String executable;
   private String input;
 
 }

@@ -3154,23 +3154,9 @@
         "http://identifiers.org/wikidata/Q778586"
       ],
       "slot_uri": "https://w3id.org/lmodel/ucs-core/executable",
-      "owner": "PodmanVolume",
+      "owner": "ClosedSoftwareModule",
       "domain_of": [
-        "PodmanContainer",
-        "PodmanExport",
-        "PodmanGenerateSystemd",
-        "PodmanImage",
-        "PodmanImport",
-        "PodmanLoad",
-        "PodmanLogin",
-        "PodmanLogout",
-        "PodmanNetwork",
-        "PodmanPlay",
-        "PodmanPod",
-        "PodmanSave",
-        "PodmanSecret",
-        "PodmanTag",
-        "PodmanVolume"
+        "ClosedSoftwareModule"
       ],
       "range": "string",
       "@type": "SlotDefinition"
@@ -10938,6 +10924,9 @@
       "description": "Self contained software module",
       "from_schema": "https://w3id.org/lmodel/ucs-containers",
       "abstract": true,
+      "slots": [
+        "executable"
+      ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/ClosedSoftwareModule",
       "@type": "ClassDefinition"
@@ -10949,7 +10938,6 @@
       "from_schema": "https://w3id.org/lmodel/ucs-containers",
       "is_a": "ClosedSoftwareModule",
       "slots": [
-        "PodmanContainer_executable",
         "PodmanContainer_state",
         "PodmanContainer_annotation",
         "PodmanContainer_authfile",
@@ -11060,6 +11048,7 @@
         "PodmanContainer_volume",
         "PodmanContainer_volumes_from",
         "PodmanContainer_workdir",
+        "PodmanContainer_executable",
         "PodmanContainer_image"
       ],
       "slot_usage": {},
@@ -11073,6 +11062,7 @@
       "from_schema": "https://w3id.org/lmodel/ucs-containers",
       "is_a": "ClosedSoftwareModule",
       "slots": [
+        "executable",
         "PodmanContainers_containers",
         "PodmanContainers_debug"
       ],
@@ -11089,8 +11079,8 @@
       "slots": [
         "PodmanExport_container",
         "PodmanExport_dest",
-        "PodmanExport_executable",
-        "PodmanExport_force"
+        "PodmanExport_force",
+        "PodmanExport_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanExport",
@@ -11107,7 +11097,6 @@
         "PodmanGenerateSystemd_container_prefix",
         "PodmanGenerateSystemd_dest",
         "PodmanGenerateSystemd_env",
-        "PodmanGenerateSystemd_executable",
         "PodmanGenerateSystemd_name",
         "PodmanGenerateSystemd_new",
         "PodmanGenerateSystemd_no_header",
@@ -11119,7 +11108,8 @@
         "PodmanGenerateSystemd_start_timeout",
         "PodmanGenerateSystemd_stop_timeout",
         "PodmanGenerateSystemd_use_names",
-        "wants"
+        "wants",
+        "PodmanGenerateSystemd_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanGenerateSystemd",
@@ -11135,7 +11125,6 @@
         "PodmanImage_auth_file",
         "PodmanImage_build",
         "PodmanImage_ca_cert_dir",
-        "PodmanImage_executable",
         "PodmanImage_force",
         "PodmanImage_name",
         "PodmanImage_password",
@@ -11152,7 +11141,8 @@
         "PodmanImage_state",
         "PodmanImage_tag",
         "PodmanImage_username",
-        "PodmanImage_validate_certs"
+        "PodmanImage_validate_certs",
+        "PodmanImage_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanImage",
@@ -11167,8 +11157,8 @@
       "slots": [
         "PodmanImport_change",
         "PodmanImport_commit_message",
-        "PodmanImport_executable",
-        "PodmanImport_src"
+        "PodmanImport_src",
+        "PodmanImport_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanImport",
@@ -11181,8 +11171,8 @@
       "from_schema": "https://w3id.org/lmodel/ucs-containers",
       "is_a": "ClosedSoftwareModule",
       "slots": [
-        "PodmanLoad_executable",
-        "PodmanLoad_input"
+        "PodmanLoad_input",
+        "PodmanLoad_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanLoad",
@@ -11197,11 +11187,11 @@
       "slots": [
         "PodmanLogin_authfile",
         "PodmanLogin_certdir",
-        "PodmanLogin_executable",
         "PodmanLogin_password",
         "PodmanLogin_registry",
         "PodmanLogin_tlsverify",
-        "PodmanLogin_username"
+        "PodmanLogin_username",
+        "PodmanLogin_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanLogin",
@@ -11216,8 +11206,8 @@
       "slots": [
         "PodmanLogout_all",
         "PodmanLogout_authfile",
-        "PodmanLogout_executable",
         "PodmanLogout_ignore_docker_credentials",
+        "PodmanLogout_executable",
         "PodmanLogout_registry"
       ],
       "slot_usage": {},
@@ -11234,7 +11224,6 @@
         "PodmanNetwork_debug",
         "PodmanNetwork_disable_dns",
         "PodmanNetwork_driver",
-        "PodmanNetwork_executable",
         "PodmanNetwork_gateway",
         "PodmanNetwork_internal",
         "PodmanNetwork_ip_range",
@@ -11244,7 +11233,8 @@
         "PodmanNetwork_opt",
         "PodmanNetwork_recreate",
         "PodmanNetwork_state",
-        "PodmanNetwork_subnet"
+        "PodmanNetwork_subnet",
+        "PodmanNetwork_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanNetwork",
@@ -11261,7 +11251,6 @@
         "PodmanPlay_cert_dir",
         "PodmanPlay_configmap",
         "PodmanPlay_debug",
-        "PodmanPlay_executable",
         "PodmanPlay_kube_file",
         "PodmanPlay_log_driver",
         "PodmanPlay_log_level",
@@ -11272,7 +11261,8 @@
         "PodmanPlay_seccomp_profile_root",
         "PodmanPlay_state",
         "PodmanPlay_tls_verify",
-        "PodmanPlay_username"
+        "PodmanPlay_username",
+        "PodmanPlay_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanPlay",
@@ -11295,7 +11285,6 @@
         "PodmanPod_dns",
         "PodmanPod_dns_opt",
         "PodmanPod_dns_search",
-        "PodmanPod_executable",
         "PodmanPod_generate_systemd",
         "PodmanPod_gidmap",
         "PodmanPod_hostname",
@@ -11322,7 +11311,8 @@
         "PodmanPod_subuidname",
         "PodmanPod_uidmap",
         "PodmanPod_userns",
-        "PodmanPod_volume"
+        "PodmanPod_volume",
+        "PodmanPod_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanPod",
@@ -11337,11 +11327,11 @@
       "slots": [
         "PodmanSave_compress",
         "PodmanSave_dest",
-        "PodmanSave_executable",
         "PodmanSave_force",
         "PodmanSave_format",
         "PodmanSave_image",
-        "PodmanSave_multi_image_archive"
+        "PodmanSave_multi_image_archive",
+        "PodmanSave_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanSave",
@@ -11357,11 +11347,11 @@
         "PodmanSecret_data",
         "PodmanSecret_driver",
         "PodmanSecret_driver_opts",
-        "PodmanSecret_executable",
         "PodmanSecret_force",
         "PodmanSecret_name",
         "PodmanSecret_skip_existing",
-        "PodmanSecret_state"
+        "PodmanSecret_state",
+        "PodmanSecret_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanSecret",
@@ -11374,9 +11364,9 @@
       "from_schema": "https://w3id.org/lmodel/ucs-containers",
       "is_a": "ClosedSoftwareModule",
       "slots": [
-        "PodmanTag_executable",
         "PodmanTag_image",
-        "PodmanTag_target_names"
+        "PodmanTag_target_names",
+        "PodmanTag_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanTag",
@@ -11391,12 +11381,12 @@
       "slots": [
         "PodmanVolume_debug",
         "PodmanVolume_driver",
-        "PodmanVolume_executable",
         "PodmanVolume_label",
         "PodmanVolume_name",
         "PodmanVolume_options",
         "PodmanVolume_recreate",
-        "PodmanVolume_state"
+        "PodmanVolume_state",
+        "PodmanVolume_executable"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/lmodel/ucs-containers/PodmanVolume",
@@ -12049,9 +12039,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "ucs_containers.yaml",
-  "source_file_date": "2023-04-14T02:07:24",
-  "source_file_size": 75038,
-  "generation_date": "2023-04-14T02:08:19",
+  "source_file_date": "2023-04-14T02:11:49",
+  "source_file_size": 74783,
+  "generation_date": "2023-04-14T02:12:01",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/ucs_containers.context.jsonld",

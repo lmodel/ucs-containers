@@ -128,7 +128,7 @@ core:Attribute CLOSED {
 )
 
 <ClosedSoftwareModule_struct> {
-    (  $<ClosedSoftwareModule_tes> rdf:type . * ;
+    (  $<ClosedSoftwareModule_tes> core:executable @linkml:String ? ;
        rdf:type [ <ClosedSoftwareModule> ] ?
     )
 }
@@ -345,7 +345,6 @@ core:OperatingSystem  (
 <PodmanContainer> CLOSED {
     (  $<PodmanContainer_tes> (  &<ClosedSoftwareModule_tes> ;
           rdf:type [ <ClosedSoftwareModule> ] ? ;
-          core:executable @linkml:String ? ;
           uco-observable:state @<ContainerStateEnum> ? ;
           core:annotation @core:MetaObject ? ;
           core:authfile @linkml:String ? ;
@@ -455,6 +454,7 @@ core:OperatingSystem  (
           uco-observable:volume @linkml:String * ;
           <volumes_from> @linkml:String * ;
           core:workdir @linkml:String ? ;
+          core:executable @linkml:String ? ;
           core:image @linkml:String ?
        ) ;
        rdf:type [ <PodmanContainer> ] ?
@@ -476,8 +476,8 @@ core:OperatingSystem  (
           rdf:type [ <ClosedSoftwareModule> ] ? ;
           core:container @linkml:String ;
           core:dest @linkml:String ;
-          core:executable @linkml:String ? ;
-          core:force @linkml:Boolean ?
+          core:force @linkml:Boolean ? ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanExport> ] ?
     )
@@ -490,7 +490,6 @@ core:OperatingSystem  (
           <container_prefix> @linkml:String ? ;
           core:dest @linkml:String ? ;
           core:env @core:MetaObject ? ;
-          core:executable @linkml:String ? ;
           rdfs:label @core:LabelType ;
           core:new @linkml:Boolean ? ;
           <no_header> @linkml:Boolean ? ;
@@ -502,7 +501,8 @@ core:OperatingSystem  (
           <start_timeout> @linkml:Integer ? ;
           <stop_timeout> @linkml:Integer ? ;
           <use_names> @linkml:Boolean ? ;
-          <wants> @linkml:String *
+          <wants> @linkml:String * ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanGenerateSystemd> ] ?
     )
@@ -514,7 +514,6 @@ core:OperatingSystem  (
           core:auth_file @linkml:String ? ;
           core:build @core:MetaObject ? ;
           <ca_cert_dir> @linkml:String ? ;
-          core:executable @linkml:String ? ;
           core:force @linkml:Boolean ? ;
           rdfs:label @core:LabelType ;
           uco-observable:password @linkml:String ? ;
@@ -531,7 +530,8 @@ core:OperatingSystem  (
           uco-observable:state @<ContainerImageStateEnum> ? ;
           core:tag @linkml:String ? ;
           core:username @linkml:String ? ;
-          core:validate_certs @linkml:Boolean ?
+          core:validate_certs @linkml:Boolean ? ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanImage> ] ?
     )
@@ -542,8 +542,8 @@ core:OperatingSystem  (
           rdf:type [ <ClosedSoftwareModule> ] ? ;
           core:change @core:MetaObject * ;
           core:commit_message @linkml:String ? ;
-          core:executable @linkml:String ? ;
-          uco-observable:src @linkml:String
+          uco-observable:src @linkml:String ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanImport> ] ?
     )
@@ -552,8 +552,8 @@ core:OperatingSystem  (
 <PodmanLoad> CLOSED {
     (  $<PodmanLoad_tes> (  &<ClosedSoftwareModule_tes> ;
           rdf:type [ <ClosedSoftwareModule> ] ? ;
-          core:executable @linkml:String ? ;
-          core:input @linkml:String
+          core:input @linkml:String ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanLoad> ] ?
     )
@@ -564,11 +564,11 @@ core:OperatingSystem  (
           rdf:type [ <ClosedSoftwareModule> ] ? ;
           core:authfile @linkml:String ? ;
           core:certdir @linkml:String ? ;
-          core:executable @linkml:String ? ;
           uco-observable:password @linkml:String ;
           <registry> @linkml:String ? ;
           core:tlsverify @linkml:Boolean ? ;
-          core:username @linkml:String
+          core:username @linkml:String ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanLogin> ] ?
     )
@@ -579,8 +579,8 @@ core:OperatingSystem  (
           rdf:type [ <ClosedSoftwareModule> ] ? ;
           <all> @linkml:Boolean ? ;
           core:authfile @linkml:String ? ;
-          core:executable @linkml:String ? ;
           <ignore_docker_credentials> @linkml:Boolean ? ;
+          core:executable @linkml:String ? ;
           <registry> @linkml:String ?
        ) ;
        rdf:type [ <PodmanLogout> ] ?
@@ -593,7 +593,6 @@ core:OperatingSystem  (
           core:debug @linkml:Boolean ? ;
           <disable_dns> @linkml:Boolean ? ;
           core:driver @linkml:String ? ;
-          core:executable @linkml:String ? ;
           core:gateway @linkml:String ? ;
           core:internal @linkml:Boolean ? ;
           core:ip_range @linkml:String ? ;
@@ -603,7 +602,8 @@ core:OperatingSystem  (
           core:opt @core:MetaObject ? ;
           core:recreate @linkml:Boolean ? ;
           uco-observable:state @<ContainerNetworkStateEnum> ? ;
-          core:subnet @linkml:String ?
+          core:subnet @linkml:String ? ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanNetwork> ] ?
     )
@@ -616,7 +616,6 @@ core:OperatingSystem  (
           core:cert_dir @linkml:String ? ;
           <configmap> @linkml:String * ;
           core:debug @linkml:Boolean ? ;
-          core:executable @linkml:String ? ;
           <kube_file> @linkml:String ;
           core:log_driver @linkml:String ? ;
           core:log_level @<ContainerLogLevelEnum> ? ;
@@ -627,7 +626,8 @@ core:OperatingSystem  (
           <seccomp_profile_root> @linkml:String ? ;
           uco-observable:state @<ContainerStateEnum> ;
           core:tls_verify @linkml:Boolean ? ;
-          core:username @linkml:String ?
+          core:username @linkml:String ? ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanPlay> ] ?
     )
@@ -646,7 +646,6 @@ core:OperatingSystem  (
           core:dns @linkml:String * ;
           core:dns_opt @linkml:String * ;
           core:dns_search @linkml:String * ;
-          core:executable @linkml:String ? ;
           <generate_systemd> @core:MetaObject ? ;
           <gidmap> @linkml:String * ;
           uco-observable:hostname @linkml:String ? ;
@@ -673,7 +672,8 @@ core:OperatingSystem  (
           <subuidname> @linkml:String ? ;
           <uidmap> @linkml:String * ;
           <userns> @linkml:String ? ;
-          uco-observable:volume @linkml:String *
+          uco-observable:volume @linkml:String * ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanPod> ] ?
     )
@@ -684,11 +684,11 @@ core:OperatingSystem  (
           rdf:type [ <ClosedSoftwareModule> ] ? ;
           core:compress @linkml:Boolean ? ;
           core:dest @linkml:String ;
-          core:executable @linkml:String ? ;
           core:force @linkml:Boolean ? ;
           uco-observable:format @<ContainerSaveFormatEnum> ? ;
           core:image @linkml:String ;
-          <multi_image_archive> @linkml:Boolean ?
+          <multi_image_archive> @linkml:Boolean ? ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanSave> ] ?
     )
@@ -700,11 +700,11 @@ core:OperatingSystem  (
           uco-observable:data @linkml:String ? ;
           core:driver @linkml:String ? ;
           core:driver_opts @core:MetaObject ? ;
-          core:executable @linkml:String ? ;
           core:force @linkml:Boolean ? ;
           rdfs:label @core:LabelType ;
           <skip_existing> @linkml:Boolean ? ;
-          uco-observable:state @linkml:String ?
+          uco-observable:state @linkml:String ? ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanSecret> ] ?
     )
@@ -713,9 +713,9 @@ core:OperatingSystem  (
 <PodmanTag> CLOSED {
     (  $<PodmanTag_tes> (  &<ClosedSoftwareModule_tes> ;
           rdf:type [ <ClosedSoftwareModule> ] ? ;
-          core:executable @linkml:String ? ;
           core:image @linkml:String ;
-          <target_names> @linkml:String +
+          <target_names> @linkml:String + ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanTag> ] ?
     )
@@ -726,12 +726,12 @@ core:OperatingSystem  (
           rdf:type [ <ClosedSoftwareModule> ] ? ;
           core:debug @linkml:Boolean ? ;
           core:driver @linkml:String ? ;
-          core:executable @linkml:String ? ;
           core:label @core:MetaObject ? ;
           rdfs:label @core:LabelType ;
           core:options @linkml:String * ;
           core:recreate @linkml:Boolean ? ;
-          uco-observable:state @linkml:String ?
+          uco-observable:state @linkml:String ? ;
+          core:executable @linkml:String ?
        ) ;
        rdf:type [ <PodmanVolume> ] ?
     )

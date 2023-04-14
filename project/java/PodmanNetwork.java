@@ -18,7 +18,6 @@ public class PodmanNetwork extends ClosedSoftwareModule {
   private boolean debug;
   private boolean disableDns;
   private String driver;
-  private String executable;
   private String gateway;
   private boolean internal;
   private String ipRange;
